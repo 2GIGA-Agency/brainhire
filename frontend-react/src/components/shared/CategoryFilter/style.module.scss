@@ -1,0 +1,38 @@
+@import '@/styles/abstracts/variables';
+
+.filterGroup {
+	display: flex;
+	flex-direction: column;
+	gap: 8px;
+
+	label {
+		font-size: 14px;
+		color: $text-primary;
+		font-weight: 500;
+	}
+}
+
+.select {
+	padding: 12px 16px;
+	padding-right: 40px;
+	border: 1px solid $grey-2;
+	border-radius: $border-radius;
+	background-color: $white;
+	font-size: 16px;
+	min-width: 250px;
+	color: $text-secondary;
+	cursor: pointer;
+
+	// Кастомная стрелка
+	appearance: none;
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+	background-position: right 0.7rem center;
+	background-repeat: no-repeat;
+	background-size: 1.5em 1.5em;
+
+	&:focus {
+		outline: none;
+		border-color: #4096ff; // $brand-primary
+		box-shadow: 0 0 0 2px rgba(64, 150, 255, 0.2);
+	}
+}

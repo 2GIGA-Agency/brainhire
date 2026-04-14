@@ -1,0 +1,30 @@
+@import "@/styles/base/buttons";
+
+.fullWidth {
+  width: 100%;
+  display: flex;
+}
+
+.auth {
+  @include typography("body-sm");
+  background: $white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
+  color: $text-primary;
+  border-radius: 8px;
+  border: 1px solid $grey-2;
+  justify-content: center;
+  padding: 12px 16px;
+
+  &:hover {
+    background: $grey-1;
+  }
+}
+
+.withIcon {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}

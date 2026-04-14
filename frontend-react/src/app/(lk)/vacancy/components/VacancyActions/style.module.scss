@@ -1,0 +1,16 @@
+.actions {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+}
+
+.hoverDarken {
+	cursor: pointer;
+	transition: filter 0.2s ease;
+	display: block;
+
+	&:hover {
+		filter: brightness(0.75);
+	}
+}

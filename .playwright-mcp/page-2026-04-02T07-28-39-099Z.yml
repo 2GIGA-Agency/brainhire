@@ -1,0 +1,368 @@
+- generic [ref=e2]:
+  - banner:
+    - generic:
+      - generic:
+        - generic:
+          - generic [ref=e4] [cursor=pointer]: О КОМПАНИИ
+          - generic [ref=e6] [cursor=pointer]: РЕШЕНИЯㅤ
+          - generic:
+            - generic:
+              - generic: О КОМПАНИИ
+          - generic:
+            - generic:
+              - generic: РЕШЕНИЯㅤ
+          - generic [ref=e8]:
+            - link "КЕЙСЫ" [ref=e11] [cursor=pointer]:
+              - /url: /cases
+            - link "БЛОГ" [ref=e14] [cursor=pointer]:
+              - /url: /blog
+            - link "материалы" [ref=e17] [cursor=pointer]:
+              - /url: /materials
+          - link "Skillaz" [ref=e19] [cursor=pointer]:
+            - /url: /
+            - img "Skillaz" [ref=e20]
+          - button "ЗАПИСАТЬСЯ НА ДЕМО" [ref=e22] [cursor=pointer]:
+            - generic [ref=e24]: ЗАПИСАТЬСЯ НА ДЕМО
+          - link [ref=e26] [cursor=pointer]:
+            - /url: "#menuopen"
+          - link "Skillaz" [ref=e28] [cursor=pointer]:
+            - /url: /
+            - img "Skillaz" [ref=e29]
+  - generic [ref=e36]:
+    - generic [ref=e38]:
+      - heading "HR-tech платформа для управления подбором и развитием персонала" [level=1] [ref=e40]
+      - heading "Помогаем снижать стоимость и сроки найма, выстраивать рекрутинг и HR-процессы через адаптацию, обучение и развитие сотрудников" [level=2] [ref=e42]
+    - button "записаться на демо" [ref=e43] [cursor=pointer]:
+      - generic [ref=e44]:
+        - generic:
+          - generic:
+            - generic:
+              - generic: записаться на демо
+  - generic [ref=e49]:
+    - generic:
+      - img
+    - generic [ref=e55]: Привлечение и оценка кандидатов
+    - generic [ref=e57]: Создавайте эффективные вакансии с помощью AI, публикуйте их на ключевых платформах, собирайте отклики, а также проводите видеоинтервью и тестирования с AI-оценкой
+    - generic:
+      - generic:
+        - img:
+          - generic "Ellipse 2"
+    - generic:
+      - generic:
+        - img:
+          - generic "Ellipse 2"
+    - generic:
+      - generic:
+        - img:
+          - generic "Ellipse 2"
+    - generic:
+      - generic:
+        - img:
+          - generic "Ellipse 3"
+    - generic [ref=e59]: AI
+  - generic [ref=e64]:
+    - generic [ref=e74]: Управление воронкой найма
+    - generic [ref=e76]: Настраивайте статусы кандидатов, автоматизируйте коммуникацию на каждом этапе и согласовывайте офферы с командами
+    - generic [ref=e82]: Получайте статистику и создавайте дашборды для оценки эффективности процессов найма, обучения и развития
+    - generic [ref=e84]: Аналитика и отчетность
+    - generic [ref=e86]: Проводите онбординг, создавайте обучающие курсы и планируйте развитие навыков с помощью L&D
+    - generic [ref=e88]: Адаптация и обучение сотрудников
+  - generic [ref=e101]:
+    - generic:
+      - img
+    - generic [ref=e107]: Карьерное развитие и мотивация
+    - generic [ref=e109]: Управляйте карьерными планами, отслеживайте прогресс сотрудников и стимулируйте их профессиональное развитие
+  - heading "Решения, которые позволяют расти" [level=2] [ref=e186]
+  - generic [ref=e189]:
+    - generic [ref=e195]:
+      - generic [ref=e197]:
+        - generic [ref=e204]: Планы адаптации
+        - generic [ref=e206]:
+          - text: Создавайте персонализированные программы для каждого нового сотрудника с учётом его роли
+          - text: и задач
+      - generic [ref=e208]:
+        - generic [ref=e215]: Интерактивные чек-листы
+        - generic [ref=e217]: Составляйте пошаговые чек-листы задач для успешного прохождения всех этапов адаптации
+      - generic [ref=e219]:
+        - generic [ref=e226]: Онбординг-чат
+        - generic [ref=e228]: Общайтесь в удобном внутреннем чате со всеми участниками адаптации, в том числе и до первого рабочего дня
+    - link "Узнать подробнее" [ref=e229] [cursor=pointer]:
+      - /url: /onboarding
+      - generic [ref=e230]:
+        - generic:
+          - generic:
+            - generic:
+              - generic: Узнать подробнее
+    - heading "Создайте культуру роста — платформа для эффективного онбординга и наставничества" [level=3] [ref=e236]
+    - img [ref=e240]
+  - generic [ref=e245]:
+    - heading "Платформа для комплексной автоматизации найма, которая помогает закрывать вакансии быстрее, дешевле и проще" [level=3] [ref=e253]
+    - generic [ref=e257]:
+      - generic [ref=e259]:
+        - generic [ref=e265]: Автоматизация найма
+        - generic [ref=e267]: Публикуйте вакансии, собирайте отклики и автоматизируйте обработку рутинных задач
+      - generic [ref=e269]:
+        - generic [ref=e275]: Инструменты для рекрутинга
+        - generic [ref=e277]: Используйте видеоинтервью, тесты и интеграцию с job-сайтами для эффективного подбора
+      - generic [ref=e279]:
+        - generic [ref=e285]: Удобное управление
+        - generic [ref=e287]: Настраивайте воронки, отслеживайте статусы кандидатов и получайте аналитические отчёты
+    - link "Узнать подробнее" [ref=e288] [cursor=pointer]:
+      - /url: /podbor
+      - generic [ref=e289]:
+        - generic:
+          - generic:
+            - generic:
+              - generic: Узнать подробнее
+    - img [ref=e295]
+  - generic [ref=e298]:
+    - generic [ref=e304]:
+      - generic [ref=e306]:
+        - generic [ref=e312]: Создание курсов
+        - generic [ref=e314]: Формируйте интерактивные программы обучения с тестами, тренингами и вебинарами
+      - generic [ref=e316]:
+        - generic [ref=e322]: Оценка 360
+        - generic [ref=e324]: Проводите всестороннюю оценку компетенций для развития сильных сторон сотрудников
+      - generic [ref=e326]:
+        - generic [ref=e332]: Аналитика
+        - generic [ref=e334]: Отслеживайте прогресс и результаты обучения с помощью удобных отчетов
+    - link "Узнать подробнее" [ref=e335] [cursor=pointer]:
+      - /url: /ld
+      - generic [ref=e336]:
+        - generic:
+          - generic:
+            - generic:
+              - generic: Узнать подробнее
+    - img [ref=e342]
+    - heading "Система для адаптации, обучения и оценки персонала, которая повышает эффективность развития талантов" [level=3] [ref=e346]
+  - heading "Все, чтобы сделать вашу работу проще" [level=2] [ref=e353]
+  - generic [ref=e356]:
+    - generic [ref=e360]:
+      - generic [ref=e362]: Индивидуальные решения для вашего бизнеса
+      - generic [ref=e364]: Выбирайте только нужные модули и адаптируйте функции платформы под уникальные потребности вашей компании
+    - generic [ref=e366]:
+      - generic [ref=e368]: Автоматизация и эффективность
+      - generic [ref=e370]: Автоматизируйте HR-процессы, ускоряя найм, согласование и аналитику, снижая затраты и упрощая управление
+    - generic [ref=e374]:
+      - generic [ref=e376]: AI в управлении талантами
+      - generic [ref=e378]: "Интегрируйте AI в HR-процессы: используйте LLM-модели для создания релевантных вакансий, оценки и ранжирования кандидатов, ускоряя найм и повышая его качество"
+    - generic [ref=e382]:
+      - generic [ref=e384]: Интуитивный интерфейс и поддержка пользователей
+      - generic [ref=e386]: Используйте простую в освоении платформу с профессиональной технической поддержкой для быстрой адаптации
+    - generic [ref=e390]:
+      - generic [ref=e392]: Интеграция без границ
+      - generic [ref=e394]: Общайтесь через мессенджеры, email и SMS, интегрируйтесь с CRM, ERP, job-сайтами и другими системами для бесшовного взаимодействия
+    - generic [ref=e398]:
+      - generic [ref=e400]: Гибкость и кастомизация
+      - generic [ref=e402]: Настраивайте платформу под уникальные бизнес-процессы, создавайте кастомные воронки, фильтры и уведомления
+  - generic [ref=e414]:
+    - heading "Интеграции с любыми вашими системами" [level=2] [ref=e418]
+    - generic [ref=e420]: Подключите внешние сервисы и создавайте единую экосистему для управления HR-процессами. Skillaz поддерживает интеграцию с популярными платформами
+  - generic [ref=e423]:
+    - generic:
+      - generic: Job-борды
+    - generic:
+      - generic: Другие инструменты
+    - generic:
+      - generic: Голосовые, чат-боты и мессенджеры
+    - generic:
+      - generic: Телефония
+    - generic:
+      - generic: Проверка
+    - generic:
+      - generic: Системы оценки
+    - generic:
+      - generic: SMS-провайдеры
+    - generic:
+      - generic: Лидогенераторы
+    - generic [ref=e431]: hh.ru, Avito, SuperJob, Зарплата.ру, Хабр, Работа.ру, Работа России, Факультетус и другое
+    - link [ref=e435] [cursor=pointer]:
+      - /url: "#int-1"
+    - link [ref=e437] [cursor=pointer]:
+      - /url: "#int-2"
+    - link [ref=e439] [cursor=pointer]:
+      - /url: "#int-3"
+    - link [ref=e441] [cursor=pointer]:
+      - /url: "#int-4"
+    - link [ref=e443] [cursor=pointer]:
+      - /url: "#int-5"
+    - link [ref=e445] [cursor=pointer]:
+      - /url: "#int-6"
+    - link [ref=e447] [cursor=pointer]:
+      - /url: "#int-7"
+    - link [ref=e449] [cursor=pointer]:
+      - /url: "#int-8"
+  - generic [ref=e465]:
+    - generic [ref=e477]:
+      - generic [ref=e479]: Повышайте эффективность обучения на 40%
+      - generic [ref=e481]: Интерактивные методы и вовлеченность сотрудников снижают затраты на обучение и повышают его результативность
+    - generic [ref=e483]:
+      - generic [ref=e485]: Закрывайте вакансии быстрее на 50%
+      - generic [ref=e487]: Автоматизируйте рутинные операции, чтобы ускорить процесс найма и сократить его стоимость
+    - heading "Результаты, которые вы можете измерить" [level=2] [ref=e489]
+    - generic [ref=e491]: +40%
+    - generic [ref=e493]:
+      - generic [ref=e495]: Ускорьте адаптацию на 30%
+      - generic [ref=e497]: Продуманный онбординг помогает сотрудникам быстрее достигать максимальной продуктивности
+    - generic [ref=e499]:
+      - generic [ref=e501]: Увеличьте eNPS до 15%
+      - generic [ref=e503]: Управляйте результативностью и обеспечивайте качественную обратную связь от первого дня до завершения работы
+    - generic [ref=e505]: +30%
+    - generic [ref=e507]: +15%
+    - generic [ref=e509]: +50%
+    - generic [ref=e511]: "* Данные получены по опросам наших клиентов, после внедрения системы"
+  - generic [ref=e514]:
+    - generic [ref=e522]:
+      - generic [ref=e524]: Аттестат ФСТЭК 2 уровня защищенности
+      - generic [ref=e526]: Платформа аттестована для работы с персональными данными, обеспечивая высокий уровень безопасности
+    - generic [ref=e532]:
+      - generic [ref=e534]: Включено в реестр отечественного ПО
+      - generic [ref=e536]: Платформа соответствует российским стандартам и внесена в реестр отечественного программного обеспечения
+    - generic [ref=e542]:
+      - generic [ref=e544]: Распределенное размещение и надежная миграция
+      - generic [ref=e546]: Данные хранятся в Yandex. Cloud, а безопасная миграция из других систем позволяет без риска перейти на платформу
+    - generic [ref=e552]:
+      - generic [ref=e554]: Соответствие ФЗ-152 «О персональных данных»
+      - generic [ref=e556]: Skillaz гарантирует полное соблюдение требований закона о защите персональных данных
+    - heading "С нами безопасно" [level=2] [ref=e558]
+  - generic [ref=e561]:
+    - generic [ref=e569]: Оцените возможности Skillaz в действии! Запишитесь, чтобы увидеть, как наша платформа сделает ваши HR-процессы проще и эффективнее
+    - generic [ref=e571]: Готовы узнать подробности? Запланируйте демо!
+    - img [ref=e573]
+    - form [ref=e576]:
+      - generic [ref=e577]:
+        - generic [ref=e578]:
+          - generic [ref=e579]: ИМЯ И ФАМИЛИЯ
+          - textbox "ИМЯ И ФАМИЛИЯ" [ref=e581]:
+            - /placeholder: Иван Петров
+        - generic [ref=e582]:
+          - generic [ref=e583]: ТЕЛЕФОН
+          - generic [ref=e585]:
+            - generic [ref=e589] [cursor=pointer]: "+7"
+            - textbox "(000) 000-00-00" [ref=e590]
+        - generic [ref=e591]:
+          - generic [ref=e592]: EMAIL
+          - textbox "EMAIL" [ref=e594]:
+            - /placeholder: example@usermail.com
+        - generic [ref=e595]:
+          - generic [ref=e596]: КОМПАНИЯ
+          - textbox "КОМПАНИЯ" [ref=e598]:
+            - /placeholder: Название компании
+        - generic [ref=e599]:
+          - generic [ref=e600]: КОЛИЧЕСТВО СОТРУДНИКОВ
+          - group [ref=e603]:
+            - generic [ref=e604] [cursor=pointer]:
+              - radio "КОЛИЧЕСТВО СОТРУДНИКОВ" [ref=e605]
+              - text: 1 – 500
+            - generic [ref=e607] [cursor=pointer]:
+              - radio "КОЛИЧЕСТВО СОТРУДНИКОВ" [ref=e608]
+              - text: 501 – 2499
+            - generic [ref=e610] [cursor=pointer]:
+              - radio "КОЛИЧЕСТВО СОТРУДНИКОВ" [ref=e611]
+              - text: больше 2500
+        - generic [ref=e618] [cursor=pointer]:
+          - checkbox "Я даю согласие на обработку персональных данных. Подробнее об обработке данных в Политике обработки персональных данных" [ref=e619]
+          - generic [ref=e622]:
+            - text: Я даю
+            - link "согласие" [ref=e624]:
+              - /url: /consent-to-the-processing-of-personal-data
+            - text: на обработку персональных данных. Подробнее об обработке данных в
+            - link "Политике обработки персональных данных" [ref=e626]:
+              - /url: /privacy
+        - generic [ref=e629] [cursor=pointer]:
+          - checkbox "Я согласен получать рекламно-информационные материалы" [ref=e630]
+          - generic [ref=e633]:
+            - text: Я
+            - link "согласен" [ref=e634]:
+              - /url: /agreement
+            - text: получать рекламно-информационные материалы
+        - button "ХОЧУ ДЕМО ВОЗМОЖНОСТЕЙ" [ref=e636] [cursor=pointer]
+  - generic [ref=e645]:
+    - generic [ref=e653]: Подпишитесь на рассылку и получайте приглашения на мероприятия первыми
+    - generic [ref=e655]: Вступайте в HR_Machine — приоткрытое сообщество HR-гиков
+    - link "подробнее" [ref=e656] [cursor=pointer]:
+      - /url: https://hr-machine.ru/
+      - generic [ref=e657]:
+        - generic:
+          - generic:
+            - generic:
+              - generic: подробнее
+    - form [ref=e666]:
+      - generic [ref=e667]:
+        - textbox "email" [ref=e670]:
+          - /placeholder: Email
+        - button [ref=e672] [cursor=pointer]
+    - generic [ref=e674]:
+      - text: Оставляя свой email, я принимаю
+      - link "Политику конфиденциальности" [ref=e676] [cursor=pointer]:
+        - /url: /privacy
+      - text: и даю
+      - link "согласие" [ref=e678] [cursor=pointer]:
+        - /url: /agreement
+      - text: на получение рекламы
+  - contentinfo [ref=e684]:
+    - generic [ref=e687]:
+      - link "Карта сайта" [ref=e692] [cursor=pointer]:
+        - /url: /html-sitemap
+      - generic [ref=e694]:
+        - generic [ref=e696]: коммерческий отдел
+        - link "hello@skillaz.ru" [ref=e701] [cursor=pointer]:
+          - /url: mailto:hello@skillaz.ru
+      - generic [ref=e703]:
+        - link "О компании" [ref=e706] [cursor=pointer]:
+          - /url: /o-skillaz
+        - link "Работа в Skillaz" [ref=e709] [cursor=pointer]:
+          - /url: /work
+        - link "Мероприятия" [ref=e712] [cursor=pointer]:
+          - /url: /events
+        - link "Пресс-центр" [ref=e715] [cursor=pointer]:
+          - /url: /press
+        - link "Контакты" [ref=e718] [cursor=pointer]:
+          - /url: /contacts
+        - link "Обучение ИИ" [ref=e721] [cursor=pointer]:
+          - /url: https://skillaz.ru/sfer_ai
+      - generic [ref=e723]:
+        - link "Кейсы" [ref=e726] [cursor=pointer]:
+          - /url: /cases
+        - link "Блог" [ref=e729] [cursor=pointer]:
+          - /url: https://skillaz.ru/blog
+        - link "Материалы" [ref=e732] [cursor=pointer]:
+          - /url: /materials
+      - link "Политика обработки персональных данных" [ref=e735] [cursor=pointer]:
+        - /url: /privacy
+      - generic [ref=e737]: © HR система Skillaz 2014 — 2026
+      - generic [ref=e739]: ресурсы
+      - generic [ref=e741]: о компании
+      - generic [ref=e744]: Решения
+      - generic [ref=e746]:
+        - link [ref=e748] [cursor=pointer]:
+          - /url: https://t.me/skillaz_ru
+        - link [ref=e750] [cursor=pointer]:
+          - /url: https://vk.com/skillaz_ru
+        - link [ref=e752] [cursor=pointer]:
+          - /url: https://rutube.ru/channel/23050770/
+      - link [ref=e756] [cursor=pointer]:
+        - /url: https://sk.ru/
+      - link [ref=e758] [cursor=pointer]:
+        - /url: https://reestr.digital.gov.ru/reestr/308389/?sphrase_id=5753273
+      - link [ref=e760] [cursor=pointer]:
+        - /url: https://drive.google.com/uc?export=download&id=1qrLGO79TT2DVeV6jjcmJ5EkSwhq3Xb4x
+      - generic [ref=e762]:
+        - link [ref=e765] [cursor=pointer]:
+          - /url: /podbor
+        - link [ref=e771] [cursor=pointer]:
+          - /url: /onboarding
+        - link [ref=e774] [cursor=pointer]:
+          - /url: /ld
+        - generic [ref=e776]:
+          - link [ref=e778] [cursor=pointer]:
+            - /url: https://skillaz.ru/assessment
+          - link [ref=e780] [cursor=pointer]:
+            - /url: https://skillaz.ru/assessment
+        - generic [ref=e782]:
+          - link [ref=e784] [cursor=pointer]:
+            - /url: https://skillaz.ru/goals
+          - link [ref=e786] [cursor=pointer]:
+            - /url: /goals
+        - link [ref=e787] [cursor=pointer]:
+          - /url: https://skillaz.ru/personal-development-plan

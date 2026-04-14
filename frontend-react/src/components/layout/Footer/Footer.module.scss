@@ -1,0 +1,169 @@
+@import '@/styles/abstracts/variables';
+
+.container {
+	width: 90vw;
+	margin: 0 auto;
+	padding: 0 20px;
+}
+
+.footer {
+	background-color: #fff;
+	padding: 40px 0;
+	border-top: 1px solid $grey-2;
+	width: 100%;
+
+	/* 🔹 Основная часть футера */
+	.top {
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		gap: 40px;
+		padding-bottom: 30px;
+	}
+
+	.column {
+		h4 {
+			font-size: 16px;
+			font-weight: 600;
+			margin-bottom: 12px;
+		}
+
+		ul {
+			list-style: none;
+			padding: 0;
+			margin: 15px 0 0;
+
+			li {
+				margin-bottom: 6px;
+				font-size: 14px;
+
+				a {
+					text-decoration: none;
+					color: $grey-4;
+
+					&:hover {
+						color: black;
+					}
+				}
+			}
+		}
+
+		.small {
+			font-size: 13px;
+			color: $grey-4;
+			margin: 10px 0;
+		}
+
+		.socials {
+			margin-top: 10px;
+			display: flex;
+			gap: 10px;
+		}
+	}
+
+	/* 🔹 Нижняя часть футера */
+	.bottom {
+		padding-top: 20px;
+		border-top: 1px solid $grey-2;
+		.container {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			.legal {
+				justify-self: center;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				gap: 20px;
+
+				a {
+					font-size: 14px;
+					text-decoration: none;
+					color: $grey-4;
+
+					&:hover {
+						color: black;
+					}
+				}
+			}
+
+			.copyright {
+				font-size: 13px;
+				color: $grey-4;
+			}
+		}
+	}
+
+	/* 🔹 📱 Адаптивность */
+	@media (max-width: 1300px) {
+		.bottom {
+			.container {
+				flex-direction: column;
+				gap: 32px !important;
+			}
+		}
+	}
+
+	@media (max-width: 1024px) {
+		.top {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	@media (max-width: 768px) {
+		.top {
+			grid-template-columns: 1fr;
+			gap: 20px;
+		}
+
+		.column {
+			h4 {
+				font-size: 18px;
+				margin-bottom: 8px;
+			}
+
+			ul li {
+				font-size: 16px;
+			}
+		}
+
+		.bottom {
+			.container {
+				flex-direction: column;
+				gap: 32px;
+				text-align: center;
+			}
+		}
+
+		.socials {
+			justify-content: center;
+		}
+	}
+
+	@media (max-width: 480px) {
+		.top {
+			grid-template-columns: 1fr;
+			text-align: center;
+		}
+
+		.column {
+			ul {
+				padding: 0;
+			}
+
+			h4 {
+				font-size: 16px;
+				margin-bottom: 5px;
+			}
+
+			ul li {
+				font-size: 14px;
+			}
+		}
+
+		.legal {
+			flex-direction: column;
+			gap: 5px;
+			text-align: center;
+		}
+	}
+}

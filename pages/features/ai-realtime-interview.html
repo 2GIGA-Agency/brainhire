@@ -1,0 +1,1718 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Real-time интервью с ИИ-аватаром — BRaiN HR</title>
+<meta name="description" content="ИИ-аватар проводит глубокое собеседование в реальном времени. Адаптивные вопросы, анализ мимики и поведения, оценка soft skills и мотивации — без участия руководителя.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/styles.css">
+<link rel="stylesheet" href="../../shared/components.css">
+<style>
+  /* ─── PAGE-SPECIFIC HERO ─── */
+  .hero-section { background: var(--white); padding: 80px 0 88px; }
+  .hero-wrap {
+    max-width: 1240px; margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: 1fr 440px; gap: 72px; align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.3);
+    border-radius: 100px; padding: 5px 14px 5px 10px;
+    font-size: 12px; font-weight: 600; color: var(--brand1); margin-bottom: 20px;
+    letter-spacing: 0.3px;
+  }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand1); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+
+  h1 {
+    font-size: clamp(36px, 4vw, 52px); font-weight: 800;
+    line-height: 1.1; letter-spacing: -1.2px; color: var(--text1); margin-bottom: 20px;
+  }
+  h1 em { font-style: normal; color: var(--brand1); }
+
+  .hero-sub {
+    font-size: 17px; color: var(--text2); margin-bottom: 36px;
+    max-width: 500px; line-height: 1.7; font-weight: 400;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+  .hero-proof { display: flex; gap: 24px; flex-wrap: wrap; }
+  .proof-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 13px; font-weight: 500; color: var(--text2);
+  }
+  .proof-item::before {
+    content:''; width:16px; height:16px; border-radius:50%; flex-shrink:0;
+    background: var(--brand1-bg); border: 1.5px solid var(--brand1);
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%234096FF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: center;
+  }
+
+  /* ─── INTERVIEW CARD (Hero) ─── */
+  .interview-card {
+    background: var(--white); border: 1px solid var(--grey2);
+    border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden;
+  }
+  .interview-card-header {
+    padding: 14px 18px; border-bottom: 1px solid var(--grey2);
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600; color: var(--text2); background: var(--grey1);
+  }
+  .interview-card-header .dots { display: flex; gap: 6px; }
+  .wdot { width: 10px; height: 10px; border-radius: 50%; }
+  .interview-card-body { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+  .interview-field {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--grey1); border: 1px solid var(--grey2); border-radius: var(--radius-sm);
+    padding: 10px 14px;
+  }
+  .interview-field-label { font-size: 11px; font-weight: 600; color: var(--text2); min-width: 65px; }
+  .interview-field-value { font-size: 12px; font-weight: 600; color: var(--text1); }
+  .interview-generating {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px; background: rgba(64,150,255,0.04);
+    border: 1px solid rgba(64,150,255,0.15); border-radius: var(--radius-sm);
+    font-size: 11px; font-weight: 600; color: var(--brand1);
+  }
+  .interview-generating .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand1); animation: pulse 1.5s infinite; }
+
+  /* Avatar video area */
+  .interview-avatar-area {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  }
+  .interview-avatar-screen {
+    background: linear-gradient(135deg, #12536D, #1a6b8a);
+    border-radius: var(--radius-sm); padding: 20px 12px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+    border: 1px solid rgba(64,150,255,0.2);
+  }
+  .interview-avatar-label { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.85); }
+  .interview-candidate-screen {
+    background: var(--grey1); border: 1px solid var(--grey2); border-radius: var(--radius-sm);
+    padding: 20px 12px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px;
+  }
+  .interview-candidate-label { font-size: 10px; font-weight: 600; color: var(--text2); }
+  .interview-live-badge {
+    display: inline-flex; align-items: center; gap: 4px;
+    font-size: 9px; font-weight: 700; color: #F04438;
+    background: #FFF1F0; border: 1px solid rgba(240,68,56,0.25);
+    border-radius: 100px; padding: 2px 8px;
+  }
+  .interview-live-badge .live-dot { width: 5px; height: 5px; border-radius: 50%; background: #F04438; animation: pulse 1.2s infinite; }
+
+  .interview-question-display {
+    padding: 10px 14px; background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius-sm);
+  }
+  .interview-question-label { font-size: 10px; font-weight: 700; color: var(--brand1); margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .interview-question-text { font-size: 11px; font-weight: 600; color: var(--text1); line-height: 1.5; }
+  .interview-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .interview-tag {
+    font-size: 10px; font-weight: 600; background: var(--brand1-bg); color: var(--brand1);
+    border: 1px solid rgba(64,150,255,0.25); border-radius: 100px; padding: 3px 8px;
+  }
+  .interview-card-summary {
+    margin-top: 2px; padding: 10px 14px;
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.25);
+    border-radius: var(--radius-sm); font-size: 12px; font-weight: 500; color: var(--brand3);
+    display: flex; align-items: center; gap: 7px; line-height: 1.4;
+  }
+  .interview-card-summary span { flex: 1; }
+  .interview-card-summary strong { font-weight: 700; color: var(--brand1); }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar { background: #F5F6F8; border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2); padding: 48px 0; }
+  .stats-inner {
+    max-width: 1240px; margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
+  }
+  .stat-item {
+    text-align: left; padding: 32px 48px;
+    border-right: 1px solid var(--grey2);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 48px; font-weight: 800; color: var(--text1); line-height: 1; letter-spacing: -2px; margin-bottom: 12px; }
+  .stat-num span { color: #4096FF; }
+  .stat-desc { font-size: 13px; color: var(--text2); line-height: 1.55; font-weight: 500; }
+
+  /* ─── COMPARE ─── */
+  .compare-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px; }
+  .compare-col { background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .compare-col.good { border-color: var(--brand1); }
+  .compare-header {
+    padding: 16px 24px; border-bottom: 1px solid var(--grey2);
+    font-size: 14px; font-weight: 700; background: var(--grey1);
+    display: flex; align-items: center; gap: 10px; color: var(--text2);
+  }
+  .compare-col.good .compare-header { background: var(--brand1-bg); color: var(--brand3); border-bottom-color: rgba(64,150,255,0.2); }
+  .compare-header-badge {
+    font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 100px;
+    background: var(--brand1); color: var(--white);
+  }
+  .compare-list { padding: 4px 0; }
+  .compare-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 13px 24px; border-bottom: 1px solid var(--grey1);
+    font-size: 14px; color: var(--text2);
+  }
+  .compare-item:last-child { border-bottom: none; }
+  .compare-col.good .compare-item { color: var(--text1); }
+  .check-x { color: #F04438; flex-shrink: 0; margin-top: 2px; font-size: 13px; }
+  .check-ok { color: var(--brand1); flex-shrink: 0; margin-top: 2px; font-size: 13px; }
+  .ti-total {
+    padding: 14px 22px; font-size: 13px; font-weight: 700;
+    border-top: 1px solid var(--grey2); background: var(--grey1);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .compare-col.good .ti-total { background: var(--brand1-bg); color: var(--brand1); border-top-color: rgba(64,150,255,0.2); }
+
+  /* ─── FEATURE ROWS ─── */
+  .feat-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+    padding: 56px 0; border-bottom: 1px solid var(--grey2);
+  }
+  .feat-row:last-child { border-bottom: none; }
+  .feat-row-rev { direction: rtl; }
+  .feat-row-rev > * { direction: ltr; }
+
+  .feat-screen { position: relative; }
+  .feat-screen-inner {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: 12px;
+    box-shadow: 0 8px 40px rgba(17,38,58,0.12); overflow: hidden;
+  }
+  .feat-browser-bar {
+    background: var(--grey1); border-bottom: 1px solid var(--grey2);
+    padding: 10px 14px; display: flex; gap: 6px; align-items: center;
+  }
+  .feat-browser-bar span { width: 10px; height: 10px; border-radius: 50%; }
+  .feat-browser-bar span:nth-child(1) { background: #FD6B5B; }
+  .feat-browser-bar span:nth-child(2) { background: #FEBC2E; }
+  .feat-browser-bar span:nth-child(3) { background: #28C840; }
+
+  .feat-mock { padding: 16px; }
+  .feat-mock-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--grey2); }
+  .feat-tab { padding: 10px 14px; font-size: 11px; font-weight: 600; color: var(--text2); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .feat-tab.active { color: var(--brand1); border-bottom-color: var(--brand1); }
+
+  .feat-num { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--brand1); text-transform: uppercase; margin-bottom: 10px; }
+  .feat-title { font-size: clamp(20px,2vw,26px); font-weight: 800; color: var(--text1); margin-bottom: 14px; line-height: 1.25; letter-spacing: -0.4px; }
+  .feat-desc { font-size: 14px; color: var(--text2); line-height: 1.72; margin-bottom: 20px; }
+  .feat-checks { display: flex; flex-direction: column; gap: 8px; }
+  .feat-check { font-size: 13px; color: var(--text1); font-weight: 500; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+  .feat-check svg { flex-shrink: 0; margin-top: 2px; }
+  .feat-cta-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 20px; padding: 11px 22px;
+    background: var(--white); color: var(--brand1);
+    border: 1.5px solid var(--brand1); border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+    text-decoration: none; cursor: pointer;
+    transition: background .2s, color .2s, box-shadow .2s, transform .15s;
+  }
+  .feat-cta-btn:hover {
+    background: var(--brand1); color: var(--white);
+    box-shadow: 0 4px 16px rgba(64,150,255,0.3); transform: translateY(-1px);
+  }
+
+  /* Feature row mock: editor */
+  .feat-mock-editor { padding: 14px; }
+  .feat-editor-field { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .feat-editor-label { font-size: 10px; font-weight: 600; color: var(--text2); min-width: 60px; }
+  .feat-editor-value { font-size: 11px; font-weight: 600; color: var(--text1); background: var(--grey1); border: 1px solid var(--grey2); border-radius: 6px; padding: 5px 10px; flex: 1; }
+  .feat-editor-generated { margin-top: 10px; padding: 10px; background: rgba(64,150,255,0.04); border: 1px solid rgba(64,150,255,0.12); border-radius: 6px; }
+  .feat-editor-gen-title { font-size: 11px; font-weight: 700; color: var(--text1); margin-bottom: 4px; }
+  .feat-editor-gen-text { font-size: 10px; color: var(--text2); line-height: 1.6; }
+  .feat-editor-ai-badge {
+    display: inline-flex; align-items: center; gap: 4px; margin-top: 8px;
+    font-size: 10px; font-weight: 600; color: var(--brand1);
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.2);
+    border-radius: 100px; padding: 2px 8px;
+  }
+  .feat-tag { font-size: 10px; font-weight: 600; background: var(--grey1); border: 1px solid var(--grey2); border-radius: 100px; padding: 3px 8px; color: var(--text2); }
+
+  /* Feature row mock: questions */
+  .feat-questions-body { padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .feat-q-card {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: 8px; padding: 10px 12px;
+  }
+  .feat-q-text { font-size: 11px; font-weight: 600; color: var(--text1); line-height: 1.5; margin-bottom: 6px; }
+  .feat-q-meta { display: flex; gap: 6px; align-items: center; }
+  .feat-q-badge {
+    font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 100px;
+  }
+  .feat-q-badge.basic { background: #E6F4FF; color: var(--brand1); }
+  .feat-q-badge.advanced { background: var(--brand2-bg); color: var(--brand2); }
+  .feat-q-competency { font-size: 9px; color: var(--text2); font-weight: 500; }
+
+  /* Avatar mock for feature rows */
+  .feat-avatar-body { padding: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .feat-avatar-screen {
+    background: linear-gradient(135deg, #12536D, #1a6b8a);
+    border-radius: 8px; padding: 20px 12px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  }
+  .feat-avatar-face { font-size: 36px; }
+  .feat-avatar-label { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.8); }
+  .feat-avatar-analysis { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+  .feat-analysis-row { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--text2); }
+  .feat-analysis-row span:first-child { min-width: 90px; font-size: 10px; }
+  .feat-bar { flex: 1; height: 4px; background: var(--grey2); border-radius: 2px; overflow: hidden; }
+  .feat-bar-fill { height: 100%; background: var(--brand1); border-radius: 2px; }
+  .feat-analysis-row span:last-child { min-width: 28px; text-align: right; font-weight: 700; color: var(--text1); font-size: 10px; }
+
+  /* ─── TICKER ─── */
+  .ticker-wrap {
+    border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2);
+    background: var(--grey1); overflow: hidden; padding: 13px 0;
+  }
+  .ticker { display: flex; animation: ticker 32s linear infinite; width: max-content; }
+  .ticker-item {
+    display: flex; align-items: center; gap: 8px; padding: 0 32px;
+    font-size: 13px; font-weight: 500; color: var(--text2); white-space: nowrap;
+  }
+  .ticker-item .ti { color: var(--brand1); font-size: 14px; display: flex; align-items: center; flex-shrink: 0; }
+  .ticker-item b { color: var(--text1); font-weight: 600; }
+  @keyframes ticker { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+  /* ─── LOGOS ─── */
+  .logos-section { background: var(--white); border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2); padding: 32px 0; }
+  .logos-label { font-size: 12px; font-weight: 600; text-align: center; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+  .logos-slider-wrap { overflow: hidden; position: relative; }
+  .logos-slider-wrap::before, .logos-slider-wrap::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+  }
+  .logos-slider-wrap::before { left: 0; background: linear-gradient(90deg, var(--white), transparent); }
+  .logos-slider-wrap::after { right: 0; background: linear-gradient(-90deg, var(--white), transparent); }
+  .logos-slider-track {
+    display: flex; align-items: center; gap: 0;
+    animation: ticker 30s linear infinite; width: max-content;
+  }
+  .logos-slider-track:hover { animation-play-state: paused; }
+  .logo-item {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0 36px; height: 68px; flex-shrink: 0;
+    border-right: 1px solid var(--grey2);
+    text-decoration: none; white-space: nowrap;
+    opacity: .6; transition: opacity .25s;
+    line-height: 1.2;
+  }
+  .logo-item:last-child { border-right: none; }
+  .logo-item:hover { opacity: 1; }
+
+  /* ─── FEATURES GRID 6 ─── */
+  .features-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 48px; }
+  .feature-card-v { background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius); padding: 28px 24px; transition: border-color .2s, box-shadow .2s; }
+  .feature-card-v:hover { border-color: var(--brand1); box-shadow: 0 4px 24px rgba(64,150,255,0.1); }
+  .feature-card-v .fc-icon { margin-bottom: 16px; }
+  .feature-card-v .fc-title { font-size: 16px; font-weight: 800; color: var(--text1); margin-bottom: 10px; line-height: 1.3; }
+  .feature-card-v .fc-text { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+  /* ─── AUDIENCE TABS ─── */
+  .audience-section { padding: 80px 0; }
+  .audience-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+  .audience-tab {
+    padding: 10px 20px; border-radius: 100px; border: 1px solid var(--grey2);
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600;
+    color: var(--text2); background: var(--white); cursor: pointer;
+    transition: all .2s;
+  }
+  .audience-tab:hover { border-color: var(--brand1); color: var(--brand1); }
+  .audience-tab.active { background: var(--brand1); color: var(--white); border-color: var(--brand1); }
+  .audience-content { display: none; }
+  .audience-content.active { display: block; }
+  .audience-card {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    padding: 40px; box-shadow: var(--shadow);
+  }
+  .audience-card-title { font-size: clamp(22px,2.5vw,30px); font-weight: 800; color: var(--text1); margin-bottom: 16px; line-height: 1.2; letter-spacing: -0.5px; }
+  .audience-card-title em { font-style: normal; color: var(--brand1); }
+  .audience-card-text { font-size: 14px; color: var(--text2); line-height: 1.72; margin-bottom: 24px; }
+  .audience-card-checks { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .audience-card-check { font-size: 13px; color: var(--text1); font-weight: 500; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+  .audience-card-check svg { flex-shrink: 0; margin-top: 2px; }
+  .audience-stat { display: flex; gap: 32px; flex-wrap: wrap; }
+  .audience-stat-item { text-align: center; }
+  .audience-stat-num { font-size: 36px; font-weight: 800; color: var(--brand1); line-height: 1; letter-spacing: -1px; }
+  .audience-stat-desc { font-size: 12px; color: var(--text2); font-weight: 500; margin-top: 6px; }
+
+  /* ─── CROSS-SELL ─── */
+  .cross-sell-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 48px; }
+  .cross-sell-card {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    padding: 28px 24px; text-decoration: none; transition: border-color .2s, box-shadow .2s, transform .15s;
+  }
+  .cross-sell-card:hover { border-color: var(--brand1); box-shadow: 0 4px 24px rgba(64,150,255,0.1); transform: translateY(-2px); }
+  .cross-sell-icon { margin-bottom: 16px; }
+  .cross-sell-title { font-size: 16px; font-weight: 800; color: var(--text1); margin-bottom: 8px; }
+  .cross-sell-text { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 16px; }
+  .cross-sell-link { font-size: 13px; font-weight: 700; color: var(--brand1); display: flex; align-items: center; gap: 4px; }
+
+  /* ─── STEPS GRID OVERRIDE ─── */
+  .steps-grid { grid-template-columns: repeat(4,1fr); }
+
+  /* ─── REVEAL ─── */
+  .js-loaded .reveal { opacity:0; transform:translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+  .js-loaded .reveal.visible { opacity:1; transform:none; }
+  .js-loaded .d1 { transition-delay:.08s; }
+  .js-loaded .d2 { transition-delay:.16s; }
+  .js-loaded .d3 { transition-delay:.24s; }
+
+  .pain-emoji { display: flex; align-items: center; justify-content: flex-start; margin-bottom: 14px; }
+  .step-icon { display: flex; align-items: center; margin-bottom: 12px; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .hero-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .compare-wrap { grid-template-columns: 1fr; }
+    .feat-row, .feat-row-rev { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
+    .steps-grid { grid-template-columns: repeat(2,1fr); }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .features-grid-3 { grid-template-columns: 1fr 1fr; }
+    .audience-card { grid-template-columns: 1fr; gap: 32px; }
+    .cross-sell-grid { grid-template-columns: 1fr; }
+    .interview-avatar-area { grid-template-columns: 1fr; }
+    .feat-avatar-body { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .steps-grid { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--grey2); }
+    .stat-item:last-child { border-bottom: none; }
+    .features-grid-3 { grid-template-columns: 1fr; }
+    .audience-card { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
+  <span class="urgency-dot"></span>
+  Каждый день без нужного сотрудника — это упущенная выручка, переработки команды и задержка развития бизнеса
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <!-- Top bar -->
+  <div class="header-topbar">
+    <div class="header-inner" style="height:36px; justify-content:center;">
+      <div class="topbar-links">
+        <a href="../about.html" class="topbar-link">О компании</a>
+        <a href="../contacts.html" class="topbar-link">Контакты</a>
+        <a href="../hr-cashback.html" class="topbar-link">Партнёрская программа</a>
+        <a href="../calculator.html" class="topbar-link">Калькулятор выгоды</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <div class="header-main">
+    <div class="header-inner">
+      <a class="logo" href="../index.html">
+        <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+      </a>
+      <nav class="main-nav">
+
+        <!-- Как это работает — megamenu -->
+        <div class="mnav-item has-mega" id="megaHow">
+          <button class="mnav-btn">
+            Как это работает
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel">
+            <div class="mega-col">
+              <!-- Рекрутинг → sub -->
+              <div class="mega-section-item has-sub" id="subRecruiting">
+                <div class="mega-section-link">
+                  <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                  <div>
+                    <div class="mega-section-title">Рекрутинг</div>
+                    <div class="mega-section-desc">Полный цикл подбора с ИИ</div>
+                  </div>
+                  <svg class="mega-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div class="sub-panel">
+                  <a href="../features/ai-vacancy-creation.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-создание вакансий</div>
+                      <div class="sub-item-desc">Описание вакансии за минуты</div>
+                    </div>
+                  </a>
+                  <a href="../features/ai-screening.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-анализ резюме</div>
+                      <div class="sub-item-desc">Скоринг и ранжирование откликов</div>
+                    </div>
+                  </a>
+                  <a href="../features/ai-videointerview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Первичное ИИ-видеоинтервью</div>
+                      <div class="sub-item-desc">Тестирование с прокторингом</div>
+                    </div>
+                  </a>
+                  <a href="../features/ai-realtime-interview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Real-time интервью с ИИ-аватаром</div>
+                      <div class="sub-item-desc">Адаптивное интервью в реальном времени</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Оценка персонала -->
+              <a href="../features/ai-staff-scoring.html" class="mega-section-link mega-section-item">
+                <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 017 4.5v1A2.5 2.5 0 009.5 8h5A2.5 2.5 0 0017 5.5v-1A2.5 2.5 0 0014.5 2h-5z"/><path d="M9.5 8a2.5 2.5 0 00-2.5 2.5A2.5 2.5 0 004.5 13a2.5 2.5 0 002.5 2.5 2.5 2.5 0 002.5 2.5h5a2.5 2.5 0 002.5-2.5 2.5 2.5 0 002.5-2.5 2.5 2.5 0 00-2.5-2.5A2.5 2.5 0 0014.5 8h-5z"/></svg></span>
+                <div>
+                  <div class="mega-section-title">Оценка персонала</div>
+                  <div class="mega-section-desc">ИИ-оценка soft skills и компетенций</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Отраслевые решения — dropdown -->
+        <div class="mnav-item has-drop" id="dropSolutions">
+          <button class="mnav-btn">
+            Отраслевые решения
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="drop-panel">
+            <a href="../solutions/smb.html" class="drop-item">Малый бизнес</a>
+            <a href="../solutions/enterprise.html" class="drop-item">Корпорации</a>
+            <a href="../solutions/it.html" class="drop-item">ИТ компании</a>
+            <a href="../solutions/finance.html" class="drop-item">Финансовый сектор</a>
+            <a href="../solutions/hr.html" class="drop-item">HR агентства</a>
+            <div class="drop-group">
+              <div class="drop-group-label">Маркетплейсы</div>
+              <a href="../solutions/marketplaces.html" class="drop-item" style="padding-left:24px;">Владельцам ПВЗ</a>
+              <a href="../solutions/sellers.html" class="drop-item" style="padding-left:24px;">Селлерам</a>
+            </div>
+            <a href="../solutions/horeca.html" class="drop-item">HoReCa</a>
+            <a href="../solutions/education.html" class="drop-item">Образование</a>
+            <a href="../solutions/sales.html" class="drop-item">Продажи</a>
+            <a href="../solutions/logistics.html" class="drop-item">Логистика</a>
+            <a href="../solutions/marketing.html" class="drop-item">Маркетинг</a>
+          </div>
+        </div>
+
+        <a href="../cases.html" class="mnav-link">Кейсы</a>
+        <a href="../reviews.html" class="mnav-link">Отзывы</a>
+        <a href="../pricing.html" class="mnav-link">Тарифы</a>
+        <a href="https://brainhire.ru/blog" class="mnav-link">Блог</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://brainhire.ru/signup" class="btn-primary">100 кандидатов бесплатно</a>
+        <a href="https://brainhire.ru/signin" class="btn-secondary">Войти</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+// ─── HEADER MENU — hover-based ───
+document.addEventListener('DOMContentLoaded', function() {
+  var items = document.querySelectorAll('.mnav-item.has-mega, .mnav-item.has-drop');
+
+  items.forEach(function(item) {
+    var timer;
+
+    item.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      items.forEach(function(other) {
+        if (other !== item) other.classList.remove('open');
+      });
+      item.classList.add('open');
+    });
+
+    item.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        item.classList.remove('open');
+        item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      }, 120);
+    });
+
+    var panel = item.querySelector('.mega-panel, .drop-panel');
+    if (panel) {
+      panel.addEventListener('mouseenter', function() { clearTimeout(timer); });
+      panel.addEventListener('mouseleave', function() {
+        timer = setTimeout(function() {
+          item.classList.remove('open');
+          item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+        }, 120);
+      });
+    }
+  });
+
+  document.querySelectorAll('.has-sub').forEach(function(sub) {
+    sub.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      sub.classList.add('sub-open');
+    });
+  });
+
+  // Close sub-panels when hovering over non-sub mega items
+  document.querySelectorAll('.mega-section-item:not(.has-sub)').forEach(function(item) {
+    item.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+    });
+  });
+});
+
+function toggleMega() {}
+function showSub(id) {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  var el = document.getElementById(id);
+  if (el) el.classList.add('sub-open');
+}
+function hideSubs() {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+}
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.mnav-item').forEach(function(e){ e.classList.remove('open'); });
+    document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  }
+});
+</script>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 1: HERO                                  -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="hero-section">
+  <div class="hero-wrap">
+    <div>
+      <div class="hero-badge reveal">
+        <span class="dot"></span>
+        Real-time интервью с ИИ-аватаром
+      </div>
+      <h1 class="reveal d1">
+        Real-time интервью<br>с <em>ИИ-аватаром</em>
+      </h1>
+      <p class="hero-sub reveal d2">
+        ИИ-аватар проводит полноценное собеседование в реальном времени, адаптируя вопросы под ответы кандидата. Оценка soft skills, мотивации и компетенций — без участия руководителя.
+      </p>
+      <div class="hero-actions reveal d2">
+        <a href="#form" class="btn-hero-primary">
+          Запросить демо Real-time интервью
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="https://brainhire.ru/signup" class="btn-hero-outline">Попробовать бесплатно</a>
+      </div>
+      <div class="hero-proof reveal d3">
+        <span class="proof-item">Диалог в реальном времени</span>
+        <span class="proof-item">Адаптивные вопросы</span>
+        <span class="proof-item">Анализ мимики и поведения</span>
+      </div>
+    </div>
+
+    <!-- INTERVIEW CARD — Avatar style -->
+    <div class="interview-card reveal d2">
+      <div class="interview-card-header">
+        <div class="dots">
+          <div class="wdot" style="background:#FD6B5B;"></div>
+          <div class="wdot" style="background:#FEBC2E;"></div>
+          <div class="wdot" style="background:#28C840;"></div>
+        </div>
+        <span>Real-time интервью — Product Manager</span>
+      </div>
+      <div class="interview-card-body">
+        <div class="interview-field">
+          <span class="interview-field-label">Кандидат</span>
+          <span class="interview-field-value">Алексей Смирнов</span>
+        </div>
+        <div class="interview-field">
+          <span class="interview-field-label">Позиция</span>
+          <span class="interview-field-value">Product Manager</span>
+        </div>
+        <div class="interview-avatar-area">
+          <div class="interview-avatar-screen">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 00-16 0"/></svg>
+            <div class="interview-avatar-label">ИИ-аватар</div>
+          </div>
+          <div class="interview-candidate-screen">
+            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#717680" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+            <div class="interview-candidate-label">Кандидат</div>
+            <div class="interview-live-badge"><span class="live-dot"></span> LIVE</div>
+          </div>
+        </div>
+        <div class="interview-generating">
+          <span class="dot"></span>
+          ИИ-аватар ведёт интервью — адаптивный вопрос 4 из 12...
+        </div>
+        <div class="interview-question-display">
+          <div class="interview-question-label">Текущий вопрос</div>
+          <div class="interview-question-text">Расскажите о ситуации, когда вам пришлось убеждать команду в необходимости изменить стратегию продукта. Каков был результат?</div>
+        </div>
+        <div class="interview-tags">
+          <span class="interview-tag">Soft Skills</span>
+          <span class="interview-tag">Лидерство</span>
+          <span class="interview-tag">Мотивация</span>
+          <span class="interview-tag">Коммуникация</span>
+        </div>
+        <div class="interview-card-summary">
+          <svg width="14" height="14" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" style="flex-shrink:0;"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 00-16 0"/></svg>
+          <span>Прогресс: <strong>4/12 вопросов</strong> — real-time анализ мимики и ответов</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- ТИКЕР                                           -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 00-16 0"/></svg></span><b>ИИ-аватар ведёт диалог</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span><b>Анализ мимики и поведения</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span><b>Адаптивные вопросы</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><b>Оценка soft skills</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><b>Видеозапись и транскрипт</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></span><b>Доступно 24/7</b></div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 00-16 0"/></svg></span><b>ИИ-аватар ведёт диалог</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span><b>Анализ мимики и поведения</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span><b>Адаптивные вопросы</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><b>Оценка soft skills</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><b>Видеозапись и транскрипт</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></span><b>Доступно 24/7</b></div>
+  </div>
+</div>
+
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 2: ПРОБЛЕМЫ / БОЛИ                       -->
+<!-- ════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title reveal">Почему ручные финальные интервью<br><em>замедляют найм</em></h2>
+    <p class="section-sub reveal">Руководители тратят часы на собеседования, а решения принимаются на основе субъективных впечатлений.</p>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></span>
+        <div class="pain-title">Руководитель тратит 1-2 часа на каждого кандидата</div>
+        <div class="pain-text">Финальное интервью требует личного участия руководителя. При 5-10 финалистах это 10-20 часов рабочего времени, которые можно было потратить на стратегические задачи.</div>
+      </div>
+      <div class="pain-card reveal d1">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span>
+        <div class="pain-title">Согласование расписания затягивает процесс</div>
+        <div class="pain-text">Найти окно в календаре руководителя, нанимающего менеджера и кандидата — логистический кошмар. Пока вы согласуете время, кандидат уходит к конкуренту.</div>
+      </div>
+      <div class="pain-card reveal d2">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+        <div class="pain-title">Субъективность и предвзятость</div>
+        <div class="pain-text">Оценка soft skills зависит от личных предпочтений интервьюера. Два руководителя могут дать диаметрально противоположные оценки одному и тому же кандидату.</div>
+      </div>
+      <div class="pain-card reveal d3">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span>
+        <div class="pain-title">Невозможно сравнить кандидатов объективно</div>
+        <div class="pain-text">Каждый руководитель задаёт разные вопросы, оценивает по разным критериям. Без единой системы оценки финальное решение превращается в лотерею.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 3: STATS BAR                             -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num"><span>5 мин</span></div>
+      <div class="stat-desc">руководитель смотрит отчёт<br>вместо часа на интервью</div>
+    </div>
+    <div class="stat-item reveal d1">
+      <div class="stat-num"><span>0</span></div>
+      <div class="stat-desc">звонков<br>до финала</div>
+    </div>
+    <div class="stat-item reveal d2">
+      <div class="stat-num"><span>24/7</span></div>
+      <div class="stat-desc">доступность<br>ИИ-аватара</div>
+    </div>
+    <div class="stat-item reveal d3">
+      <div class="stat-num"><span>87%</span></div>
+      <div class="stat-desc">точность оценки<br>soft skills</div>
+    </div>
+  </div>
+  <div style="max-width:1240px; margin:0 auto; padding: 16px 24px 0; text-align:center;">
+    <p style="font-size: 11px; color: var(--text2); line-height: 1.5;">*По данным клиентов BRaiN HR, 2025-2026.</p>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 4: КАК ЭТО РАБОТАЕТ (шаги)              -->
+<!-- ════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-tag">Как это работает</div>
+    <h2 class="section-title reveal">Как проходит Real-time интервью:<br><em>от настройки до результата</em></h2>
+    <p class="section-sub reveal">Полный цикл глубокого собеседования с ИИ-аватаром — от настройки профиля вакансии до готового отчёта с видеозаписью.</p>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">Шаг 1 <span class="step-time">5 мин</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+        <div class="step-title">Настройка профиля вакансии</div>
+        <div class="step-text">Укажите требования, компетенции и ценности команды. ИИ сформирует адаптивный сценарий собеседования с учётом специфики позиции</div>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-num">Шаг 2 <span class="step-time">авто</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 00-16 0"/></svg></span>
+        <div class="step-title">Кандидат подключается к ИИ-аватару</div>
+        <div class="step-text">Кандидат получает ссылку и подключается к Real-time интервью в удобное время. ИИ-аватар приветствует и начинает диалог</div>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-num">Шаг 3 <span class="step-time">20-40 мин</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span>
+        <div class="step-title">Адаптивное интервью в реальном времени</div>
+        <div class="step-text">ИИ-аватар ведёт естественный диалог, адаптируя вопросы на основе ответов. Параллельно анализирует мимику, тон голоса и поведение кандидата</div>
+      </div>
+      <div class="step reveal d3">
+        <div class="step-num">Шаг 4 <span class="step-time">авто</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+        <div class="step-title">Готовый отчёт с видеозаписью</div>
+        <div class="step-text">Система формирует детальный отчёт: оценка soft skills, мотивации, cultural fit, видеозапись и полная транскрипция диалога</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 6: СРАВНЕНИЕ                             -->
+<!-- ════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title reveal">Ручное финальное интервью vs<br><em>Real-time ИИ-аватар</em></h2>
+    <p class="section-sub reveal">Сравните традиционный подход с автоматизированным глубоким собеседованием.</p>
+    <div class="compare-wrap">
+      <div class="compare-col reveal">
+        <div class="compare-header">
+          <svg width="16" height="16" stroke="#717680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Ручное финальное интервью
+        </div>
+        <div class="compare-list">
+          <div class="compare-item"><span class="check-x"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></span> 1-2 часа рабочего времени руководителя на каждого финалиста</div>
+          <div class="compare-item"><span class="check-x"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></span> Дни на согласование расписания с руководителем и кандидатом</div>
+          <div class="compare-item"><span class="check-x"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span> Субъективная оценка soft skills, зависящая от интервьюера</div>
+          <div class="compare-item"><span class="check-x"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span> Нет записи, нет объективных данных для сравнения кандидатов</div>
+        </div>
+        <div class="ti-total" style="color:#FF7401;">
+          <span><svg width="18" height="18" stroke="#FF7401" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></span> Долго, субъективно, отвлекает руководителя
+        </div>
+      </div>
+      <div class="compare-col good reveal d1">
+        <div class="compare-header">
+          <svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+          Real-time ИИ-аватар BRaiN HR
+          <span class="compare-header-badge">Рекомендуем</span>
+        </div>
+        <div class="compare-list">
+          <div class="compare-item"><span class="check-ok"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span> ИИ-аватар проводит глубокое интервью, руководитель смотрит отчёт за 5 минут</div>
+          <div class="compare-item"><span class="check-ok"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></span> Кандидат проходит интервью в удобное время 24/7 без согласований</div>
+          <div class="compare-item"><span class="check-ok"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span> Объективная оценка soft skills, мимики и поведения по единым критериям</div>
+          <div class="compare-item"><span class="check-ok"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span> Полная видеозапись, транскрипция и структурированный отчёт</div>
+        </div>
+        <div class="ti-total">
+          <span><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span> Быстро, объективно, данные для решения
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- ЛОГО-СЛАЙДЕР КЛИЕНТОВ                           -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="logos-section">
+  <div class="container">
+    <div class="logos-label">Нам доверяют 50+ компаний</div>
+  </div>
+  <div class="logos-slider-wrap">
+    <div class="logos-slider-track">
+      <a href="https://www.simbirsoft.com/" target="_blank" class="logo-item">
+        <span style="font-size:18px; font-weight:800; color:#1a1a2e; letter-spacing:-0.5px;">Simbir<span style="color:#e03030;">S</span>oft</span>
+      </a>
+      <a href="https://bssys.com/" target="_blank" class="logo-item">
+        <span style="background:#1a3a8a; color:#fff; font-size:15px; font-weight:900; padding:5px 10px; border-radius:4px; letter-spacing:1px;">BSS</span>
+      </a>
+      <a href="https://3logic.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:800; color:#1a1a1a; letter-spacing:-0.3px;">3<span style="color:#e03030;">LOGIC</span><br><span style="font-size:9px; font-weight:600; color:#555; letter-spacing:1px;">GROUP</span></span>
+      </a>
+      <a href="https://kazan.rt.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:700; color:#1a1a1a; letter-spacing:0.5px;">РОСТЕЛЕКОМ</span>
+      </a>
+      <a href="https://e-flops.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:800; color:#222; letter-spacing:-0.5px;">e<span style="color:#4096FF;">-</span>flops</span>
+      </a>
+      <a href="https://itpeoplegroup.ru/" target="_blank" class="logo-item">
+        <span style="font-size:12px; font-weight:800; color:#1a1a1a; letter-spacing:1.5px; text-transform:uppercase; border:2px solid #1a1a1a; padding:4px 8px;">IT PEOPLE</span>
+      </a>
+      <a href="https://moby.estate/" target="_blank" class="logo-item">
+        <span style="font-size:17px; font-weight:800; color:#2b4de3; letter-spacing:-0.5px;">moby</span>
+      </a>
+      <a href="https://www.hr-rocket.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:800; color:#1a1a1a; letter-spacing:0.5px;">HR ROCKET</span>
+      </a>
+      <a href="https://prodamus.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#6c3db5; letter-spacing:-0.3px;">prodamus</span>
+      </a>
+      <a href="https://www.penoplex.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#e03030; letter-spacing:0.5px;">PENOPLEX</span>
+      </a>
+      <!-- duplicate for seamless loop -->
+      <a href="https://www.simbirsoft.com/" target="_blank" class="logo-item">
+        <span style="font-size:18px; font-weight:800; color:#1a1a2e; letter-spacing:-0.5px;">Simbir<span style="color:#e03030;">S</span>oft</span>
+      </a>
+      <a href="https://bssys.com/" target="_blank" class="logo-item">
+        <span style="background:#1a3a8a; color:#fff; font-size:15px; font-weight:900; padding:5px 10px; border-radius:4px; letter-spacing:1px;">BSS</span>
+      </a>
+      <a href="https://3logic.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:800; color:#1a1a1a; letter-spacing:-0.3px;">3<span style="color:#e03030;">LOGIC</span><br><span style="font-size:9px; font-weight:600; color:#555; letter-spacing:1px;">GROUP</span></span>
+      </a>
+      <a href="https://kazan.rt.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:700; color:#1a1a1a; letter-spacing:0.5px;">РОСТЕЛЕКОМ</span>
+      </a>
+      <a href="https://e-flops.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:800; color:#222; letter-spacing:-0.5px;">e<span style="color:#4096FF;">-</span>flops</span>
+      </a>
+      <a href="https://itpeoplegroup.ru/" target="_blank" class="logo-item">
+        <span style="font-size:12px; font-weight:800; color:#1a1a1a; letter-spacing:1.5px; text-transform:uppercase; border:2px solid #1a1a1a; padding:4px 8px;">IT PEOPLE</span>
+      </a>
+      <a href="https://moby.estate/" target="_blank" class="logo-item">
+        <span style="font-size:17px; font-weight:800; color:#2b4de3; letter-spacing:-0.5px;">moby</span>
+      </a>
+      <a href="https://www.hr-rocket.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:800; color:#1a1a1a; letter-spacing:0.5px;">HR ROCKET</span>
+      </a>
+      <a href="https://prodamus.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#6c3db5; letter-spacing:-0.3px;">prodamus</span>
+      </a>
+      <a href="https://www.penoplex.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#e03030; letter-spacing:0.5px;">PENOPLEX</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 8: КОМУ БУДЕТ ПОЛЕЗНО                    -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="audience-section section-bg">
+  <div class="container">
+    <div class="section-tag">Кому подойдёт</div>
+    <h2 class="section-title reveal">Кому подойдёт Real-time интервью с ИИ-аватаром?</h2>
+    <p class="section-sub reveal">Автоматизируйте финальные собеседования и освободите руководителей от рутинных интервью. ИИ-аватар глубоко оценивает кандидатов, а вы принимаете решения на основе данных.</p>
+
+    <div class="audience-tabs reveal">
+      <button class="audience-tab active" onclick="showAudience(0)">HR-отделам</button>
+      <button class="audience-tab" onclick="showAudience(1)">Руководителям</button>
+      <button class="audience-tab" onclick="showAudience(2)">Рекрутинговым агентствам</button>
+    </div>
+
+    <div class="audience-content active" id="aud0">
+      <div class="audience-card reveal">
+        <div>
+          <div class="audience-card-title">Проводите глубокие интервью <em>без отвлечения руководителей</em></div>
+          <div class="audience-card-text">ИИ-аватар проводит полноценное финальное собеседование с каждым кандидатом. Руководитель получает готовый отчёт с видеозаписью и оценкой soft skills — и принимает решение за 5 минут вместо часа.</div>
+          <div class="audience-card-checks">
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Глубокая оценка soft skills и мотивации кандидатов</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Единые критерии оценки для всех финалистов</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Видеозапись и транскрипция каждого интервью</div>
+          </div>
+        </div>
+        <div class="audience-stat">
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">5 мин</div>
+            <div class="audience-stat-desc">на принятие<br>решения</div>
+          </div>
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">24/7</div>
+            <div class="audience-stat-desc">доступность<br>ИИ-аватара</div>
+          </div>
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">87%</div>
+            <div class="audience-stat-desc">точность<br>оценки</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="audience-content" id="aud1">
+      <div class="audience-card reveal">
+        <div>
+          <div class="audience-card-title">Оценивайте финалистов <em>без отрыва от работы</em></div>
+          <div class="audience-card-text">Больше не нужно тратить часы на проведение финальных собеседований. ИИ-аватар проведёт глубокое интервью, оценит soft skills, мотивацию и cultural fit — а вы посмотрите отчёт и ключевые моменты видеозаписи.</div>
+          <div class="audience-card-checks">
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Просмотр только ключевых моментов интервью</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Объективные данные для принятия решения</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Сравнение кандидатов по единым критериям</div>
+          </div>
+        </div>
+        <div class="audience-stat">
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">0</div>
+            <div class="audience-stat-desc">часов<br>на интервью</div>
+          </div>
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">87%</div>
+            <div class="audience-stat-desc">точность<br>оценки</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="audience-content" id="aud2">
+      <div class="audience-card reveal">
+        <div>
+          <div class="audience-card-title">Предлагайте клиентам <em>глубокую оценку кандидатов</em></div>
+          <div class="audience-card-text">Дополните свои услуги Real-time интервью с ИИ-аватаром. Клиенты получают не просто резюме, а детальный отчёт с оценкой soft skills, видеозаписью и рекомендациями — это повышает ценность вашего предложения.</div>
+          <div class="audience-card-checks">
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Глубокая оценка кандидатов без участия клиента</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Видеозаписи и отчёты для заказчиков</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Повышение ценности услуги подбора</div>
+          </div>
+        </div>
+        <div class="audience-stat">
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">10x</div>
+            <div class="audience-stat-desc">больше<br>интервью</div>
+          </div>
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">24/7</div>
+            <div class="audience-stat-desc">доступность<br>системы</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ: ВОЗМОЖНОСТИ ПЛАТФОРМЫ                   -->
+<!-- ════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-tag">Возможности платформы</div>
+    <h2 class="section-title reveal">Возможности Real-time интервью</h2>
+    <p class="section-sub reveal">Полноценное глубокое собеседование с ИИ-аватаром — от адаптивных вопросов до анализа мимики и поведения.</p>
+
+    <!-- Feature Row 1: Адаптивные вопросы -->
+    <div class="feat-row reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <div class="feat-mock-tabs">
+              <span class="feat-tab active">Real-time интервью</span>
+              <span class="feat-tab">Сценарий</span>
+              <span class="feat-tab">Отчёт</span>
+            </div>
+            <div class="feat-mock-editor">
+              <div class="feat-editor-field">
+                <span class="feat-editor-label">Кандидат</span>
+                <span class="feat-editor-value">Иванова Е.К.</span>
+              </div>
+              <div class="feat-editor-field">
+                <span class="feat-editor-label">Позиция</span>
+                <span class="feat-editor-value">Team Lead, Frontend</span>
+              </div>
+              <div class="feat-editor-field">
+                <span class="feat-editor-label">Статус</span>
+                <span class="feat-editor-value" style="color:var(--brand1);">ИИ-аватар ведёт интервью</span>
+              </div>
+              <div class="feat-editor-generated">
+                <div class="feat-editor-gen-title">Адаптивный вопрос (на основе предыдущего ответа)</div>
+                <div class="feat-editor-gen-text">
+                  Вы упомянули конфликт в команде при миграции на новый стек. Расскажите подробнее, как вы нашли компромисс и какой был результат?
+                </div>
+                <div class="feat-editor-ai-badge">
+                  <svg width="10" height="10" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+                  Адаптивный вопрос 6 из 12
+                </div>
+              </div>
+              <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;">
+                <span class="feat-tag">Лидерство</span>
+                <span class="feat-tag">Конфликты</span>
+                <span class="feat-tag">Soft Skills</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">01</div>
+        <h3 class="feat-title">Адаптивные вопросы в реальном времени</h3>
+        <p class="feat-desc">ИИ-аватар не следует жёсткому скрипту — он ведёт естественный диалог, адаптируя каждый следующий вопрос на основе ответов кандидата. Если кандидат упоминает интересный опыт, аватар углубляется в тему. Если ответ поверхностный — задаёт уточняющие вопросы. Результат — глубокое понимание реального опыта и компетенций.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Динамическая генерация вопросов на основе ответов</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Углубление в интересные темы и уточняющие вопросы</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Естественный диалог, не жёсткий скрипт</div>
+        </div>
+        <a href="#form" class="feat-cta-btn">Запросить демо</a>
+      </div>
+    </div>
+
+    <!-- Feature Row 2: Анализ мимики и поведения -->
+    <div class="feat-row feat-row-rev reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <div style="padding:12px 14px 8px; font-size:13px; font-weight:700; color:var(--text1); border-bottom:1px solid var(--grey2);">
+              Анализ поведения — Real-time
+            </div>
+            <div class="feat-avatar-body">
+              <div class="feat-avatar-screen">
+                <div class="feat-avatar-face">
+                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 00-16 0"/></svg>
+                </div>
+                <div class="feat-avatar-label">ИИ-аватар анализирует</div>
+              </div>
+              <div class="feat-avatar-analysis">
+                <div class="feat-analysis-row">
+                  <span>Уверенность</span>
+                  <div class="feat-bar"><div class="feat-bar-fill" style="width:87%;"></div></div>
+                  <span>87%</span>
+                </div>
+                <div class="feat-analysis-row">
+                  <span>Вовлечённость</span>
+                  <div class="feat-bar"><div class="feat-bar-fill" style="width:92%;"></div></div>
+                  <span>92%</span>
+                </div>
+                <div class="feat-analysis-row">
+                  <span>Честность</span>
+                  <div class="feat-bar"><div class="feat-bar-fill" style="width:78%;"></div></div>
+                  <span>78%</span>
+                </div>
+                <div class="feat-analysis-row">
+                  <span>Стресс</span>
+                  <div class="feat-bar"><div class="feat-bar-fill" style="width:23%;"></div></div>
+                  <span>23%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">02</div>
+        <h3 class="feat-title">Анализ мимики и поведения</h3>
+        <p class="feat-desc">Во время Real-time интервью система анализирует выражение лица, тон голоса, зрительный контакт и язык тела кандидата. ИИ выявляет уровень уверенности, стресса, вовлечённости и искренности ответов. Это даёт дополнительный слой объективных данных, недоступный при чтении резюме или анализе текстовых ответов.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Анализ мимики, тона голоса и зрительного контакта</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Оценка уверенности, стресса и искренности</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Дополнительные данные для принятия решений</div>
+        </div>
+        <a href="#form" class="feat-cta-btn">Запросить демо</a>
+      </div>
+    </div>
+
+    <!-- Feature Row 3: Полный профиль кандидата -->
+    <div class="feat-row reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <div class="feat-mock-tabs">
+              <span class="feat-tab active">Профиль</span>
+              <span class="feat-tab">Видеозапись</span>
+              <span class="feat-tab">Транскрипт</span>
+            </div>
+            <div class="feat-mock-editor">
+              <div class="feat-editor-field">
+                <span class="feat-editor-label">Кандидат</span>
+                <span class="feat-editor-value">Смирнов А.В.</span>
+              </div>
+              <div class="feat-editor-field">
+                <span class="feat-editor-label">Soft Skills</span>
+                <span class="feat-editor-value" style="color:var(--brand1);">89%</span>
+              </div>
+              <div class="feat-editor-field">
+                <span class="feat-editor-label">Мотивация</span>
+                <span class="feat-editor-value" style="color:var(--brand1);">92%</span>
+              </div>
+              <div class="feat-editor-generated">
+                <div class="feat-editor-gen-title">Ключевые выводы ИИ</div>
+                <div class="feat-editor-gen-text">
+                  Высокая мотивация к росту. Уверенная коммуникация. Продемонстрировал сильные навыки решения конфликтов. Рекомендован для финального этапа.
+                </div>
+                <div class="feat-editor-ai-badge">
+                  <svg width="10" height="10" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+                  Полный профиль сформирован
+                </div>
+              </div>
+              <div style="display:flex; flex-wrap:wrap; gap:6px; margin-top:10px;">
+                <span class="feat-tag">Лидерство</span>
+                <span class="feat-tag">Коммуникация</span>
+                <span class="feat-tag">Cultural fit</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">03</div>
+        <h3 class="feat-title">Полный профиль кандидата</h3>
+        <p class="feat-desc">По итогам Real-time интервью система формирует комплексный профиль кандидата: оценка soft skills, мотивации, cultural fit, лидерских качеств и коммуникативных навыков. Профиль включает ключевые выводы ИИ, сильные и слабые стороны, а также рекомендации по дальнейшим действиям.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Комплексная оценка soft skills и мотивации</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Ключевые выводы и рекомендации ИИ</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Сильные и слабые стороны кандидата</div>
+        </div>
+        <a href="#form" class="feat-cta-btn">Запросить демо</a>
+      </div>
+    </div>
+
+    <!-- Feature Row 4: Оценка soft skills -->
+    <div class="feat-row feat-row-rev reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <div style="padding:12px 14px 8px; font-size:13px; font-weight:700; color:var(--text1); border-bottom:1px solid var(--grey2);">
+              Оценка Soft Skills — Иванова Е.К.
+            </div>
+            <div class="feat-questions-body">
+              <div class="feat-q-card">
+                <div class="feat-q-text">Коммуникативные навыки: высокие</div>
+                <div class="feat-q-meta">
+                  <span class="feat-q-badge basic">91%</span>
+                  <span class="feat-q-competency">Убедительная аргументация</span>
+                </div>
+              </div>
+              <div class="feat-q-card">
+                <div class="feat-q-text">Лидерство: выраженное</div>
+                <div class="feat-q-meta">
+                  <span class="feat-q-badge basic">88%</span>
+                  <span class="feat-q-competency">Инициативность, ответственность</span>
+                </div>
+              </div>
+              <div class="feat-q-card">
+                <div class="feat-q-text">Стрессоустойчивость: высокая</div>
+                <div class="feat-q-meta">
+                  <span class="feat-q-badge basic">85%</span>
+                  <span class="feat-q-competency">Спокойствие в сложных ситуациях</span>
+                </div>
+              </div>
+              <div style="padding:8px 12px; text-align:center;">
+                <span class="feat-editor-ai-badge">
+                  <svg width="10" height="10" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+                  Общая оценка soft skills: 88%
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">04</div>
+        <h3 class="feat-title">Глубокая оценка soft skills</h3>
+        <p class="feat-desc">ИИ-аватар оценивает коммуникативные навыки, лидерство, стрессоустойчивость, эмоциональный интеллект и другие soft skills через естественный диалог. В отличие от тестов, Real-time интервью выявляет реальное поведение кандидата, а не заученные ответы. Система оценивает не только содержание, но и то, как кандидат формулирует мысли.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Оценка через диалог, а не тесты</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Коммуникация, лидерство, стрессоустойчивость, EQ</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Реальное поведение вместо заученных ответов</div>
+        </div>
+        <a href="#form" class="feat-cta-btn">Запросить демо</a>
+      </div>
+    </div>
+
+    <!-- Feature Row 5: Видеозапись и транскрипт -->
+    <div class="feat-row reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <div class="feat-mock-tabs">
+              <span class="feat-tab active">Видеозапись</span>
+              <span class="feat-tab">Транскрипт</span>
+            </div>
+            <div class="feat-mock-editor">
+              <div class="feat-editor-field">
+                <span class="feat-editor-label">Запись</span>
+                <span class="feat-editor-value">35 мин — полное интервью</span>
+              </div>
+              <div class="feat-editor-field">
+                <span class="feat-editor-label">Метки</span>
+                <span class="feat-editor-value">12 ключевых моментов</span>
+              </div>
+              <div class="feat-editor-generated">
+                <div class="feat-editor-gen-title">Транскрипция диалога</div>
+                <div class="feat-editor-gen-text">
+                  ИИ-аватар: «Расскажите о вашем опыте управления командой.»<br>
+                  Кандидат: «В прошлом проекте я руководил командой из 8 человек...»<br>
+                  ИИ-аватар: «Какие были главные вызовы?»
+                </div>
+                <div class="feat-editor-ai-badge">
+                  <svg width="10" height="10" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+                  Полная транскрипция + ключевые моменты
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">05</div>
+        <h3 class="feat-title">Видеозапись и транскрипт</h3>
+        <p class="feat-desc">Каждое Real-time интервью записывается полностью. Система автоматически транскрибирует диалог и расставляет метки на ключевых моментах. Руководитель может посмотреть полную запись или перейти к отмеченным фрагментам — ответам о мотивации, конфликтах, опыте управления.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Полная видеозапись каждого интервью</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Автоматическая транскрипция диалога</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Метки ключевых моментов для быстрого просмотра</div>
+        </div>
+        <a href="#form" class="feat-cta-btn">Запросить демо</a>
+      </div>
+    </div>
+
+    <!-- Feature Row 6: Интеграция с воронкой -->
+    <div class="feat-row feat-row-rev reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <div style="padding:12px 14px 8px; font-size:13px; font-weight:700; color:var(--text1); border-bottom:1px solid var(--grey2);">
+              Воронка подбора — Senior Product Manager
+            </div>
+            <div class="feat-questions-body">
+              <div class="feat-q-card">
+                <div class="feat-q-text">Скрининг резюме: 48 кандидатов отобрано</div>
+                <div class="feat-q-meta">
+                  <span class="feat-q-badge basic">Завершён</span>
+                  <span class="feat-q-competency">ИИ-скрининг</span>
+                </div>
+              </div>
+              <div class="feat-q-card">
+                <div class="feat-q-text">Видеоинтервью: 12 прошли первичное интервью</div>
+                <div class="feat-q-meta">
+                  <span class="feat-q-badge basic">Завершён</span>
+                  <span class="feat-q-competency">Прокторинг</span>
+                </div>
+              </div>
+              <div class="feat-q-card">
+                <div class="feat-q-text">Real-time интервью: 5 финалистов оценены</div>
+                <div class="feat-q-meta">
+                  <span class="feat-q-badge advanced">В процессе</span>
+                  <span class="feat-q-competency">ИИ-аватар</span>
+                </div>
+              </div>
+              <div style="padding:8px 12px; text-align:center;">
+                <span class="feat-editor-ai-badge">
+                  <svg width="10" height="10" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+                  Полная воронка на одной платформе
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">06</div>
+        <h3 class="feat-title">Интеграция с воронкой подбора</h3>
+        <p class="feat-desc">Real-time интервью органично встраивается в воронку подбора BRaiN HR. Кандидаты, прошедшие скрининг и первичное видеоинтервью, автоматически попадают на этап глубокого собеседования с ИИ-аватаром. Вся история кандидата — от резюме до финального отчёта — доступна в одном месте.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Автоматический переход между этапами воронки</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Полная история кандидата в одном месте</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Единая платформа для всех этапов подбора</div>
+        </div>
+        <a href="#form" class="feat-cta-btn">Запросить демо</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 8: CTA + ФОРМА                           -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="cta-section" id="form">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <div class="section-tag">Попробуйте сами</div>
+      <h2 class="reveal">Запросить демо <em>Real-time интервью</em></h2>
+      <p class="reveal">Посмотрите, как ИИ-аватар проводит глубокое собеседование и формирует детальный отчёт.</p>
+      <div class="cta-points reveal">
+        <div class="cta-point">
+          <span class="cp-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 00-16 0"/></svg></span>
+          <div>
+            <strong>ИИ-аватар ведёт диалог в реальном времени</strong>
+            Адаптивные вопросы на основе ответов кандидата
+          </div>
+        </div>
+        <div class="cta-point">
+          <span class="cp-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span>
+          <div>
+            <strong>Анализ мимики, поведения и soft skills</strong>
+            Объективные данные для принятия решений
+          </div>
+        </div>
+        <div class="cta-point">
+          <span class="cp-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span>
+          <div>
+            <strong>Видеозапись, транскрипт и детальный отчёт</strong>
+            Руководитель принимает решение за 5 минут
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="form-card">
+        <div class="form-title">Запросить демо Real-time интервью</div>
+        <div class="form-sub">Покажем, как ИИ-аватар проводит собеседование</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Как вас зовут?</label>
+            <input class="form-input" type="text" placeholder="Ваше имя">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Где вы работаете?</label>
+            <input class="form-input" type="text" placeholder="Название компании">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input class="form-input" type="email" placeholder="name@company.ru">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Телефон</label>
+            <input class="form-input" type="tel" placeholder="+7 (999) 000-00-00">
+          </div>
+          <div class="form-group form-full">
+            <button class="btn-form">Запросить демо Real-time интервью &rarr;</button>
+          </div>
+        </div>
+        <div class="form-note">Нажимая кнопку, вы соглашаетесь с <a href="https://brainhire.ru/docs/privacy-policy">политикой конфиденциальности</a> и <a href="https://brainhire.ru/docs/personal-data-consent">обработкой персональных данных</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ: СМЕЖНЫЕ ФУНКЦИИ (cross-sell)            -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="section-bg">
+  <div class="container">
+    <div class="section-tag">Другие возможности BRaiN HR</div>
+    <h2 class="section-title reveal">Полный цикл найма — <em>на одной платформе</em></h2>
+    <p class="section-sub reveal">Real-time интервью — финальный этап. А вот что помогает дойти до него быстрее.</p>
+    <div class="cross-sell-grid">
+      <a href="https://brainhire.ru/ai-resume-analysis" class="cross-sell-card reveal">
+        <div class="cross-sell-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div class="cross-sell-title">ИИ-скрининг резюме</div>
+        <div class="cross-sell-text">Мгновенный скрининг и скоринг сотен резюме. Объективная оценка кандидатов для первичного отбора.</div>
+        <span class="cross-sell-link">Подробнее <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href="https://brainhire.ru/ai-vacancy-creation" class="cross-sell-card reveal d1">
+        <div class="cross-sell-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></div>
+        <div class="cross-sell-title">ИИ-создание вакансий</div>
+        <div class="cross-sell-text">Генерация профессиональных описаний вакансий за 30 секунд. SEO-оптимизация для job-бордов.</div>
+        <span class="cross-sell-link">Подробнее <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href="https://brainhire.ru/ai-videointerview" class="cross-sell-card reveal d2">
+        <div class="cross-sell-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+        <div class="cross-sell-title">ИИ-видеоинтервью с прокторингом</div>
+        <div class="cross-sell-text">Первичное тестирование сотен кандидатов одновременно. Прокторинг фиксирует подсказки и нечестные ответы.</div>
+        <span class="cross-sell-link">Подробнее <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ: FAQ                                     -->
+<!-- ════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title reveal" style="text-align:center; margin-bottom: 48px;">Ответы на часто задаваемые вопросы</h2>
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Как работает Real-time интервью с ИИ-аватаром?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">ИИ-аватар ведёт полноценный диалог с кандидатом в реальном времени. Аватар приветствует кандидата, задаёт адаптивные вопросы на основе ответов, углубляется в интересные темы и оценивает soft skills, мотивацию и поведение. Параллельно система анализирует мимику, тон голоса и зрительный контакт. По итогам интервью формируется детальный отчёт с видеозаписью и рекомендациями.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Насколько точна оценка ИИ-аватара по сравнению с живым интервьюером?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Точность оценки soft skills ИИ-аватаром составляет 87% по данным наших клиентов. Ключевое преимущество — объективность: ИИ оценивает всех кандидатов по единым критериям, без влияния усталости, настроения и предвзятости. При этом ИИ-аватар не заменяет руководителя, а даёт ему структурированные данные для принятия финального решения.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Как кандидат воспринимает интервью с ИИ-аватаром?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">По обратной связи от кандидатов, подавляющее большинство оценивают опыт Real-time интервью как комфортный и профессиональный. ИИ-аватар ведёт естественный диалог, проявляет эмпатию и создаёт атмосферу, близкую к обычному собеседованию. Кандидаты отмечают удобство прохождения интервью в любое время и отсутствие стресса от согласования расписания.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Чем Real-time интервью отличается от обычного ИИ-видеоинтервью?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Обычное ИИ-видеоинтервью — это асинхронный тест: кандидат видит заранее подготовленные вопросы и записывает видеоответы. Real-time интервью — это полноценный живой диалог с ИИ-аватаром, который адаптирует вопросы на основе ответов, углубляется в темы и ведёт себя как опытный интервьюер. Видеоинтервью подходит для массового первичного отбора, а Real-time интервью — для глубокой оценки финалистов.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Можно ли настроить сценарий и компетенции для оценки?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Да, вы полностью настраиваете профиль интервью: указываете ключевые компетенции, ценности команды, темы для обсуждения и приоритеты оценки. ИИ-аватар адаптирует свой сценарий под эти параметры. Для руководящих позиций акцент может быть на лидерстве, для клиентских ролей — на эмпатии и коммуникации.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Какая длительность одного Real-time интервью?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Типичная длительность Real-time интервью составляет 20-40 минут в зависимости от сложности позиции и глубины вопросов. Вы можете настроить продолжительность и количество тем для обсуждения. ИИ-аватар автоматически управляет таймингом, чтобы охватить все ключевые компетенции в отведённое время.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Как анализируются мимика и поведение кандидата?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Система использует компьютерное зрение для анализа выражения лица, зрительного контакта и языка тела кандидата в реальном времени. Параллельно анализируется тон голоса, скорость речи и паузы. На основе этих данных ИИ оценивает уровень уверенности, стресса, вовлечённости и искренности ответов. Все данные включаются в итоговый отчёт.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Сколько стоит использование Real-time интервью?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Стоимость зависит от выбранного тарифа и объёма использования. Свяжитесь с нами для получения персонального предложения или запросите демо, чтобы увидеть систему в действии. Мы подберём оптимальный тариф под ваши задачи и объём подбора.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="site-footer-new">
+  <div class="footer-new-inner">
+
+    <!-- TOP: 5 columns -->
+    <div class="footer-new-top">
+
+      <!-- Col 1: Logo + desc + socials -->
+      <div class="footer-new-col footer-new-col-brand">
+        <a href="https://brainhire.ru/" class="footer-new-logo">
+          <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+        </a>
+        <p class="footer-new-desc">ИИ-платформа для автоматизации рекрутинга и оценки персонала. Нанимайте в 5 раз дешевле и быстрее.</p>
+        <div class="footer-new-socials">
+          <a href="https://vk.com/brain_hr" target="_blank" class="footer-social-btn" title="ВКонтакте">В</a>
+          <a href="https://t.me/BRaiN_HR" target="_blank" class="footer-social-btn" title="Telegram">Т</a>
+          <a href="https://www.instagram.com/brain_hire/" target="_blank" class="footer-social-btn" title="Instagram">I</a>
+          <a href="https://www.linkedin.com/company/105875559/" target="_blank" class="footer-social-btn" title="LinkedIn">in</a>
+        </div>
+      </div>
+
+      <!-- Col 2: Отраслевые решения -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Отраслевые решения</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR в IT</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR в финансовом секторе</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR для маркетплейсов</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR для малого бизнеса</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR для корпораций</a>
+        </div>
+      </div>
+
+      <!-- Col 3: Функции -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Функции</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/recruiting" class="footer-new-link">Рекрутинг</a>
+          <a href="https://brainhire.ru/ai-vacancy-creation" class="footer-new-link">ИИ-создание вакансий</a>
+          <a href="https://brainhire.ru/ai-resume-analysis" class="footer-new-link">ИИ-анализ резюме</a>
+          <a href="https://brainhire.ru/ai-videointerview" class="footer-new-link">ИИ-видеоинтервью</a>
+          <a href="https://brainhire.ru/ai-staff-scoring" class="footer-new-link">ИИ-оценка кандидатов</a>
+        </div>
+      </div>
+
+      <!-- Col 4: Компания -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Компания</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/about" class="footer-new-link">О нас</a>
+          <a href="https://brainhire.ru/contacts" class="footer-new-link">Контакты</a>
+          <a href="https://brainhire.ru/tariffs" class="footer-new-link">Тарифы</a>
+          <a href="https://brainhire.ru/reviews" class="footer-new-link">Отзывы</a>
+          <a href="https://brainhire.ru/case" class="footer-new-link">Кейсы</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">СМИ о нас</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">Блог</a>
+          <a href="https://brainhire.ru/partner" class="footer-new-link">Партнёрская программа</a>
+        </div>
+      </div>
+
+      <!-- Col 5: Контакты -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Контакты</div>
+        <div class="footer-new-contact-block">
+          <a href="tel:+74959703976" class="footer-new-phone">+7 (495) 970-39-76</a>
+          <span class="footer-new-contact-sub">Служба поддержки</span>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Электронная почта:</span>
+          <a href="mailto:info@brainhire.ru" class="footer-new-email">info@brainhire.ru</a>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Адрес:</span>
+          <span class="footer-new-address">142005 Московская область, г. Домодедово, мкр. Центральный, ул. Кирова, д. 7, к.1, пом. 0011, офис 5</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-new-bottom">
+      <div class="footer-new-bottom-top">
+        <span class="footer-new-copy">&copy; ООО &laquo;НДК&raquo;, ОГРН 1225000105010. Все права защищены.</span>
+        <div class="footer-new-legal">
+          <a href="https://brainhire.ru/docs/privacy-policy" class="footer-new-legal-link">Политика конфиденциальности</a>
+          <a href="https://brainhire.ru/docs/user-agreement" class="footer-new-legal-link">Пользовательское соглашение</a>
+          <a href="https://brainhire.ru/docs/personal-data-consent" class="footer-new-legal-link">Обработка данных</a>
+        </div>
+      </div>
+      <div class="footer-new-bottom-docs">
+        <a href="https://brainhire.ru/docs/user-instructions" class="footer-new-legal-link">Инструкция по установке и эксплуатации ПО</a>
+        <a href="https://brainhire.ru/docs/product-description" class="footer-new-legal-link">Описание функциональных характеристик ПО</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+// Audience tabs
+function showAudience(index) {
+  document.querySelectorAll('.audience-tab').forEach(function(t, i) {
+    t.classList.toggle('active', i === index);
+  });
+  document.querySelectorAll('.audience-content').forEach(function(c, i) {
+    c.classList.toggle('active', i === index);
+  });
+}
+
+// FAQ toggle
+function toggleFaq(btn) {
+  var item = btn.parentElement;
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(el) { el.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
+// Reveal on scroll
+document.addEventListener('DOMContentLoaded', function() {
+  document.body.classList.add('js-loaded');
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(function(el) { observer.observe(el); });
+});
+</script>
+
+<!-- STICKY SIDEBAR -->
+<div class="sticky-sidebar">
+  <a href="#form" class="sticky-btn sticky-btn-primary" title="Запросить демо">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2z" stroke="currentColor" stroke-width="1.8"/><path d="M12 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Запросить демо</span>
+  </a>
+  <a href="../calculator.html" class="sticky-btn sticky-btn-accent" title="Калькулятор экономии">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="10" x2="10" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="14" x2="10" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="14" x2="16" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="18" x2="10" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="18" x2="16" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Калькулятор экономии</span>
+  </a>
+  <a href="tel:+74958591070" class="sticky-btn sticky-btn-secondary" title="+7 (495) 859-10-70">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">+7 (495) 859-10-70</span>
+  </a>
+  <a href="mailto:info@brainhire.ru" class="sticky-btn sticky-btn-secondary" title="info@brainhire.ru">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">info@brainhire.ru</span>
+  </a>
+</div>
+
+<!-- FLOAT VIDEO WIDGET -->
+<div class="float-video-widget" id="floatWidget">
+  <div class="float-video-close" onclick="closeFloatWidget()" title="Закрыть">✕</div>
+  <div class="float-video-wrap" id="floatVideoWrap" onclick="openFloatFullscreen()">
+    <div class="float-video-poster" id="floatPoster">
+      <img src="https://brainhire.ru/images/videoPreview.avif" onerror="this.style.display='none'; document.getElementById('floatPosterFallback').style.display='flex';" alt="Demo">
+      <div class="float-poster-fallback" id="floatPosterFallback">
+        <svg width="40" height="40" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+        <span style="font-size:11px;font-weight:700;color:#fff;">BRaiN HR</span>
+      </div>
+    </div>
+    <video id="floatVideo" muted loop playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+    <div class="float-video-overlay">
+      <div class="float-video-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="white"/></svg></div>
+      <div class="float-video-label">Смотреть демо</div>
+    </div>
+  </div>
+</div>
+<div class="float-modal" id="floatModal" onclick="closeFloatModal()">
+  <div class="float-modal-inner" onclick="event.stopPropagation()">
+    <button class="float-modal-close" onclick="closeFloatModal()">✕</button>
+    <video id="floatModalVideo" controls playsinline preload="none" style="width:100%;border-radius:12px;display:block;max-height:80vh;background:#000;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+</body>
+</html>

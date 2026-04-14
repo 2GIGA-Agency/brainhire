@@ -1,0 +1,49 @@
+@import "../abstracts/mixins"; // Импортируем все миксины
+
+h1 {
+  @include typography("h1");
+}
+
+h2 {
+  @include typography("h2");
+}
+
+h3 {
+  @include typography("h3");
+}
+
+h4 {
+  @include typography("h4");
+}
+
+h5 {
+  @include typography("h5");
+}
+
+h6 {
+  @include typography("h6");
+}
+
+.subtitle {
+  @include typography("subtitle");
+}
+
+.body-lg {
+  @include typography("body-lg");
+}
+
+.body-md {
+  @include typography("body-md");
+}
+
+.body-sm {
+  @include typography("body-sm");
+}
+
+.body-xs {
+  @include typography("body-xs");
+}
+
+.caption {
+  @include typography("caption");
+}

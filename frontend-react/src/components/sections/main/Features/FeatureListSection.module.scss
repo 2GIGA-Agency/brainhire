@@ -1,0 +1,22 @@
+@import '@/styles/abstracts/variables';
+
+.features {
+	background-color: $grey-1;
+	padding: 3vw 0;
+	text-align: center;
+}
+
+.container {
+	width: 90%;
+	margin: auto;
+}
+
+.heading {
+	margin-bottom: 80px;
+}
+
+@media (max-width: 768px) {
+	.features {
+		padding: 7vw 0;
+	}
+}

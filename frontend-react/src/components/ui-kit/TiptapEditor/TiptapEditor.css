@@ -1,0 +1,228 @@
+/* src/components/ui-kit/TiptapEditor/TiptapEditor.css */
+
+/* --- Обертка для всего редактора --- */
+.tiptap-editor-wrapper {
+	font-size: 14px;
+	width: 100%;
+	border-radius: 4px;
+	overflow: hidden; /* Скрывает дочерние элементы, выходящие за скругленные углы */
+	background-color: #fff; /* Фон обертки, если нужно */
+}
+
+/* --- Панель инструментов (Меню) --- */
+.tiptap-menu-bar {
+	display: flex;
+	flex-wrap: wrap; /* Перенос кнопок на новую строку при необходимости */
+	align-items: center; /* Выравнивание кнопок по вертикали */
+	padding: 4px 8px; /* Внутренние отступы панели */
+	gap: 8px; /* Промежуток между кнопками/элементами панели */
+}
+
+/* --- Стили для кнопок панели инструментов --- */
+.toolbar-button {
+	display: inline-flex; /* Для выравнивания иконки внутри кнопки */
+	justify-content: center;
+	align-items: center;
+	background: none; /* Убираем фон по умолчанию */
+	border: 1px solid transparent; /* Прозрачная рамка для согласованности */
+	padding: 4px; /* Внутренний отступ кнопки */
+	cursor: pointer;
+	border-radius: 3px; /* Скругление углов кнопки */
+	transition:
+		background-color 0.2s ease,
+		border-color 0.2s ease; /* Плавный переход для hover/active */
+	line-height: 1; /* Предотвращает лишнюю высоту из-за высоты строки */
+}
+
+/* Стиль кнопки при наведении (если не отключена) */
+.toolbar-button:hover:not(:disabled) {
+	background-color: #e9ecef; /* Фон при наведении */
+	border-color: #ddd; /* Рамка при наведении */
+}
+
+/* Стиль активной кнопки */
+.toolbar-button.is-active {
+	border-color: #cce0ff; /* Рамка активной кнопки */
+	/* Можно добавить стили для самой иконки активной кнопки, если SVG это позволяет */
+	/* Например: color: #0056b3; */
+}
+
+/* Стиль отключенной кнопки */
+.toolbar-button:disabled {
+	cursor: not-allowed; /* Курсор "недоступно" */
+	opacity: 0.5; /* Полупрозрачность для индикации неактивности */
+}
+
+/* Стиль для переворота иконки Redo (применяется к тегу Image) */
+.toolbar-button .icon-redo {
+	transform: scaleX(-1); /* Зеркальное отражение по горизонтали */
+}
+
+/* --- Разделитель на панели инструментов --- */
+.toolbar-divider {
+	width: 0;
+}
+
+/* --- Стили для области редактирования контента --- */
+.tiptap-editor-content .ProseMirror {
+	padding: 8px 10px; /* Внутренние отступы области редактирования (уменьшены) */
+	min-height: 150px; /* Минимальная высота редактора */
+	outline: none; /* Убираем стандартный контур фокуса */
+	line-height: 1.5; /* Межстрочный интервал (можно настроить: 1.5, 1.6 и т.д.) */
+	border: 1px solid #e2e8f0;
+	border-radius: 6px;
+}
+
+.tiptap-editor-content .ProseMirror:focus {
+	border-color: #3b82f6;
+}
+
+/* --- Стили для списков (уменьшенные отступы) --- */
+.tiptap-editor-content .ProseMirror ul,
+.tiptap-editor-content .ProseMirror ol {
+	padding-left: 1.5em; /* Отступ слева для маркеров/номеров (уменьшен) */
+	margin-top: 0.5em; /* Вертикальный отступ сверху (уменьшен) */
+	margin-bottom: 0.5em; /* Вертикальный отступ снизу (уменьшен) */
+}
+
+/* Ненумерованный список */
+.tiptap-editor-content .ProseMirror ul {
+	list-style-type: disc;
+}
+.tiptap-editor-content .ProseMirror ul ul {
+	list-style-type: circle;
+	padding-left: 1.2em;
+} /* Вложенный */
+.tiptap-editor-content .ProseMirror ul ul ul {
+	list-style-type: square;
+	padding-left: 1.2em;
+} /* Вложенный 2 уровня */
+
+/* Нумерованный список */
+.tiptap-editor-content .ProseMirror ol {
+	list-style-type: decimal;
+}
+.tiptap-editor-content .ProseMirror ol ol {
+	list-style-type: lower-alpha;
+	padding-left: 1.2em;
+} /* Вложенный */
+.tiptap-editor-content .ProseMirror ol ol ol {
+	list-style-type: lower-roman;
+	padding-left: 1.2em;
+} /* Вложенный 2 уровня */
+
+/* Элементы списка */
+.tiptap-editor-content .ProseMirror li {
+	margin-bottom: 0.15em; /* Отступ между элементами списка (уменьшен) */
+}
+
+/* Убираем лишние отступы у параграфов (или других блоков) внутри элементов списка */
+.tiptap-editor-content .ProseMirror li > p,
+.tiptap-editor-content .ProseMirror li > div {
+	margin: 0;
+}
+
+/* --- Стили для плейсхолдера --- */
+.tiptap-editor-content .ProseMirror p.is-editor-empty:first-child::before {
+	content: attr(data-placeholder); /* Текст плейсхолдера берется из data-атрибута */
+	float: left; /* Важно для позиционирования */
+	color: #adb5bd; /* Цвет плейсхолдера */
+	pointer-events: none; /* Плейсхолдер не должен перехватывать клики */
+	height: 0; /* Важно для позиционирования */
+}
+
+/* --- Базовые стили для контента (уменьшенные отступы параграфов) --- */
+.tiptap-editor-content .ProseMirror p {
+	margin-top: 0; /* Убираем верхний отступ у параграфов по умолчанию */
+	margin-bottom: 0.5em; /* Нижний отступ параграфа (уменьшен) */
+}
+
+/* Убираем нижний отступ у самого последнего элемента в редакторе */
+.tiptap-editor-content .ProseMirror > *:last-child {
+	margin-bottom: 0;
+}
+
+/* Ссылки */
+.tiptap-editor-content .ProseMirror a {
+	color: #007bff; /* Цвет ссылки */
+	text-decoration: none; /* Убираем подчеркивание по умолчанию */
+	cursor: pointer;
+}
+.tiptap-editor-content .ProseMirror a:hover {
+	text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+/* --- Опциональные стили для других элементов (если вы их используете) --- */
+
+/* Подчеркнутый текст (если используется Underline) */
+.tiptap-editor-content .ProseMirror u {
+	text-decoration: underline;
+}
+
+/* Заголовки (если используются) */
+.tiptap-editor-content .ProseMirror h1,
+.tiptap-editor-content .ProseMirror h2,
+.tiptap-editor-content .ProseMirror h3,
+.tiptap-editor-content .ProseMirror h4,
+.tiptap-editor-content .ProseMirror h5,
+.tiptap-editor-content .ProseMirror h6 {
+	line-height: 1.2;
+	margin-top: 1em;
+	margin-bottom: 0.5em;
+}
+.tiptap-editor-content .ProseMirror h1 {
+	font-size: 2em;
+}
+.tiptap-editor-content .ProseMirror h2 {
+	font-size: 1.5em;
+}
+.tiptap-editor-content .ProseMirror h3 {
+	font-size: 1.25em;
+}
+
+/* Горизонтальная линия (если используется) */
+.tiptap-editor-content .ProseMirror hr {
+	border: none;
+	border-top: 1px solid #ccc;
+	margin: 1rem 0;
+}
+
+/* Блок цитаты (если используется) */
+.tiptap-editor-content .ProseMirror blockquote {
+	padding-left: 1rem;
+	border-left: 3px solid #e0e0e0;
+	margin-left: 0;
+	margin-right: 0;
+	font-style: italic;
+	color: #555;
+}
+
+/* Блок кода (если используется) */
+.tiptap-editor-content .ProseMirror pre {
+	background: #f1f3f5; /* Светлый фон для блока кода */
+	color: #343a40; /* Темный цвет текста */
+	font-family:
+		'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace; /* Моноширинный шрифт */
+	padding: 0.75rem 1rem;
+	border-radius: 0.5rem;
+	margin: 1em 0;
+	white-space: pre-wrap; /* Перенос строк в блоке кода */
+	word-break: break-all; /* Перенос длинных строк */
+}
+
+.tiptap-editor-content .ProseMirror pre code {
+	color: inherit;
+	padding: 0;
+	background: none;
+	font-size: 0.9em; /* Немного уменьшить шрифт внутри pre */
+}
+
+/* Встроенный код (если используется) */
+.tiptap-editor-content .ProseMirror code {
+	background-color: rgba(97, 106, 113, 0.1); /* Легкий фон для встроенного кода */
+	color: #c7254e; /* Цвет текста встроенного кода */
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%; /* Немного уменьшить размер шрифта */
+	font-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+}

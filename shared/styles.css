@@ -1,0 +1,121 @@
+/* ═══════════════════════════════════════════
+   BRaiN HR — Design System (styles.css)
+   Base: variables, reset, typography, grid, buttons
+   ═══════════════════════════════════════════ */
+
+/* ─── VARIABLES ─── */
+:root {
+  --brand1:    #4096FF;
+  --brand1-h:  #69B1FF;
+  --brand1-bg: #E6F4FF;
+  --brand2:    #FF7401;
+  --brand2-bg: #FFF3E8;
+  --brand3:    #12536D;
+  --text1:     #11263A;
+  --text2:     #717680;
+  --grey1:     #F5F6F8;
+  --grey2:     #D5D7DA;
+  --grey3:     rgba(29,29,29,0.10);
+  --grey4:     #535862;
+  --white:     #FFFFFF;
+  --radius:    12px;
+  --radius-sm: 8px;
+  --shadow:    0 1px 3px rgba(17,38,58,0.08), 0 4px 16px rgba(17,38,58,0.06);
+  --shadow-md: 0 4px 24px rgba(17,38,58,0.12);
+}
+
+/* ─── RESET ─── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Montserrat', sans-serif;
+  background: var(--white);
+  color: var(--text1);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ─── GRID ─── */
+.container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+section { padding: 80px 0; }
+.section-bg { background: var(--grey1); }
+
+/* ─── SECTION HEADINGS ─── */
+.section-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+  color: var(--brand1); background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.25);
+  padding: 4px 12px; border-radius: 100px; margin-bottom: 14px;
+}
+.section-title {
+  font-size: clamp(26px, 3vw, 38px); font-weight: 800; line-height: 1.18;
+  letter-spacing: -0.7px; color: var(--text1); margin-bottom: 12px;
+}
+.section-title em { font-style: normal; color: var(--brand1); }
+.section-title .emo { color: var(--brand2); }
+.section-sub { font-size: 15px; color: var(--text2); max-width: 540px; line-height: 1.72; margin-bottom: 48px; }
+
+/* ─── TYPOGRAPHY ─── */
+h1 {
+  font-size: clamp(36px, 4vw, 52px); font-weight: 800;
+  line-height: 1.1; letter-spacing: -1.2px; color: var(--text1); margin-bottom: 20px;
+}
+h1 em { font-style: normal; color: var(--brand1); }
+h1 .accent-orange { color: var(--brand2); }
+
+/* ─── BUTTONS ─── */
+.btn-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 20px; border: none; border-radius: var(--radius-sm);
+  font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600;
+  color: var(--white); background: var(--brand1); cursor: pointer;
+  transition: background .2s, transform .15s, box-shadow .2s;
+  text-decoration: none;
+}
+.btn-primary:hover { background: var(--brand1-h); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(64,150,255,0.35); }
+
+.btn-secondary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 20px; border: 1.5px solid var(--grey2); border-radius: var(--radius-sm);
+  font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600;
+  color: var(--text1); background: var(--white); cursor: pointer;
+  transition: border-color .2s, color .2s, background .2s;
+  text-decoration: none;
+}
+.btn-secondary:hover { border-color: var(--brand1); color: var(--brand1); background: var(--brand1-bg); }
+
+.btn-hero-primary {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 16px 32px; border: none; border-radius: var(--radius-sm);
+  font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700;
+  color: var(--white); background: var(--brand1); cursor: pointer;
+  transition: background .2s, transform .15s, box-shadow .2s;
+  text-decoration: none; box-shadow: 0 4px 20px rgba(64,150,255,0.35);
+}
+.btn-hero-primary:hover { background: var(--brand1-h); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(64,150,255,0.45); }
+
+.btn-hero-outline {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 15px 32px; border: 1.5px solid var(--grey2); border-radius: var(--radius-sm);
+  font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 600;
+  color: var(--text1); background: var(--white); cursor: pointer;
+  transition: border-color .2s, color .2s; text-decoration: none;
+}
+.btn-hero-outline:hover { border-color: var(--brand1); color: var(--brand1); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+@keyframes ticker { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+/* ─── REVEAL (scroll animations) ─── */
+.js-loaded .reveal { opacity:0; transform:translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+.js-loaded .reveal.visible { opacity:1; transform:none; }
+.js-loaded .d1 { transition-delay:.08s; }
+.js-loaded .d2 { transition-delay:.16s; }
+.js-loaded .d3 { transition-delay:.24s; }
+
+/* ─── RESPONSIVE BASE ─── */
+@media (max-width: 960px) {
+  .main-nav { display: none; }
+  .header-topbar { display: none; }
+}

@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Основная информация о компании BRaiN HR</title>
+<meta name="description" content="BRaiN HR - ИИ платформа по автоматизации найма. Узнайте больше о нашей компании, миссии, ценностях и профессиональном подходе к найму лучших кадров.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../shared/styles.css">
+<link rel="stylesheet" href="../shared/components.css">
+<style>
+  /* ─── BREADCRUMBS ─── */
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--text2);
+    margin-bottom: 24px;
+  }
+  .breadcrumbs a {
+    color: var(--brand1);
+    text-decoration: none;
+    transition: color .2s;
+  }
+  .breadcrumbs a:hover { text-decoration: underline; }
+  .breadcrumbs span { color: var(--text2); }
+
+  /* ─── HERO ─── */
+  .about-hero {
+    background: var(--white);
+    padding: 88px 0 56px;
+  }
+  .about-hero h1 {
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.2px;
+    color: var(--text1);
+    margin-bottom: 16px;
+  }
+  .about-hero p {
+    font-size: 17px;
+    color: var(--text2);
+    max-width: 640px;
+    line-height: 1.7;
+  }
+
+  /* ─── HISTORY / TIMELINE ─── */
+  .history-intro {
+    font-size: 15px;
+    line-height: 1.72;
+    color: var(--text2);
+    max-width: 800px;
+    margin-bottom: 48px;
+  }
+  .timeline {
+    display: flex;
+    gap: 0;
+    position: relative;
+    margin-top: 48px;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--grey2);
+    z-index: 0;
+  }
+  .timeline-item {
+    flex: 1;
+    position: relative;
+    padding: 0 12px;
+  }
+  .timeline-dot {
+    width: 16px;
+    height: 16px;
+    background: var(--brand1);
+    border: 3px solid var(--brand1-bg);
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+    margin: 0 auto 20px;
+    top: 21px;
+  }
+  .timeline-year {
+    font-size: clamp(28px, 3vw, 36px);
+    font-weight: 900;
+    color: var(--brand1);
+    margin-bottom: 8px;
+    margin-top: 36px;
+    text-align: center;
+  }
+  .timeline-text {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.6;
+    text-align: center;
+  }
+
+  /* ─── MISSION ─── */
+  .mission-card {
+    background: var(--white);
+    border-left: 4px solid var(--brand1);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: 0 1px 3px rgba(17,38,58,0.08), 0 4px 16px rgba(17,38,58,0.06);
+    margin-bottom: 24px;
+  }
+  .mission-card p {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.6;
+    color: var(--text1);
+    margin: 0;
+  }
+  .mission-text {
+    font-size: 15px;
+    line-height: 1.72;
+    color: var(--text2);
+    max-width: 800px;
+  }
+
+  /* ─── ADVANTAGES ─── */
+  .adv-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .adv-card {
+    background: var(--white);
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: 0 1px 3px rgba(17,38,58,0.08), 0 4px 16px rgba(17,38,58,0.06);
+    transition: border-color 0.25s, box-shadow 0.25s, transform 0.25s;
+  }
+  .adv-card:hover {
+    border-color: var(--brand1);
+    box-shadow: 0 8px 32px rgba(64,150,255,0.15);
+    transform: translateY(-4px);
+  }
+  .adv-icon {
+    width: 48px; height: 48px;
+    background: var(--brand1-bg);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 16px;
+  }
+  .adv-icon svg { width: 24px; height: 24px; }
+  .adv-card h3 {
+    font-size: 16px; font-weight: 700;
+    color: var(--text1); margin-bottom: 8px;
+  }
+  .adv-card p {
+    font-size: 14px; color: var(--text2);
+    line-height: 1.65; margin: 0;
+  }
+
+  /* ─── ACHIEVEMENTS ─── */
+  .achievements-section {
+    background: var(--white);
+    border-top: 1px solid var(--grey2);
+    border-bottom: 1px solid var(--grey2);
+    padding: 80px 0;
+  }
+  .achievements-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+    text-align: center;
+  }
+  .achievement-cell .achievement-value {
+    font-size: clamp(32px, 4vw, 44px);
+    font-weight: 900;
+    color: var(--brand1);
+    line-height: 1.1;
+    margin-bottom: 8px;
+  }
+  .achievement-cell .achievement-label {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.5;
+  }
+
+  /* ─── CERTIFICATES ─── */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .cert-card {
+    background: var(--white);
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(17,38,58,0.08), 0 4px 16px rgba(17,38,58,0.06);
+    transition: border-color .25s, box-shadow .25s, transform .25s;
+    cursor: pointer;
+  }
+  .cert-card:hover {
+    border-color: var(--brand1);
+    box-shadow: 0 8px 32px rgba(64,150,255,0.15);
+    transform: translateY(-4px);
+  }
+  .cert-thumb {
+    width: 100%;
+    aspect-ratio: 210 / 297;
+    background: var(--grey1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .cert-thumb-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: var(--text2);
+  }
+  .cert-thumb-placeholder svg { opacity: 0.4; }
+  .cert-thumb-placeholder span { font-size: 12px; font-weight: 600; }
+  .cert-info {
+    padding: 14px 16px;
+  }
+  .cert-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text1);
+    line-height: 1.4;
+  }
+  .certs-desc {
+    font-size: 15px;
+    line-height: 1.72;
+    color: var(--text2);
+    max-width: 800px;
+  }
+
+  /* ─── LEADERSHIP ─── */
+  .leaders-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .leader-card {
+    background: var(--white);
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius);
+    padding: 32px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(17,38,58,0.08), 0 4px 16px rgba(17,38,58,0.06);
+    transition: border-color .25s, box-shadow .25s;
+  }
+  .leader-card:hover {
+    border-color: var(--brand1);
+    box-shadow: 0 4px 24px rgba(17,38,58,0.12);
+  }
+  .leader-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--white);
+  }
+  .leader-avatar.blue { background: var(--brand1); }
+  .leader-avatar.orange { background: var(--brand2); }
+  .leader-avatar.teal { background: var(--brand3); }
+  .leader-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text1);
+    margin-bottom: 4px;
+  }
+  .leader-role {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--brand1);
+    margin-bottom: 12px;
+  }
+  .leader-bio {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* ─── TEAM & OFFICE ─── */
+  .team-text {
+    font-size: 15px;
+    line-height: 1.72;
+    color: var(--text2);
+    max-width: 800px;
+    margin-bottom: 40px;
+  }
+  .team-photo-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 7;
+    background: var(--grey1);
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--text2);
+    margin-bottom: 32px;
+  }
+  .team-photo-placeholder svg { opacity: 0.4; }
+  .team-photo-placeholder span { font-size: 14px; font-weight: 600; }
+  .office-card {
+    background: var(--white);
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius);
+    padding: 24px 32px;
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    box-shadow: 0 1px 3px rgba(17,38,58,0.08), 0 4px 16px rgba(17,38,58,0.06);
+  }
+  .office-icon {
+    flex-shrink: 0;
+    width: 48px; height: 48px;
+    background: var(--brand1-bg);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .office-icon svg { width: 24px; height: 24px; }
+  .office-details h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text1);
+    margin-bottom: 8px;
+  }
+  .office-details p {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.6;
+    margin: 0 0 4px;
+  }
+  .office-details a {
+    color: var(--brand1);
+    text-decoration: none;
+    font-size: 14px;
+  }
+  .office-details a:hover { text-decoration: underline; }
+  .office-map-placeholder {
+    width: 100%;
+    aspect-ratio: 16 / 5;
+    background: var(--grey1);
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: var(--text2);
+    margin-top: 24px;
+  }
+  .office-map-placeholder svg { opacity: 0.4; }
+  .office-map-placeholder span { font-size: 14px; font-weight: 600; }
+
+  /* ─── CTA ─── */
+  .about-cta {
+    padding: 80px 0;
+    text-align: center;
+  }
+  .about-cta h2 {
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 800;
+    letter-spacing: -0.7px;
+    line-height: 1.18;
+    color: var(--text1);
+    margin-bottom: 16px;
+  }
+  .about-cta p {
+    font-size: 17px;
+    color: var(--text2);
+    margin-bottom: 32px;
+    line-height: 1.7;
+  }
+  .about-cta .cta-buttons {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .adv-grid { grid-template-columns: repeat(2, 1fr); }
+    .achievements-grid { grid-template-columns: repeat(2, 1fr); }
+    .certs-grid { grid-template-columns: repeat(2, 1fr); }
+    .leaders-grid { grid-template-columns: repeat(2, 1fr); }
+    .timeline {
+      flex-direction: column;
+      gap: 0;
+    }
+    .timeline::before {
+      top: 0;
+      bottom: 0;
+      left: 28px;
+      right: auto;
+      width: 3px;
+      height: 100%;
+    }
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 0 0 32px 0;
+    }
+    .timeline-dot {
+      flex-shrink: 0;
+      margin: 4px 0 0 21px;
+      top: 0;
+    }
+    .timeline-year {
+      text-align: left;
+      margin-top: 0;
+    }
+    .timeline-text {
+      text-align: left;
+    }
+    .office-card { flex-direction: column; }
+  }
+  @media (max-width: 600px) {
+    .adv-grid { grid-template-columns: 1fr; }
+    .achievements-grid { grid-template-columns: 1fr; }
+    .certs-grid { grid-template-columns: 1fr; }
+    .leaders-grid { grid-template-columns: 1fr; }
+    .mission-card { padding: 24px; }
+    .mission-card p { font-size: 16px; }
+  }
+  @media (max-width: 480px) {
+    .about-hero { padding: 72px 0 40px; }
+    .adv-card, .leader-card { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
+  <span class="urgency-dot"></span>
+  Каждый день без нужного сотрудника — это упущенная выручка, переработки команды и задержка развития бизнеса
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <!-- Top bar -->
+  <div class="header-topbar">
+    <div class="header-inner" style="height:36px; justify-content:center;">
+      <div class="topbar-links">
+        <a href="about.html" class="topbar-link">О компании</a>
+        <a href="contacts.html" class="topbar-link">Контакты</a>
+        <a href="hr-cashback.html" class="topbar-link">Партнёрская программа</a>
+        <a href="calculator.html" class="topbar-link">Калькулятор выгоды</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <div class="header-main">
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+      </a>
+      <nav class="main-nav">
+
+        <!-- Как это работает — megamenu -->
+        <div class="mnav-item has-mega" id="megaHow">
+          <button class="mnav-btn">
+            Как это работает
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel">
+            <div class="mega-col">
+              <!-- Рекрутинг → sub -->
+              <div class="mega-section-item has-sub" id="subRecruiting">
+                <div class="mega-section-link">
+                  <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                  <div>
+                    <div class="mega-section-title">Рекрутинг</div>
+                    <div class="mega-section-desc">Полный цикл подбора с ИИ</div>
+                  </div>
+                  <svg class="mega-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div class="sub-panel">
+                  <a href="features/ai-vacancy-creation.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-создание вакансий</div>
+                      <div class="sub-item-desc">Описание вакансии за минуты</div>
+                    </div>
+                  </a>
+                  <a href="features/ai-screening.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-анализ резюме</div>
+                      <div class="sub-item-desc">Скоринг и ранжирование откликов</div>
+                    </div>
+                  </a>
+                  <a href="features/ai-videointerview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Первичное ИИ-видеоинтервью</div>
+                      <div class="sub-item-desc">Тестирование с прокторингом</div>
+                    </div>
+                  </a>
+                  <a href="features/ai-realtime-interview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Real-time интервью с ИИ-аватаром</div>
+                      <div class="sub-item-desc">Адаптивное интервью в реальном времени</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Оценка персонала -->
+              <a href="features/ai-staff-scoring.html" class="mega-section-link mega-section-item">
+                <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 017 4.5v1A2.5 2.5 0 009.5 8h5A2.5 2.5 0 0017 5.5v-1A2.5 2.5 0 0014.5 2h-5z"/><path d="M9.5 8a2.5 2.5 0 00-2.5 2.5A2.5 2.5 0 004.5 13a2.5 2.5 0 002.5 2.5 2.5 2.5 0 002.5 2.5h5a2.5 2.5 0 002.5-2.5 2.5 2.5 0 002.5-2.5 2.5 2.5 0 00-2.5-2.5A2.5 2.5 0 0014.5 8h-5z"/></svg></span>
+                <div>
+                  <div class="mega-section-title">Оценка персонала</div>
+                  <div class="mega-section-desc">ИИ-оценка soft skills и компетенций</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Отраслевые решения — dropdown -->
+        <div class="mnav-item has-drop" id="dropSolutions">
+          <button class="mnav-btn">
+            Отраслевые решения
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="drop-panel">
+            <a href="solutions/smb.html" class="drop-item">Малый бизнес</a>
+            <a href="solutions/enterprise.html" class="drop-item">Корпорации</a>
+            <a href="solutions/it.html" class="drop-item">ИТ компании</a>
+            <a href="solutions/finance.html" class="drop-item">Финансовый сектор</a>
+            <a href="solutions/hr.html" class="drop-item">HR агентства</a>
+            <div class="drop-group">
+              <div class="drop-group-label">Маркетплейсы</div>
+              <a href="solutions/marketplaces.html" class="drop-item" style="padding-left:24px;">Владельцам ПВЗ</a>
+              <a href="solutions/sellers.html" class="drop-item" style="padding-left:24px;">Селлерам</a>
+            </div>
+            <a href="solutions/horeca.html" class="drop-item">HoReCa</a>
+            <a href="solutions/education.html" class="drop-item">Образование</a>
+            <a href="solutions/sales.html" class="drop-item">Продажи</a>
+            <a href="solutions/logistics.html" class="drop-item">Логистика</a>
+            <a href="solutions/marketing.html" class="drop-item">Маркетинг</a>
+          </div>
+        </div>
+
+        <a href="cases.html" class="mnav-link">Кейсы</a>
+        <a href="reviews.html" class="mnav-link">Отзывы</a>
+        <a href="pricing.html" class="mnav-link">Тарифы</a>
+        <a href="https://brainhire.ru/blog" class="mnav-link">Блог</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://brainhire.ru/signup" class="btn-primary">100 кандидатов бесплатно</a>
+        <a href="https://brainhire.ru/signin" class="btn-secondary">Войти</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+// ─── HEADER MENU — hover-based ───
+document.addEventListener('DOMContentLoaded', function() {
+  var items = document.querySelectorAll('.mnav-item.has-mega, .mnav-item.has-drop');
+
+  items.forEach(function(item) {
+    var timer;
+
+    item.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      items.forEach(function(other) {
+        if (other !== item) other.classList.remove('open');
+      });
+      item.classList.add('open');
+    });
+
+    item.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        item.classList.remove('open');
+        item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      }, 120);
+    });
+
+    var panel = item.querySelector('.mega-panel, .drop-panel');
+    if (panel) {
+      panel.addEventListener('mouseenter', function() { clearTimeout(timer); });
+      panel.addEventListener('mouseleave', function() {
+        timer = setTimeout(function() {
+          item.classList.remove('open');
+          item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+        }, 120);
+      });
+    }
+  });
+
+  document.querySelectorAll('.has-sub').forEach(function(sub) {
+    sub.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      sub.classList.add('sub-open');
+    });
+  });
+
+  // Close sub-panels when hovering over non-sub mega items
+  document.querySelectorAll('.mega-section-item:not(.has-sub)').forEach(function(item) {
+    item.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+    });
+  });
+});
+
+function toggleMega() {}
+function showSub(id) {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  var el = document.getElementById(id);
+  if (el) el.classList.add('sub-open');
+}
+function hideSubs() {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+}
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.mnav-item').forEach(function(e){ e.classList.remove('open'); });
+    document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  }
+});
+</script>
+
+
+<main>
+
+<!-- ═══ BLOCK 1: BREADCRUMBS + HERO ═══ -->
+<section class="about-hero">
+  <div class="container">
+    <div class="breadcrumbs reveal">
+      <a href="https://brainhire.ru/">Главная</a>
+      <span>/</span>
+      <span>О компании</span>
+    </div>
+    <h1 class="reveal">О компании</h1>
+    <p class="reveal d1">BRaiN HR — ИИ-платформа для автоматизации найма и управления персоналом. Мы помогаем компаниям нанимать быстрее, дешевле и качественнее.</p>
+  </div>
+</section>
+
+<!-- ═══ BLOCK 2: HISTORY ═══ -->
+<section class="section-bg" style="padding:80px 0;">
+  <div class="container">
+    <h2 class="section-title reveal">История создания и развития</h2>
+    <p class="history-intro reveal d1">BRaiN HR основан в 2022 году командой специалистов в области ИИ и HR-технологий. Мы увидели, что процесс найма в большинстве компаний остаётся ручным, медленным и субъективным — и решили это изменить.</p>
+    <div class="timeline reveal d2">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="timeline-year">2022</div>
+          <div class="timeline-text">Основание компании. Разработка первой версии ИИ-системы анализа резюме. Регистрация ООО «НДК».</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="timeline-year">2023</div>
+          <div class="timeline-text">Запуск платформы BRaiN HR. Первые 50 клиентов. Внедрение ИИ-видеоинтервью и автоматического скрининга.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="timeline-year">2024</div>
+          <div class="timeline-text">Масштабирование: 100+ клиентов из IT, финансов, производства и ритейла. Запуск ИИ-оценки персонала и real-time аватара.</div>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div>
+          <div class="timeline-year">2025</div>
+          <div class="timeline-text">150+ компаний-клиентов. 12 000+ проведённых ИИ-интервью. Отраслевые решения для 5 секторов экономики.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BLOCK 3: MISSION ═══ -->
+<section style="padding:80px 0;">
+  <div class="container">
+    <h2 class="section-title reveal">Миссия компании</h2>
+    <div class="mission-card reveal d1">
+      <p>Мы трансформируем процесс найма и управления персоналом с помощью технологий искусственного интеллекта, освобождая время HR-специалистов и владельцев бизнеса.</p>
+    </div>
+    <p class="mission-text reveal d2">Наши продукты помогают быстро нанимать сотрудников, адаптировать их под стандарты компании, управлять их развитием и эффективно использовать человеческий капитал. Решения от BRaiN HR подходят для любого типа бизнеса: от небольших стартапов до крупных корпораций.</p>
+  </div>
+</section>
+
+<!-- ═══ BLOCK 4: ADVANTAGES ═══ -->
+<section class="section-bg" style="padding:80px 0;">
+  <div class="container">
+    <h2 class="section-title reveal">Преимущества компании</h2>
+    <div class="adv-grid">
+
+      <div class="adv-card reveal d1">
+        <div class="adv-icon">
+          <svg width="24" height="24" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3>Российская разработка</h3>
+        <p>Полностью отечественная платформа. Данные хранятся на территории РФ в соответствии с 152-ФЗ.</p>
+      </div>
+
+      <div class="adv-card reveal d2">
+        <div class="adv-icon">
+          <svg width="24" height="24" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h3>Быстрое внедрение</h3>
+        <p>Подключение за 1-2 дня без сложных интеграций. Система готова к работе сразу после регистрации.</p>
+      </div>
+
+      <div class="adv-card reveal d3">
+        <div class="adv-icon">
+          <svg width="24" height="24" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <h3>Отраслевая адаптация</h3>
+        <p>Специализированные решения для IT, финансов, производства, медицины и ритейла.</p>
+      </div>
+
+      <div class="adv-card reveal d1">
+        <div class="adv-icon">
+          <svg width="24" height="24" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <h3>Объективная оценка</h3>
+        <p>ИИ-алгоритмы исключают субъективность из процесса отбора. Решения основаны на данных.</p>
+      </div>
+
+      <div class="adv-card reveal d2">
+        <div class="adv-icon">
+          <svg width="24" height="24" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h3>Масштабируемость</h3>
+        <p>От 10 до 10 000 вакансий в месяц. Платформа растёт вместе с вашим бизнесом.</p>
+      </div>
+
+      <div class="adv-card reveal d3">
+        <div class="adv-icon">
+          <svg width="24" height="24" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0118 0v6"/><path d="M21 19a2 2 0 01-2 2h-1a2 2 0 01-2-2v-3a2 2 0 012-2h3zM3 19a2 2 0 002 2h1a2 2 0 002-2v-3a2 2 0 00-2-2H3z"/></svg>
+        </div>
+        <h3>Поддержка 24/7</h3>
+        <p>Персональный менеджер, техподдержка и помощь в настройке процессов.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BLOCK 5: ACHIEVEMENTS ═══ -->
+<section class="achievements-section">
+  <div class="container">
+    <h2 class="section-title reveal">Достижения компании</h2>
+    <div class="achievements-grid">
+      <div class="achievement-cell reveal d1">
+        <div class="achievement-value">150+</div>
+        <div class="achievement-label">Компаний-клиентов</div>
+      </div>
+      <div class="achievement-cell reveal d2">
+        <div class="achievement-value">12 000+</div>
+        <div class="achievement-label">Проведённых ИИ-интервью</div>
+      </div>
+      <div class="achievement-cell reveal d3">
+        <div class="achievement-value">5&times;</div>
+        <div class="achievement-label">Быстрее закрытие вакансий</div>
+      </div>
+      <div class="achievement-cell reveal d3">
+        <div class="achievement-value">78%</div>
+        <div class="achievement-label">Снижение расходов на найм</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BLOCK 6: CERTIFICATES ═══ -->
+<section class="section-bg" style="padding:80px 0;">
+  <div class="container">
+    <h2 class="section-title reveal">Сертификаты и свидетельства</h2>
+    <p class="certs-desc reveal d1">BRaiN HR — зарегистрированное программное обеспечение. Платформа соответствует требованиям российского законодательства.</p>
+    <div class="certs-grid">
+
+      <div class="cert-card reveal d1">
+        <div class="cert-thumb">
+          <div class="cert-thumb-placeholder">
+            <svg width="48" height="48" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <span>Документ</span>
+          </div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-title">Свидетельство о регистрации ПО</div>
+        </div>
+      </div>
+
+      <div class="cert-card reveal d2">
+        <div class="cert-thumb">
+          <div class="cert-thumb-placeholder">
+            <svg width="48" height="48" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <span>Документ</span>
+          </div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-title">Сертификат соответствия 152-ФЗ</div>
+        </div>
+      </div>
+
+      <div class="cert-card reveal d3">
+        <div class="cert-thumb">
+          <div class="cert-thumb-placeholder">
+            <svg width="48" height="48" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <span>Документ</span>
+          </div>
+        </div>
+        <div class="cert-info">
+          <div class="cert-title">Свидетельство ОГРН</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BLOCK 7: LEADERSHIP ═══ -->
+<section style="padding:80px 0;">
+  <div class="container">
+    <h2 class="section-title reveal">Руководство компании</h2>
+    <div class="leaders-grid">
+
+      <div class="leader-card reveal d1">
+        <div class="leader-avatar blue">АИ</div>
+        <div class="leader-name">Алексей Иванов</div>
+        <div class="leader-role">Генеральный директор</div>
+        <p class="leader-bio">Основатель BRaiN HR. Более 15 лет опыта в IT и HR-технологиях.</p>
+      </div>
+
+      <div class="leader-card reveal d2">
+        <div class="leader-avatar orange">МК</div>
+        <div class="leader-name">Мария Козлова</div>
+        <div class="leader-role">Директор по продукту</div>
+        <p class="leader-bio">Отвечает за развитие платформы и внедрение новых ИИ-функций.</p>
+      </div>
+
+      <div class="leader-card reveal d3">
+        <div class="leader-avatar teal">ДС</div>
+        <div class="leader-name">Дмитрий Смирнов</div>
+        <div class="leader-role">Технический директор</div>
+        <p class="leader-bio">Руководит разработкой и архитектурой ИИ-алгоритмов платформы.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BLOCK 8: TEAM & OFFICE ═══ -->
+<section class="section-bg" style="padding:80px 0;">
+  <div class="container">
+    <h2 class="section-title reveal">Наш коллектив</h2>
+    <p class="team-text reveal d1">В команде BRaiN HR — специалисты по машинному обучению, HR-эксперты, разработчики и дизайнеры. Мы объединены общей целью: сделать найм быстрым, объективным и доступным для каждой компании.</p>
+
+    <div class="team-photo-placeholder reveal d2">
+      <svg width="48" height="48" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M23 19a2 2 0 01-2 2H3a2 2 0 01-2-2V8a2 2 0 012-2h4l2-3h6l2 3h4a2 2 0 012 2z"/><circle cx="12" cy="13" r="4"/></svg>
+      <span>Фото команды</span>
+    </div>
+
+    <div class="office-card reveal d3">
+      <div class="office-icon">
+        <svg width="24" height="24" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      </div>
+      <div class="office-details">
+        <h3>Офис компании</h3>
+        <p>142005 Московская область, г. Домодедово, мкр. Центральный, ул. Кирова, д. 7, к.1, пом. 0011, офис 5</p>
+        <p><a href="tel:+74959703976">+7 (495) 970-39-76</a></p>
+        <p><a href="mailto:info@brainhire.ru">info@brainhire.ru</a></p>
+      </div>
+    </div>
+
+    <div class="office-map-placeholder reveal d3">
+      <svg width="48" height="48" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+      <span>Карта</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ BLOCK 9: CTA ═══ -->
+<section class="about-cta">
+  <div class="container">
+    <h2 class="reveal">Готовы трансформировать найм?</h2>
+    <p class="reveal d1">Начните с бесплатного пилота — первые 100 кандидатов без оплаты.</p>
+    <div class="cta-buttons reveal d2">
+      <a href="https://brainhire.ru/signup" class="btn-hero-primary">100 кандидатов бесплатно</a>
+      <a href="https://brainhire.ru/contacts" class="btn-hero-outline">Связаться с нами</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer-new">
+  <div class="footer-new-inner">
+    <div class="footer-new-top">
+      <div class="footer-new-col footer-new-col-brand">
+        <a href="https://brainhire.ru/" class="footer-new-logo">
+          <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+        </a>
+        <p class="footer-new-desc">ИИ-платформа для автоматизации рекрутинга и оценки персонала. Нанимайте в 5 раз дешевле и быстрее.</p>
+        <div class="footer-new-socials">
+          <a href="https://vk.com/brain_hr" target="_blank" class="footer-social-btn" title="ВКонтакте">В</a>
+          <a href="https://t.me/BRaiN_HR" target="_blank" class="footer-social-btn" title="Telegram">Т</a>
+          <a href="https://www.instagram.com/brain_hire/" target="_blank" class="footer-social-btn" title="Instagram">I</a>
+          <a href="https://www.linkedin.com/company/105875559/" target="_blank" class="footer-social-btn" title="LinkedIn">in</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Отраслевые решения</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/solutions/it" class="footer-new-link">Автоматизация HR в IT</a>
+          <a href="https://brainhire.ru/solutions/finance" class="footer-new-link">Автоматизация HR в финансовом секторе</a>
+          <a href="https://brainhire.ru/solutions/marketplaces" class="footer-new-link">Автоматизация HR для маркетплейсов</a>
+          <a href="https://brainhire.ru/solutions/smb" class="footer-new-link">Автоматизация HR для малого бизнеса</a>
+          <a href="https://brainhire.ru/solutions/enterprise" class="footer-new-link">Автоматизация HR для корпораций</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Функции</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/recruiting" class="footer-new-link">Рекрутинг</a>
+          <a href="https://brainhire.ru/ai-vacancy-creation" class="footer-new-link">ИИ-создание вакансий</a>
+          <a href="https://brainhire.ru/ai-resume-analysis" class="footer-new-link">ИИ-анализ резюме</a>
+          <a href="https://brainhire.ru/ai-videointerview" class="footer-new-link">ИИ-видеоинтервью</a>
+          <a href="https://brainhire.ru/ai-staff-scoring" class="footer-new-link">ИИ-оценка кандидатов</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Компания</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/about" class="footer-new-link">О нас</a>
+          <a href="https://brainhire.ru/contacts" class="footer-new-link">Контакты</a>
+          <a href="https://brainhire.ru/tariffs" class="footer-new-link">Тарифы</a>
+          <a href="https://brainhire.ru/reviews" class="footer-new-link">Отзывы</a>
+          <a href="https://brainhire.ru/case" class="footer-new-link">Кейсы</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">СМИ о нас</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">Блог</a>
+          <a href="https://brainhire.ru/partner" class="footer-new-link">Партнёрская программа</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Контакты</div>
+        <div class="footer-new-contact-block">
+          <a href="tel:+74959703976" class="footer-new-phone">+7 (495) 970-39-76</a>
+          <span class="footer-new-contact-sub">Служба поддержки</span>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Электронная почта:</span>
+          <a href="mailto:info@brainhire.ru" class="footer-new-email">info@brainhire.ru</a>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Адрес:</span>
+          <span class="footer-new-address">142005 Московская область, г. Домодедово, мкр. Центральный, ул. Кирова, д. 7, к.1, пом. 0011, офис 5</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-new-bottom">
+      <div class="footer-new-bottom-top">
+        <span class="footer-new-copy">&copy; ООО «НДК», ОГРН 1225000105010. Все права защищены.</span>
+        <div class="footer-new-legal">
+          <a href="https://brainhire.ru/docs/privacy-policy" class="footer-new-legal-link">Политика конфиденциальности</a>
+          <a href="https://brainhire.ru/docs/user-agreement" class="footer-new-legal-link">Пользовательское соглашение</a>
+          <a href="https://brainhire.ru/docs/personal-data-consent" class="footer-new-legal-link">Обработка данных</a>
+        </div>
+      </div>
+      <div class="footer-new-bottom-docs">
+        <a href="https://brainhire.ru/docs/user-instructions" class="footer-new-legal-link">Инструкция по установке и эксплуатации ПО</a>
+        <a href="https://brainhire.ru/docs/product-description" class="footer-new-legal-link">Описание функциональных характеристик ПО</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- ═══ /FOOTER ═══ -->
+
+<script src="../shared/scripts.js"></script>
+<!-- STICKY SIDEBAR -->
+<div class="sticky-sidebar">
+  <a href="#form" class="sticky-btn sticky-btn-primary" title="Запросить демо">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2z" stroke="currentColor" stroke-width="1.8"/><path d="M12 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Запросить демо</span>
+  </a>
+  <a href="calculator.html" class="sticky-btn sticky-btn-accent" title="Калькулятор экономии">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="10" x2="10" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="14" x2="10" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="14" x2="16" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="18" x2="10" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="18" x2="16" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Калькулятор экономии</span>
+  </a>
+  <a href="tel:+74958591070" class="sticky-btn sticky-btn-secondary" title="+7 (495) 859-10-70">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">+7 (495) 859-10-70</span>
+  </a>
+  <a href="mailto:info@brainhire.ru" class="sticky-btn sticky-btn-secondary" title="info@brainhire.ru">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">info@brainhire.ru</span>
+  </a>
+</div>
+
+<!-- FLOAT VIDEO WIDGET -->
+<div class="float-video-widget" id="floatWidget">
+  <div class="float-video-close" onclick="closeFloatWidget()" title="Закрыть">✕</div>
+  <div class="float-video-wrap" id="floatVideoWrap" onclick="openFloatFullscreen()">
+    <div class="float-video-poster" id="floatPoster">
+      <img src="https://brainhire.ru/images/videoPreview.avif" onerror="this.style.display='none'; document.getElementById('floatPosterFallback').style.display='flex';" alt="Demo">
+      <div class="float-poster-fallback" id="floatPosterFallback">
+        <svg width="40" height="40" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+        <span style="font-size:11px;font-weight:700;color:#fff;">BRaiN HR</span>
+      </div>
+    </div>
+    <video id="floatVideo" muted loop playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+    <div class="float-video-overlay">
+      <div class="float-video-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="white"/></svg></div>
+      <div class="float-video-label">Смотреть демо</div>
+    </div>
+  </div>
+</div>
+<div class="float-modal" id="floatModal" onclick="closeFloatModal()">
+  <div class="float-modal-inner" onclick="event.stopPropagation()">
+    <button class="float-modal-close" onclick="closeFloatModal()">✕</button>
+    <video id="floatModalVideo" controls playsinline preload="none" style="width:100%;border-radius:12px;display:block;max-height:80vh;background:#000;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+</body>
+</html>

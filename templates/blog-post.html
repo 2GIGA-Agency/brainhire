@@ -1,0 +1,326 @@
+<!--
+  ═══════════════════════════════════════════════════
+  ШАБЛОН: Статья блога BRaiN HR
+  ═══════════════════════════════════════════════════
+  Использование:
+  1. Скопировать в pages/blog/[slug].html
+  2. Заменить {{PLACEHOLDER}} на контент
+  3. Header/footer — из page-template.html
+  ═══════════════════════════════════════════════════
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>{{ARTICLE_TITLE}} — Блог BRaiN HR</title>
+<meta name="description" content="{{ARTICLE_DESCRIPTION}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../../shared/styles.css">
+<link rel="stylesheet" href="../../shared/components.css">
+<style>
+  /* ─── BLOG ARTICLE STYLES ─── */
+  .blog-hero {
+    background: var(--grey1);
+    border-bottom: 1px solid var(--grey2);
+    padding: 64px 0 56px;
+  }
+  .blog-hero-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+  .blog-hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+  .blog-hero-tag {
+    font-size: 11px; font-weight: 700; color: var(--brand1);
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.2);
+    border-radius: 100px; padding: 4px 12px;
+  }
+  .blog-hero-date {
+    font-size: 13px; color: var(--text2); font-weight: 500;
+  }
+  .blog-hero-reading {
+    font-size: 13px; color: var(--text2); font-weight: 500;
+    display: flex; align-items: center; gap: 4px;
+  }
+  .blog-hero h1 {
+    font-size: clamp(28px, 3.5vw, 42px);
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.8px;
+    color: var(--text1);
+    margin-bottom: 16px;
+  }
+  .blog-hero-excerpt {
+    font-size: 17px;
+    color: var(--text2);
+    line-height: 1.7;
+    max-width: 680px;
+  }
+
+  /* Author bar */
+  .blog-author-bar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 1px solid var(--grey2);
+  }
+  .blog-author-bar-avatar {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: var(--brand1-bg); border: 2px solid rgba(64,150,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 800; color: var(--brand1);
+  }
+  .blog-author-bar-name {
+    font-size: 14px; font-weight: 700; color: var(--text1);
+  }
+  .blog-author-bar-role {
+    font-size: 12px; color: var(--text2);
+  }
+
+  /* Article body */
+  .blog-article {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 56px 24px 80px;
+  }
+  .blog-article h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text1);
+    margin: 48px 0 16px;
+    line-height: 1.3;
+    letter-spacing: -0.4px;
+  }
+  .blog-article h2:first-child {
+    margin-top: 0;
+  }
+  .blog-article h3 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text1);
+    margin: 32px 0 12px;
+    line-height: 1.35;
+  }
+  .blog-article p {
+    font-size: 15px;
+    color: var(--text2);
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+  .blog-article strong {
+    color: var(--text1);
+    font-weight: 700;
+  }
+  .blog-article a {
+    color: var(--brand1);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(64,150,255,0.3);
+    transition: border-color .2s;
+  }
+  .blog-article a:hover {
+    border-bottom-color: var(--brand1);
+  }
+  .blog-article ul, .blog-article ol {
+    margin: 0 0 20px 24px;
+    font-size: 15px;
+    color: var(--text2);
+    line-height: 1.8;
+  }
+  .blog-article li {
+    margin-bottom: 8px;
+  }
+  .blog-article blockquote {
+    border-left: 3px solid var(--brand1);
+    padding: 16px 24px;
+    margin: 28px 0;
+    background: var(--brand1-bg);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    font-size: 15px;
+    color: var(--text1);
+    font-weight: 500;
+    line-height: 1.7;
+  }
+  .blog-article img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--grey2);
+    margin: 28px 0;
+  }
+
+  /* Callout box */
+  .blog-callout {
+    background: var(--grey1);
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin: 32px 0;
+  }
+  .blog-callout-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text1);
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .blog-callout p {
+    font-size: 14px;
+    margin-bottom: 0;
+  }
+
+  /* Article CTA */
+  .blog-cta {
+    background: var(--brand1-bg);
+    border: 1px solid rgba(64,150,255,0.25);
+    border-radius: var(--radius);
+    padding: 32px;
+    margin: 48px 0;
+    text-align: center;
+  }
+  .blog-cta h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text1);
+    margin: 0 0 8px;
+  }
+  .blog-cta p {
+    font-size: 14px;
+    color: var(--text2);
+    margin-bottom: 20px;
+    max-width: 480px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Related posts */
+  .blog-related {
+    background: var(--grey1);
+    border-top: 1px solid var(--grey2);
+    padding: 64px 0;
+  }
+  .blog-related .container {
+    max-width: 1240px;
+  }
+  .blog-related h2 {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text1);
+    margin-bottom: 32px;
+  }
+
+  @media (max-width: 600px) {
+    .blog-article { padding: 40px 24px 60px; }
+    .blog-hero { padding: 40px 0 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER — скопировать из templates/page-template.html ═══ -->
+<!-- ... -->
+<!-- ═══ /HEADER ═══ -->
+
+
+<!-- BLOG HERO -->
+<section class="blog-hero">
+  <div class="blog-hero-inner">
+    <div class="blog-hero-meta">
+      <span class="blog-hero-tag">{{CATEGORY}}</span>
+      <span class="blog-hero-date">{{DATE}}</span>
+      <span class="blog-hero-reading">
+        <svg width="14" height="14" stroke="currentColor" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+        {{READING_TIME}} мин чтения
+      </span>
+    </div>
+    <h1>{{ARTICLE_TITLE}}</h1>
+    <p class="blog-hero-excerpt">{{ARTICLE_EXCERPT}}</p>
+    <div class="blog-author-bar">
+      <div class="blog-author-bar-avatar">{{AUTHOR_INITIALS}}</div>
+      <div>
+        <div class="blog-author-bar-name">{{AUTHOR_NAME}}</div>
+        <div class="blog-author-bar-role">{{AUTHOR_ROLE}}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ARTICLE BODY -->
+<article class="blog-article">
+
+  <h2>{{H2_SECTION_1}}</h2>
+  <p>{{PARAGRAPH}}</p>
+  <p>{{PARAGRAPH}}</p>
+
+  <blockquote>
+    {{QUOTE_TEXT}}
+  </blockquote>
+
+  <h2>{{H2_SECTION_2}}</h2>
+  <p>{{PARAGRAPH}}</p>
+
+  <div class="blog-callout">
+    <div class="blog-callout-title">
+      <svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      {{CALLOUT_TITLE}}
+    </div>
+    <p>{{CALLOUT_TEXT}}</p>
+  </div>
+
+  <h2>{{H2_SECTION_3}}</h2>
+  <p>{{PARAGRAPH}}</p>
+
+  <ul>
+    <li>{{LIST_ITEM_1}}</li>
+    <li>{{LIST_ITEM_2}}</li>
+    <li>{{LIST_ITEM_3}}</li>
+  </ul>
+
+  <h2>Итоги</h2>
+  <p>{{CONCLUSION}}</p>
+
+  <!-- Article CTA -->
+  <div class="blog-cta">
+    <h3>Хотите попробовать BRaiN HR?</h3>
+    <p>Запустите первую вакансию за 15 минут — 100 кандидатов бесплатно</p>
+    <a href="https://brainhire.ru/signup" class="btn-hero-primary">
+      Попробовать бесплатно
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+  </div>
+
+</article>
+
+
+<!-- RELATED POSTS -->
+<section class="blog-related">
+  <div class="container">
+    <h2>Читайте также</h2>
+    <div class="blog-grid">
+      <!-- 3 карточки blog-card — вставить из компонентов -->
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER — скопировать из templates/page-template.html ═══ -->
+<!-- ... -->
+<!-- ═══ /FOOTER ═══ -->
+
+<script src="../../shared/scripts.js"></script>
+</body>
+</html>

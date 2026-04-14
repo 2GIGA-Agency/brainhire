@@ -1,0 +1,27 @@
+@import '@/styles/abstracts/variables';
+
+.trust {
+	padding: 20px 20px;
+	text-align: center;
+}
+
+.heading {
+	margin-bottom: 42px;
+}
+
+.grid {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	flex-wrap: wrap;
+
+	& > div {
+		min-width: 450px;
+	}
+}
+
+@media (max-width: 768px) {
+	.trust {
+		padding: 30px 20px;
+	}
+}

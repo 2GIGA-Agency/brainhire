@@ -1,0 +1,24 @@
+.barContainer {
+    min-width: 230px;
+    margin-left: 116px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    position: relative;
+    background-color: #e2e8f0;
+    /* голубая полоса */
+    border-radius: 8px;
+    padding: 8px 16px 2px;
+    /* внутренние отступы сверху/снизу */
+    flex: 1;
+
+    &::after {
+        content: '';
+        position: absolute;
+        right: -15px;
+        bottom: 0px;
+        border: 20px solid transparent;
+        border-bottom: 20px solid #e2e8f0;
+        border-left: 20px solid #e2e8f0;
+    }
+}

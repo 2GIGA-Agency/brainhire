@@ -1,0 +1,130 @@
+@import '@/styles/abstracts/variables';
+@import '@/styles/abstracts/mixins';
+
+.solutions {
+	padding: 60px 20px;
+	text-align: center;
+	margin: 0 auto;
+	max-width: 1296px;
+}
+
+.heading {
+	margin-bottom: 40px;
+}
+
+/* 🔹 Адаптивная сетка */
+.grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 20px;
+}
+
+/* 🔹 Общие стили карточек */
+.card {
+	position: relative;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 24px;
+	border-radius: 12px;
+	color: $white;
+	transition: transform 0.3s ease-in-out;
+
+	&:hover {
+		transform: translateY(-5px);
+	}
+}
+
+/* 🔹 Основные (большие) карточки занимают всю ширину */
+.mainCard {
+	grid-column: span 2;
+	// min-height: 220px;
+}
+
+/* 🔹 Маленькие карточки занимают по 1/2 ширины */
+.smallCard {
+	grid-column: span 1;
+}
+
+/* 🔹 Контент внутри карточек */
+.content {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	text-align: left;
+}
+
+/* 🔹 Градиентные фоны */
+.gradient-blue {
+	background: linear-gradient(135deg, #4096ff, #0046a6);
+}
+
+.gradient-pink {
+	background: linear-gradient(135deg, #fecaca, #ffa6a6);
+	color: $text-primary;
+}
+
+.gradient-gray {
+	background: linear-gradient(135deg, #4b5563, #374151);
+}
+
+.mainBtn {
+	margin-top: auto;
+	width: 291px;
+}
+
+.mainText {
+	width: 40%;
+}
+
+.image {
+	position: absolute;
+	max-width: 470px;
+	right: -10px;
+	bottom: -10px;
+}
+
+.btn {
+	margin-top: auto;
+	width: 291px;
+}
+
+@media (max-width: 768px) {
+	.card {
+		display: flex;
+		flex-direction: column;
+	}
+	.mainBtn,
+	.mainText,
+	.btn {
+		width: 100%;
+	}
+
+	.solutions {
+		padding: 30px 20px;
+	}
+
+	.image {
+		position: static;
+		img {
+			position: static;
+		}
+	}
+	.grid {
+		grid-template-columns: 1fr;
+	}
+
+	.mainCard,
+	.smallCard {
+		grid-column: span 1;
+	}
+
+	.mainBtn,
+	.btn {
+		margin-top: auto;
+    display: flex;
+    width: 100%;
+	}
+}

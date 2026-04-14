@@ -1,0 +1,1823 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>ИИ-оценка персонала — BRaiN HR</title>
+<meta name="description" content="Автоматизированная оценка персонала с помощью искусственного интеллекта. Повысьте объективность, сократите время на процедуры оценки и получите точные данные для развития персонала.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/styles.css">
+<link rel="stylesheet" href="../../shared/components.css">
+<style>
+  /* ─── PAGE-SPECIFIC HERO ─── */
+  .hero-section { background: var(--white); padding: 80px 0 88px; }
+  .hero-wrap {
+    max-width: 1240px; margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: 1fr 440px; gap: 72px; align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.3);
+    border-radius: 100px; padding: 5px 14px 5px 10px;
+    font-size: 12px; font-weight: 600; color: var(--brand1); margin-bottom: 20px;
+    letter-spacing: 0.3px;
+  }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand1); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+
+  h1 {
+    font-size: clamp(36px, 4vw, 52px); font-weight: 800;
+    line-height: 1.1; letter-spacing: -1.2px; color: var(--text1); margin-bottom: 20px;
+  }
+  h1 em { font-style: normal; color: var(--brand1); }
+
+  .hero-sub {
+    font-size: 17px; color: var(--text2); margin-bottom: 36px;
+    max-width: 500px; line-height: 1.7; font-weight: 400;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+  .hero-proof { display: flex; gap: 24px; flex-wrap: wrap; }
+  .proof-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 13px; font-weight: 500; color: var(--text2);
+  }
+  .proof-item::before {
+    content:''; width:16px; height:16px; border-radius:50%; flex-shrink:0;
+    background: var(--brand1-bg); border: 1.5px solid var(--brand1);
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%234096FF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: center;
+  }
+
+  /* ─── SCORING CARD (Hero) ─── */
+  .scoring-card {
+    background: var(--white); border: 1px solid var(--grey2);
+    border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden;
+  }
+  .scoring-card-header {
+    padding: 14px 18px; border-bottom: 1px solid var(--grey2);
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600; color: var(--text2); background: var(--grey1);
+  }
+  .scoring-card-header .dots { display: flex; gap: 6px; }
+  .wdot { width: 10px; height: 10px; border-radius: 50%; }
+  .scoring-card-body { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+  .scoring-field {
+    display: flex; align-items: center; gap: 10px;
+    background: var(--grey1); border: 1px solid var(--grey2); border-radius: var(--radius-sm);
+    padding: 10px 14px;
+  }
+  .scoring-field-label { font-size: 11px; font-weight: 600; color: var(--text2); min-width: 65px; }
+  .scoring-field-value { font-size: 12px; font-weight: 600; color: var(--text1); }
+  .scoring-generating {
+    display: flex; align-items: center; gap: 8px;
+    padding: 10px 14px; background: rgba(64,150,255,0.04);
+    border: 1px solid rgba(64,150,255,0.15); border-radius: var(--radius-sm);
+    font-size: 11px; font-weight: 600; color: var(--brand1);
+  }
+  .scoring-generating .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand1); animation: pulse 1.5s infinite; }
+  .scoring-preview-section { padding: 10px 14px; background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius-sm); }
+  .scoring-preview-title { font-size: 11px; font-weight: 700; color: var(--text1); margin-bottom: 6px; }
+  .scoring-preview-item { font-size: 11px; color: var(--text2); line-height: 1.6; padding-left: 12px; position: relative; }
+  .scoring-preview-item::before { content: ''; position: absolute; left: 0; top: 7px; width: 4px; height: 4px; border-radius: 50%; background: var(--brand1); }
+  .scoring-tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .scoring-tag {
+    font-size: 10px; font-weight: 600; background: var(--brand1-bg); color: var(--brand1);
+    border: 1px solid rgba(64,150,255,0.25); border-radius: 100px; padding: 3px 8px;
+  }
+  .scoring-card-summary {
+    margin-top: 2px; padding: 10px 14px;
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.25);
+    border-radius: var(--radius-sm); font-size: 12px; font-weight: 500; color: var(--brand3);
+    display: flex; align-items: center; gap: 7px; line-height: 1.4;
+  }
+  .scoring-card-summary span { flex: 1; }
+  .scoring-card-summary strong { font-weight: 700; color: var(--brand1); }
+
+  /* ─── SCORE BAR ─── */
+  .scoring-score-bar { height: 6px; background: var(--grey2); border-radius: 3px; overflow: hidden; margin-top: 6px; }
+  .scoring-score-fill { height: 100%; background: var(--brand1); border-radius: 3px; }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar { background: #F5F6F8; border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2); padding: 48px 0; }
+  .stats-inner {
+    max-width: 1240px; margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
+  }
+  .stat-item {
+    text-align: left; padding: 32px 48px;
+    border-right: 1px solid var(--grey2);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 48px; font-weight: 800; color: var(--text1); line-height: 1; letter-spacing: -2px; margin-bottom: 12px; }
+  .stat-num span { color: #4096FF; }
+  .stat-desc { font-size: 13px; color: var(--text2); line-height: 1.55; font-weight: 500; }
+
+  /* ─── COMPARE ─── */
+  .compare-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px; }
+  .compare-col { background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .compare-col.good { border-color: var(--brand1); }
+  .compare-header {
+    padding: 16px 24px; border-bottom: 1px solid var(--grey2);
+    font-size: 14px; font-weight: 700; background: var(--grey1);
+    display: flex; align-items: center; gap: 10px; color: var(--text2);
+  }
+  .compare-col.good .compare-header { background: var(--brand1-bg); color: var(--brand3); border-bottom-color: rgba(64,150,255,0.2); }
+  .compare-header-badge {
+    font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 100px;
+    background: var(--brand1); color: var(--white);
+  }
+  .compare-list { padding: 4px 0; }
+  .compare-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 13px 24px; border-bottom: 1px solid var(--grey1);
+    font-size: 14px; color: var(--text2);
+  }
+  .compare-item:last-child { border-bottom: none; }
+  .compare-col.good .compare-item { color: var(--text1); }
+  .check-x { color: #F04438; flex-shrink: 0; margin-top: 2px; font-size: 13px; }
+  .check-ok { color: var(--brand1); flex-shrink: 0; margin-top: 2px; font-size: 13px; }
+  .ti-total {
+    padding: 14px 22px; font-size: 13px; font-weight: 700;
+    border-top: 1px solid var(--grey2); background: var(--grey1);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .compare-col.good .ti-total { background: var(--brand1-bg); color: var(--brand1); border-top-color: rgba(64,150,255,0.2); }
+
+  /* ─── FEATURE ROWS ─── */
+  .feat-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+    padding: 56px 0; border-bottom: 1px solid var(--grey2);
+  }
+  .feat-row:last-child { border-bottom: none; }
+  .feat-row-rev { direction: rtl; }
+  .feat-row-rev > * { direction: ltr; }
+
+  .feat-screen { position: relative; }
+  .feat-screen-inner {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: 12px;
+    box-shadow: 0 8px 40px rgba(17,38,58,0.12); overflow: hidden;
+  }
+  .feat-browser-bar {
+    background: var(--grey1); border-bottom: 1px solid var(--grey2);
+    padding: 10px 14px; display: flex; gap: 6px; align-items: center;
+  }
+  .feat-browser-bar span { width: 10px; height: 10px; border-radius: 50%; }
+  .feat-browser-bar span:nth-child(1) { background: #FD6B5B; }
+  .feat-browser-bar span:nth-child(2) { background: #FEBC2E; }
+  .feat-browser-bar span:nth-child(3) { background: #28C840; }
+
+  .feat-mock { padding: 16px; }
+  .feat-mock-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--grey2); }
+  .feat-tab { padding: 10px 14px; font-size: 11px; font-weight: 600; color: var(--text2); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .feat-tab.active { color: var(--brand1); border-bottom-color: var(--brand1); }
+
+  .feat-num { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--brand1); text-transform: uppercase; margin-bottom: 10px; }
+  .feat-title { font-size: clamp(20px,2vw,26px); font-weight: 800; color: var(--text1); margin-bottom: 14px; line-height: 1.25; letter-spacing: -0.4px; }
+  .feat-desc { font-size: 14px; color: var(--text2); line-height: 1.72; margin-bottom: 20px; }
+  .feat-checks { display: flex; flex-direction: column; gap: 8px; }
+  .feat-check { font-size: 13px; color: var(--text1); font-weight: 500; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+  .feat-check svg { flex-shrink: 0; margin-top: 2px; }
+  .feat-cta-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 20px; padding: 11px 22px;
+    background: var(--white); color: var(--brand1);
+    border: 1.5px solid var(--brand1); border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+    text-decoration: none; cursor: pointer;
+    transition: background .2s, color .2s, box-shadow .2s, transform .15s;
+  }
+  .feat-cta-btn:hover {
+    background: var(--brand1); color: var(--white);
+    box-shadow: 0 4px 16px rgba(64,150,255,0.3); transform: translateY(-1px);
+  }
+
+  /* Feature row mock: scoring editor */
+  .feat-mock-editor { padding: 14px; }
+  .feat-editor-field { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .feat-editor-label { font-size: 10px; font-weight: 600; color: var(--text2); min-width: 60px; }
+  .feat-editor-value { font-size: 11px; font-weight: 600; color: var(--text1); background: var(--grey1); border: 1px solid var(--grey2); border-radius: 6px; padding: 5px 10px; flex: 1; }
+  .feat-editor-generated { margin-top: 10px; padding: 10px; background: rgba(64,150,255,0.04); border: 1px solid rgba(64,150,255,0.12); border-radius: 6px; }
+  .feat-editor-gen-title { font-size: 11px; font-weight: 700; color: var(--text1); margin-bottom: 4px; }
+  .feat-editor-gen-text { font-size: 10px; color: var(--text2); line-height: 1.6; }
+  .feat-editor-ai-badge {
+    display: inline-flex; align-items: center; gap: 4px; margin-top: 8px;
+    font-size: 10px; font-weight: 600; color: var(--brand1);
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.2);
+    border-radius: 100px; padding: 2px 8px;
+  }
+  .feat-tag { font-size: 10px; font-weight: 600; background: var(--grey1); border: 1px solid var(--grey2); border-radius: 100px; padding: 3px 8px; color: var(--text2); }
+
+  /* Feature row mock: assessment cards */
+  .feat-questions-body { padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .feat-q-card {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: 8px; padding: 10px 12px;
+  }
+  .feat-q-text { font-size: 11px; font-weight: 600; color: var(--text1); line-height: 1.5; margin-bottom: 6px; }
+  .feat-q-meta { display: flex; gap: 6px; align-items: center; }
+  .feat-q-badge {
+    font-size: 9px; font-weight: 700; padding: 2px 7px; border-radius: 100px;
+  }
+  .feat-q-badge.basic { background: #E6F4FF; color: var(--brand1); }
+  .feat-q-badge.advanced { background: var(--brand2-bg); color: var(--brand2); }
+  .feat-q-competency { font-size: 9px; color: var(--text2); font-weight: 500; }
+
+  /* ─── TICKER ─── */
+  .ticker-wrap {
+    border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2);
+    background: var(--grey1); overflow: hidden; padding: 13px 0;
+  }
+  .ticker { display: flex; animation: ticker 32s linear infinite; width: max-content; }
+  .ticker-item {
+    display: flex; align-items: center; gap: 8px; padding: 0 32px;
+    font-size: 13px; font-weight: 500; color: var(--text2); white-space: nowrap;
+  }
+  .ticker-item .ti { color: var(--brand1); font-size: 14px; display: flex; align-items: center; flex-shrink: 0; }
+  .ticker-item b { color: var(--text1); font-weight: 600; }
+  @keyframes ticker { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+  /* ─── LOGOS ─── */
+  .logos-section { background: var(--white); border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2); padding: 32px 0; }
+  .logos-label { font-size: 12px; font-weight: 600; text-align: center; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+  .logos-slider-wrap { overflow: hidden; position: relative; }
+  .logos-slider-wrap::before, .logos-slider-wrap::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+  }
+  .logos-slider-wrap::before { left: 0; background: linear-gradient(90deg, var(--white), transparent); }
+  .logos-slider-wrap::after { right: 0; background: linear-gradient(-90deg, var(--white), transparent); }
+  .logos-slider-track {
+    display: flex; align-items: center; gap: 0;
+    animation: ticker 30s linear infinite; width: max-content;
+  }
+  .logos-slider-track:hover { animation-play-state: paused; }
+  .logo-item {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0 36px; height: 68px; flex-shrink: 0;
+    border-right: 1px solid var(--grey2);
+    text-decoration: none; white-space: nowrap;
+    opacity: .6; transition: opacity .25s;
+    line-height: 1.2;
+  }
+  .logo-item:last-child { border-right: none; }
+  .logo-item:hover { opacity: 1; }
+
+  /* ─── FEATURES GRID 6 ─── */
+  .features-grid-3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 48px; }
+  .feature-card-v { background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius); padding: 28px 24px; transition: border-color .2s, box-shadow .2s; }
+  .feature-card-v:hover { border-color: var(--brand1); box-shadow: 0 4px 24px rgba(64,150,255,0.1); }
+  .feature-card-v .fc-icon { margin-bottom: 16px; }
+  .feature-card-v .fc-title { font-size: 16px; font-weight: 800; color: var(--text1); margin-bottom: 10px; line-height: 1.3; }
+  .feature-card-v .fc-text { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+  /* ─── AUDIENCE TABS ─── */
+  .audience-section { padding: 80px 0; }
+  .audience-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; }
+  .audience-tab {
+    padding: 10px 20px; border-radius: 100px; border: 1px solid var(--grey2);
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600;
+    color: var(--text2); background: var(--white); cursor: pointer;
+    transition: all .2s;
+  }
+  .audience-tab:hover { border-color: var(--brand1); color: var(--brand1); }
+  .audience-tab.active { background: var(--brand1); color: var(--white); border-color: var(--brand1); }
+  .audience-content { display: none; }
+  .audience-content.active { display: block; }
+  .audience-card {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: center;
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    padding: 40px; box-shadow: var(--shadow);
+  }
+  .audience-card-title { font-size: clamp(22px,2.5vw,30px); font-weight: 800; color: var(--text1); margin-bottom: 16px; line-height: 1.2; letter-spacing: -0.5px; }
+  .audience-card-title em { font-style: normal; color: var(--brand1); }
+  .audience-card-text { font-size: 14px; color: var(--text2); line-height: 1.72; margin-bottom: 24px; }
+  .audience-card-checks { display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; }
+  .audience-card-check { font-size: 13px; color: var(--text1); font-weight: 500; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+  .audience-card-check svg { flex-shrink: 0; margin-top: 2px; }
+  .audience-stat { display: flex; gap: 32px; flex-wrap: wrap; }
+  .audience-stat-item { text-align: center; }
+  .audience-stat-num { font-size: 36px; font-weight: 800; color: var(--brand1); line-height: 1; letter-spacing: -1px; }
+  .audience-stat-desc { font-size: 12px; color: var(--text2); font-weight: 500; margin-top: 6px; }
+
+  /* ─── CROSS-SELL ─── */
+  .cross-sell-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 48px; }
+  .cross-sell-card {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    padding: 28px 24px; text-decoration: none; transition: border-color .2s, box-shadow .2s, transform .15s;
+  }
+  .cross-sell-card:hover { border-color: var(--brand1); box-shadow: 0 4px 24px rgba(64,150,255,0.1); transform: translateY(-2px); }
+  .cross-sell-icon { margin-bottom: 16px; }
+  .cross-sell-title { font-size: 16px; font-weight: 800; color: var(--text1); margin-bottom: 8px; }
+  .cross-sell-text { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 16px; }
+  .cross-sell-link { font-size: 13px; font-weight: 700; color: var(--brand1); display: flex; align-items: center; gap: 4px; }
+
+  /* ─── STEPS GRID OVERRIDE ─── */
+  .steps-grid { grid-template-columns: repeat(3,1fr); }
+
+  /* ─── REVEAL ─── */
+  .js-loaded .reveal { opacity:0; transform:translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+  .js-loaded .reveal.visible { opacity:1; transform:none; }
+  .js-loaded .d1 { transition-delay:.08s; }
+  .js-loaded .d2 { transition-delay:.16s; }
+  .js-loaded .d3 { transition-delay:.24s; }
+
+  .pain-emoji { display: flex; align-items: center; justify-content: flex-start; margin-bottom: 14px; }
+  .step-icon { display: flex; align-items: center; margin-bottom: 12px; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .hero-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .compare-wrap { grid-template-columns: 1fr; }
+    .feat-row, .feat-row-rev { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
+    .steps-grid { grid-template-columns: repeat(2,1fr); }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .features-grid-3 { grid-template-columns: 1fr 1fr; }
+    .audience-card { grid-template-columns: 1fr; gap: 32px; }
+    .cross-sell-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .steps-grid { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--grey2); }
+    .stat-item:last-child { border-bottom: none; }
+    .features-grid-3 { grid-template-columns: 1fr; }
+    .audience-card { padding: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
+  <span class="urgency-dot"></span>
+  Каждый день без нужного сотрудника — это упущенная выручка, переработки команды и задержка развития бизнеса
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <!-- Top bar -->
+  <div class="header-topbar">
+    <div class="header-inner" style="height:36px; justify-content:center;">
+      <div class="topbar-links">
+        <a href="../about.html" class="topbar-link">О компании</a>
+        <a href="../contacts.html" class="topbar-link">Контакты</a>
+        <a href="../hr-cashback.html" class="topbar-link">Партнёрская программа</a>
+        <a href="../calculator.html" class="topbar-link">Калькулятор выгоды</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <div class="header-main">
+    <div class="header-inner">
+      <a class="logo" href="../index.html">
+        <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+      </a>
+      <nav class="main-nav">
+
+        <!-- Как это работает — megamenu -->
+        <div class="mnav-item has-mega" id="megaHow">
+          <button class="mnav-btn">
+            Как это работает
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel">
+            <div class="mega-col">
+              <!-- Рекрутинг → sub -->
+              <div class="mega-section-item has-sub" id="subRecruiting">
+                <div class="mega-section-link">
+                  <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                  <div>
+                    <div class="mega-section-title">Рекрутинг</div>
+                    <div class="mega-section-desc">Полный цикл подбора с ИИ</div>
+                  </div>
+                  <svg class="mega-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div class="sub-panel">
+                  <a href="../features/ai-vacancy-creation.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-создание вакансий</div>
+                      <div class="sub-item-desc">Описание вакансии за минуты</div>
+                    </div>
+                  </a>
+                  <a href="../features/ai-screening.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-анализ резюме</div>
+                      <div class="sub-item-desc">Скоринг и ранжирование откликов</div>
+                    </div>
+                  </a>
+                  <a href="../features/ai-videointerview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Первичное ИИ-видеоинтервью</div>
+                      <div class="sub-item-desc">Тестирование с прокторингом</div>
+                    </div>
+                  </a>
+                  <a href="../features/ai-realtime-interview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Real-time интервью с ИИ-аватаром</div>
+                      <div class="sub-item-desc">Адаптивное интервью в реальном времени</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Оценка персонала -->
+              <a href="../features/ai-staff-scoring.html" class="mega-section-link mega-section-item">
+                <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 017 4.5v1A2.5 2.5 0 009.5 8h5A2.5 2.5 0 0017 5.5v-1A2.5 2.5 0 0014.5 2h-5z"/><path d="M9.5 8a2.5 2.5 0 00-2.5 2.5A2.5 2.5 0 004.5 13a2.5 2.5 0 002.5 2.5 2.5 2.5 0 002.5 2.5h5a2.5 2.5 0 002.5-2.5 2.5 2.5 0 002.5-2.5 2.5 2.5 0 00-2.5-2.5A2.5 2.5 0 0014.5 8h-5z"/></svg></span>
+                <div>
+                  <div class="mega-section-title">Оценка персонала</div>
+                  <div class="mega-section-desc">ИИ-оценка soft skills и компетенций</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Отраслевые решения — dropdown -->
+        <div class="mnav-item has-drop" id="dropSolutions">
+          <button class="mnav-btn">
+            Отраслевые решения
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="drop-panel">
+            <a href="../solutions/smb.html" class="drop-item">Малый бизнес</a>
+            <a href="../solutions/enterprise.html" class="drop-item">Корпорации</a>
+            <a href="../solutions/it.html" class="drop-item">ИТ компании</a>
+            <a href="../solutions/finance.html" class="drop-item">Финансовый сектор</a>
+            <a href="../solutions/hr.html" class="drop-item">HR агентства</a>
+            <div class="drop-group">
+              <div class="drop-group-label">Маркетплейсы</div>
+              <a href="../solutions/marketplaces.html" class="drop-item" style="padding-left:24px;">Владельцам ПВЗ</a>
+              <a href="../solutions/sellers.html" class="drop-item" style="padding-left:24px;">Селлерам</a>
+            </div>
+            <a href="../solutions/horeca.html" class="drop-item">HoReCa</a>
+            <a href="../solutions/education.html" class="drop-item">Образование</a>
+            <a href="../solutions/sales.html" class="drop-item">Продажи</a>
+            <a href="../solutions/logistics.html" class="drop-item">Логистика</a>
+            <a href="../solutions/marketing.html" class="drop-item">Маркетинг</a>
+          </div>
+        </div>
+
+        <a href="../cases.html" class="mnav-link">Кейсы</a>
+        <a href="../reviews.html" class="mnav-link">Отзывы</a>
+        <a href="../pricing.html" class="mnav-link">Тарифы</a>
+        <a href="https://brainhire.ru/blog" class="mnav-link">Блог</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://brainhire.ru/signup" class="btn-primary">100 кандидатов бесплатно</a>
+        <a href="https://brainhire.ru/signin" class="btn-secondary">Войти</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+// ─── HEADER MENU — hover-based ───
+document.addEventListener('DOMContentLoaded', function() {
+  var items = document.querySelectorAll('.mnav-item.has-mega, .mnav-item.has-drop');
+
+  items.forEach(function(item) {
+    var timer;
+
+    item.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      items.forEach(function(other) {
+        if (other !== item) other.classList.remove('open');
+      });
+      item.classList.add('open');
+    });
+
+    item.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        item.classList.remove('open');
+        item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      }, 120);
+    });
+
+    var panel = item.querySelector('.mega-panel, .drop-panel');
+    if (panel) {
+      panel.addEventListener('mouseenter', function() { clearTimeout(timer); });
+      panel.addEventListener('mouseleave', function() {
+        timer = setTimeout(function() {
+          item.classList.remove('open');
+          item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+        }, 120);
+      });
+    }
+  });
+
+  document.querySelectorAll('.has-sub').forEach(function(sub) {
+    sub.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      sub.classList.add('sub-open');
+    });
+  });
+
+  // Close sub-panels when hovering over non-sub mega items
+  document.querySelectorAll('.mega-section-item:not(.has-sub)').forEach(function(item) {
+    item.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+    });
+  });
+});
+
+function toggleMega() {}
+function showSub(id) {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  var el = document.getElementById(id);
+  if (el) el.classList.add('sub-open');
+}
+function hideSubs() {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+}
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.mnav-item').forEach(function(e){ e.classList.remove('open'); });
+    document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  }
+});
+</script>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 1: HERO                                  -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="hero-section">
+  <div class="hero-wrap">
+    <div>
+      <div class="hero-badge reveal">
+        <span class="dot"></span>
+        Для HR-директоров, руководителей и корпоративных университетов
+      </div>
+      <h1 class="reveal d1">
+        Автоматизированная оценка персонала с помощью <em>искусственного интеллекта</em>
+      </h1>
+      <p class="hero-sub reveal d2">
+        Трансформируйте процесс оценки сотрудников: повысьте объективность, сократите время на процедуры оценки и получите точные данные для развития персонала с помощью автоматизированной системы оценки компетенций
+      </p>
+      <div class="hero-actions reveal d2">
+        <a href="https://brainhire.ru/signup" class="btn-hero-primary">
+          Оценить 100 сотрудников бесплатно
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#form" class="btn-hero-outline">Хочу демонстрацию</a>
+      </div>
+      <div class="hero-proof reveal d3">
+        <span class="proof-item">Оценка 100 сотрудников бесплатно</span>
+        <span class="proof-item">6 видов оценки в одной системе</span>
+        <span class="proof-item">Интеграция с HRM и LMS</span>
+      </div>
+    </div>
+
+    <!-- SCORING CARD -->
+    <div class="scoring-card reveal d2">
+      <div class="scoring-card-header">
+        <div class="dots">
+          <div class="wdot" style="background:#FD6B5B;"></div>
+          <div class="wdot" style="background:#FEBC2E;"></div>
+          <div class="wdot" style="background:#28C840;"></div>
+        </div>
+        <span>Оценка сотрудника — Маркетолог</span>
+      </div>
+      <div class="scoring-card-body">
+        <div class="scoring-field">
+          <span class="scoring-field-label">Сотрудник</span>
+          <span class="scoring-field-value">Петрова М.А.</span>
+        </div>
+        <div class="scoring-field">
+          <span class="scoring-field-label">Должность</span>
+          <span class="scoring-field-value">Маркетолог</span>
+        </div>
+        <div class="scoring-field">
+          <span class="scoring-field-label">Тип оценки</span>
+          <span class="scoring-field-value">Оценка 360 градусов</span>
+        </div>
+        <div class="scoring-generating">
+          <span class="dot"></span>
+          ИИ анализирует компетенции...
+        </div>
+        <div class="scoring-preview-section">
+          <div class="scoring-preview-title">Результаты оценки</div>
+          <div class="scoring-preview-item">Коммуникация и работа в команде — 92%</div>
+          <div class="scoring-preview-item">Аналитическое мышление — 85%</div>
+          <div class="scoring-preview-item">Лидерские качества — 78%</div>
+          <div class="scoring-tags">
+            <span class="scoring-tag">Soft skills</span>
+            <span class="scoring-tag">Hard skills</span>
+            <span class="scoring-tag">360</span>
+            <span class="scoring-tag">KPI</span>
+          </div>
+        </div>
+        <div class="scoring-card-summary">
+          <svg width="14" height="14" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          <span>Общая оценка компетенций: <strong>85%</strong> — рекомендован план развития</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- ТИКЕР                                           -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span><b>Оценка компетенций за дни</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span><b>Оценка 360 градусов</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><b>Прокторинг тестов</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9 22,2"/></svg></span><b>Планы развития</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></span><b>Интеграция с HRM</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><b>Анализ soft skills</b></div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span><b>Оценка компетенций за дни</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span><b>Оценка 360 градусов</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><b>Прокторинг тестов</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9 22,2"/></svg></span><b>Планы развития</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg></span><b>Интеграция с HRM</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span><b>Анализ soft skills</b></div>
+  </div>
+</div>
+
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 2: ПРОБЛЕМЫ / БОЛИ                       -->
+<!-- ════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title reveal">Почему традиционная оценка персонала<br><em>работает против вас</em></h2>
+    <p class="section-sub reveal">Каждый день без автоматизации оценки — это субъективные решения и упущенные возможности для развития сотрудников.</p>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></span>
+        <div class="pain-title">30-45 дней на цикл оценки</div>
+        <div class="pain-text">Полный цикл оценки сотрудников занимает от 30 до 45 дней. Сбор данных, проведение интервью, обработка результатов — всё это отнимает время HR-специалистов и руководителей.</div>
+      </div>
+      <div class="pain-card reveal d1">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span>
+        <div class="pain-title">Субъективность и предвзятость</div>
+        <div class="pain-text">Оценка зависит от личных предпочтений оценщика. Разные руководители оценивают одного сотрудника по-разному, нет единых критериев и стандартов оценки компетенций.</div>
+      </div>
+      <div class="pain-card reveal d2">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/></svg></span>
+        <div class="pain-title">Разрозненные критерии</div>
+        <div class="pain-text">Отсутствие единых стандартов оценки приводит к невозможности сравнения результатов между подразделениями и отслеживания динамики развития персонала.</div>
+      </div>
+      <div class="pain-card reveal d3">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span>
+        <div class="pain-title">Нет данных для развития</div>
+        <div class="pain-text">Результаты оценки не трансформируются в конкретные планы развития. Нет аналитики для принятия решений об обучении персонала и карьерном росте сотрудников.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 3: STATS BAR                             -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num"><span>5-10 дней</span></div>
+      <div class="stat-desc">цикл<br>оценки</div>
+    </div>
+    <div class="stat-item reveal d1">
+      <div class="stat-num"><span>6 видов</span></div>
+      <div class="stat-desc">оценки<br>в одной системе</div>
+    </div>
+    <div class="stat-item reveal d2">
+      <div class="stat-num"><span>10 000+</span></div>
+      <div class="stat-desc">сотрудников<br>одновременно</div>
+    </div>
+    <div class="stat-item reveal d3">
+      <div class="stat-num"><span>360&deg;</span></div>
+      <div class="stat-desc">полная картина<br>компетенций</div>
+    </div>
+  </div>
+  <div style="max-width:1240px; margin:0 auto; padding: 16px 24px 0; text-align:center;">
+    <p style="font-size: 11px; color: var(--text2); line-height: 1.5;">*По данным клиентов BRaiN HR, 2025-2026.</p>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 4: ВИДЫ ОЦЕНКИ (6 шагов, 3x2)           -->
+<!-- ════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-tag">Виды оценки</div>
+    <h2 class="section-title reveal">Виды автоматизированной оценки<br><em>в одной системе</em></h2>
+    <p class="section-sub reveal">Полный набор инструментов для оценки персонала — от найма до планирования развития сотрудников.</p>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">Тип 1</div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9,15 12,12 15,15"/></svg></span>
+        <div class="step-title">Оценка при найме</div>
+        <div class="step-text">Оценка резюме кандидатов, ИИ-интервью и тестирование компетенций для объективного отбора. Каждый кандидат проходит стандартизированную процедуру оценки с прокторингом.</div>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-num">Тип 2</div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span>
+        <div class="step-title">Регулярная оценка работы</div>
+        <div class="step-text">Периодическая оценка сотрудников по KPI и компетенциям для отслеживания эффективности и выявления потребностей в развитии персонала.</div>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-num">Тип 3</div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+        <div class="step-title">Оценка 360 градусов</div>
+        <div class="step-text">Всесторонняя оценка компетенций сотрудников с участием коллег, руководителей и подчиненных для получения объективной картины.</div>
+      </div>
+      <div class="step reveal">
+        <div class="step-num">Тип 4</div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></span>
+        <div class="step-title">Оценка для обучения</div>
+        <div class="step-text">Определение пробелов в компетенциях сотрудников, формирование программ обучения персонала и измерение результатов после прохождения обучения.</div>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-num">Тип 5</div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+        <div class="step-title">Оценка для продвижения</div>
+        <div class="step-text">Автоматизация оценки внутренних кандидатов на повышение, анализ готовности к новым ролям и развитие сотрудников внутри компании.</div>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-num">Тип 6</div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+        <div class="step-title">Оценка soft skills</div>
+        <div class="step-text">Анализ поведенческих компетенций, коммуникативных навыков и эмоционального интеллекта через видеоинтервью с ИИ-технологиями.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ: ПРЕИМУЩЕСТВА (6 карточек)               -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="section-bg">
+  <div class="container">
+    <div class="section-tag">Преимущества</div>
+    <h2 class="section-title reveal">Преимущества автоматизированной оценки<br><em>персонала с ИИ</em></h2>
+    <p class="section-sub reveal">Объективность, скорость и данные для принятия решений о развитии персонала.</p>
+    <div class="features-grid-3">
+      <div class="feature-card-v reveal">
+        <div class="fc-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg></div>
+        <div class="fc-title">Объективность процесса оценки</div>
+        <div class="fc-text">Унифицированные критерии оценки исключают субъективность. Каждый сотрудник оценивается по единым стандартам вне зависимости от оценщика.</div>
+      </div>
+      <div class="feature-card-v reveal d1">
+        <div class="fc-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+        <div class="fc-title">Высокая точность оценки</div>
+        <div class="fc-text">ИИ анализирует множество параметров одновременно, обеспечивая высокую точность результатов оценки компетенций сотрудников.</div>
+      </div>
+      <div class="feature-card-v reveal d2">
+        <div class="fc-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></div>
+        <div class="fc-title">Экономия времени на оценку</div>
+        <div class="fc-text">Автоматизация оценки сокращает время проведения полного цикла оценки с 30-45 дней до 5-10 дней без потери качества.</div>
+      </div>
+      <div class="feature-card-v reveal">
+        <div class="fc-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
+        <div class="fc-title">Прозрачность в системе оценки</div>
+        <div class="fc-text">Все участники видят критерии оценки, понимают процесс и получают подробную обратную связь по результатам.</div>
+      </div>
+      <div class="feature-card-v reveal d1">
+        <div class="fc-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div class="fc-title">Данные для развития персонала</div>
+        <div class="fc-text">Детальная аналитика по результатам оценки формирует основу для индивидуальных планов развития и программ обучения.</div>
+      </div>
+      <div class="feature-card-v reveal d2">
+        <div class="fc-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17,11 19,13 23,9"/></svg></div>
+        <div class="fc-title">Масштабируемость для автоматизации</div>
+        <div class="fc-text">Система одинаково эффективна при оценке 10 или 10 000 сотрудников, обеспечивая единое качество процедур оценки.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ: ПРОСТОЙ ПРОЦЕСС В 4 ШАГА               -->
+<!-- ════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-tag">Как это работает</div>
+    <h2 class="section-title reveal">Простой процесс автоматизации<br><em>оценки персонала в 4 шага</em></h2>
+    <p class="section-sub reveal">От настройки критериев до получения планов развития — весь цикл оценки автоматизирован.</p>
+    <div class="steps-grid" style="grid-template-columns: repeat(4,1fr);">
+      <div class="step reveal">
+        <div class="step-num">Шаг 1 <span class="step-time">настройка</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg></span>
+        <div class="step-title">Настройка критериев оценки</div>
+        <div class="step-text">HR-специалист настраивает автоматизированную систему оценки: выбирает компетенции сотрудников для оценки, определяет методы оценки и устанавливает критерии оценки в соответствии с целями</div>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-num">Шаг 2 <span class="step-time">оценка</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="8.5" cy="7" r="4"/><polyline points="17,11 19,13 23,9"/></svg></span>
+        <div class="step-title">Прохождение оценки сотрудниками</div>
+        <div class="step-text">Сотрудники проходят тестирование, видеоинтервью или оценку 360 в удобное время. Система контролирует прохождение процедур оценки и обеспечивает честность процесса</div>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-num">Шаг 3 <span class="step-time">анализ</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+        <div class="step-title">ИИ-анализ и формирование результатов</div>
+        <div class="step-text">Искусственный интеллект анализирует данные о сотрудниках, применяет методы оценки компетенций и формирует результат оценки с детальной аналитикой по каждому участнику</div>
+      </div>
+      <div class="step reveal d3">
+        <div class="step-num">Шаг 4 <span class="step-time">развитие</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg></span>
+        <div class="step-title">Планы развития и обучение</div>
+        <div class="step-text">На основе результатов оценки система генерирует рекомендации по обучению персонала, создает индивидуальные планы развития сотрудников и треки для повышения эффективности работы</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ: СРАВНЕНИЕ                               -->
+<!-- ════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title reveal">Ускорьте процесс оценки<br><em>с помощью автоматизации</em></h2>
+    <p class="section-sub reveal">Традиционная оценка отнимает недели и зависит от субъективности. Сравните сами.</p>
+    <div class="compare-wrap">
+      <div class="compare-col reveal">
+        <div class="compare-header">
+          <svg width="16" height="16" stroke="#717680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Традиционный метод оценки персонала
+        </div>
+        <div class="compare-list">
+          <div class="compare-item"><span class="check-x"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></span> 30-45 дней на проведение полного цикла оценки сотрудников</div>
+          <div class="compare-item"><span class="check-x"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span> Ручной сбор данных о сотрудниках и субъективная оценка компетенций</div>
+          <div class="compare-item"><span class="check-x"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/></svg></span> Разрозненные критерии оценки и сложность сравнения результатов</div>
+          <div class="compare-item"><span class="check-x"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="15" x2="15" y2="15"/></svg></span> Высокие затраты на организацию процедур оценки</div>
+          <div class="compare-item"><span class="check-x"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></span> Задержки в обратной связи и формировании планов развития персонала</div>
+        </div>
+        <div class="ti-total" style="color:#FF7401;">
+          <span><svg width="18" height="18" stroke="#FF7401" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></span> Долго, субъективно, нет данных для развития
+        </div>
+      </div>
+      <div class="compare-col good reveal d1">
+        <div class="compare-header">
+          <svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+          Автоматизированная оценка персонала BRaiN HR
+          <span class="compare-header-badge">Рекомендуем</span>
+        </div>
+        <div class="compare-list">
+          <div class="compare-item"><span class="check-ok"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span> 5-10 дней на полный цикл автоматизации оценки компетенций</div>
+          <div class="compare-item"><span class="check-ok"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span> ИИ-анализ с использованием множественных методов оценки и объективная система оценки</div>
+          <div class="compare-item"><span class="check-ok"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></span> Мгновенное формирование результатов оценки с детальной аналитикой</div>
+          <div class="compare-item"><span class="check-ok"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span> Автоматические рекомендации по обучению персонала и развитию сотрудников</div>
+          <div class="compare-item"><span class="check-ok"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></span> Унифицированные критерии оценки во всех системах управления персоналом</div>
+        </div>
+        <div class="ti-total">
+          <span><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span> Быстро, объективно, данные для развития персонала
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- ЛОГО-СЛАЙДЕР КЛИЕНТОВ                           -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="logos-section">
+  <div class="container">
+    <div class="logos-label">Нам доверяют 50+ компаний</div>
+  </div>
+  <div class="logos-slider-wrap">
+    <div class="logos-slider-track">
+      <a href="https://www.simbirsoft.com/" target="_blank" class="logo-item">
+        <span style="font-size:18px; font-weight:800; color:#1a1a2e; letter-spacing:-0.5px;">Simbir<span style="color:#e03030;">S</span>oft</span>
+      </a>
+      <a href="https://bssys.com/" target="_blank" class="logo-item">
+        <span style="background:#1a3a8a; color:#fff; font-size:15px; font-weight:900; padding:5px 10px; border-radius:4px; letter-spacing:1px;">BSS</span>
+      </a>
+      <a href="https://3logic.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:800; color:#1a1a1a; letter-spacing:-0.3px;">3<span style="color:#e03030;">LOGIC</span><br><span style="font-size:9px; font-weight:600; color:#555; letter-spacing:1px;">GROUP</span></span>
+      </a>
+      <a href="https://kazan.rt.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:700; color:#1a1a1a; letter-spacing:0.5px;">РОСТЕЛЕКОМ</span>
+      </a>
+      <a href="https://e-flops.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:800; color:#222; letter-spacing:-0.5px;">e<span style="color:#4096FF;">-</span>flops</span>
+      </a>
+      <a href="https://itpeoplegroup.ru/" target="_blank" class="logo-item">
+        <span style="font-size:12px; font-weight:800; color:#1a1a1a; letter-spacing:1.5px; text-transform:uppercase; border:2px solid #1a1a1a; padding:4px 8px;">IT PEOPLE</span>
+      </a>
+      <a href="https://moby.estate/" target="_blank" class="logo-item">
+        <span style="font-size:17px; font-weight:800; color:#2b4de3; letter-spacing:-0.5px;">moby</span>
+      </a>
+      <a href="https://www.hr-rocket.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:800; color:#1a1a1a; letter-spacing:0.5px;">HR ROCKET</span>
+      </a>
+      <a href="https://prodamus.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#6c3db5; letter-spacing:-0.3px;">prodamus</span>
+      </a>
+      <a href="https://www.penoplex.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#e03030; letter-spacing:0.5px;">PENOPLEX</span>
+      </a>
+      <!-- duplicate for seamless loop -->
+      <a href="https://www.simbirsoft.com/" target="_blank" class="logo-item">
+        <span style="font-size:18px; font-weight:800; color:#1a1a2e; letter-spacing:-0.5px;">Simbir<span style="color:#e03030;">S</span>oft</span>
+      </a>
+      <a href="https://bssys.com/" target="_blank" class="logo-item">
+        <span style="background:#1a3a8a; color:#fff; font-size:15px; font-weight:900; padding:5px 10px; border-radius:4px; letter-spacing:1px;">BSS</span>
+      </a>
+      <a href="https://3logic.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:800; color:#1a1a1a; letter-spacing:-0.3px;">3<span style="color:#e03030;">LOGIC</span><br><span style="font-size:9px; font-weight:600; color:#555; letter-spacing:1px;">GROUP</span></span>
+      </a>
+      <a href="https://kazan.rt.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:700; color:#1a1a1a; letter-spacing:0.5px;">РОСТЕЛЕКОМ</span>
+      </a>
+      <a href="https://e-flops.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:800; color:#222; letter-spacing:-0.5px;">e<span style="color:#4096FF;">-</span>flops</span>
+      </a>
+      <a href="https://itpeoplegroup.ru/" target="_blank" class="logo-item">
+        <span style="font-size:12px; font-weight:800; color:#1a1a1a; letter-spacing:1.5px; text-transform:uppercase; border:2px solid #1a1a1a; padding:4px 8px;">IT PEOPLE</span>
+      </a>
+      <a href="https://moby.estate/" target="_blank" class="logo-item">
+        <span style="font-size:17px; font-weight:800; color:#2b4de3; letter-spacing:-0.5px;">moby</span>
+      </a>
+      <a href="https://www.hr-rocket.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:800; color:#1a1a1a; letter-spacing:0.5px;">HR ROCKET</span>
+      </a>
+      <a href="https://prodamus.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#6c3db5; letter-spacing:-0.3px;">prodamus</span>
+      </a>
+      <a href="https://www.penoplex.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#e03030; letter-spacing:0.5px;">PENOPLEX</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ: КОМУ НЕОБХОДИМА АВТОМАТИЗАЦИЯ           -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="audience-section section-bg">
+  <div class="container">
+    <div class="section-tag">Кому подойдёт</div>
+    <h2 class="section-title reveal">Кому необходима автоматизация<br><em>оценки персонала</em></h2>
+    <p class="section-sub reveal">Оптимизация работы с персоналом: автоматизация процесса оценки сотрудников, стандартизация критериев оценки и точная аналитика компетенций сотрудников для принятия решений о развитии, обучении персонала и карьерном росте</p>
+
+    <div class="audience-tabs reveal">
+      <button class="audience-tab active" onclick="showAudience(0)">HR-отделам</button>
+      <button class="audience-tab" onclick="showAudience(1)">Руководителям компаний</button>
+      <button class="audience-tab" onclick="showAudience(2)">Корпоративным университетам</button>
+      <button class="audience-tab" onclick="showAudience(3)">IT-компаниям</button>
+      <button class="audience-tab" onclick="showAudience(4)">Корпорациям</button>
+    </div>
+
+    <div class="audience-content active" id="aud0">
+      <div class="audience-card reveal">
+        <div>
+          <div class="audience-card-title">Проводите оценку сотрудников <em>в 5 раз быстрее</em></div>
+          <div class="audience-card-text">Вместо недель на организацию процедур оценки — автоматизированная система, которая проводит оценку компетенций сотрудников по единым критериям и формирует детальные отчёты.</div>
+          <div class="audience-card-checks">
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Автоматизация всех процедур оценки</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Унифицированные критерии оценки для всех подразделений</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Детализированные отчёты по каждому сотруднику</div>
+          </div>
+        </div>
+        <div class="audience-stat">
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">5x</div>
+            <div class="audience-stat-desc">быстрее<br>оценка</div>
+          </div>
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">6</div>
+            <div class="audience-stat-desc">видов<br>оценки</div>
+          </div>
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">360&deg;</div>
+            <div class="audience-stat-desc">полная<br>картина</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="audience-content" id="aud1">
+      <div class="audience-card reveal">
+        <div>
+          <div class="audience-card-title">Принимайте решения <em>на основе данных</em></div>
+          <div class="audience-card-text">Получайте объективную аналитику по компетенциям сотрудников для принятия решений о продвижении, обучении и развитии. Исключите субъективность из процесса оценки.</div>
+          <div class="audience-card-checks">
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Объективная оценка компетенций каждого сотрудника</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Прозрачная аналитика для стратегических решений</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Автоматические рекомендации по развитию</div>
+          </div>
+        </div>
+        <div class="audience-stat">
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">10 дней</div>
+            <div class="audience-stat-desc">полный<br>цикл</div>
+          </div>
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">100%</div>
+            <div class="audience-stat-desc">объективность<br>данных</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="audience-content" id="aud2">
+      <div class="audience-card reveal">
+        <div>
+          <div class="audience-card-title">Измеряйте эффективность <em>программ обучения</em></div>
+          <div class="audience-card-text">Проводите оценку до и после обучения для измерения прогресса. Формируйте программы обучения персонала на основе выявленных пробелов в компетенциях.</div>
+          <div class="audience-card-checks">
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Определение пробелов в компетенциях</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Индивидуальные планы развития для каждого сотрудника</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Измерение ROI обучения</div>
+          </div>
+        </div>
+        <div class="audience-stat">
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">10 000+</div>
+            <div class="audience-stat-desc">сотрудников<br>одновременно</div>
+          </div>
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">LMS</div>
+            <div class="audience-stat-desc">интеграция<br>с платформами</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="audience-content" id="aud3">
+      <div class="audience-card reveal">
+        <div>
+          <div class="audience-card-title">Оценивайте технических специалистов <em>объективно и точно</em></div>
+          <div class="audience-card-text">ИИ понимает специфику IT-компетенций и технического стека. Система оценивает hard skills через тестирование с прокторингом и soft skills через видеоинтервью.</div>
+          <div class="audience-card-checks">
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Оценка технических навыков с прокторингом</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Анализ soft skills через ИИ-видеоинтервью</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Персонализированные треки развития</div>
+          </div>
+        </div>
+        <div class="audience-stat">
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">24/7</div>
+            <div class="audience-stat-desc">доступ<br>к оценке</div>
+          </div>
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">6</div>
+            <div class="audience-stat-desc">видов<br>оценки</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="audience-content" id="aud4">
+      <div class="audience-card reveal">
+        <div>
+          <div class="audience-card-title">Стандартизируйте оценку <em>во всех подразделениях</em></div>
+          <div class="audience-card-text">Единые критерии оценки для всех филиалов и департаментов. Масштабируемая система для одновременной оценки тысяч сотрудников с прозрачной аналитикой.</div>
+          <div class="audience-card-checks">
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Единый стандарт оценки для всех подразделений</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Масштабирование без потери качества оценки</div>
+            <div class="audience-card-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Интеграция с корпоративными HRM и LMS</div>
+          </div>
+        </div>
+        <div class="audience-stat">
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">1</div>
+            <div class="audience-stat-desc">стандарт<br>для всех</div>
+          </div>
+          <div class="audience-stat-item">
+            <div class="audience-stat-num">10 000+</div>
+            <div class="audience-stat-desc">сотрудников<br>одновременно</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ: ВОЗМОЖНОСТИ ПЛАТФОРМЫ                   -->
+<!-- ════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-tag">Возможности платформы</div>
+    <h2 class="section-title reveal">Автоматизация оценки персонала<br><em>с помощью технологий ИИ</em></h2>
+    <p class="section-sub reveal">Полный цикл оценки сотрудников — от настройки критериев до формирования планов развития.</p>
+
+    <!-- Feature Row 1: Автоматизированная система оценки компетенций (мокап слева, текст справа) -->
+    <div class="feat-row reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <div class="feat-mock-tabs">
+              <span class="feat-tab active">Компетенции</span>
+              <span class="feat-tab">Оценка</span>
+              <span class="feat-tab">Отчёт</span>
+            </div>
+            <div class="feat-mock-editor">
+              <div class="feat-editor-field">
+                <span class="feat-editor-label">Сотрудник</span>
+                <span class="feat-editor-value">Сидорова А.В.</span>
+              </div>
+              <div class="feat-editor-field">
+                <span class="feat-editor-label">Должность</span>
+                <span class="feat-editor-value">Менеджер проектов</span>
+              </div>
+              <div class="feat-editor-field">
+                <span class="feat-editor-label">Метод</span>
+                <span class="feat-editor-value">Видеоинтервью + тесты</span>
+              </div>
+              <div class="feat-editor-generated">
+                <div class="feat-editor-gen-title">Результаты оценки</div>
+                <div class="feat-editor-gen-text">
+                  Hard skills: 88%. Soft skills: 91%. Лидерство: 85%. Коммуникация: 94%. Рекомендация: план развития лидерских компетенций.
+                </div>
+                <div class="feat-editor-ai-badge">
+                  <svg width="10" height="10" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+                  ИИ проанализировано
+                </div>
+              </div>
+              <div class="scoring-tags" style="margin-top:10px;">
+                <span class="feat-tag">Hard skills</span>
+                <span class="feat-tag">Soft skills</span>
+                <span class="feat-tag">Лидерство</span>
+                <span class="feat-tag">Коммуникация</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">01</div>
+        <h3 class="feat-title">Автоматизированная система оценки компетенций</h3>
+        <p class="feat-desc">Искусственный интеллект автоматизирует процесс оценки сотрудников через инструменты видеособеседования, Real-Time Аватара и чат бота. HR-специалисты получают решение для оценки, которое анализирует компетенции сотрудников по множественным критериям, включая hard и soft skills. Система обеспечивает высокую точность благодаря унифицированным критериям, исключая человеческий фактор</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Оценка hard и soft skills по единым критериям</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Видеоинтервью с Real-Time Аватаром и чат-ботом</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Исключение человеческого фактора из оценки</div>
+        </div>
+        <a href="#form" class="feat-cta-btn">Попробовать</a>
+      </div>
+    </div>
+
+    <!-- Feature Row 2: Оценка 360 градусов (текст слева, мокап справа) -->
+    <div class="feat-row feat-row-rev reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <div style="padding:12px 14px 8px; font-size:13px; font-weight:700; color:var(--text1); border-bottom:1px solid var(--grey2);">
+              Оценка 360 — Маркетолог
+            </div>
+            <div class="feat-questions-body">
+              <div class="feat-q-card">
+                <div class="feat-q-text">Оценка от руководителя — 4.5/5</div>
+                <div class="feat-q-meta">
+                  <span class="feat-q-badge basic">Лидерство</span>
+                  <span class="feat-q-competency">Высокий потенциал</span>
+                </div>
+              </div>
+              <div class="feat-q-card">
+                <div class="feat-q-text">Оценка от коллег — 4.2/5</div>
+                <div class="feat-q-meta">
+                  <span class="feat-q-badge basic">Командная работа</span>
+                  <span class="feat-q-competency">Надёжный партнёр</span>
+                </div>
+              </div>
+              <div class="feat-q-card">
+                <div class="feat-q-text">Оценка от подчинённых — 4.0/5</div>
+                <div class="feat-q-meta">
+                  <span class="feat-q-badge advanced">Делегирование</span>
+                  <span class="feat-q-competency">Зона роста</span>
+                </div>
+              </div>
+              <div style="padding:8px 12px; text-align:center;">
+                <span class="feat-editor-ai-badge">
+                  <svg width="10" height="10" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+                  ИИ-анализ завершён
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">02</div>
+        <h3 class="feat-title">Оценка 360 градусов с ИИ-анализом</h3>
+        <p class="feat-desc">Комплексный метод оценки работы сотрудников, где автоматизированная система оценки собирает обратную связь от коллег, руководителей и подчиненных. ИИ анализирует данные о сотрудниках, формирует объективную картину компетенций и выявляет зоны для развития персонала. Процесс оценки становится прозрачным и структурированным</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Сбор обратной связи от коллег, руководителей и подчинённых</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> ИИ-анализ объективной картины компетенций</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Выявление зон для развития персонала</div>
+        </div>
+        <a href="#form" class="feat-cta-btn">Попробовать</a>
+      </div>
+    </div>
+
+    <!-- Feature Row 3: Оценка soft skills (мокап слева, текст справа) -->
+    <div class="feat-row reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <div class="feat-mock-tabs">
+              <span class="feat-tab active">Видеоинтервью</span>
+              <span class="feat-tab">Анализ</span>
+              <span class="feat-tab">Результат</span>
+            </div>
+            <div class="feat-mock-editor">
+              <div class="feat-editor-field">
+                <span class="feat-editor-label">Сотрудник</span>
+                <span class="feat-editor-value">Козлов Д.М.</span>
+              </div>
+              <div class="feat-editor-field">
+                <span class="feat-editor-label">Метод</span>
+                <span class="feat-editor-value">ИИ-аватар интервью</span>
+              </div>
+              <div class="feat-editor-generated">
+                <div class="feat-editor-gen-title">Анализ soft skills</div>
+                <div class="feat-editor-gen-text">
+                  Коммуникация: 92%. Эмоциональный интеллект: 87%. Стрессоустойчивость: 79%. Вербальные сигналы: уверенный тон.
+                </div>
+                <div class="feat-editor-ai-badge">
+                  <svg width="10" height="10" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+                  Мгновенный анализ
+                </div>
+              </div>
+              <div class="scoring-tags" style="margin-top:10px;">
+                <span class="feat-tag">Коммуникация</span>
+                <span class="feat-tag">EQ</span>
+                <span class="feat-tag">Стресс</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">03</div>
+        <h3 class="feat-title">Автоматизация оценки soft skills и поведенческих компетенций</h3>
+        <p class="feat-desc">Уникальная технология оценки soft skills через видеоинтервью с ИИ-аватаром. Система анализирует вербальные и невербальные сигналы, оценивая коммуникативные навыки, эмоциональный интеллект и другие компетенции сотрудников. Результат оценки формируется мгновенно с детальной аналитикой по каждому критерию оценки</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Анализ вербальных и невербальных сигналов</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Оценка коммуникации и эмоционального интеллекта</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Мгновенный результат с детальной аналитикой</div>
+        </div>
+        <a href="#form" class="feat-cta-btn">Попробовать</a>
+      </div>
+    </div>
+
+    <!-- Feature Row 4: Тестирование и прокторинг (текст слева, мокап справа) -->
+    <div class="feat-row feat-row-rev reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <div style="padding:12px 14px 8px; font-size:13px; font-weight:700; color:var(--text1); border-bottom:1px solid var(--grey2);">
+              Тестирование с прокторингом
+            </div>
+            <div class="feat-questions-body">
+              <div class="feat-q-card">
+                <div class="feat-q-text">Вопрос 1: Управление проектами — Верно</div>
+                <div class="feat-q-meta">
+                  <span class="feat-q-badge basic">100%</span>
+                  <span class="feat-q-competency">Прокторинг: OK</span>
+                </div>
+              </div>
+              <div class="feat-q-card">
+                <div class="feat-q-text">Вопрос 2: Agile-методологии — Частично верно</div>
+                <div class="feat-q-meta">
+                  <span class="feat-q-badge advanced">60%</span>
+                  <span class="feat-q-competency">Прокторинг: OK</span>
+                </div>
+              </div>
+              <div class="feat-q-card">
+                <div class="feat-q-text">Вопрос 3: Финансовый анализ — Верно</div>
+                <div class="feat-q-meta">
+                  <span class="feat-q-badge basic">100%</span>
+                  <span class="feat-q-competency">Прокторинг: OK</span>
+                </div>
+              </div>
+              <div style="padding:8px 12px; text-align:center;">
+                <span class="feat-editor-ai-badge">
+                  <svg width="10" height="10" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+                  Тест завершён, подсказки не обнаружены
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">04</div>
+        <h3 class="feat-title">Автоматическое тестирование и прокторинг</h3>
+        <p class="feat-desc">Инструмент оценки профессиональных знаний и навыков с встроенной системой прокторинга. Автоматизация оценки включает мгновенную проверку каждого ответа с выявлением использования подсказок и формирование детального отчета о сотрудниках. Процедуры оценки доступны 24/7 для удобного прохождения тестов</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Встроенная система прокторинга</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Мгновенная проверка с выявлением подсказок</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Доступность процедур оценки 24/7</div>
+        </div>
+        <a href="#form" class="feat-cta-btn">Попробовать</a>
+      </div>
+    </div>
+
+    <!-- Feature Row 5: ИИ-анализ резюме и внутренних кандидатов (мокап слева, текст справа) -->
+    <div class="feat-row reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <div class="feat-mock-tabs">
+              <span class="feat-tab active">Внутренняя ротация</span>
+              <span class="feat-tab">Профили</span>
+            </div>
+            <div class="feat-mock-editor">
+              <div class="feat-editor-field">
+                <span class="feat-editor-label">Вакансия</span>
+                <span class="feat-editor-value">Руководитель отдела</span>
+              </div>
+              <div class="feat-editor-field">
+                <span class="feat-editor-label">Кандидат</span>
+                <span class="feat-editor-value">Иванов К.С. (текущий сотрудник)</span>
+              </div>
+              <div class="feat-editor-generated">
+                <div class="feat-editor-gen-title">Соответствие новой позиции</div>
+                <div class="feat-editor-gen-text">
+                  Управленческие навыки: 82%. Опыт проектной работы: 95%. Лидерство: 76%. Рекомендация: развитие управленческих компетенций.
+                </div>
+                <div class="feat-editor-ai-badge">
+                  <svg width="10" height="10" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+                  Анализ внутреннего кандидата
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">05</div>
+        <h3 class="feat-title">ИИ-анализ резюме и оценка внутренних кандидатов</h3>
+        <p class="feat-desc">При внутренней ротации система проводит оценку резюме и подсвечивает присутствие навыков действующих сотрудников на соответствие новым позициям. Автоматизированная система оценки сравнивает профили с требованиями вакансий, ускоряя процесс оценки внутренних кандидатов и способствуя развитию сотрудников внутри компании</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Оценка соответствия новым позициям</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Сравнение профилей с требованиями вакансий</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Развитие сотрудников внутри компании</div>
+        </div>
+        <a href="#form" class="feat-cta-btn">Попробовать</a>
+      </div>
+    </div>
+
+    <!-- Feature Row 6: Персонализированные планы развития (текст слева, мокап справа) -->
+    <div class="feat-row feat-row-rev reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <div style="padding:12px 14px 8px; font-size:13px; font-weight:700; color:var(--text1); border-bottom:1px solid var(--grey2);">
+              Индивидуальный план развития
+            </div>
+            <div class="feat-questions-body">
+              <div class="feat-q-card">
+                <div class="feat-q-text">Курс: Управление командой — 4 недели</div>
+                <div class="feat-q-meta">
+                  <span class="feat-q-badge basic">Лидерство</span>
+                  <span class="feat-q-competency">Приоритет: высокий</span>
+                </div>
+              </div>
+              <div class="feat-q-card">
+                <div class="feat-q-text">Тренинг: Презентации и публичные выступления</div>
+                <div class="feat-q-meta">
+                  <span class="feat-q-badge basic">Коммуникация</span>
+                  <span class="feat-q-competency">Приоритет: средний</span>
+                </div>
+              </div>
+              <div class="feat-q-card">
+                <div class="feat-q-text">Менторинг: Стратегическое мышление</div>
+                <div class="feat-q-meta">
+                  <span class="feat-q-badge advanced">Развитие</span>
+                  <span class="feat-q-competency">Приоритет: средний</span>
+                </div>
+              </div>
+              <div style="padding:8px 12px; text-align:center;">
+                <span class="feat-editor-ai-badge">
+                  <svg width="10" height="10" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg>
+                  План сформирован на основе результатов оценки
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">06</div>
+        <h3 class="feat-title">Персонализированные планы развития на основе результатов оценки</h3>
+        <p class="feat-desc">После завершения процедур оценки (прохождения тестирования и интервью с Real-Time Аватаром) ИИ автоматически генерирует индивидуальные рекомендации по обучению персонала. Система формирует программы обучения сотрудников с учетом выявленных пробелов в компетенциях, создавая персональные треки развития персонала для повышения эффективности работы</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Автоматическая генерация рекомендаций по обучению</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Персональные треки развития персонала</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Учёт выявленных пробелов в компетенциях</div>
+        </div>
+        <a href="#form" class="feat-cta-btn">Попробовать</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ: CTA + ФОРМА                             -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="cta-section" id="form">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <div class="section-tag">Попробуйте сами</div>
+      <h2 class="reveal">Внедрите автоматизированную оценку персонала <em>в вашей компании</em></h2>
+      <p class="reveal">Оцените возможности системы бесплатно — убедитесь, что ИИ оценивает сотрудников быстрее и объективнее.</p>
+      <div class="cta-points reveal">
+        <div class="cta-point">
+          <span class="cp-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span>
+          <div>
+            <strong>Бесплатная оценка первых 100 сотрудников</strong>
+            Без регистрации карты, без обязательств
+          </div>
+        </div>
+        <div class="cta-point">
+          <span class="cp-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22,2 15,22 11,13 2,9 22,2"/></svg></span>
+          <div>
+            <strong>6 видов оценки в одной системе</strong>
+            От найма до планов развития
+          </div>
+        </div>
+        <div class="cta-point">
+          <span class="cp-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span>
+          <div>
+            <strong>Интеграция с HRM и LMS</strong>
+            Единая экосистема для управления персоналом
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="form-card">
+        <div class="form-title">Получите доступ к ИИ-оценке персонала</div>
+        <div class="form-sub">Оценим первых 100 сотрудников бесплатно</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Как вас зовут?</label>
+            <input class="form-input" type="text" placeholder="Ваше имя">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Где вы работаете?</label>
+            <input class="form-input" type="text" placeholder="Название компании">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input class="form-input" type="email" placeholder="name@company.ru">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Телефон</label>
+            <input class="form-input" type="tel" placeholder="+7 (999) 000-00-00">
+          </div>
+          <div class="form-group form-full">
+            <button class="btn-form">Получить доступ бесплатно &rarr;</button>
+          </div>
+        </div>
+        <div class="form-note">Нажимая кнопку, вы соглашаетесь с <a href="https://brainhire.ru/docs/privacy-policy">политикой конфиденциальности</a> и <a href="https://brainhire.ru/docs/personal-data-consent">обработкой персональных данных</a></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ: СМЕЖНЫЕ ФУНКЦИИ (cross-sell)            -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="section-bg">
+  <div class="container">
+    <div class="section-tag">Другие возможности BRaiN HR</div>
+    <h2 class="section-title reveal">Оценка завершена — <em>что дальше?</em></h2>
+    <p class="section-sub reveal">BRaiN HR автоматизирует весь цикл работы с персоналом — от создания вакансии до оценки и развития.</p>
+    <div class="cross-sell-grid">
+      <a href="https://brainhire.ru/ai-vacancy-creation" class="cross-sell-card reveal">
+        <div class="cross-sell-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></div>
+        <div class="cross-sell-title">ИИ-создание вакансий</div>
+        <div class="cross-sell-text">Генерация профессиональных описаний вакансий за 30 секунд. SEO-оптимизация для job-бордов.</div>
+        <span class="cross-sell-link">Подробнее <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href="https://brainhire.ru/ai-resume-analysis" class="cross-sell-card reveal d1">
+        <div class="cross-sell-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div class="cross-sell-title">ИИ-анализ резюме</div>
+        <div class="cross-sell-text">Мгновенный скрининг и скоринг резюме. Автоматическая оценка кандидатов по единым критериям.</div>
+        <span class="cross-sell-link">Подробнее <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href="https://brainhire.ru/ai-videointerview" class="cross-sell-card reveal d2">
+        <div class="cross-sell-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></div>
+        <div class="cross-sell-title">ИИ-видеоинтервью</div>
+        <div class="cross-sell-text">Первичное интервью с каждым кандидатом без участия рекрутера. Видео-ответы, прокторинг и оценка компетенций.</div>
+        <span class="cross-sell-link">Подробнее <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ: FAQ                                     -->
+<!-- ════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title reveal" style="text-align:center; margin-bottom: 48px;">Ответы на часто задаваемые вопросы</h2>
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Как автоматизированная система оценки персонала обеспечивает объективность?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Система использует унифицированные критерии оценки для всех сотрудников. ИИ анализирует ответы на тестирования и видеоинтервью по заранее определённым параметрам, исключая влияние личных предпочтений оценщика. Каждый сотрудник оценивается по одним и тем же стандартам вне зависимости от подразделения или руководителя.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Какие виды оценки персонала поддерживает система?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">BRaiN HR поддерживает 6 видов оценки: оценка при найме, регулярная оценка работы, оценка 360 градусов, оценка для обучения, оценка для продвижения и оценка soft skills. Каждый вид оценки включает специализированные инструменты — тестирование с прокторингом, видеоинтервью с ИИ-аватаром, сбор обратной связи и анализ компетенций.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Можно ли использовать результаты оценки для планирования обучения персонала?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Да, это одно из ключевых преимуществ системы. После завершения процедур оценки ИИ автоматически выявляет пробелы в компетенциях и генерирует индивидуальные рекомендации по обучению. Система формирует персональные треки развития для каждого сотрудника и интегрируется с LMS-платформами для отслеживания прогресса.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Как часто нужно проводить оценку сотрудников?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Частота оценки зависит от целей компании. Рекомендуется проводить полную оценку компетенций 1-2 раза в год, промежуточные проверки по KPI — ежеквартально, а оценку при внутренней ротации — по мере необходимости. Благодаря автоматизации процесс оценки можно проводить значительно чаще без увеличения нагрузки на HR-отдел.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Как система обеспечивает конфиденциальность данных о сотрудниках?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Все данные о сотрудниках хранятся на защищённых серверах с шифрованием. Доступ к результатам оценки ограничен ролевой моделью — каждый пользователь видит только те данные, которые ему доступны. Система соответствует требованиям ФЗ-152 о персональных данных и обеспечивает полную конфиденциальность процесса оценки.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Сколько времени занимает внедрение автоматизированной системы оценки?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Базовое внедрение занимает 1-3 дня. Вы настраиваете критерии оценки, загружаете список сотрудников и запускаете первый цикл оценки. Для полной интеграции с корпоративными HRM и LMS-системами может потребоваться до 2 недель. Команда поддержки помогает на каждом этапе внедрения.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Можно ли редактировать критерии оценки и задать вес критериям?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Да, вы можете полностью настраивать критерии оценки компетенций и задавать вес каждому критерию. Например, для управленческих позиций можно увеличить влияние лидерских качеств, а для технических — hard skills. Также можно создавать разные наборы критериев для разных должностей и подразделений.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Можно ли задать эталонные ответы для более точной оценки?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Да, система позволяет задавать эталонные (референсные) ответы для тестирования и видеоинтервью. ИИ сравнивает ответы сотрудников с эталонами, что повышает точность оценки. Вы можете задать как точные эталоны, так и описание ожидаемых ключевых тезисов, которые должны присутствовать в ответе.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Как настроить ограничения доступа к результатам оценки?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">В системе реализована гибкая ролевая модель доступа. HR-администратор видит все результаты, руководитель — только своих подчинённых, а сотрудник — только собственные результаты оценки. Вы можете настраивать уровни доступа для каждой роли, определяя, какие данные видны каждому пользователю.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer class="site-footer-new">
+  <div class="footer-new-inner">
+
+    <!-- TOP: 5 columns -->
+    <div class="footer-new-top">
+
+      <!-- Col 1: Logo + desc + socials -->
+      <div class="footer-new-col footer-new-col-brand">
+        <a href="https://brainhire.ru/" class="footer-new-logo">
+          <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+        </a>
+        <p class="footer-new-desc">ИИ-платформа для автоматизации рекрутинга и оценки персонала. Нанимайте в 5 раз дешевле и быстрее.</p>
+        <div class="footer-new-socials">
+          <a href="https://vk.com/brain_hr" target="_blank" class="footer-social-btn" title="ВКонтакте">В</a>
+          <a href="https://t.me/BRaiN_HR" target="_blank" class="footer-social-btn" title="Telegram">Т</a>
+          <a href="https://www.instagram.com/brain_hire/" target="_blank" class="footer-social-btn" title="Instagram">I</a>
+          <a href="https://www.linkedin.com/company/105875559/" target="_blank" class="footer-social-btn" title="LinkedIn">in</a>
+        </div>
+      </div>
+
+      <!-- Col 2: Отраслевые решения -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Отраслевые решения</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR в IT</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR в финансовом секторе</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR для маркетплейсов</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR для малого бизнеса</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR для корпораций</a>
+        </div>
+      </div>
+
+      <!-- Col 3: Функции -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Функции</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/recruiting" class="footer-new-link">Рекрутинг</a>
+          <a href="https://brainhire.ru/ai-vacancy-creation" class="footer-new-link">ИИ-создание вакансий</a>
+          <a href="https://brainhire.ru/ai-resume-analysis" class="footer-new-link">ИИ-анализ резюме</a>
+          <a href="https://brainhire.ru/ai-videointerview" class="footer-new-link">ИИ-видеоинтервью</a>
+          <a href="https://brainhire.ru/ai-staff-scoring" class="footer-new-link">ИИ-оценка кандидатов</a>
+        </div>
+      </div>
+
+      <!-- Col 4: Компания -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Компания</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/about" class="footer-new-link">О нас</a>
+          <a href="https://brainhire.ru/contacts" class="footer-new-link">Контакты</a>
+          <a href="https://brainhire.ru/tariffs" class="footer-new-link">Тарифы</a>
+          <a href="https://brainhire.ru/reviews" class="footer-new-link">Отзывы</a>
+          <a href="https://brainhire.ru/case" class="footer-new-link">Кейсы</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">СМИ о нас</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">Блог</a>
+          <a href="https://brainhire.ru/partner" class="footer-new-link">Партнёрская программа</a>
+        </div>
+      </div>
+
+      <!-- Col 5: Контакты -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Контакты</div>
+        <div class="footer-new-contact-block">
+          <a href="tel:+74959703976" class="footer-new-phone">+7 (495) 970-39-76</a>
+          <span class="footer-new-contact-sub">Служба поддержки</span>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Электронная почта:</span>
+          <a href="mailto:info@brainhire.ru" class="footer-new-email">info@brainhire.ru</a>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Адрес:</span>
+          <span class="footer-new-address">142005 Московская область, г. Домодедово, мкр. Центральный, ул. Кирова, д. 7, к.1, пом. 0011, офис 5</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-new-bottom">
+      <div class="footer-new-bottom-top">
+        <span class="footer-new-copy">&copy; ООО &laquo;НДК&raquo;, ОГРН 1225000105010. Все права защищены.</span>
+        <div class="footer-new-legal">
+          <a href="https://brainhire.ru/docs/privacy-policy" class="footer-new-legal-link">Политика конфиденциальности</a>
+          <a href="https://brainhire.ru/docs/user-agreement" class="footer-new-legal-link">Пользовательское соглашение</a>
+          <a href="https://brainhire.ru/docs/personal-data-consent" class="footer-new-legal-link">Обработка данных</a>
+        </div>
+      </div>
+      <div class="footer-new-bottom-docs">
+        <a href="https://brainhire.ru/docs/user-instructions" class="footer-new-legal-link">Инструкция по установке и эксплуатации ПО</a>
+        <a href="https://brainhire.ru/docs/product-description" class="footer-new-legal-link">Описание функциональных характеристик ПО</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+// Audience tabs
+function showAudience(index) {
+  document.querySelectorAll('.audience-tab').forEach(function(t, i) {
+    t.classList.toggle('active', i === index);
+  });
+  document.querySelectorAll('.audience-content').forEach(function(c, i) {
+    c.classList.toggle('active', i === index);
+  });
+}
+
+// FAQ toggle
+function toggleFaq(btn) {
+  var item = btn.parentElement;
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(el) { el.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
+// Reveal on scroll
+document.addEventListener('DOMContentLoaded', function() {
+  document.body.classList.add('js-loaded');
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(function(el) { observer.observe(el); });
+});
+</script>
+
+<!-- STICKY SIDEBAR -->
+<div class="sticky-sidebar">
+  <a href="#form" class="sticky-btn sticky-btn-primary" title="Запросить демо">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2z" stroke="currentColor" stroke-width="1.8"/><path d="M12 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Запросить демо</span>
+  </a>
+  <a href="../calculator.html" class="sticky-btn sticky-btn-accent" title="Калькулятор экономии">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="10" x2="10" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="14" x2="10" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="14" x2="16" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="18" x2="10" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="18" x2="16" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Калькулятор экономии</span>
+  </a>
+  <a href="tel:+74958591070" class="sticky-btn sticky-btn-secondary" title="+7 (495) 859-10-70">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">+7 (495) 859-10-70</span>
+  </a>
+  <a href="mailto:info@brainhire.ru" class="sticky-btn sticky-btn-secondary" title="info@brainhire.ru">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">info@brainhire.ru</span>
+  </a>
+</div>
+
+<!-- FLOAT VIDEO WIDGET -->
+<div class="float-video-widget" id="floatWidget">
+  <div class="float-video-close" onclick="closeFloatWidget()" title="Закрыть">✕</div>
+  <div class="float-video-wrap" id="floatVideoWrap" onclick="openFloatFullscreen()">
+    <div class="float-video-poster" id="floatPoster">
+      <img src="https://brainhire.ru/images/videoPreview.avif" onerror="this.style.display='none'; document.getElementById('floatPosterFallback').style.display='flex';" alt="Demo">
+      <div class="float-poster-fallback" id="floatPosterFallback">
+        <svg width="40" height="40" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+        <span style="font-size:11px;font-weight:700;color:#fff;">BRaiN HR</span>
+      </div>
+    </div>
+    <video id="floatVideo" muted loop playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+    <div class="float-video-overlay">
+      <div class="float-video-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="white"/></svg></div>
+      <div class="float-video-label">Смотреть демо</div>
+    </div>
+  </div>
+</div>
+<div class="float-modal" id="floatModal" onclick="closeFloatModal()">
+  <div class="float-modal-inner" onclick="event.stopPropagation()">
+    <button class="float-modal-close" onclick="closeFloatModal()">✕</button>
+    <video id="floatModalVideo" controls playsinline preload="none" style="width:100%;border-radius:12px;display:block;max-height:80vh;background:#000;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+</body>
+</html>

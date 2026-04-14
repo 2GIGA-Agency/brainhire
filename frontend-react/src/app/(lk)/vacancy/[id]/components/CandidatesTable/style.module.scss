@@ -1,0 +1,86 @@
+// src/app/vacancies/[id]/components/CandidatesTable/CandidatesTable.module.scss
+
+.table {
+	border-radius: 4px;
+	background-color: white;
+	overflow: hidden;
+
+	th:nth-child(1), // Дата
+  td:nth-child(1) {
+		max-width: 140px; // Уменьшим ширину даты
+	}
+
+	th:nth-child(5), // Статус
+  td:nth-child(5) {
+		max-width: 150px;
+	}
+
+	th:nth-child(6), // Чат-интервью
+  td:nth-child(6) {
+		max-width: 140px;
+	}
+}
+
+.search {
+	padding: 5px 0 16px 5px;
+	margin-bottom: 24px;
+	border-bottom: 1px solid rgba(226, 232, 240, 1);
+}
+
+.input {
+	max-width: 572px;
+}
+
+
+.tagLabel {
+	padding: 0 4px;
+}
+
+.tableSort {
+	cursor: pointer;
+	user-select: none;
+}
+
+
+
+// Стили для контейнеров с горизонтальным скроллом
+.tabsScrollContainer,
+.contentScrollContainer {
+	padding-bottom: 10px;
+	white-space: nowrap;
+	overflow-x: auto;
+	scrollbar-width: thin;
+	scrollbar-color: #edf2f7 white; // gray.200
+	-webkit-overflow-scrolling: touch;
+
+	/* Стили для скроллбара в WebKit (Safari/Chrome) */
+	&::-webkit-scrollbar {
+		height: 8px;
+	}
+	&::-webkit-scrollbar-track {
+		background: white;
+	}
+	&::-webkit-scrollbar-thumb {
+		background-color: #edf2f7; // gray.200
+		border-radius: 4px;
+	}
+}
+
+
+// Адаптивность
+@media (max-width: 1201px) {
+	.tagLabel {
+		min-width: 35px;
+	}
+}
+
+@media (max-width: 620px) {
+	.search {
+		flex-direction: column-reverse;
+		align-items: stretch;
+	}
+
+	.input {
+		max-width: 100%;
+	}
+}

@@ -1,0 +1,59 @@
+User-Agent: Yandex
+Allow: *?page=
+Allow: /*.jpg                
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.css
+Allow: /*.js
+Disallow: *?*
+Disallow: /recruiting
+Disallow: /login
+Disallow: /signup
+Disallow: /signin
+Disallow: */twostep/*
+Disallow: */login*
+Disallow: */signup*
+Disallow: */wrong-subdomain*
+Clean-param: utm_source&utm_medium&utm_campaign&utm_term&utm_type
+Clean-param: _openstat&gclid&yclid&ymclid&from&cid&frommarket
+
+User-Agent: Googlebot
+Allow: *?page=
+Allow: /*.jpg                
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.css
+Allow: /*.js
+Disallow: *?*
+Disallow: /recruiting
+Disallow: /login
+Disallow: /signup
+Disallow: /signin
+Disallow: */twostep/*
+Disallow: */login*
+Disallow: */signup*
+Disallow: */wrong-subdomain*
+Disallow:*utm*=
+Disallow:*openstat= 
+
+User-Agent: *
+Allow: *?page=
+Allow: /*.jpg                
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.css
+Allow: /*.js
+Disallow: *?*
+Disallow: /recruiting
+Disallow: /login
+Disallow: /signup
+Disallow: /signin
+Disallow: */twostep/*
+Disallow: */login*
+Disallow: */signup*
+Disallow: */wrong-subdomain*
+Disallow:*utm*=
+Disallow:*openstat=
+
+Sitemap:https://brainhire.ru/sitemap.xml
+

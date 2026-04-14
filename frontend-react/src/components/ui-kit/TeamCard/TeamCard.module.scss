@@ -1,0 +1,50 @@
+.card {
+	display: flex;
+	align-items: stretch;
+	background-color: #fff;
+	border-radius: 16px;
+	padding: 32px;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+	gap: 32px; /* расстояние между фото и текстом */
+}
+
+.photoWrapper {
+	flex-shrink: 0;
+	width: 148px; /* фиксируем размер под фото */
+	height: 197px;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+}
+
+.name {
+	font-size: 1.25rem;
+	margin: 0 0 8px;
+	color: #2b2b2b;
+}
+
+.position {
+	margin: 0;
+	color: #666;
+	font-size: 1rem;
+}
+
+@media (max-width: 500px) {
+  .photoWrapper {
+    flex-shrink: 0;
+    width: 120px; /* фиксируем размер под фото */
+    height: 177px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+	.card {
+		padding: 16px;
+		gap: 20px; /* расстояние между фото и текстом */
+	}
+}

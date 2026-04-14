@@ -1,0 +1,68 @@
+@import '@/styles/abstracts/variables';
+
+.chatList {
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+}
+
+.header {
+	padding: 0 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
+	padding-bottom: 16px;
+	border-bottom: 1px solid $grey-200;
+}
+
+.listWrapper {
+	overflow-y: auto;
+}
+
+.list {
+	flex: 1 1 auto;
+	overflow-y: hidden;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+
+.state {
+	flex: 1 1 auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 32px 16px;
+	text-align: center;
+}
+
+.inlineSpinner {
+	display: flex;
+	justify-content: center;
+}
+
+.error {
+	margin-top: 8px;
+}
+
+.loadMoreButton {
+	margin-top: 12px;
+	align-self: center;
+	padding: 8px 16px;
+	border-radius: 12px;
+	border: none;
+	background: $blue-3;
+	color: $brand-primary;
+	font-weight: 600;
+	cursor: pointer;
+	transition: background 0.2s ease;
+
+	&:hover:not(:disabled) {
+		background: rgba(64, 150, 255, 0.18);
+	}
+
+	&:disabled {
+		opacity: 0.6;
+		cursor: default;
+	}
+}

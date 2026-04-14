@@ -1,0 +1,1322 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Отзывы клиентов — BRaiN HR</title>
+<meta name="description" content="Отзывы клиентов BRaiN HR. Более 150 компаний доверяют нам автоматизацию найма и оценки персонала. Реальные результаты и кейсы.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../shared/styles.css">
+<link rel="stylesheet" href="../shared/components.css">
+<style>
+  /* ─── HERO ─── */
+  .reviews-hero {
+    background: var(--white);
+    padding: 88px 0 56px;
+  }
+  .reviews-hero .section-tag {
+    margin-bottom: 16px;
+  }
+  .reviews-hero h1 {
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.2px;
+    color: var(--text1);
+    margin-bottom: 16px;
+  }
+  .reviews-hero h1 em { font-style: normal; color: var(--brand1); }
+  .reviews-hero p {
+    font-size: 17px;
+    color: var(--text2);
+    max-width: 560px;
+    line-height: 1.7;
+  }
+
+  /* ─── LOGOS SLIDER ─── */
+  .logos-section {
+    background: var(--white);
+    border-top: 1px solid var(--grey2);
+    border-bottom: 1px solid var(--grey2);
+    padding: 32px 0;
+  }
+  .logos-label {
+    font-size: 12px; font-weight: 600; text-align: center;
+    color: var(--text2); text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 20px;
+  }
+  .logos-slider-wrap {
+    overflow: hidden; position: relative;
+  }
+  .logos-slider-wrap::before, .logos-slider-wrap::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+  }
+  .logos-slider-wrap::before { left: 0; background: linear-gradient(90deg, var(--white), transparent); }
+  .logos-slider-wrap::after { right: 0; background: linear-gradient(-90deg, var(--white), transparent); }
+  .logos-slider-track {
+    display: flex; align-items: center; gap: 0;
+    animation: logoscroll 30s linear infinite; width: max-content;
+  }
+  .logos-slider-track:hover { animation-play-state: paused; }
+  @keyframes logoscroll { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+  .logo-item {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0 36px; height: 68px; flex-shrink: 0;
+    border-right: 1px solid var(--grey2);
+    text-decoration: none; white-space: nowrap;
+    opacity: .6; transition: opacity .25s;
+    line-height: 1.2;
+  }
+  .logo-item:last-child { border-right: none; }
+  .logo-item:hover { opacity: 1; }
+
+  /* ─── FEATURED REVIEWS ─── */
+  /* ─── LETTERS SECTION ─── */
+  .letters-section { padding: 80px 0; }
+  .letters-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-top: 48px;
+  }
+  .letter-card {
+    background: var(--white);
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(17,38,58,0.08), 0 4px 16px rgba(17,38,58,0.06);
+    transition: border-color .25s, box-shadow .25s, transform .25s;
+    cursor: pointer;
+  }
+  .letter-card:hover {
+    border-color: var(--brand1);
+    box-shadow: 0 8px 32px rgba(64,150,255,0.15);
+    transform: translateY(-4px);
+  }
+  .letter-thumb {
+    width: 100%;
+    aspect-ratio: 210 / 297;
+    background: var(--grey1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .letter-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .letter-thumb-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    color: var(--text2);
+  }
+  .letter-thumb-placeholder svg { opacity: 0.4; }
+  .letter-thumb-placeholder span { font-size: 12px; font-weight: 600; }
+  .letter-zoom {
+    position: absolute;
+    bottom: 10px; right: 10px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--white);
+    border: 1px solid var(--grey2);
+    display: flex; align-items: center; justify-content: center;
+    opacity: 0;
+    transition: opacity .2s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  }
+  .letter-card:hover .letter-zoom { opacity: 1; }
+  .letter-info {
+    padding: 14px 16px;
+  }
+  .letter-company {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--text1);
+    margin-bottom: 2px;
+  }
+  .letter-desc {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.4;
+  }
+
+  /* ─── LIGHTBOX ─── */
+  .lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    background: rgba(0,0,0,0.75);
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    cursor: zoom-out;
+  }
+  .lightbox.active { display: flex; }
+  .lightbox img {
+    max-width: 90%;
+    max-height: 90vh;
+    border-radius: 8px;
+    box-shadow: 0 8px 48px rgba(0,0,0,0.4);
+    cursor: default;
+  }
+  .lightbox-close {
+    position: absolute;
+    top: 20px; right: 28px;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--white);
+    border: none;
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+    font-size: 20px;
+    color: var(--text1);
+  }
+
+  .avatar-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+  .avatar-blue { background: var(--brand1); }
+  .avatar-orange { background: var(--brand2); }
+  .avatar-teal { background: var(--brand3); }
+  .category-pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 100px;
+    background: var(--brand1-bg);
+    color: var(--brand1);
+    margin-top: 12px;
+  }
+  .category-pill.orange {
+    background: var(--brand2-bg);
+    color: var(--brand2);
+  }
+  .category-pill.teal {
+    background: rgba(18,83,109,0.1);
+    color: var(--brand3);
+  }
+
+  /* ─── FILTER PILLS ─── */
+  .filter-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+    margin-bottom: 40px;
+  }
+  .filter-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 22px;
+    border-radius: 100px;
+    border: 1px solid var(--grey2);
+    background: var(--grey1);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .filter-pill:hover {
+    border-color: var(--brand1);
+    color: var(--brand1);
+  }
+  .filter-pill.active {
+    background: var(--brand1);
+    color: var(--white);
+    border-color: var(--brand1);
+  }
+
+  /* ─── REVIEWS GRID ─── */
+  .reviews-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .review-card {
+    background: var(--white);
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius);
+    padding: 28px 24px 22px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color .25s, box-shadow .25s, opacity .3s, transform .3s;
+  }
+  .review-card:hover {
+    border-color: var(--brand1);
+    box-shadow: 0 4px 24px rgba(17,38,58,0.12);
+  }
+  .review-card.hidden {
+    display: none;
+  }
+  .review-stars {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 14px;
+  }
+  .review-stars svg {
+    width: 16px;
+    height: 16px;
+  }
+  .review-text {
+    font-size: 14px;
+    line-height: 1.65;
+    color: var(--text1);
+    margin-bottom: 20px;
+    flex: 1;
+  }
+  .review-author {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .review-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+    flex-shrink: 0;
+  }
+  .review-author-name {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text1);
+  }
+  .review-author-title {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.4;
+  }
+  .review-result {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--brand1);
+    background: var(--brand1-bg);
+    border: 1px solid rgba(64,150,255,0.2);
+    border-radius: var(--radius-sm);
+    padding: 8px 14px;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  .review-category-pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 100px;
+    background: var(--brand1-bg);
+    color: var(--brand1);
+    align-self: flex-start;
+  }
+
+  /* ─── CTA ─── */
+  .cta-reviews {
+    padding: 80px 0;
+    text-align: center;
+  }
+  .cta-reviews h2 {
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.7px;
+    color: var(--text1);
+    margin-bottom: 16px;
+  }
+  .cta-reviews p {
+    font-size: 15px;
+    color: var(--text2);
+    line-height: 1.72;
+    max-width: 520px;
+    margin: 0 auto 32px;
+  }
+  .cta-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ─── FAQ TWO-COL ─── */
+  .faq-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .faq-left h2 {
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.7px;
+    color: var(--text1);
+    margin-bottom: 12px;
+  }
+  .faq-left h2 em { font-style: normal; color: var(--brand1); }
+  .faq-left p {
+    font-size: 15px; color: var(--text2); line-height: 1.72;
+  }
+  .faq-right {
+    display: flex; flex-direction: column;
+  }
+  .faq-item-v2 {
+    border-bottom: 1px dashed var(--grey2);
+  }
+  .faq-item-v2:first-child {
+    border-top: 1px dashed var(--grey2);
+  }
+  .faq-q-v2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text1);
+    transition: color .2s;
+  }
+  .faq-q-v2:hover { color: var(--brand1); }
+  .faq-q-v2 .faq-chevron {
+    width: 20px; height: 20px;
+    flex-shrink: 0;
+    transition: transform .3s ease;
+    color: var(--text2);
+  }
+  .faq-item-v2.open .faq-q-v2 .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--brand1);
+  }
+  .faq-a-v2 {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease, padding .35s ease;
+  }
+  .faq-item-v2.open .faq-a-v2 {
+    max-height: 200px;
+  }
+  .faq-a-v2-inner {
+    padding: 0 0 20px;
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  /* ─── REVEAL ─── */
+  .js-loaded .reveal { opacity:0; transform:translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+  .js-loaded .reveal.visible { opacity:1; transform:none; }
+  .js-loaded .d1 { transition-delay:.08s; }
+  .js-loaded .d2 { transition-delay:.16s; }
+  .js-loaded .d3 { transition-delay:.24s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .letters-grid { grid-template-columns: 1fr 1fr; }
+    .reviews-grid { grid-template-columns: 1fr 1fr; }
+    .faq-two-col { grid-template-columns: 1fr; gap: 32px; }
+  }
+  @media (max-width: 700px) {
+    .reviews-grid { grid-template-columns: 1fr 1fr; }
+    .letters-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .reviews-grid { grid-template-columns: 1fr; }
+    .filter-pill { padding: 8px 16px; font-size: 12px; }
+  }
+  @media (max-width: 480px) {
+    .letter-card { max-width: 280px; margin: 0 auto; }
+    .cta-btns { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
+  <span class="urgency-dot"></span>
+  Каждый день без нужного сотрудника — это упущенная выручка, переработки команды и задержка развития бизнеса
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <!-- Top bar -->
+  <div class="header-topbar">
+    <div class="header-inner" style="height:36px; justify-content:center;">
+      <div class="topbar-links">
+        <a href="about.html" class="topbar-link">О компании</a>
+        <a href="contacts.html" class="topbar-link">Контакты</a>
+        <a href="hr-cashback.html" class="topbar-link">Партнёрская программа</a>
+        <a href="calculator.html" class="topbar-link">Калькулятор выгоды</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <div class="header-main">
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+      </a>
+      <nav class="main-nav">
+
+        <!-- Как это работает — megamenu -->
+        <div class="mnav-item has-mega" id="megaHow">
+          <button class="mnav-btn">
+            Как это работает
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel">
+            <div class="mega-col">
+              <!-- Рекрутинг → sub -->
+              <div class="mega-section-item has-sub" id="subRecruiting">
+                <div class="mega-section-link">
+                  <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                  <div>
+                    <div class="mega-section-title">Рекрутинг</div>
+                    <div class="mega-section-desc">Полный цикл подбора с ИИ</div>
+                  </div>
+                  <svg class="mega-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div class="sub-panel">
+                  <a href="features/ai-vacancy-creation.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-создание вакансий</div>
+                      <div class="sub-item-desc">Описание вакансии за минуты</div>
+                    </div>
+                  </a>
+                  <a href="features/ai-screening.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-анализ резюме</div>
+                      <div class="sub-item-desc">Скоринг и ранжирование откликов</div>
+                    </div>
+                  </a>
+                  <a href="features/ai-videointerview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Первичное ИИ-видеоинтервью</div>
+                      <div class="sub-item-desc">Тестирование с прокторингом</div>
+                    </div>
+                  </a>
+                  <a href="features/ai-realtime-interview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Real-time интервью с ИИ-аватаром</div>
+                      <div class="sub-item-desc">Адаптивное интервью в реальном времени</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Оценка персонала -->
+              <a href="features/ai-staff-scoring.html" class="mega-section-link mega-section-item">
+                <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 017 4.5v1A2.5 2.5 0 009.5 8h5A2.5 2.5 0 0017 5.5v-1A2.5 2.5 0 0014.5 2h-5z"/><path d="M9.5 8a2.5 2.5 0 00-2.5 2.5A2.5 2.5 0 004.5 13a2.5 2.5 0 002.5 2.5 2.5 2.5 0 002.5 2.5h5a2.5 2.5 0 002.5-2.5 2.5 2.5 0 002.5-2.5 2.5 2.5 0 00-2.5-2.5A2.5 2.5 0 0014.5 8h-5z"/></svg></span>
+                <div>
+                  <div class="mega-section-title">Оценка персонала</div>
+                  <div class="mega-section-desc">ИИ-оценка soft skills и компетенций</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Отраслевые решения — dropdown -->
+        <div class="mnav-item has-drop" id="dropSolutions">
+          <button class="mnav-btn">
+            Отраслевые решения
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="drop-panel">
+            <a href="solutions/smb.html" class="drop-item">Малый бизнес</a>
+            <a href="solutions/enterprise.html" class="drop-item">Корпорации</a>
+            <a href="solutions/it.html" class="drop-item">ИТ компании</a>
+            <a href="solutions/finance.html" class="drop-item">Финансовый сектор</a>
+            <a href="solutions/hr.html" class="drop-item">HR агентства</a>
+            <div class="drop-group">
+              <div class="drop-group-label">Маркетплейсы</div>
+              <a href="solutions/marketplaces.html" class="drop-item" style="padding-left:24px;">Владельцам ПВЗ</a>
+              <a href="solutions/sellers.html" class="drop-item" style="padding-left:24px;">Селлерам</a>
+            </div>
+            <a href="solutions/horeca.html" class="drop-item">HoReCa</a>
+            <a href="solutions/education.html" class="drop-item">Образование</a>
+            <a href="solutions/sales.html" class="drop-item">Продажи</a>
+            <a href="solutions/logistics.html" class="drop-item">Логистика</a>
+            <a href="solutions/marketing.html" class="drop-item">Маркетинг</a>
+          </div>
+        </div>
+
+        <a href="cases.html" class="mnav-link">Кейсы</a>
+        <a href="reviews.html" class="mnav-link">Отзывы</a>
+        <a href="pricing.html" class="mnav-link">Тарифы</a>
+        <a href="https://brainhire.ru/blog" class="mnav-link">Блог</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://brainhire.ru/signup" class="btn-primary">100 кандидатов бесплатно</a>
+        <a href="https://brainhire.ru/signin" class="btn-secondary">Войти</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+// ─── HEADER MENU — hover-based ───
+document.addEventListener('DOMContentLoaded', function() {
+  var items = document.querySelectorAll('.mnav-item.has-mega, .mnav-item.has-drop');
+
+  items.forEach(function(item) {
+    var timer;
+
+    item.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      items.forEach(function(other) {
+        if (other !== item) other.classList.remove('open');
+      });
+      item.classList.add('open');
+    });
+
+    item.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        item.classList.remove('open');
+        item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      }, 120);
+    });
+
+    var panel = item.querySelector('.mega-panel, .drop-panel');
+    if (panel) {
+      panel.addEventListener('mouseenter', function() { clearTimeout(timer); });
+      panel.addEventListener('mouseleave', function() {
+        timer = setTimeout(function() {
+          item.classList.remove('open');
+          item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+        }, 120);
+      });
+    }
+  });
+
+  document.querySelectorAll('.has-sub').forEach(function(sub) {
+    sub.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      sub.classList.add('sub-open');
+    });
+  });
+
+  // Close sub-panels when hovering over non-sub mega items
+  document.querySelectorAll('.mega-section-item:not(.has-sub)').forEach(function(item) {
+    item.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+    });
+  });
+});
+
+function toggleMega() {}
+function showSub(id) {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  var el = document.getElementById(id);
+  if (el) el.classList.add('sub-open');
+}
+function hideSubs() {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+}
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.mnav-item').forEach(function(e){ e.classList.remove('open'); });
+    document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  }
+});
+</script>
+
+
+<main>
+
+<!-- ═══ BLOCK 1: HERO ═══ -->
+<section class="reviews-hero">
+  <div class="container">
+    <h1 class="reveal">Отзывы о платформе <em>BRaiN HR</em></h1>
+    <p class="reveal d1">Компаниям удалось снизить расходы на 78%, ускорить найм в 5 раз и повысить качество кандидатов.</p>
+  </div>
+</section>
+
+
+<!-- ═══ BLOCK 2: LOGOS SLIDER ═══ -->
+<div class="logos-section">
+  <div class="container">
+    <div class="logos-label">Нам доверяют компании из разных отраслей</div>
+  </div>
+  <div class="logos-slider-wrap">
+    <div class="logos-slider-track">
+      <a href="https://kazan.rt.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:700; color:#1a1a1a; letter-spacing:0.5px;">РОСТЕЛЕКОМ</span>
+      </a>
+      <a href="https://e-flops.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:800; color:#222; letter-spacing:-0.5px;">e<span style="color:#4096FF;">-</span>flops</span>
+      </a>
+      <a href="https://itpeoplegroup.ru/" target="_blank" class="logo-item">
+        <span style="font-size:12px; font-weight:800; color:#1a1a1a; letter-spacing:1.5px; text-transform:uppercase; border:2px solid #1a1a1a; padding:4px 8px;">IT PEOPLE</span>
+      </a>
+      <a href="https://moby.estate/" target="_blank" class="logo-item">
+        <span style="font-size:17px; font-weight:800; color:#2b4de3; letter-spacing:-0.5px;">●● moby</span>
+      </a>
+      <a href="https://neyrox.com/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#111; letter-spacing:-0.3px;">neyrox</span>
+      </a>
+      <a href="https://idaproject.com/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#c0392b; letter-spacing:-0.3px;">ida<span style="color:#222;">project</span></span>
+      </a>
+      <a href="https://prodamus.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#6c3db5; letter-spacing:-0.3px;">prodamus</span>
+      </a>
+      <a href="https://www.hr-rocket.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:800; color:#1a1a1a; letter-spacing:0.5px;">HR<span style="color:#e03030;">⚡</span>ROCKET</span>
+      </a>
+      <a href="https://livecargo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#1a5c3a; letter-spacing:-0.3px;">live<span style="color:#27ae60;">cargo</span></span>
+      </a>
+      <a href="https://ledgo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:900; color:#f39c12; letter-spacing:-0.5px;">LED<span style="color:#e67e22;">GO</span></span>
+      </a>
+      <a href="https://www.simbirsoft.com/" target="_blank" class="logo-item">
+        <span style="font-size:18px; font-weight:800; color:#1a1a2e; letter-spacing:-0.5px;">Simbir<span style="color:#e03030;">S</span>oft</span>
+      </a>
+      <a href="https://bssys.com/" target="_blank" class="logo-item">
+        <span style="background:#1a3a8a; color:#fff; font-size:15px; font-weight:900; padding:5px 10px; border-radius:4px; letter-spacing:1px;">BSS</span>
+      </a>
+      <a href="https://3logic.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:800; color:#1a1a1a; letter-spacing:-0.3px;">3<span style="color:#e03030;">LOGIC</span><br><span style="font-size:9px; font-weight:600; color:#555; letter-spacing:1px;">GROUP</span></span>
+      </a>
+      <a href="https://www.penoplex.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#e03030; letter-spacing:0.5px;">PENOPLEX</span>
+      </a>
+      <a href="https://pshb.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#1a3a8a; letter-spacing:1px;">ПШБ</span>
+      </a>
+      <!-- duplicate for seamless loop -->
+      <a href="https://kazan.rt.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:700; color:#1a1a1a; letter-spacing:0.5px;">РОСТЕЛЕКОМ</span>
+      </a>
+      <a href="https://e-flops.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:800; color:#222; letter-spacing:-0.5px;">e<span style="color:#4096FF;">-</span>flops</span>
+      </a>
+      <a href="https://itpeoplegroup.ru/" target="_blank" class="logo-item">
+        <span style="font-size:12px; font-weight:800; color:#1a1a1a; letter-spacing:1.5px; text-transform:uppercase; border:2px solid #1a1a1a; padding:4px 8px;">IT PEOPLE</span>
+      </a>
+      <a href="https://moby.estate/" target="_blank" class="logo-item">
+        <span style="font-size:17px; font-weight:800; color:#2b4de3; letter-spacing:-0.5px;">●● moby</span>
+      </a>
+      <a href="https://neyrox.com/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#111; letter-spacing:-0.3px;">neyrox</span>
+      </a>
+      <a href="https://idaproject.com/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#c0392b; letter-spacing:-0.3px;">ida<span style="color:#222;">project</span></span>
+      </a>
+      <a href="https://prodamus.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#6c3db5; letter-spacing:-0.3px;">prodamus</span>
+      </a>
+      <a href="https://www.hr-rocket.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:800; color:#1a1a1a; letter-spacing:0.5px;">HR<span style="color:#e03030;">⚡</span>ROCKET</span>
+      </a>
+      <a href="https://livecargo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#1a5c3a; letter-spacing:-0.3px;">live<span style="color:#27ae60;">cargo</span></span>
+      </a>
+      <a href="https://ledgo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:900; color:#f39c12; letter-spacing:-0.5px;">LED<span style="color:#e67e22;">GO</span></span>
+      </a>
+      <a href="https://www.simbirsoft.com/" target="_blank" class="logo-item">
+        <span style="font-size:18px; font-weight:800; color:#1a1a2e; letter-spacing:-0.5px;">Simbir<span style="color:#e03030;">S</span>oft</span>
+      </a>
+      <a href="https://bssys.com/" target="_blank" class="logo-item">
+        <span style="background:#1a3a8a; color:#fff; font-size:15px; font-weight:900; padding:5px 10px; border-radius:4px; letter-spacing:1px;">BSS</span>
+      </a>
+      <a href="https://3logic.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:800; color:#1a1a1a; letter-spacing:-0.3px;">3<span style="color:#e03030;">LOGIC</span><br><span style="font-size:9px; font-weight:600; color:#555; letter-spacing:1px;">GROUP</span></span>
+      </a>
+      <a href="https://www.penoplex.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#e03030; letter-spacing:0.5px;">PENOPLEX</span>
+      </a>
+      <a href="https://pshb.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#1a3a8a; letter-spacing:1px;">ПШБ</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ BLOCK 3: БЛАГОДАРСТВЕННЫЕ ПИСЬМА ═══ -->
+<section class="letters-section">
+  <div class="container">
+    <h2 class="section-title reveal">Благодарственные письма</h2>
+    <p class="section-sub reveal d2">Официальные благодарности от компаний, которые используют BRaiN HR. Нажмите на письмо для увеличения.</p>
+
+    <div class="letters-grid">
+      <!-- Письмо 1 -->
+      <div class="letter-card reveal" onclick="openLetter(this)">
+        <div class="letter-thumb">
+          <div class="letter-thumb-placeholder">
+            <svg width="48" height="48" stroke="#717680" stroke-width="1.5" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+            <span>Загрузите скан письма</span>
+          </div>
+          <div class="letter-zoom">
+            <svg width="16" height="16" stroke="#11263A" stroke-width="2" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="letter-info">
+          <div class="letter-company">ТехноСофт</div>
+          <div class="letter-desc">Благодарность за автоматизацию процесса рекрутинга</div>
+        </div>
+      </div>
+
+      <!-- Письмо 2 -->
+      <div class="letter-card reveal d1" onclick="openLetter(this)">
+        <div class="letter-thumb">
+          <div class="letter-thumb-placeholder">
+            <svg width="48" height="48" stroke="#717680" stroke-width="1.5" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+            <span>Загрузите скан письма</span>
+          </div>
+          <div class="letter-zoom">
+            <svg width="16" height="16" stroke="#11263A" stroke-width="2" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="letter-info">
+          <div class="letter-company">МаркетПлюс</div>
+          <div class="letter-desc">Благодарность за сокращение сроков массового найма</div>
+        </div>
+      </div>
+
+      <!-- Письмо 3 -->
+      <div class="letter-card reveal d2" onclick="openLetter(this)">
+        <div class="letter-thumb">
+          <div class="letter-thumb-placeholder">
+            <svg width="48" height="48" stroke="#717680" stroke-width="1.5" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+            <span>Загрузите скан письма</span>
+          </div>
+          <div class="letter-zoom">
+            <svg width="16" height="16" stroke="#11263A" stroke-width="2" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="letter-info">
+          <div class="letter-company">ФинТех Групп</div>
+          <div class="letter-desc">Благодарность за внедрение ИИ-оценки персонала</div>
+        </div>
+      </div>
+
+      <!-- Письмо 4 -->
+      <div class="letter-card reveal d3" onclick="openLetter(this)">
+        <div class="letter-thumb">
+          <div class="letter-thumb-placeholder">
+            <svg width="48" height="48" stroke="#717680" stroke-width="1.5" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg>
+            <span>Загрузите скан письма</span>
+          </div>
+          <div class="letter-zoom">
+            <svg width="16" height="16" stroke="#11263A" stroke-width="2" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          </div>
+        </div>
+        <div class="letter-info">
+          <div class="letter-company">DataFlow</div>
+          <div class="letter-desc">Благодарность за повышение эффективности HR-отдела</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="letterLightbox" onclick="closeLetter(event)">
+  <button class="lightbox-close" onclick="closeLetter(event)">&times;</button>
+  <img id="lightboxImg" src="" alt="Благодарственное письмо">
+</div>
+
+
+<!-- ═══ BLOCK 4: REVIEWS GRID WITH FILTERS ═══ -->
+<section class="section-bg" style="padding:80px 0;">
+  <div class="container">
+    <h2 class="section-title reveal">Все отзывы</h2>
+
+    <div class="filter-wrap reveal d1">
+      <button class="filter-pill active" onclick="filterReviews('all', this)">Все</button>
+      <button class="filter-pill" onclick="filterReviews('recruiting', this)">Рекрутинг</button>
+      <button class="filter-pill" onclick="filterReviews('screening', this)">Скрининг резюме</button>
+      <button class="filter-pill" onclick="filterReviews('automation', this)">Автоматизация</button>
+    </div>
+
+    <div class="reviews-grid" id="reviewsGrid">
+
+      <!-- 1. Дмитрий Перминов — Рекрутинг -->
+      <div class="review-card reveal" data-category="recruiting">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+        </div>
+        <p class="review-text">BRAiN HR полностью изменил наш подход к найму. Раньше на обработку откликов уходило до 3 дней, теперь ИИ делает первичный отбор за пару часов. Мы закрываем вакансии на 40% быстрее, и это реально ощутимый результат для бизнеса!</p>
+        <div class="review-result">Закрываем вакансии на 40% быстрее</div>
+        <div class="review-author">
+          <div class="review-avatar avatar-blue">ДП</div>
+          <div>
+            <div class="review-author-name">Дмитрий Перминов</div>
+            <div class="review-author-title">HR-директор, сеть фитнес-клубов</div>
+          </div>
+        </div>
+        <span class="review-category-pill">Рекрутинг</span>
+      </div>
+
+      <!-- 2. Игорь Петренко — Скрининг резюме -->
+      <div class="review-card reveal d1" data-category="screening">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+        </div>
+        <p class="review-text">Скептически относился к автоматизации рекрутинга, но BRAiN HR приятно удивил. Система не просто фильтрует резюме по ключевым словам, а реально понимает контекст. Качество кандидатов на собеседованиях выросло заметно.</p>
+        <div class="review-result">Качество кандидатов выросло на 35%</div>
+        <div class="review-author">
+          <div class="review-avatar avatar-orange">ИП</div>
+          <div>
+            <div class="review-author-name">Игорь Петренко</div>
+            <div class="review-author-title">Руководитель отдела подбора персонала, ритейл</div>
+          </div>
+        </div>
+        <span class="review-category-pill" style="background:var(--brand2-bg); color:var(--brand2);">Скрининг резюме</span>
+      </div>
+
+      <!-- 3. Анна Григорьева — Рекрутинг -->
+      <div class="review-card reveal d2" data-category="recruiting">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+        </div>
+        <p class="review-text">Внедрили BRAiN HR три месяца назад для массового подбора. Автоматизация рекрутинга сэкономила нам невероятное количество времени! Теперь я могу сосредоточиться на собеседованиях, а не на рутинной сортировке сотен резюме.</p>
+        <div class="review-result">Снизили время отбора на 60%</div>
+        <div class="review-author">
+          <div class="review-avatar avatar-teal">АГ</div>
+          <div>
+            <div class="review-author-name">Анна Григорьева</div>
+            <div class="review-author-title">HR-менеджер, производственная компания</div>
+          </div>
+        </div>
+        <span class="review-category-pill">Рекрутинг</span>
+      </div>
+
+      <!-- 4. Дмитрий Волков — Автоматизация -->
+      <div class="review-card reveal" data-category="automation">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+        </div>
+        <p class="review-text">Для небольшой команды BRAiN HR — просто находка. Не нужно нанимать целый HR-отдел на этапе роста. ИИ помогает находить сильных кандидатов быстро, и мы не упускаем таланты из-за медленного отклика.</p>
+        <div class="review-result">Сократили расходы на рекрутинг на 45%</div>
+        <div class="review-author">
+          <div class="review-avatar avatar-blue">ДВ</div>
+          <div>
+            <div class="review-author-name">Дмитрий Волков</div>
+            <div class="review-author-title">Основатель стартапа</div>
+          </div>
+        </div>
+        <span class="review-category-pill" style="background:rgba(18,83,109,0.1); color:var(--brand3);">Автоматизация</span>
+      </div>
+
+      <!-- 5. Ольга Кузнецова — Автоматизация -->
+      <div class="review-card reveal d1" data-category="automation">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+        </div>
+        <p class="review-text">Работаю с несколькими проектами одновременно, и BRAiN HR стал моим спасением. Автоматизация рекрутинга позволяет вести 5-6 вакансий параллельно без потери качества. Клиенты довольны скоростью закрытия позиций!</p>
+        <div class="review-result">Увеличили количество проектов на 70%</div>
+        <div class="review-author">
+          <div class="review-avatar avatar-orange">ОК</div>
+          <div>
+            <div class="review-author-name">Ольга Кузнецова</div>
+            <div class="review-author-title">Рекрутер, аутсорсинговое агентство</div>
+          </div>
+        </div>
+        <span class="review-category-pill" style="background:rgba(18,83,109,0.1); color:var(--brand3);">Автоматизация</span>
+      </div>
+
+      <!-- 6. Сергей Новиков — Скрининг резюме -->
+      <div class="review-card reveal d2" data-category="screening">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+        </div>
+        <p class="review-text">BRAiN HR отлично справляется с первичным скринингом. ИИ учитывает не только hard skills, но и соответствие корпоративной культуре. Процент успешного прохождения испытательного срока вырос на 25% после внедрения.</p>
+        <div class="review-result">Испытательный срок проходят на 25% чаще</div>
+        <div class="review-author">
+          <div class="review-avatar avatar-teal">СН</div>
+          <div>
+            <div class="review-author-name">Сергей Новиков</div>
+            <div class="review-author-title">HR BP, финансовый сектор</div>
+          </div>
+        </div>
+        <span class="review-category-pill" style="background:var(--brand2-bg); color:var(--brand2);">Скрининг резюме</span>
+      </div>
+
+      <!-- 7. Екатерина Белова — Рекрутинг -->
+      <div class="review-card reveal" data-category="recruiting">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+        </div>
+        <p class="review-text">Самое ценное в BRAiN HR — это экономия ресурсов. Мы сократили время на рекрутинг с 45 до 28 дней в среднем. Автоматизация взяла на себя всю рутину, и теперь команда фокусируется на стратегических задачах.</p>
+        <div class="review-result">Время найма сократилось до 28 дней</div>
+        <div class="review-author">
+          <div class="review-avatar avatar-blue">ЕБ</div>
+          <div>
+            <div class="review-author-name">Екатерина Белова</div>
+            <div class="review-author-title">Менеджер по персоналу, логистика</div>
+          </div>
+        </div>
+        <span class="review-category-pill">Рекрутинг</span>
+      </div>
+
+      <!-- 8. Алексей Морозов — Скрининг резюме -->
+      <div class="review-card reveal d1" data-category="screening">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+        </div>
+        <p class="review-text">Используем BRAiN HR для автоматизации массового найма в сезон. ИИ обрабатывает до 300 откликов в день и формирует shortlist из действительно релевантных кандидатов. Это масштабируемое решение, которое растёт вместе с бизнесом.</p>
+        <div class="review-result">Обрабатываем до 300 откликов в день</div>
+        <div class="review-author">
+          <div class="review-avatar avatar-orange">АМ</div>
+          <div>
+            <div class="review-author-name">Алексей Морозов</div>
+            <div class="review-author-title">Head of Talent Acquisition, e-commerce</div>
+          </div>
+        </div>
+        <span class="review-category-pill" style="background:var(--brand2-bg); color:var(--brand2);">Скрининг резюме</span>
+      </div>
+
+      <!-- 9. Виктория Лебедева — Автоматизация -->
+      <div class="review-card reveal d2" data-category="automation">
+        <div class="review-stars">
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+          <svg viewBox="0 0 24 24" fill="#FF7401" stroke="none"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26"/></svg>
+        </div>
+        <p class="review-text">Рекомендую BRAiN HR всем своим клиентам. Автоматизация рекрутинга здесь реализована очень грамотно — система обучается на ваших данных и становится точнее со временем. Интеграция с ATS прошла гладко, техподдержка на высоте.</p>
+        <div class="review-result">Точность подбора повысилась на 50%</div>
+        <div class="review-author">
+          <div class="review-avatar avatar-teal">ВЛ</div>
+          <div>
+            <div class="review-author-name">Виктория Лебедева</div>
+            <div class="review-author-title">Директор по развитию, девелоперская компания</div>
+          </div>
+        </div>
+        <span class="review-category-pill" style="background:rgba(18,83,109,0.1); color:var(--brand3);">Автоматизация</span>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ BLOCK 6: CTA ═══ -->
+<section class="cta-reviews">
+  <div class="container">
+    <h2 class="reveal">Присоединяйтесь к 150+ компаниям</h2>
+    <p class="reveal d1">Начните нанимать быстрее и дешевле уже сегодня. Первые 100 кандидатов — бесплатно.</p>
+    <div class="cta-btns reveal d2">
+      <a href="https://brainhire.ru/signup" class="btn-hero-primary">100 кандидатов бесплатно</a>
+      <a href="https://brainhire.ru/demo" class="btn-hero-outline">Получить демо</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ BLOCK 7: FAQ ═══ -->
+<section class="section-bg" style="padding:80px 0;">
+  <div class="container">
+    <div class="faq-two-col">
+      <div class="faq-left reveal">
+        <h2>Частые <em>вопросы</em></h2>
+        <p>Не нашли ответ? Напишите нам на info@brainhire.ru — мы ответим в течение 24 часов.</p>
+      </div>
+      <div class="faq-right reveal d1">
+        <div class="faq-item-v2">
+          <button class="faq-q-v2" onclick="toggleFaqV2(this)">
+            Как оставить отзыв?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"/></svg>
+          </button>
+          <div class="faq-a-v2">
+            <div class="faq-a-v2-inner">Если вы клиент BRaiN HR, свяжитесь с вашим менеджером или напишите на info@brainhire.ru. Мы будем рады вашей обратной связи.</div>
+          </div>
+        </div>
+        <div class="faq-item-v2">
+          <button class="faq-q-v2" onclick="toggleFaqV2(this)">
+            Отзывы настоящие?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"/></svg>
+          </button>
+          <div class="faq-a-v2">
+            <div class="faq-a-v2-inner">Да, все отзывы получены от реальных клиентов. Мы можем предоставить контакты для верификации по запросу.</div>
+          </div>
+        </div>
+        <div class="faq-item-v2">
+          <button class="faq-q-v2" onclick="toggleFaqV2(this)">
+            Есть ли пробный период?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"/></svg>
+          </button>
+          <div class="faq-a-v2">
+            <div class="faq-a-v2-inner">Да, первые 100 кандидатов обрабатываются бесплатно. Этого достаточно для оценки платформы.</div>
+          </div>
+        </div>
+        <div class="faq-item-v2">
+          <button class="faq-q-v2" onclick="toggleFaqV2(this)">
+            Можно ли посмотреть демо?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"/></svg>
+          </button>
+          <div class="faq-a-v2">
+            <div class="faq-a-v2-inner">Конечно. Оставьте заявку, и наш менеджер проведёт персональную демонстрацию платформы.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer-new">
+  <div class="footer-new-inner">
+    <div class="footer-new-top">
+      <div class="footer-new-col footer-new-col-brand">
+        <a href="https://brainhire.ru/" class="footer-new-logo">
+          <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+        </a>
+        <p class="footer-new-desc">ИИ-платформа для автоматизации рекрутинга и оценки персонала. Нанимайте в 5 раз дешевле и быстрее.</p>
+        <div class="footer-new-socials">
+          <a href="https://vk.com/brain_hr" target="_blank" class="footer-social-btn" title="ВКонтакте">В</a>
+          <a href="https://t.me/BRaiN_HR" target="_blank" class="footer-social-btn" title="Telegram">Т</a>
+          <a href="https://www.instagram.com/brain_hire/" target="_blank" class="footer-social-btn" title="Instagram">I</a>
+          <a href="https://www.linkedin.com/company/105875559/" target="_blank" class="footer-social-btn" title="LinkedIn">in</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Отраслевые решения</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/solutions/it" class="footer-new-link">Автоматизация HR в IT</a>
+          <a href="https://brainhire.ru/solutions/finance" class="footer-new-link">Автоматизация HR в финансовом секторе</a>
+          <a href="https://brainhire.ru/solutions/marketplaces" class="footer-new-link">Автоматизация HR для маркетплейсов</a>
+          <a href="https://brainhire.ru/solutions/smb" class="footer-new-link">Автоматизация HR для малого бизнеса</a>
+          <a href="https://brainhire.ru/solutions/enterprise" class="footer-new-link">Автоматизация HR для корпораций</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Функции</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/recruiting" class="footer-new-link">Рекрутинг</a>
+          <a href="https://brainhire.ru/ai-vacancy-creation" class="footer-new-link">ИИ-создание вакансий</a>
+          <a href="https://brainhire.ru/ai-resume-analysis" class="footer-new-link">ИИ-анализ резюме</a>
+          <a href="https://brainhire.ru/ai-videointerview" class="footer-new-link">ИИ-видеоинтервью</a>
+          <a href="https://brainhire.ru/ai-staff-scoring" class="footer-new-link">ИИ-оценка кандидатов</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Компания</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/about" class="footer-new-link">О нас</a>
+          <a href="https://brainhire.ru/contacts" class="footer-new-link">Контакты</a>
+          <a href="https://brainhire.ru/tariffs" class="footer-new-link">Тарифы</a>
+          <a href="https://brainhire.ru/reviews" class="footer-new-link">Отзывы</a>
+          <a href="https://brainhire.ru/case" class="footer-new-link">Кейсы</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">СМИ о нас</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">Блог</a>
+          <a href="https://brainhire.ru/partner" class="footer-new-link">Партнёрская программа</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Контакты</div>
+        <div class="footer-new-contact-block">
+          <a href="tel:+74959703976" class="footer-new-phone">+7 (495) 970-39-76</a>
+          <span class="footer-new-contact-sub">Служба поддержки</span>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Электронная почта:</span>
+          <a href="mailto:info@brainhire.ru" class="footer-new-email">info@brainhire.ru</a>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Адрес:</span>
+          <span class="footer-new-address">142005 Московская область, г. Домодедово, мкр. Центральный, ул. Кирова, д. 7, к.1, пом. 0011, офис 5</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-new-bottom">
+      <div class="footer-new-bottom-top">
+        <span class="footer-new-copy">&copy; ООО &laquo;НДК&raquo;, ОГРН 1225000105010. Все права защищены.</span>
+        <div class="footer-new-legal">
+          <a href="https://brainhire.ru/docs/privacy-policy" class="footer-new-legal-link">Политика конфиденциальности</a>
+          <a href="https://brainhire.ru/docs/user-agreement" class="footer-new-legal-link">Пользовательское соглашение</a>
+          <a href="https://brainhire.ru/docs/personal-data-consent" class="footer-new-legal-link">Обработка данных</a>
+        </div>
+      </div>
+      <div class="footer-new-bottom-docs">
+        <a href="https://brainhire.ru/docs/user-instructions" class="footer-new-legal-link">Инструкция по установке и эксплуатации ПО</a>
+        <a href="https://brainhire.ru/docs/product-description" class="footer-new-legal-link">Описание функциональных характеристик ПО</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- ═══ /FOOTER ═══ -->
+
+<script src="../shared/scripts.js"></script>
+<script>
+// Filter reviews by category
+function filterReviews(category, btn) {
+  // Update active pill
+  document.querySelectorAll('.filter-pill').forEach(function(pill) {
+    pill.classList.remove('active');
+  });
+  btn.classList.add('active');
+
+  // Filter cards
+  var cards = document.querySelectorAll('.review-card');
+  cards.forEach(function(card) {
+    if (category === 'all' || card.getAttribute('data-category') === category) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+// FAQ accordion (v2 style, same as pricing page)
+function toggleFaqV2(btn) {
+  var item = btn.closest('.faq-item-v2');
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item-v2').forEach(function(el) { el.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
+// Lightbox for letters
+function openLetter(card) {
+  var img = card.querySelector('.letter-thumb img');
+  if (!img) return; // no image loaded yet (placeholder)
+  var lightbox = document.getElementById('letterLightbox');
+  document.getElementById('lightboxImg').src = img.src;
+  lightbox.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+function closeLetter(e) {
+  if (e.target.classList.contains('lightbox') || e.target.classList.contains('lightbox-close') || e.target.closest('.lightbox-close')) {
+    document.getElementById('letterLightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+}
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') {
+    document.getElementById('letterLightbox').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+});
+</script>
+<!-- STICKY SIDEBAR -->
+<div class="sticky-sidebar">
+  <a href="#form" class="sticky-btn sticky-btn-primary" title="Запросить демо">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2z" stroke="currentColor" stroke-width="1.8"/><path d="M12 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Запросить демо</span>
+  </a>
+  <a href="calculator.html" class="sticky-btn sticky-btn-accent" title="Калькулятор экономии">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="10" x2="10" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="14" x2="10" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="14" x2="16" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="18" x2="10" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="18" x2="16" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Калькулятор экономии</span>
+  </a>
+  <a href="tel:+74958591070" class="sticky-btn sticky-btn-secondary" title="+7 (495) 859-10-70">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">+7 (495) 859-10-70</span>
+  </a>
+  <a href="mailto:info@brainhire.ru" class="sticky-btn sticky-btn-secondary" title="info@brainhire.ru">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">info@brainhire.ru</span>
+  </a>
+</div>
+
+<!-- FLOAT VIDEO WIDGET -->
+<div class="float-video-widget" id="floatWidget">
+  <div class="float-video-close" onclick="closeFloatWidget()" title="Закрыть">✕</div>
+  <div class="float-video-wrap" id="floatVideoWrap" onclick="openFloatFullscreen()">
+    <div class="float-video-poster" id="floatPoster">
+      <img src="https://brainhire.ru/images/videoPreview.avif" onerror="this.style.display='none'; document.getElementById('floatPosterFallback').style.display='flex';" alt="Demo">
+      <div class="float-poster-fallback" id="floatPosterFallback">
+        <svg width="40" height="40" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+        <span style="font-size:11px;font-weight:700;color:#fff;">BRaiN HR</span>
+      </div>
+    </div>
+    <video id="floatVideo" muted loop playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+    <div class="float-video-overlay">
+      <div class="float-video-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="white"/></svg></div>
+      <div class="float-video-label">Смотреть демо</div>
+    </div>
+  </div>
+</div>
+<div class="float-modal" id="floatModal" onclick="closeFloatModal()">
+  <div class="float-modal-inner" onclick="event.stopPropagation()">
+    <button class="float-modal-close" onclick="closeFloatModal()">✕</button>
+    <video id="floatModalVideo" controls playsinline preload="none" style="width:100%;border-radius:12px;display:block;max-height:80vh;background:#000;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+</body>
+</html>

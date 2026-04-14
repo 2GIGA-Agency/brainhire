@@ -1,0 +1,14 @@
+// components/Profile/components/IntegrationsBlock/style.module.scss
+.integration {
+	display: flex;
+	gap: 24px;
+}
+
+@media (max-width: 550px) {
+	.integration {
+		flex-direction: column;
+		gap: 12px;
+		justify-content: center;
+		align-items: center;
+	}
+}

@@ -1,0 +1,62 @@
+{
+    "employment": [
+        {
+            "id": "full",
+            "name": "Полная занятость"
+        },
+        {
+            "id": "part",
+            "name": "Частичная занятость"
+        },
+        {
+            "id": "project",
+            "name": "Проектная работа"
+        }
+    ],
+    "experience": [
+        {
+            "id": "noExperience",
+            "name": "Нет опыта"
+        },
+        {
+            "id": "between1And3",
+            "name": "От 1 года до 3 лет"
+        },
+        {
+            "id": "between3And6",
+            "name": "От 3 до 6 лет"
+        },
+        {
+            "id": "moreThan6",
+            "name": "Более 6 лет"
+        }
+    ],
+    "level_candidate": [
+        {
+            "id": "Junior",
+            "name": "Младший специалист"
+        },
+        {
+            "id": "Middle",
+            "name": "Специалист"
+        },
+        {
+            "id": "Senior",
+            "name": "Старший специалист"
+        },
+        {
+            "id": "Team Leader",
+            "name": "Управляющий отдела"
+        }
+    ],
+    "gross": [
+        {
+            "id": "false",
+            "name": "На руки"
+        },
+        {
+            "id": "true",
+            "name": "До вычета налогов"
+        }
+    ]
+}

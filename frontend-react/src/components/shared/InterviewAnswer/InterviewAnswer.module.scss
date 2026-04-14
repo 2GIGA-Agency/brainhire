@@ -1,0 +1,49 @@
+.answer {
+    display: grid;
+    column-gap: 24px;
+    grid-template-columns: 5fr 3fr;
+    grid-template-rows: auto 1fr;
+
+    .questionText {
+        grid-column: 1/2;
+        font-size: 14px;
+        line-height: 20px;
+        font-weight: 500;
+        color: #27272a;
+    }
+
+    &Text {
+        grid-column: 1/2;
+        grid-row: 2/3;
+        color: #71717a;
+        margin-top: 16px;
+        font-size: 14px;
+        line-height: 18px;
+        font-weight: 500;
+    }
+
+    .video {
+        grid-row: 1/3;
+    }
+}
+
+@media (max-width: 880px) {
+    .answer {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+
+
+        .questionText,
+        .answerText {
+            grid-column: 1;
+            grid-row: auto;
+        }
+
+        .video {
+            grid-row: 2 / 3;
+        }
+    }
+
+
+}

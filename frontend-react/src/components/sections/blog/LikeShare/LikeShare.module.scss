@@ -1,0 +1,36 @@
+@import "@/styles/abstracts/variables";
+
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 15px;
+  width: 100%;
+  padding: 16px 0;
+}
+
+.likeButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.share {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    transition: transform 0.2s ease-in-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}

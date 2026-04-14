@@ -1,0 +1,27 @@
+.px {
+	padding-left: 24px;
+	padding-right: 24px;
+}
+
+@media (max-width: 1600px) {
+	.limits {
+		flex-grow: 1;
+	}
+}
+
+@media (max-width: 899px) {
+	.limits {
+		width: 100%;
+	}
+}
+
+@media (max-width: 620px) {
+	.limits {
+		min-width: 100%;
+	}
+
+	.limitButton {
+		width: calc(100% - 48px);
+		white-space: normal;
+	}
+}

@@ -1,0 +1,102 @@
+@import '@/styles/abstracts/variables';
+
+// Новый корневой класс
+.featureSection {
+	background-color: $grey-50;
+	padding: 80px 0;
+	width: 100%;
+}
+
+// Общие классы можно не менять, но для BEM-консистентности лучше переименовать
+// все, что относится к этому компоненту.
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 20px;
+	text-align: center;
+}
+
+.sectionTitle {
+	margin-bottom: 16px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.sectionSubtitle {
+	margin-bottom: 48px;
+}
+
+// Новый класс для сетки
+.featureGrid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 32px;
+
+	@media (max-width: 992px) {
+		grid-template-columns: repeat(2, 1fr);
+	}
+
+	@media (max-width: 768px) {
+		grid-template-columns: 1fr;
+	}
+}
+
+// Новый класс для карточки
+.featureCard {
+	background-color: $white;
+	border-radius: 12px;
+	padding: 32px;
+	text-align: left;
+	box-shadow: 0 4px 15px rgba(29, 29, 29, 0.05);
+	transition:
+		transform 0.3s ease,
+		box-shadow 0.3s ease;
+
+	&:hover {
+		transform: translateY(-8px);
+		box-shadow: 0 10px 25px rgba(29, 29, 29, 0.1);
+	}
+}
+
+.cardIcon {
+	width: 56px;
+	height: 56px;
+	margin-bottom: 24px;
+	border-radius: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: linear-gradient(45deg, $brand-primary-light, $brand-primary);
+
+	svg {
+		width: 28px;
+		height: 28px;
+		path {
+			stroke: $white;
+		}
+	}
+}
+
+.cardTitle {
+	margin-bottom: 8px;
+}
+
+.ctaButton {
+	display: inline-block;
+	margin-top: 64px;
+	padding: 14px 32px;
+	border: none;
+	border-radius: 50px;
+	cursor: pointer;
+	text-decoration: none;
+	background: linear-gradient(45deg, $brand-primary-light, $brand-primary);
+	box-shadow: 0 4px 12px rgba($brand-primary, 0.3);
+	transition:
+		transform 0.2s ease,
+		box-shadow 0.2s ease;
+
+	&:hover {
+		transform: scale(1.05);
+		box-shadow: 0 6px 16px rgba($brand-primary, 0.4);
+	}
+}

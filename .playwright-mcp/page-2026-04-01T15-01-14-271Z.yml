@@ -1,0 +1,1833 @@
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "Хантфлоу" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "Хантфлоу" [ref=e6]
+      - navigation [ref=e12]:
+        - list [ref=e13]:
+          - listitem [ref=e14]:
+            - button "Оставить заявку на демо" [ref=e15] [cursor=pointer]
+          - listitem [ref=e16]:
+            - link "Войти" [ref=e17] [cursor=pointer]:
+              - /url: /login
+        - button "Меню" [ref=e18] [cursor=pointer]:
+          - img [ref=e19]
+  - main [ref=e24]:
+    - generic [ref=e27]:
+      - generic [ref=e28]:
+        - heading "Тарифы Хантфлоу" [level=1] [ref=e29]
+        - generic [ref=e30]:
+          - radio "РУБ" [checked] [ref=e31]
+          - generic [ref=e32] [cursor=pointer]: РУБ
+          - radio "USD" [ref=e33]
+          - generic [ref=e34] [cursor=pointer]: USD
+          - radio "EUR" [ref=e35]
+          - generic [ref=e36] [cursor=pointer]: EUR
+      - list [ref=e40]:
+        - listitem [ref=e41]:
+          - article [ref=e42]:
+            - generic [ref=e43]:
+              - generic [ref=e44]:
+                - heading "Тариф Профессиональный" [level=2] [ref=e45]
+                - paragraph [ref=e47]: Передовые инструменты для автоматизации рутины, работы с заказчиками и аналитики подбора
+              - generic [ref=e48]:
+                - paragraph [ref=e49]:
+                  - generic [ref=e52]: 6 250 руб
+                  - generic [ref=e53]:
+                    - text: В месяц за одного рекрутера,
+                    - text: оплата за год
+                - button "Оставить заявку" [ref=e54] [cursor=pointer]
+        - listitem [ref=e55]:
+          - article [ref=e56]:
+            - text: Выбор 500+ компаний!
+            - generic [ref=e57]:
+              - generic [ref=e58]:
+                - heading "Тариф Максимальный" [level=2] [ref=e59]
+                - paragraph [ref=e61]: Все возможности автоматизации для ускорения закрытия вакансий и решения любых задач рекрутмента
+              - generic [ref=e62]:
+                - paragraph [ref=e63]:
+                  - generic [ref=e66]: 8 250 руб
+                  - generic [ref=e67]:
+                    - text: В месяц за одного рекрутера,
+                    - text: оплата за год
+                - button "Оставить заявку" [ref=e68] [cursor=pointer]
+        - listitem [ref=e69]:
+          - article [ref=e70]:
+            - generic [ref=e71]:
+              - generic [ref=e72]:
+                - heading "Тариф Премьер" [level=2] [ref=e73]
+                - paragraph [ref=e75]: Готовое решение для трансформации, систематизации и масштабирования рекрутмента в крупных компаниях
+              - generic [ref=e76]:
+                - paragraph [ref=e77]:
+                  - generic [ref=e78]: Индивидуальный расчет
+                - button "Оставить заявку" [ref=e79] [cursor=pointer]
+    - generic [ref=e81]:
+      - heading "Нам доверяют 2500+ компаний" [level=2] [ref=e82]
+      - generic [ref=e84]:
+        - generic [ref=e85]:
+          - generic:
+            - img "splat"
+          - generic:
+            - img "simple"
+          - generic:
+            - img "ekoniva"
+          - generic:
+            - img "avito"
+        - generic [ref=e86]:
+          - generic:
+            - img "skyeng"
+          - generic:
+            - img "cian"
+          - generic:
+            - img "ar"
+          - generic:
+            - img "innova"
+        - generic [ref=e87]:
+          - generic:
+            - img "megafon"
+          - generic:
+            - img "luchi"
+          - generic:
+            - img "segmento"
+          - generic:
+            - img "krok"
+        - generic [ref=e88]:
+          - generic:
+            - img "cdek"
+          - generic:
+            - img "pik"
+          - generic:
+            - img "alfa_leasing"
+          - generic:
+            - img "lanit"
+    - generic [ref=e89]:
+      - generic [ref=e91]:
+        - heading "Подробнее о тарифах" [level=2] [ref=e92]
+        - generic [ref=e93]:
+          - radio "Профессиональный" [checked] [ref=e94]
+          - generic [ref=e95] [cursor=pointer]: Профессиональный
+          - radio "Максимальный" [ref=e96]
+          - generic [ref=e97] [cursor=pointer]: Максимальный
+          - radio "Премьер" [ref=e98]
+          - generic [ref=e99] [cursor=pointer]: Премьер
+      - generic [ref=e104]:
+        - article [ref=e107]:
+          - generic [ref=e108]:
+            - heading "Весь набор инструментов для спасения от ежедневной рутины" [level=2] [ref=e109]
+            - button "Оставить заявку" [ref=e110] [cursor=pointer]
+          - img "Иллюстрация 1" [ref=e112]
+        - article [ref=e114]:
+          - generic [ref=e115]:
+            - heading "Полный контроль подбора с глубокими отчетами и детализацией по кандидатам" [level=2] [ref=e116]
+            - button "Оставить заявку" [ref=e117] [cursor=pointer]
+          - img "Иллюстрация 2" [ref=e119]
+        - article [ref=e121]:
+          - generic [ref=e122]:
+            - heading "Отдельные воронки для каждой категории вакансий" [level=2] [ref=e123]
+            - button "Оставить заявку" [ref=e124] [cursor=pointer]
+          - img "Иллюстрация 3" [ref=e126]
+        - article [ref=e128]:
+          - generic [ref=e129]:
+            - 'heading "Без ограничений: рабочие места для заказчиков бесплатно" [level=2] [ref=e130]'
+            - button "Оставить заявку" [ref=e131] [cursor=pointer]
+          - img "Иллюстрация 4" [ref=e133]
+        - article [ref=e135]:
+          - generic [ref=e136]:
+            - 'heading "Без ограничений: количество резюме в вашей базе" [level=2] [ref=e137]'
+            - button "Оставить заявку" [ref=e138] [cursor=pointer]
+          - img "Иллюстрация 5" [ref=e140]
+        - article [ref=e142]:
+          - generic [ref=e143]:
+            - heading "Контроль сроков прохождения кандидатов по воронке" [level=2] [ref=e144]
+            - button "Оставить заявку" [ref=e145] [cursor=pointer]
+          - img "Иллюстрация 6" [ref=e147]
+        - article [ref=e149]:
+          - generic [ref=e150]:
+            - heading "API для любых интеграций с вашими внутренними системами" [level=2] [ref=e151]
+            - button "Оставить заявку" [ref=e152] [cursor=pointer]
+          - img "Иллюстрация 7" [ref=e154]
+        - article [ref=e156]:
+          - generic [ref=e157]:
+            - heading "Темы оформления Хантфлоу под ваш вкус и настроение" [level=2] [ref=e158]
+            - button "Оставить заявку" [ref=e159] [cursor=pointer]
+          - img "Иллюстрация 8" [ref=e161]
+    - generic [ref=e163]:
+      - heading "Во всех тарифах" [level=2] [ref=e164]
+      - generic [ref=e165]:
+        - figure "Количество вакансий без ограничений" [ref=e166] [cursor=pointer]:
+          - generic [ref=e167]: Количество вакансий без ограничений
+        - figure "Объем места для файлов без ограничений" [ref=e168] [cursor=pointer]:
+          - generic [ref=e169]: Объем места для файлов без ограничений
+        - figure "Добавление нанимающих менеджеров бесплатно" [ref=e170] [cursor=pointer]:
+          - generic [ref=e171]: Добавление нанимающих менеджеров бесплатно
+    - generic [ref=e174]:
+      - heading "Открыть сравнительную таблицу тарифов" [level=2] [ref=e175]:
+        - generic [ref=e176] [cursor=pointer]:
+          - generic [ref=e177]:
+            - text: Открыть сравнительную
+            - text: таблицу тарифов
+          - img [ref=e178]
+      - generic:
+        - generic [ref=e181]:
+          - radio "Все возможности" [checked] [ref=e182]
+          - generic [ref=e184] [cursor=pointer]: Все возможности
+          - radio "Только отличия" [ref=e185]
+          - generic [ref=e187] [cursor=pointer]: Только отличия
+        - article [ref=e189]:
+          - table [ref=e191]:
+            - row "Профессиональный Максимальный Премьер" [ref=e192]:
+              - cell "Профессиональный" [ref=e193]
+              - cell "Максимальный" [ref=e194]
+              - cell "Премьер" [ref=e195]
+          - table [ref=e199]:
+            - cell "Стоимость рабочего места рекрутера" [ref=e200]
+            - row "75 000 руб/год 99 000 руб/год Заявка в отдел продаж" [ref=e201]:
+              - cell "75 000 руб/год" [ref=e202]:
+                - generic [ref=e205]: 75 000 руб/год
+              - cell "99 000 руб/год" [ref=e206]:
+                - generic [ref=e209]: 99 000 руб/год
+              - cell "Заявка в отдел продаж" [ref=e210]:
+                - button "Заявка в отдел продаж" [ref=e212] [cursor=pointer]:
+                  - text: Заявка в отдел
+                  - text: продаж
+          - table [ref=e214]:
+            - row "Лимит на приобретение рабочих мест рекрутеров До 20 рабочих мест До 20 рабочих мест Без ограничений" [ref=e215]:
+              - cell "Лимит на приобретение рабочих мест рекрутеров" [ref=e216]
+              - cell "До 20 рабочих мест" [ref=e217]
+              - cell "До 20 рабочих мест" [ref=e218]
+              - cell "Без ограничений" [ref=e219]
+          - table [ref=e221]:
+            - row "Искусственный интеллект Хантфлоу AI Без ограничений Без ограничений Без ограничений" [ref=e222]:
+              - cell "Искусственный интеллект Хантфлоу AI" [ref=e223]: Искусственный интеллект Хантфлоу AI
+              - cell "Без ограничений" [ref=e224]
+              - cell "Без ограничений" [ref=e225]
+              - cell "Без ограничений" [ref=e226]
+          - generic [ref=e227]:
+            - heading "Работа с резюме" [level=3] [ref=e228]
+            - table [ref=e229]:
+              - row "Лимит количества кандидатов в базе Подсказка Без ограничений Без ограничений Без ограничений" [ref=e230]:
+                - cell "Лимит количества кандидатов в базе Подсказка" [ref=e231]:
+                  - generic [ref=e232]:
+                    - text: Лимит количества кандидатов
+                    - generic [ref=e233]:
+                      - text: в базе
+                      - generic "Подсказка" [ref=e234]:
+                        - img [ref=e236]
+                - cell "Без ограничений" [ref=e240]
+                - cell "Без ограничений" [ref=e241]
+                - cell "Без ограничений" [ref=e242]
+              - row "Бесплатный перенос базы резюме из файла Эксель Подсказка" [ref=e243]:
+                - cell "Бесплатный перенос базы резюме из файла Эксель Подсказка" [ref=e244]:
+                  - generic [ref=e245]:
+                    - text: Бесплатный перенос базы резюме из файла
+                    - generic [ref=e246]:
+                      - text: Эксель
+                      - generic "Подсказка" [ref=e247]:
+                        - img [ref=e249]
+                - cell [ref=e253]:
+                  - img [ref=e255]
+                - cell [ref=e257]:
+                  - img [ref=e259]
+                - cell [ref=e261]:
+                  - img [ref=e263]
+              - row "Сохранение резюме с джоб-сайтов и соцсетей Подсказка" [ref=e265]:
+                - cell "Сохранение резюме с джоб-сайтов и соцсетей Подсказка" [ref=e266]:
+                  - generic [ref=e267]:
+                    - text: Сохранение резюме с джоб-сайтов
+                    - generic [ref=e268]:
+                      - text: и соцсетей
+                      - generic "Подсказка" [ref=e269]:
+                        - img [ref=e271]
+                - cell [ref=e275]:
+                  - img [ref=e277]
+                - cell [ref=e279]:
+                  - img [ref=e281]
+                - cell [ref=e283]:
+                  - img [ref=e285]
+              - row "Распознавание резюме из файлов PDF, DOCX, RTF, TXT Подсказка" [ref=e287]:
+                - cell "Распознавание резюме из файлов PDF, DOCX, RTF, TXT Подсказка" [ref=e288]:
+                  - generic [ref=e289]:
+                    - text: Распознавание резюме из файлов PDF, DOCX, RTF,
+                    - generic [ref=e290]:
+                      - text: TXT
+                      - generic "Подсказка" [ref=e291]:
+                        - img [ref=e293]
+                - cell [ref=e297]:
+                  - img [ref=e299]
+                - cell [ref=e301]:
+                  - img [ref=e303]
+                - cell [ref=e305]:
+                  - img [ref=e307]
+              - row "Импорт резюме из почты Подсказка" [ref=e309]:
+                - cell "Импорт резюме из почты Подсказка" [ref=e310]:
+                  - generic [ref=e311]:
+                    - text: Импорт резюме
+                    - generic [ref=e312]:
+                      - text: из почты
+                      - generic "Подсказка" [ref=e313]:
+                        - img [ref=e315]
+                - cell [ref=e319]:
+                  - img [ref=e321]
+                - cell [ref=e323]:
+                  - img [ref=e325]
+                - cell [ref=e327]:
+                  - img [ref=e329]
+              - row "Определение дубликатов резюме с учетом латиницы Подсказка" [ref=e331]:
+                - cell "Определение дубликатов резюме с учетом латиницы Подсказка" [ref=e332]:
+                  - generic [ref=e333]:
+                    - text: Определение дубликатов резюме с учетом
+                    - generic [ref=e334]:
+                      - text: латиницы
+                      - generic "Подсказка" [ref=e335]:
+                        - img [ref=e337]
+                - cell [ref=e341]:
+                  - img [ref=e343]
+                - cell [ref=e345]:
+                  - img [ref=e347]
+                - cell [ref=e349]:
+                  - img [ref=e351]
+              - row "Отмена объединения резюме Подсказка" [ref=e353]:
+                - cell "Отмена объединения резюме Подсказка" [ref=e354]:
+                  - generic [ref=e355]:
+                    - text: Отмена объединения
+                    - generic [ref=e356]:
+                      - text: резюме
+                      - generic "Подсказка" [ref=e357]:
+                        - img [ref=e359]
+                - cell [ref=e363]:
+                  - img [ref=e365]
+                - cell [ref=e367]:
+                  - img [ref=e369]
+                - cell [ref=e371]:
+                  - img [ref=e373]
+              - row "Метки кандидатов для формирования кадрового резерва Подсказка" [ref=e375]:
+                - cell "Метки кандидатов для формирования кадрового резерва Подсказка" [ref=e376]:
+                  - generic [ref=e377]:
+                    - text: Метки кандидатов для формирования кадрового
+                    - generic [ref=e378]:
+                      - text: резерва
+                      - generic "Подсказка" [ref=e379]:
+                        - img [ref=e381]
+                - cell [ref=e385]:
+                  - img [ref=e387]
+                - cell [ref=e389]:
+                  - img [ref=e391]
+                - cell [ref=e393]:
+                  - img [ref=e395]
+              - row "Инструменты поиска по вашей базе резюме Подсказка" [ref=e397]:
+                - cell "Инструменты поиска по вашей базе резюме Подсказка" [ref=e398]:
+                  - generic [ref=e399]:
+                    - text: Инструменты поиска по вашей базе
+                    - generic [ref=e400]:
+                      - text: резюме
+                      - generic "Подсказка" [ref=e401]:
+                        - img [ref=e403]
+                - cell [ref=e407]:
+                  - img [ref=e409]
+                - cell [ref=e411]:
+                  - img [ref=e413]
+                - cell [ref=e415]:
+                  - img [ref=e417]
+              - row "Булевый поиск (логические операторы) Подсказка" [ref=e419]:
+                - cell "Булевый поиск (логические операторы) Подсказка" [ref=e420]:
+                  - generic [ref=e421]:
+                    - text: Булевый поиск (логические
+                    - generic [ref=e422]:
+                      - text: операторы)
+                      - generic "Подсказка" [ref=e423]:
+                        - img [ref=e425]
+                - cell [ref=e429]:
+                  - img [ref=e431]
+                - cell [ref=e433]:
+                  - img [ref=e435]
+                - cell [ref=e437]:
+                  - img [ref=e439]
+              - row "Интеграция с VCV Подсказка" [ref=e441]:
+                - cell "Интеграция с VCV Подсказка" [ref=e442]:
+                  - generic [ref=e443]:
+                    - text: Интеграция
+                    - generic [ref=e444]:
+                      - text: с VCV
+                      - generic "Подсказка" [ref=e445]:
+                        - img [ref=e447]
+                - cell [ref=e451]:
+                  - img [ref=e453]
+                - cell [ref=e455]:
+                  - img [ref=e457]
+                - cell [ref=e459]:
+                  - img [ref=e461]
+          - generic [ref=e463]:
+            - heading "Работа с вакансиями" [level=3] [ref=e464]
+            - table [ref=e465]:
+              - row "Публикация на джоб-сайтах и сбор откликов Подсказка" [ref=e466]:
+                - cell "Публикация на джоб-сайтах и сбор откликов Подсказка" [ref=e467]:
+                  - generic [ref=e468]:
+                    - text: Публикация на джоб-сайтах и сбор
+                    - generic [ref=e469]:
+                      - text: откликов
+                      - generic "Подсказка" [ref=e470]:
+                        - img [ref=e472]
+                - cell [ref=e476]:
+                  - img [ref=e478]
+                - cell [ref=e480]:
+                  - img [ref=e482]
+                - cell [ref=e484]:
+                  - img [ref=e486]
+              - row "Встроенный карьерный сайт Подсказка Без ограничений Без ограничений Без ограничений" [ref=e488]:
+                - cell "Встроенный карьерный сайт Подсказка" [ref=e489]:
+                  - generic [ref=e490]:
+                    - text: Встроенный карьерный
+                    - generic [ref=e491]:
+                      - text: сайт
+                      - generic "Подсказка" [ref=e492]:
+                        - img [ref=e494]
+                - cell "Без ограничений" [ref=e498]
+                - cell "Без ограничений" [ref=e499]
+                - cell "Без ограничений" [ref=e500]
+              - row "Совместная работа рекрутеров над одной вакансией Подсказка" [ref=e501]:
+                - cell "Совместная работа рекрутеров над одной вакансией Подсказка" [ref=e502]:
+                  - generic [ref=e503]:
+                    - text: Совместная работа рекрутеров над одной
+                    - generic [ref=e504]:
+                      - text: вакансией
+                      - generic "Подсказка" [ref=e505]:
+                        - img [ref=e507]
+                - cell [ref=e511]:
+                  - img [ref=e513]
+                - cell [ref=e515]:
+                  - img [ref=e517]
+                - cell [ref=e519]:
+                  - img [ref=e521]
+              - row "Прикрепление файлов к вакансии Подсказка" [ref=e523]:
+                - cell "Прикрепление файлов к вакансии Подсказка" [ref=e524]:
+                  - generic [ref=e525]:
+                    - text: Прикрепление файлов
+                    - generic [ref=e526]:
+                      - text: к вакансии
+                      - generic "Подсказка" [ref=e527]:
+                        - img [ref=e529]
+                - cell [ref=e533]:
+                  - img [ref=e535]
+                - cell [ref=e537]:
+                  - img [ref=e539]
+                - cell [ref=e541]:
+                  - img [ref=e543]
+              - row "Приостановка (холд) вакансии Подсказка" [ref=e545]:
+                - cell "Приостановка (холд) вакансии Подсказка" [ref=e546]:
+                  - generic [ref=e547]:
+                    - text: Приостановка (холд)
+                    - generic [ref=e548]:
+                      - text: вакансии
+                      - generic "Подсказка" [ref=e549]:
+                        - img [ref=e551]
+                - cell [ref=e555]:
+                  - img [ref=e557]
+                - cell [ref=e559]:
+                  - img [ref=e561]
+                - cell [ref=e563]:
+                  - img [ref=e565]
+              - row "Выгрузка списка кандидатов Подсказка" [ref=e567]:
+                - cell "Выгрузка списка кандидатов Подсказка" [ref=e568]:
+                  - generic [ref=e569]:
+                    - text: Выгрузка списка
+                    - generic [ref=e570]:
+                      - text: кандидатов
+                      - generic "Подсказка" [ref=e571]:
+                        - img [ref=e573]
+                - cell [ref=e577]:
+                  - img [ref=e579]
+                - cell [ref=e581]:
+                  - img [ref=e583]
+                - cell [ref=e585]:
+                  - img [ref=e587]
+              - row "Формы обратной связи по кандидату Подсказка Без ограничений Без ограничений Без ограничений" [ref=e589]:
+                - cell "Формы обратной связи по кандидату Подсказка" [ref=e590]:
+                  - generic [ref=e591]:
+                    - text: Формы обратной связи
+                    - generic [ref=e592]:
+                      - text: по кандидату
+                      - generic "Подсказка" [ref=e593]:
+                        - img [ref=e595]
+                - cell "Без ограничений" [ref=e599]
+                - cell "Без ограничений" [ref=e600]
+                - cell "Без ограничений" [ref=e601]
+              - row "Формирование офферов Подсказка" [ref=e602]:
+                - cell "Формирование офферов Подсказка" [ref=e603]:
+                  - generic [ref=e604]:
+                    - text: Формирование
+                    - generic [ref=e605]:
+                      - text: офферов
+                      - generic "Подсказка" [ref=e606]:
+                        - img [ref=e608]
+                - cell [ref=e612]:
+                  - img [ref=e614]
+                - cell [ref=e616]:
+                  - img [ref=e618]
+                - cell [ref=e620]:
+                  - img [ref=e622]
+              - row "Внедрение шаблона оффера в корпоративном стиле клиента Подсказка" [ref=e624]:
+                - cell "Внедрение шаблона оффера в корпоративном стиле клиента Подсказка" [ref=e625]:
+                  - generic [ref=e626]:
+                    - text: Внедрение шаблона оффера в корпоративном стиле
+                    - generic [ref=e627]:
+                      - text: клиента
+                      - generic "Подсказка" [ref=e628]:
+                        - img [ref=e630]
+                        - img [ref=e635]
+                - cell [ref=e639]:
+                  - img [ref=e641]
+                - cell [ref=e643]:
+                  - img [ref=e645]
+                - cell [ref=e647]:
+                  - img [ref=e649]
+              - row "Вакансии высокого приоритета Подсказка" [ref=e651]:
+                - cell "Вакансии высокого приоритета Подсказка" [ref=e652]:
+                  - generic [ref=e653]:
+                    - text: Вакансии высокого
+                    - generic [ref=e654]:
+                      - text: приоритета
+                      - generic "Подсказка" [ref=e655]:
+                        - img [ref=e657]
+                - cell [ref=e661]:
+                  - img [ref=e663]
+                - cell [ref=e665]:
+                  - img [ref=e667]
+                - cell [ref=e669]:
+                  - img [ref=e671]
+              - row "Приватная вакансия Подсказка" [ref=e673]:
+                - cell "Приватная вакансия Подсказка" [ref=e674]:
+                  - generic [ref=e675]:
+                    - text: Приватная
+                    - generic [ref=e676]:
+                      - text: вакансия
+                      - generic "Подсказка" [ref=e677]:
+                        - img [ref=e679]
+                - cell [ref=e683]:
+                  - img [ref=e685]
+                - cell [ref=e687]:
+                  - img [ref=e689]
+                - cell [ref=e691]:
+                  - img [ref=e693]
+              - row "Дедлайн вакансии Подсказка" [ref=e695]:
+                - cell "Дедлайн вакансии Подсказка" [ref=e696]:
+                  - generic [ref=e697]:
+                    - text: Дедлайн
+                    - generic [ref=e698]:
+                      - text: вакансии
+                      - generic "Подсказка" [ref=e699]:
+                        - img [ref=e701]
+                - cell [ref=e705]:
+                  - img [ref=e707]
+                - cell [ref=e709]:
+                  - img [ref=e711]
+                - cell [ref=e713]:
+                  - img [ref=e715]
+              - row "Автоматический расчет дедлайна вакансии с учетом производственного календаря Подсказка" [ref=e717]:
+                - cell "Автоматический расчет дедлайна вакансии с учетом производственного календаря Подсказка" [ref=e718]:
+                  - generic [ref=e719]:
+                    - text: Автоматический расчет дедлайна вакансии с учетом производственного
+                    - generic [ref=e720]:
+                      - text: календаря
+                      - generic "Подсказка" [ref=e721]:
+                        - img [ref=e723]
+                        - img [ref=e728]
+                - cell [ref=e732]:
+                  - img [ref=e734]
+                - cell [ref=e736]:
+                  - img [ref=e738]
+                - cell [ref=e740]:
+                  - img [ref=e742]
+              - row "Встроенные анкеты кандидатов Подсказка" [ref=e744]:
+                - cell "Встроенные анкеты кандидатов Подсказка" [ref=e745]:
+                  - generic [ref=e746]:
+                    - text: Встроенные анкеты
+                    - generic [ref=e747]:
+                      - text: кандидатов
+                      - generic "Подсказка" [ref=e748]:
+                        - img [ref=e750]
+                - cell [ref=e754]:
+                  - img [ref=e756]
+                - cell [ref=e758]:
+                  - img [ref=e760]
+                - cell [ref=e762]:
+                  - img [ref=e764]
+              - row "Мультивакансия Подсказка" [ref=e766]:
+                - cell "Мультивакансия Подсказка" [ref=e767]:
+                  - generic [ref=e769]:
+                    - text: Мультивакансия
+                    - generic "Подсказка" [ref=e770]:
+                      - img [ref=e772]
+                - cell [ref=e776]:
+                  - img [ref=e778]
+                - cell [ref=e780]:
+                  - img [ref=e782]
+                - cell [ref=e784]:
+                  - img [ref=e786]
+          - generic [ref=e788]:
+            - heading "Работа с заказчиками" [level=3] [ref=e789]
+            - table [ref=e790]:
+              - row "Лимит рабочих мест для заказчиков Подсказка Без ограничений Без ограничений Без ограничений" [ref=e791]:
+                - cell "Лимит рабочих мест для заказчиков Подсказка" [ref=e792]:
+                  - generic [ref=e793]:
+                    - text: Лимит рабочих мест для
+                    - generic [ref=e794]:
+                      - text: заказчиков
+                      - generic "Подсказка" [ref=e795]:
+                        - img [ref=e797]
+                - cell "Без ограничений" [ref=e801]
+                - cell "Без ограничений" [ref=e802]
+                - cell "Без ограничений" [ref=e803]
+              - row "Заявка на подбор и настройка ее полей Подсказка 1 форма заявки Без ограничений Без ограничений" [ref=e804]:
+                - cell "Заявка на подбор и настройка ее полей Подсказка" [ref=e805]:
+                  - generic [ref=e806]:
+                    - text: Заявка на подбор и настройка
+                    - generic [ref=e807]:
+                      - text: ее полей
+                      - generic "Подсказка" [ref=e808]:
+                        - img [ref=e810]
+                - cell "1 форма заявки" [ref=e814]
+                - cell "Без ограничений" [ref=e815]
+                - cell "Без ограничений" [ref=e816]
+              - row "Статистика для заказчика по вакансиям, на которые он назначен Подсказка" [ref=e817]:
+                - cell "Статистика для заказчика по вакансиям, на которые он назначен Подсказка" [ref=e818]:
+                  - generic [ref=e819]:
+                    - text: Статистика для заказчика по вакансиям, на которые
+                    - generic [ref=e820]:
+                      - text: он назначен
+                      - generic "Подсказка" [ref=e821]:
+                        - img [ref=e823]
+                - cell [ref=e827]:
+                  - img [ref=e829]
+                - cell [ref=e831]:
+                  - img [ref=e833]
+                - cell [ref=e835]:
+                  - img [ref=e837]
+              - row "Возможность скрывать зарплату от заказчика Подсказка" [ref=e839]:
+                - cell "Возможность скрывать зарплату от заказчика Подсказка" [ref=e840]:
+                  - generic [ref=e841]:
+                    - text: Возможность скрывать зарплату
+                    - generic [ref=e842]:
+                      - text: от заказчика
+                      - generic "Подсказка" [ref=e843]:
+                        - img [ref=e845]
+                - cell [ref=e849]:
+                  - img [ref=e851]
+                - cell [ref=e853]:
+                  - img [ref=e855]
+                - cell [ref=e857]:
+                  - img [ref=e859]
+              - row "Оценка рекрутмента заказчиками Подсказка" [ref=e861]:
+                - cell "Оценка рекрутмента заказчиками Подсказка" [ref=e862]:
+                  - generic [ref=e863]:
+                    - text: Оценка рекрутмента
+                    - generic [ref=e864]:
+                      - text: заказчиками
+                      - generic "Подсказка" [ref=e865]:
+                        - img [ref=e867]
+                - cell [ref=e871]:
+                  - img [ref=e873]
+                - cell [ref=e875]:
+                  - img [ref=e877]
+                - cell [ref=e879]:
+                  - img [ref=e881]
+              - row "План подбора на основе поступивших заявок Подсказка" [ref=e883]:
+                - cell "План подбора на основе поступивших заявок Подсказка" [ref=e884]:
+                  - generic [ref=e885]:
+                    - text: План подбора на основе поступивших
+                    - generic [ref=e886]:
+                      - text: заявок
+                      - generic "Подсказка" [ref=e887]:
+                        - img [ref=e889]
+                        - img [ref=e894]
+                - cell [ref=e898]:
+                  - img [ref=e900]
+                - cell [ref=e902]:
+                  - img [ref=e904]
+                - cell [ref=e906]:
+                  - img [ref=e908]
+          - generic [ref=e910]:
+            - heading "Инструменты работы с почтой" [level=3] [ref=e911]
+            - table [ref=e912]:
+              - row "Генерация эффективных холодных писем Подсказка 50 в месяц 100 в месяц 150 в месяц" [ref=e913]:
+                - cell "Генерация эффективных холодных писем Подсказка" [ref=e914]:
+                  - generic [ref=e915]:
+                    - text: Генерация эффективных холодных
+                    - generic [ref=e916]:
+                      - text: писем
+                      - generic "Подсказка" [ref=e917]:
+                        - img [ref=e919]
+                        - img [ref=e924]
+                - cell "50 в месяц" [ref=e928]
+                - cell "100 в месяц" [ref=e929]
+                - cell "150 в месяц" [ref=e930]
+              - row "Встроенный почтовый клиент для отправки писем кандидатов через рабочую почту рекрутера Подсказка" [ref=e931]:
+                - cell "Встроенный почтовый клиент для отправки писем кандидатов через рабочую почту рекрутера Подсказка" [ref=e932]:
+                  - generic [ref=e933]:
+                    - text: Встроенный почтовый клиент для отправки писем кандидатов через рабочую почту
+                    - generic [ref=e934]:
+                      - text: рекрутера
+                      - generic "Подсказка" [ref=e935]:
+                        - img [ref=e937]
+                - cell [ref=e941]:
+                  - img [ref=e943]
+                - cell [ref=e945]:
+                  - img [ref=e947]
+                - cell [ref=e949]:
+                  - img [ref=e951]
+              - row "Шаблоны писем с возможностью прикрепления к ним файлов Подсказка" [ref=e953]:
+                - cell "Шаблоны писем с возможностью прикрепления к ним файлов Подсказка" [ref=e954]:
+                  - generic [ref=e955]:
+                    - text: Шаблоны писем с возможностью прикрепления к ним
+                    - generic [ref=e956]:
+                      - text: файлов
+                      - generic "Подсказка" [ref=e957]:
+                        - img [ref=e959]
+                - cell [ref=e963]:
+                  - img [ref=e965]
+                - cell [ref=e967]:
+                  - img [ref=e969]
+                - cell [ref=e971]:
+                  - img [ref=e973]
+              - row "Шаблон подписи рекрутера Подсказка" [ref=e975]:
+                - cell "Шаблон подписи рекрутера Подсказка" [ref=e976]:
+                  - generic [ref=e977]:
+                    - text: Шаблон подписи
+                    - generic [ref=e978]:
+                      - text: рекрутера
+                      - generic "Подсказка" [ref=e979]:
+                        - img [ref=e981]
+                - cell [ref=e985]:
+                  - img [ref=e987]
+                - cell [ref=e989]:
+                  - img [ref=e991]
+                - cell [ref=e993]:
+                  - img [ref=e995]
+              - row "Автоматические повторные письма, если кандидат не отвечает Подсказка" [ref=e997]:
+                - cell "Автоматические повторные письма, если кандидат не отвечает Подсказка" [ref=e998]:
+                  - generic [ref=e999]:
+                    - text: Автоматические повторные письма, если кандидат
+                    - generic [ref=e1000]:
+                      - text: не отвечает
+                      - generic "Подсказка" [ref=e1001]:
+                        - img [ref=e1003]
+                - cell [ref=e1007]:
+                  - img [ref=e1009]
+                - cell [ref=e1011]:
+                  - img [ref=e1013]
+                - cell [ref=e1015]:
+                  - img [ref=e1017]
+              - row "Отложенная отправка писем Подсказка" [ref=e1019]:
+                - cell "Отложенная отправка писем Подсказка" [ref=e1020]:
+                  - generic [ref=e1021]:
+                    - text: Отложенная отправка
+                    - generic [ref=e1022]:
+                      - text: писем
+                      - generic "Подсказка" [ref=e1023]:
+                        - img [ref=e1025]
+                - cell [ref=e1029]:
+                  - img [ref=e1031]
+                - cell [ref=e1033]:
+                  - img [ref=e1035]
+                - cell [ref=e1037]:
+                  - img [ref=e1039]
+              - row "Отслеживание открытия письма кандидатом Подсказка" [ref=e1041]:
+                - cell "Отслеживание открытия письма кандидатом Подсказка" [ref=e1042]:
+                  - generic [ref=e1043]:
+                    - text: Отслеживание открытия письма
+                    - generic [ref=e1044]:
+                      - text: кандидатом
+                      - generic "Подсказка" [ref=e1045]:
+                        - img [ref=e1047]
+                - cell [ref=e1051]:
+                  - img [ref=e1053]
+                - cell [ref=e1055]:
+                  - img [ref=e1057]
+                - cell [ref=e1059]:
+                  - img [ref=e1061]
+              - row "Отчет по конверсии отправленных писем Подсказка" [ref=e1063]:
+                - cell "Отчет по конверсии отправленных писем Подсказка" [ref=e1064]:
+                  - generic [ref=e1065]:
+                    - text: Отчет по конверсии отправленных
+                    - generic [ref=e1066]:
+                      - text: писем
+                      - generic "Подсказка" [ref=e1067]:
+                        - img [ref=e1069]
+                - cell [ref=e1073]:
+                  - img [ref=e1075]
+                - cell [ref=e1077]:
+                  - img [ref=e1079]
+                - cell [ref=e1081]:
+                  - img [ref=e1083]
+          - generic [ref=e1085]:
+            - heading "Инструменты работы с календарем" [level=3] [ref=e1086]
+            - table [ref=e1087]:
+              - row "Интеграция с рабочим календарем рекрутера Подсказка" [ref=e1088]:
+                - cell "Интеграция с рабочим календарем рекрутера Подсказка" [ref=e1089]:
+                  - generic [ref=e1090]:
+                    - text: Интеграция с рабочим календарем
+                    - generic [ref=e1091]:
+                      - text: рекрутера
+                      - generic "Подсказка" [ref=e1092]:
+                        - img [ref=e1094]
+                - cell [ref=e1098]:
+                  - img [ref=e1100]
+                - cell [ref=e1102]:
+                  - img [ref=e1104]
+                - cell [ref=e1106]:
+                  - img [ref=e1108]
+              - row "Учет часового пояса каждого участника встречи Подсказка" [ref=e1110]:
+                - cell "Учет часового пояса каждого участника встречи Подсказка" [ref=e1111]:
+                  - generic [ref=e1112]:
+                    - text: Учет часового пояса каждого участника
+                    - generic [ref=e1113]:
+                      - text: встречи
+                      - generic "Подсказка" [ref=e1114]:
+                        - img [ref=e1116]
+                - cell [ref=e1120]:
+                  - img [ref=e1122]
+                - cell [ref=e1124]:
+                  - img [ref=e1126]
+                - cell [ref=e1128]:
+                  - img [ref=e1130]
+              - row "Автоматическое прикрепление резюме к событию Подсказка" [ref=e1132]:
+                - cell "Автоматическое прикрепление резюме к событию Подсказка" [ref=e1133]:
+                  - generic [ref=e1134]:
+                    - text: Автоматическое прикрепление резюме
+                    - generic [ref=e1135]:
+                      - text: к событию
+                      - generic "Подсказка" [ref=e1136]:
+                        - img [ref=e1138]
+                - cell [ref=e1142]:
+                  - img [ref=e1144]
+                - cell [ref=e1146]:
+                  - img [ref=e1148]
+                - cell [ref=e1150]:
+                  - img [ref=e1152]
+              - row "Двусторонняя интеграция с календарем Google Подсказка" [ref=e1154]:
+                - cell "Двусторонняя интеграция с календарем Google Подсказка" [ref=e1155]:
+                  - generic [ref=e1156]:
+                    - text: Двусторонняя интеграция с календарем
+                    - generic [ref=e1157]:
+                      - text: Google
+                      - generic "Подсказка" [ref=e1158]:
+                        - img [ref=e1160]
+                - cell [ref=e1164]:
+                  - img [ref=e1166]
+                - cell [ref=e1168]:
+                  - img [ref=e1170]
+                - cell [ref=e1172]:
+                  - img [ref=e1174]
+              - row "Двусторонняя интеграция с календарем Outlook365 Подсказка" [ref=e1176]:
+                - cell "Двусторонняя интеграция с календарем Outlook365 Подсказка" [ref=e1177]:
+                  - generic [ref=e1178]:
+                    - text: Двусторонняя интеграция с календарем
+                    - generic [ref=e1179]:
+                      - text: Outlook365
+                      - generic "Подсказка" [ref=e1180]:
+                        - img [ref=e1182]
+                - cell [ref=e1186]:
+                  - img [ref=e1188]
+                - cell [ref=e1190]:
+                  - img [ref=e1192]
+                - cell [ref=e1194]:
+                  - img [ref=e1196]
+              - row "Двусторонняя интеграция с календарем Exchange Подсказка" [ref=e1198]:
+                - cell "Двусторонняя интеграция с календарем Exchange Подсказка" [ref=e1199]:
+                  - generic [ref=e1200]:
+                    - text: Двусторонняя интеграция с календарем
+                    - generic [ref=e1201]:
+                      - text: Exchange
+                      - generic "Подсказка" [ref=e1202]:
+                        - img [ref=e1204]
+                - cell [ref=e1208]:
+                  - img [ref=e1210]
+                - cell [ref=e1212]:
+                  - img [ref=e1214]
+                - cell [ref=e1216]:
+                  - img [ref=e1218]
+              - row "Встроенный планировщик корпоративного календаря Подсказка" [ref=e1220]:
+                - cell "Встроенный планировщик корпоративного календаря Подсказка" [ref=e1221]:
+                  - generic [ref=e1222]:
+                    - text: Встроенный планировщик корпоративного
+                    - generic [ref=e1223]:
+                      - text: календаря
+                      - generic "Подсказка" [ref=e1224]:
+                        - img [ref=e1226]
+                - cell [ref=e1230]:
+                  - img [ref=e1232]
+                - cell [ref=e1234]:
+                  - img [ref=e1236]
+                - cell [ref=e1238]:
+                  - img [ref=e1240]
+              - row "Готовая интеграция с Zoom, Google Meet, MS Teams и Яндекс.Телемост Подсказка" [ref=e1242]:
+                - cell "Готовая интеграция с Zoom, Google Meet, MS Teams и Яндекс.Телемост Подсказка" [ref=e1243]:
+                  - generic [ref=e1244]:
+                    - text: Готовая интеграция с Zoom, Google Meet, MS Teams
+                    - generic [ref=e1245]:
+                      - text: и Яндекс.Телемост
+                      - generic "Подсказка" [ref=e1246]:
+                        - img [ref=e1248]
+                - cell [ref=e1252]:
+                  - img [ref=e1254]
+                - cell [ref=e1256]:
+                  - img [ref=e1258]
+                - cell [ref=e1260]:
+                  - img [ref=e1262]
+          - generic [ref=e1264]:
+            - heading "Мессенджеры, SMS и IP-телефония" [level=3] [ref=e1265]
+            - table [ref=e1266]:
+              - row "Интеграция с Telegram Подсказка" [ref=e1267]:
+                - cell "Интеграция с Telegram Подсказка" [ref=e1268]:
+                  - generic [ref=e1269]:
+                    - text: Интеграция
+                    - generic [ref=e1270]:
+                      - text: с Telegram
+                      - generic "Подсказка" [ref=e1271]:
+                        - img [ref=e1273]
+                - cell [ref=e1277]:
+                  - img [ref=e1279]
+                - cell [ref=e1281]:
+                  - img [ref=e1283]
+                - cell [ref=e1285]:
+                  - img [ref=e1287]
+              - row "Интеграция с WhatsApp Подсказка" [ref=e1289]:
+                - cell "Интеграция с WhatsApp Подсказка" [ref=e1290]:
+                  - generic [ref=e1291]:
+                    - text: Интеграция
+                    - generic [ref=e1292]:
+                      - text: с WhatsApp
+                      - generic "Подсказка" [ref=e1293]:
+                        - img [ref=e1295]
+                - cell [ref=e1299]:
+                  - img [ref=e1301]
+                - cell [ref=e1303]:
+                  - img [ref=e1305]
+                - cell [ref=e1307]:
+                  - img [ref=e1309]
+              - row "Интеграция с Viber Подсказка" [ref=e1311]:
+                - cell "Интеграция с Viber Подсказка" [ref=e1312]:
+                  - generic [ref=e1313]:
+                    - text: Интеграция
+                    - generic [ref=e1314]:
+                      - text: с Viber
+                      - generic "Подсказка" [ref=e1315]:
+                        - img [ref=e1317]
+                - cell [ref=e1321]:
+                  - img [ref=e1323]
+                - cell [ref=e1325]:
+                  - img [ref=e1327]
+                - cell [ref=e1329]:
+                  - img [ref=e1331]
+              - row "Отправка SMS кандидатам Подсказка" [ref=e1333]:
+                - cell "Отправка SMS кандидатам Подсказка" [ref=e1334]:
+                  - generic [ref=e1335]:
+                    - text: Отправка SMS
+                    - generic [ref=e1336]:
+                      - text: кандидатам
+                      - generic "Подсказка" [ref=e1337]:
+                        - img [ref=e1339]
+                - cell [ref=e1343]:
+                  - img [ref=e1345]
+                - cell [ref=e1347]:
+                  - img [ref=e1349]
+                - cell [ref=e1351]:
+                  - img [ref=e1353]
+              - row "Автоматические SMS-напоминания кандидатам об интервью Подсказка" [ref=e1355]:
+                - cell "Автоматические SMS-напоминания кандидатам об интервью Подсказка" [ref=e1356]:
+                  - generic [ref=e1357]:
+                    - text: Автоматические SMS-напоминания кандидатам
+                    - generic [ref=e1358]:
+                      - text: об интервью
+                      - generic "Подсказка" [ref=e1359]:
+                        - img [ref=e1361]
+                - cell [ref=e1365]:
+                  - img [ref=e1367]
+                - cell [ref=e1369]:
+                  - img [ref=e1371]
+                - cell [ref=e1373]:
+                  - img [ref=e1375]
+              - row "Интеграция с IP-телефонией VoxImplant или MangoTelecom для исходящих звонков кандидатам Подсказка" [ref=e1377]:
+                - cell "Интеграция с IP-телефонией VoxImplant или MangoTelecom для исходящих звонков кандидатам Подсказка" [ref=e1378]:
+                  - generic [ref=e1379]:
+                    - text: Интеграция с IP-телефонией VoxImplant или MangoTelecom для исходящих звонков
+                    - generic [ref=e1380]:
+                      - text: кандидатам
+                      - generic "Подсказка" [ref=e1381]:
+                        - img [ref=e1383]
+                - cell [ref=e1387]:
+                  - img [ref=e1389]
+                - cell [ref=e1391]:
+                  - img [ref=e1393]
+                - cell [ref=e1395]:
+                  - img [ref=e1397]
+              - row "Интеграция с IP-телефонией Asterisk для исходящих звонков кандидатам Подсказка" [ref=e1399]:
+                - cell "Интеграция с IP-телефонией Asterisk для исходящих звонков кандидатам Подсказка" [ref=e1400]:
+                  - generic [ref=e1401]:
+                    - text: Интеграция с IP-телефонией Asterisk для исходящих звонков
+                    - generic [ref=e1402]:
+                      - text: кандидатам
+                      - generic "Подсказка" [ref=e1403]:
+                        - img [ref=e1405]
+                        - img [ref=e1410]
+                - cell [ref=e1414]:
+                  - img [ref=e1416]
+                - cell [ref=e1418]:
+                  - img [ref=e1420]
+                - cell [ref=e1422]:
+                  - img [ref=e1424]
+          - generic [ref=e1426]:
+            - heading "Организация бизнес-процесса" [level=3] [ref=e1427]
+            - table [ref=e1428]:
+              - row "Настройка справочника оргструктуры Подсказка" [ref=e1429]:
+                - cell "Настройка справочника оргструктуры Подсказка" [ref=e1430]:
+                  - generic [ref=e1431]:
+                    - text: Настройка справочника
+                    - generic [ref=e1432]:
+                      - text: оргструктуры
+                      - generic "Подсказка" [ref=e1433]:
+                        - img [ref=e1435]
+                - cell [ref=e1439]:
+                  - img [ref=e1441]
+                - cell [ref=e1443]:
+                  - img [ref=e1445]
+                - cell [ref=e1447]:
+                  - img [ref=e1449]
+              - row "Настройка неограниченного числа этапов в воронке Подсказка" [ref=e1451]:
+                - cell "Настройка неограниченного числа этапов в воронке Подсказка" [ref=e1452]:
+                  - generic [ref=e1453]:
+                    - text: Настройка неограниченного числа этапов
+                    - generic [ref=e1454]:
+                      - text: в воронке
+                      - generic "Подсказка" [ref=e1455]:
+                        - img [ref=e1457]
+                - cell [ref=e1461]:
+                  - img [ref=e1463]
+                - cell [ref=e1465]:
+                  - img [ref=e1467]
+                - cell [ref=e1469]:
+                  - img [ref=e1471]
+              - row "Настройка типовых причин отказа Подсказка" [ref=e1473]:
+                - cell "Настройка типовых причин отказа Подсказка" [ref=e1474]:
+                  - generic [ref=e1475]:
+                    - text: Настройка типовых причин
+                    - generic [ref=e1476]:
+                      - text: отказа
+                      - generic "Подсказка" [ref=e1477]:
+                        - img [ref=e1479]
+                - cell [ref=e1483]:
+                  - img [ref=e1485]
+                - cell [ref=e1487]:
+                  - img [ref=e1489]
+                - cell [ref=e1491]:
+                  - img [ref=e1493]
+              - row "Разные воронки под разные категории вакансий Подсказка" [ref=e1495]:
+                - cell "Разные воронки под разные категории вакансий Подсказка" [ref=e1496]:
+                  - generic [ref=e1497]:
+                    - text: Разные воронки под разные категории
+                    - generic [ref=e1498]:
+                      - text: вакансий
+                      - generic "Подсказка" [ref=e1499]:
+                        - img [ref=e1501]
+                - cell [ref=e1505]:
+                  - img [ref=e1507]
+                - cell [ref=e1509]:
+                  - img [ref=e1511]
+                - cell [ref=e1513]:
+                  - img [ref=e1515]
+              - row "Контроль (ограничение) времени нахождения кандидата на каждом этапе Подсказка" [ref=e1517]:
+                - cell "Контроль (ограничение) времени нахождения кандидата на каждом этапе Подсказка" [ref=e1518]:
+                  - generic [ref=e1519]:
+                    - text: Контроль (ограничение) времени нахождения кандидата на каждом
+                    - generic [ref=e1520]:
+                      - text: этапе
+                      - generic "Подсказка" [ref=e1521]:
+                        - img [ref=e1523]
+                - cell [ref=e1527]:
+                  - img [ref=e1529]
+                - cell [ref=e1531]:
+                  - img [ref=e1533]
+                - cell [ref=e1535]:
+                  - img [ref=e1537]
+              - row "Внедрение дополнительных полей и справочников вакансии Подсказка" [ref=e1539]:
+                - cell "Внедрение дополнительных полей и справочников вакансии Подсказка" [ref=e1540]:
+                  - generic [ref=e1541]:
+                    - text: Внедрение дополнительных полей и справочников
+                    - generic [ref=e1542]:
+                      - text: вакансии
+                      - generic "Подсказка" [ref=e1543]:
+                        - img [ref=e1545]
+                - cell [ref=e1549]:
+                  - img [ref=e1551]
+                - cell [ref=e1553]:
+                  - img [ref=e1555]
+                - cell [ref=e1557]:
+                  - img [ref=e1559]
+              - row "Внедрение дополнительных полей и справочников в карточку кандидата Подсказка" [ref=e1561]:
+                - cell "Внедрение дополнительных полей и справочников в карточку кандидата Подсказка" [ref=e1562]:
+                  - generic [ref=e1563]:
+                    - text: Внедрение дополнительных полей и справочников в карточку
+                    - generic [ref=e1564]:
+                      - text: кандидата
+                      - generic "Подсказка" [ref=e1565]:
+                        - img [ref=e1567]
+                - cell [ref=e1571]:
+                  - img [ref=e1573]
+                - cell [ref=e1575]:
+                  - img [ref=e1577]
+                - cell [ref=e1579]:
+                  - img [ref=e1581]
+          - generic [ref=e1583]:
+            - heading "Рекрутеры и их права" [level=3] [ref=e1584]
+            - table [ref=e1585]:
+              - row "Запрет удаления вакансий и кандидатов Подсказка" [ref=e1586]:
+                - cell "Запрет удаления вакансий и кандидатов Подсказка" [ref=e1587]:
+                  - generic [ref=e1588]:
+                    - text: Запрет удаления вакансий
+                    - generic [ref=e1589]:
+                      - text: и кандидатов
+                      - generic "Подсказка" [ref=e1590]:
+                        - img [ref=e1592]
+                - cell [ref=e1596]:
+                  - img [ref=e1598]
+                - cell [ref=e1600]:
+                  - img [ref=e1602]
+                - cell [ref=e1604]:
+                  - img [ref=e1606]
+              - row "Скрытие истории работы по вакансиям от рекрутера Подсказка" [ref=e1608]:
+                - cell "Скрытие истории работы по вакансиям от рекрутера Подсказка" [ref=e1609]:
+                  - generic [ref=e1610]:
+                    - text: Скрытие истории работы по вакансиям
+                    - generic [ref=e1611]:
+                      - text: от рекрутера
+                      - generic "Подсказка" [ref=e1612]:
+                        - img [ref=e1614]
+                - cell [ref=e1618]:
+                  - img [ref=e1620]
+                - cell [ref=e1622]:
+                  - img [ref=e1624]
+                - cell [ref=e1626]:
+                  - img [ref=e1628]
+              - row "Возможность назначения нескольких Управляющих в Хантфлоу Подсказка" [ref=e1630]:
+                - cell "Возможность назначения нескольких Управляющих в Хантфлоу Подсказка" [ref=e1631]:
+                  - generic [ref=e1632]:
+                    - text: Возможность назначения нескольких Управляющих
+                    - generic [ref=e1633]:
+                      - text: в Хантфлоу
+                      - generic "Подсказка" [ref=e1634]:
+                        - img [ref=e1636]
+                - cell [ref=e1640]:
+                  - img [ref=e1642]
+                - cell [ref=e1644]:
+                  - img [ref=e1646]
+                - cell [ref=e1648]:
+                  - img [ref=e1650]
+          - generic [ref=e1652]:
+            - heading "Работа с персональными данными кандидатов" [level=3] [ref=e1653]
+            - table [ref=e1654]:
+              - row "Модуль онлайн-запроса согласия кандидата на обработку ПД одним кликом Подсказка" [ref=e1655]:
+                - cell "Модуль онлайн-запроса согласия кандидата на обработку ПД одним кликом Подсказка" [ref=e1656]:
+                  - generic [ref=e1657]:
+                    - text: Модуль онлайн-запроса согласия кандидата на обработку ПД одним
+                    - generic [ref=e1658]:
+                      - text: кликом
+                      - generic "Подсказка" [ref=e1659]:
+                        - img [ref=e1661]
+                - cell [ref=e1665]:
+                  - img [ref=e1667]
+                - cell [ref=e1669]:
+                  - img [ref=e1671]
+                - cell [ref=e1673]:
+                  - img [ref=e1675]
+              - row "Ваш логотип в письме-запросе Подсказка" [ref=e1677]:
+                - cell "Ваш логотип в письме-запросе Подсказка" [ref=e1678]:
+                  - generic [ref=e1679]:
+                    - text: Ваш логотип
+                    - generic [ref=e1680]:
+                      - text: в письме-запросе
+                      - generic "Подсказка" [ref=e1681]:
+                        - img [ref=e1683]
+                - cell [ref=e1687]:
+                  - img [ref=e1689]
+                - cell [ref=e1691]:
+                  - img [ref=e1693]
+                - cell [ref=e1695]:
+                  - img [ref=e1697]
+              - row "Выгрузка в Excel отчета по согласиям на обработку ПД Подсказка" [ref=e1699]:
+                - cell "Выгрузка в Excel отчета по согласиям на обработку ПД Подсказка" [ref=e1700]:
+                  - generic [ref=e1701]:
+                    - text: Выгрузка в Excel отчета по согласиям
+                    - generic [ref=e1702]:
+                      - text: на обработку ПД
+                      - generic "Подсказка" [ref=e1703]:
+                        - img [ref=e1705]
+                - cell [ref=e1709]:
+                  - img [ref=e1711]
+                - cell [ref=e1713]:
+                  - img [ref=e1715]
+                - cell [ref=e1717]:
+                  - img [ref=e1719]
+              - row "Опции автоматического запроса согласия и автоматического удаления Подсказка" [ref=e1721]:
+                - cell "Опции автоматического запроса согласия и автоматического удаления Подсказка" [ref=e1722]:
+                  - generic [ref=e1723]:
+                    - text: Опции автоматического запроса согласия и автоматического
+                    - generic [ref=e1724]:
+                      - text: удаления
+                      - generic "Подсказка" [ref=e1725]:
+                        - img [ref=e1727]
+                - cell [ref=e1731]:
+                  - img [ref=e1733]
+                - cell [ref=e1735]:
+                  - img [ref=e1737]
+                - cell [ref=e1739]:
+                  - img [ref=e1741]
+              - row "Внедрение индивидуального шаблона письма с запросом Подсказка" [ref=e1743]:
+                - cell "Внедрение индивидуального шаблона письма с запросом Подсказка" [ref=e1744]:
+                  - generic [ref=e1745]:
+                    - text: Внедрение индивидуального шаблона письма
+                    - generic [ref=e1746]:
+                      - text: с запросом
+                      - generic "Подсказка" [ref=e1747]:
+                        - img [ref=e1749]
+                        - img [ref=e1754]
+                - cell [ref=e1758]:
+                  - img [ref=e1760]
+                - cell [ref=e1762]:
+                  - img [ref=e1764]
+                - cell [ref=e1766]:
+                  - img [ref=e1768]
+          - generic [ref=e1770]:
+            - heading "Аналитика и отчеты" [level=3] [ref=e1771]
+            - table [ref=e1772]:
+              - row "Дашборд «Картина дня» Подсказка" [ref=e1773]:
+                - cell "Дашборд «Картина дня» Подсказка" [ref=e1774]:
+                  - generic [ref=e1775]:
+                    - text: Дашборд «Картина
+                    - generic [ref=e1776]:
+                      - text: дня»
+                      - generic "Подсказка" [ref=e1777]:
+                        - img [ref=e1779]
+                - cell [ref=e1783]:
+                  - img [ref=e1785]
+                - cell [ref=e1787]:
+                  - img [ref=e1789]
+                - cell [ref=e1791]:
+                  - img [ref=e1793]
+              - row "Визуализация данных Подсказка" [ref=e1795]:
+                - cell "Визуализация данных Подсказка" [ref=e1796]:
+                  - generic [ref=e1797]:
+                    - text: Визуализация
+                    - generic [ref=e1798]:
+                      - text: данных
+                      - generic "Подсказка" [ref=e1799]:
+                        - img [ref=e1801]
+                - cell [ref=e1805]:
+                  - img [ref=e1807]
+                - cell [ref=e1809]:
+                  - img [ref=e1811]
+                - cell [ref=e1813]:
+                  - img [ref=e1815]
+              - row "Выгрузка отчетов в Excel Подсказка" [ref=e1817]:
+                - cell "Выгрузка отчетов в Excel Подсказка" [ref=e1818]:
+                  - generic [ref=e1819]:
+                    - text: Выгрузка отчетов
+                    - generic [ref=e1820]:
+                      - text: в Excel
+                      - generic "Подсказка" [ref=e1821]:
+                        - img [ref=e1823]
+                - cell [ref=e1827]:
+                  - img [ref=e1829]
+                - cell [ref=e1831]:
+                  - img [ref=e1833]
+                - cell [ref=e1835]:
+                  - img [ref=e1837]
+              - row "Отчеты по воронке, источникам, отказам Подсказка" [ref=e1839]:
+                - cell "Отчеты по воронке, источникам, отказам Подсказка" [ref=e1840]:
+                  - generic [ref=e1841]:
+                    - text: Отчеты по воронке, источникам,
+                    - generic [ref=e1842]:
+                      - text: отказам
+                      - generic "Подсказка" [ref=e1843]:
+                        - img [ref=e1845]
+                - cell [ref=e1849]:
+                  - img [ref=e1851]
+                - cell [ref=e1853]:
+                  - img [ref=e1855]
+                - cell [ref=e1857]:
+                  - img [ref=e1859]
+              - row "Отчет по времени закрытия позиции Подсказка" [ref=e1861]:
+                - cell "Отчет по времени закрытия позиции Подсказка" [ref=e1862]:
+                  - generic [ref=e1863]:
+                    - text: Отчет по времени закрытия
+                    - generic [ref=e1864]:
+                      - text: позиции
+                      - generic "Подсказка" [ref=e1865]:
+                        - img [ref=e1867]
+                - cell [ref=e1871]:
+                  - img [ref=e1873]
+                - cell [ref=e1875]:
+                  - img [ref=e1877]
+                - cell [ref=e1879]:
+                  - img [ref=e1881]
+              - row "Отчет по времени нахождения кандидата на каждом этапе Подсказка" [ref=e1883]:
+                - cell "Отчет по времени нахождения кандидата на каждом этапе Подсказка" [ref=e1884]:
+                  - generic [ref=e1885]:
+                    - text: Отчет по времени нахождения кандидата на каждом
+                    - generic [ref=e1886]:
+                      - text: этапе
+                      - generic "Подсказка" [ref=e1887]:
+                        - img [ref=e1889]
+                - cell [ref=e1893]:
+                  - img [ref=e1895]
+                - cell [ref=e1897]:
+                  - img [ref=e1899]
+                - cell [ref=e1901]:
+                  - img [ref=e1903]
+              - row "Углубленная аналитика с помощью детализации по кандидатам Подсказка" [ref=e1905]:
+                - cell "Углубленная аналитика с помощью детализации по кандидатам Подсказка" [ref=e1906]:
+                  - generic [ref=e1907]:
+                    - text: Углубленная аналитика с помощью детализации
+                    - generic [ref=e1908]:
+                      - text: по кандидатам
+                      - generic "Подсказка" [ref=e1909]:
+                        - img [ref=e1911]
+                - cell [ref=e1915]:
+                  - img [ref=e1917]
+                - cell [ref=e1919]:
+                  - img [ref=e1921]
+                - cell [ref=e1923]:
+                  - img [ref=e1925]
+              - row "Отчет по конверсии писем кандидатам Подсказка" [ref=e1927]:
+                - cell "Отчет по конверсии писем кандидатам Подсказка" [ref=e1928]:
+                  - generic [ref=e1929]:
+                    - text: Отчет по конверсии писем
+                    - generic [ref=e1930]:
+                      - text: кандидатам
+                      - generic "Подсказка" [ref=e1931]:
+                        - img [ref=e1933]
+                - cell [ref=e1937]:
+                  - img [ref=e1939]
+                - cell [ref=e1941]:
+                  - img [ref=e1943]
+                - cell [ref=e1945]:
+                  - img [ref=e1947]
+              - row "Отчет по движению кандидатов Подсказка" [ref=e1949]:
+                - cell "Отчет по движению кандидатов Подсказка" [ref=e1950]:
+                  - generic [ref=e1951]:
+                    - text: Отчет по движению
+                    - generic [ref=e1952]:
+                      - text: кандидатов
+                      - generic "Подсказка" [ref=e1953]:
+                        - img [ref=e1955]
+                - cell [ref=e1959]:
+                  - img [ref=e1961]
+                - cell [ref=e1963]:
+                  - img [ref=e1965]
+                - cell [ref=e1967]:
+                  - img [ref=e1969]
+              - row "Отчет по оценке рекрутмента заказчиками Подсказка" [ref=e1971]:
+                - cell "Отчет по оценке рекрутмента заказчиками Подсказка" [ref=e1972]:
+                  - generic [ref=e1973]:
+                    - text: Отчет по оценке рекрутмента
+                    - generic [ref=e1974]:
+                      - text: заказчиками
+                      - generic "Подсказка" [ref=e1975]:
+                        - img [ref=e1977]
+                - cell [ref=e1981]:
+                  - img [ref=e1983]
+                - cell [ref=e1985]:
+                  - img [ref=e1987]
+                - cell [ref=e1989]:
+                  - img [ref=e1991]
+          - generic [ref=e1993]:
+            - heading "Забота и уют" [level=3] [ref=e1994]
+            - table [ref=e1995]:
+              - row "Чат поддержки прямо в интерфейсе Подсказка" [ref=e1996]:
+                - cell "Чат поддержки прямо в интерфейсе Подсказка" [ref=e1997]:
+                  - generic [ref=e1998]:
+                    - text: Чат поддержки прямо
+                    - generic [ref=e1999]:
+                      - text: в интерфейсе
+                      - generic "Подсказка" [ref=e2000]:
+                        - img [ref=e2002]
+                - cell [ref=e2006]:
+                  - img [ref=e2008]
+                - cell [ref=e2010]:
+                  - img [ref=e2012]
+                - cell [ref=e2014]:
+                  - img [ref=e2016]
+              - row "Напоминания о днях рождения кандидатов по вашим открытым вакансиям Подсказка" [ref=e2018]:
+                - cell "Напоминания о днях рождения кандидатов по вашим открытым вакансиям Подсказка" [ref=e2019]:
+                  - generic [ref=e2020]:
+                    - text: Напоминания о днях рождения кандидатов по вашим открытым
+                    - generic [ref=e2021]:
+                      - text: вакансиям
+                      - generic "Подсказка" [ref=e2022]:
+                        - img [ref=e2024]
+                - cell [ref=e2028]:
+                  - img [ref=e2030]
+                - cell [ref=e2032]:
+                  - img [ref=e2034]
+                - cell [ref=e2036]:
+                  - img [ref=e2038]
+              - row "Темы оформления интерфейса Подсказка" [ref=e2040]:
+                - cell "Темы оформления интерфейса Подсказка" [ref=e2041]:
+                  - generic [ref=e2042]:
+                    - text: Темы оформления
+                    - generic [ref=e2043]:
+                      - text: интерфейса
+                      - generic "Подсказка" [ref=e2044]:
+                        - img [ref=e2046]
+                - cell [ref=e2050]:
+                  - img [ref=e2052]
+                - cell [ref=e2054]:
+                  - img [ref=e2056]
+                - cell [ref=e2058]:
+                  - img [ref=e2060]
+              - row "Брендирование Хантфлоу вашим корпоративным стилем Подсказка" [ref=e2062]:
+                - cell "Брендирование Хантфлоу вашим корпоративным стилем Подсказка" [ref=e2063]:
+                  - generic [ref=e2064]:
+                    - text: Брендирование Хантфлоу вашим корпоративным
+                    - generic [ref=e2065]:
+                      - text: стилем
+                      - generic "Подсказка" [ref=e2066]:
+                        - img [ref=e2068]
+                        - img [ref=e2073]
+                - cell [ref=e2077]:
+                  - img [ref=e2079]
+                - cell [ref=e2081]:
+                  - img [ref=e2083]
+                - cell [ref=e2085]:
+                  - img [ref=e2087]
+          - generic [ref=e2089]:
+            - heading "Безопасность" [level=3] [ref=e2090]
+            - table [ref=e2091]:
+              - row "Бесплатная выгрузка базы при прекращении сотрудничества Подсказка" [ref=e2092]:
+                - cell "Бесплатная выгрузка базы при прекращении сотрудничества Подсказка" [ref=e2093]:
+                  - generic [ref=e2094]:
+                    - text: Бесплатная выгрузка базы при прекращении
+                    - generic [ref=e2095]:
+                      - text: сотрудничества
+                      - generic "Подсказка" [ref=e2096]:
+                        - img [ref=e2098]
+                - cell [ref=e2102]:
+                  - img [ref=e2104]
+                - cell [ref=e2106]:
+                  - img [ref=e2108]
+                - cell [ref=e2110]:
+                  - img [ref=e2112]
+              - row "Бесплатная резервная выгрузка базы по запросу клиента Подсказка" [ref=e2114]:
+                - cell "Бесплатная резервная выгрузка базы по запросу клиента Подсказка" [ref=e2115]:
+                  - generic [ref=e2116]:
+                    - text: Бесплатная резервная выгрузка базы по запросу
+                    - generic [ref=e2117]:
+                      - text: клиента
+                      - generic "Подсказка" [ref=e2118]:
+                        - img [ref=e2120]
+                - cell [ref=e2124]:
+                  - img [ref=e2126]
+                - cell [ref=e2128]:
+                  - img [ref=e2130]
+                - cell [ref=e2132]:
+                  - img [ref=e2134]
+              - row "Автоматическое резервное копирование базы клиента на SFTP Подсказка" [ref=e2136]:
+                - cell "Автоматическое резервное копирование базы клиента на SFTP Подсказка" [ref=e2137]:
+                  - generic [ref=e2138]:
+                    - text: Автоматическое резервное копирование базы клиента на
+                    - generic [ref=e2139]:
+                      - text: SFTP
+                      - generic "Подсказка" [ref=e2140]:
+                        - img [ref=e2142]
+                - cell [ref=e2146]:
+                  - img [ref=e2148]
+                - cell [ref=e2150]:
+                  - img [ref=e2152]
+                - cell [ref=e2154]:
+                  - img [ref=e2156]
+              - row "Оповещение о массовом скачивании резюме сотрудником компании Подсказка" [ref=e2158]:
+                - cell "Оповещение о массовом скачивании резюме сотрудником компании Подсказка" [ref=e2159]:
+                  - generic [ref=e2160]:
+                    - text: Оповещение о массовом скачивании резюме сотрудником
+                    - generic [ref=e2161]:
+                      - text: компании
+                      - generic "Подсказка" [ref=e2162]:
+                        - img [ref=e2164]
+                - cell [ref=e2168]:
+                  - img [ref=e2170]
+                - cell [ref=e2172]:
+                  - img [ref=e2174]
+                - cell [ref=e2176]:
+                  - img [ref=e2178]
+          - generic [ref=e2180]:
+            - heading "API Хантфлоу" [level=3] [ref=e2181]
+            - table [ref=e2182]:
+              - row "API Подсказка" [ref=e2183]:
+                - cell "API Подсказка" [ref=e2184]:
+                  - generic [ref=e2186]:
+                    - text: API
+                    - generic "Подсказка" [ref=e2187]:
+                      - img [ref=e2189]
+                - cell [ref=e2193]:
+                  - img [ref=e2195]
+                - cell [ref=e2197]:
+                  - img [ref=e2199]
+                - cell [ref=e2201]:
+                  - img [ref=e2203]
+              - row "Webhooks Подсказка" [ref=e2205]:
+                - cell "Webhooks Подсказка" [ref=e2206]:
+                  - generic [ref=e2208]:
+                    - text: Webhooks
+                    - generic "Подсказка" [ref=e2209]:
+                      - img [ref=e2211]
+                - cell [ref=e2215]:
+                  - img [ref=e2217]
+                - cell [ref=e2219]:
+                  - img [ref=e2221]
+                - cell [ref=e2223]:
+                  - img [ref=e2225]
+              - row "Песочница для тестирования разработанных интеграций Подсказка" [ref=e2227]:
+                - cell "Песочница для тестирования разработанных интеграций Подсказка" [ref=e2228]:
+                  - generic [ref=e2229]:
+                    - text: Песочница для тестирования разработанных
+                    - generic [ref=e2230]:
+                      - text: интеграций
+                      - generic "Подсказка" [ref=e2231]:
+                        - img [ref=e2233]
+                - cell [ref=e2237]:
+                  - img [ref=e2239]
+                - cell [ref=e2241]:
+                  - img [ref=e2243]
+                - cell [ref=e2245]:
+                  - img [ref=e2247]
+              - row "Методы API для автоматического добавления и удаления пользователей Подсказка" [ref=e2249]:
+                - cell "Методы API для автоматического добавления и удаления пользователей Подсказка" [ref=e2250]:
+                  - generic [ref=e2251]:
+                    - text: Методы API для автоматического добавления и удаления
+                    - generic [ref=e2252]:
+                      - text: пользователей
+                      - generic "Подсказка" [ref=e2253]:
+                        - img [ref=e2255]
+                        - img [ref=e2260]
+                - cell [ref=e2264]:
+                  - img [ref=e2266]
+                - cell [ref=e2268]:
+                  - img [ref=e2270]
+                - cell [ref=e2272]:
+                  - img [ref=e2274]
+          - generic [ref=e2276]:
+            - 'heading "Премьер: Решения для крупных корпоративных клиентов" [level=3] [ref=e2277]'
+            - table [ref=e2278]:
+              - row "Сопровождение закупочных и юридических процедур Подсказка" [ref=e2279]:
+                - cell "Сопровождение закупочных и юридических процедур Подсказка" [ref=e2280]:
+                  - generic [ref=e2281]:
+                    - text: Сопровождение закупочных и юридических
+                    - generic [ref=e2282]:
+                      - text: процедур
+                      - generic "Подсказка" [ref=e2283]:
+                        - img [ref=e2285]
+                - cell [ref=e2289]:
+                  - img [ref=e2291]
+                - cell [ref=e2293]:
+                  - img [ref=e2295]
+                - cell [ref=e2297]:
+                  - img [ref=e2299]
+              - row "Индивидуальные IT-решения (Private Cloud, On-premise, SSO, зеркало, доступ к БД) Подсказка" [ref=e2301]:
+                - cell "Индивидуальные IT-решения (Private Cloud, On-premise, SSO, зеркало, доступ к БД) Подсказка" [ref=e2302]:
+                  - generic [ref=e2303]:
+                    - text: Индивидуальные IT-решения (Private Cloud, On-premise, SSO, зеркало, доступ
+                    - generic [ref=e2304]:
+                      - text: к БД)
+                      - generic "Подсказка" [ref=e2305]:
+                        - img [ref=e2307]
+                - cell [ref=e2311]:
+                  - img [ref=e2313]
+                - cell [ref=e2315]:
+                  - img [ref=e2317]
+                - cell [ref=e2319]:
+                  - img [ref=e2321]
+              - row "Проведение воркшопа для составления оптимального плана внедрения Хантфлоу Подсказка" [ref=e2323]:
+                - cell "Проведение воркшопа для составления оптимального плана внедрения Хантфлоу Подсказка" [ref=e2324]:
+                  - generic [ref=e2325]:
+                    - text: Проведение воркшопа для составления оптимального плана внедрения
+                    - generic [ref=e2326]:
+                      - text: Хантфлоу
+                      - generic "Подсказка" [ref=e2327]:
+                        - img [ref=e2329]
+                - cell [ref=e2333]:
+                  - img [ref=e2335]
+                - cell [ref=e2337]:
+                  - img [ref=e2339]
+                - cell [ref=e2341]:
+                  - img [ref=e2343]
+              - row "Разделение рекрутеров на команды Подсказка" [ref=e2345]:
+                - cell "Разделение рекрутеров на команды Подсказка" [ref=e2346]:
+                  - generic [ref=e2347]:
+                    - text: Разделение рекрутеров
+                    - generic [ref=e2348]:
+                      - text: на команды
+                      - generic "Подсказка" [ref=e2349]:
+                        - img [ref=e2351]
+                - cell [ref=e2355]:
+                  - img [ref=e2357]
+                - cell [ref=e2359]:
+                  - img [ref=e2361]
+                - cell [ref=e2363]:
+                  - img [ref=e2365]
+              - row "Ограничение доступа к информации в зависимости от подразделения Подсказка" [ref=e2367]:
+                - cell "Ограничение доступа к информации в зависимости от подразделения Подсказка" [ref=e2368]:
+                  - generic [ref=e2369]:
+                    - text: Ограничение доступа к информации в зависимости
+                    - generic [ref=e2370]:
+                      - text: от подразделения
+                      - generic "Подсказка" [ref=e2371]:
+                        - img [ref=e2373]
+                - cell [ref=e2377]:
+                  - img [ref=e2379]
+                - cell [ref=e2381]:
+                  - img [ref=e2383]
+                - cell [ref=e2385]:
+                  - img [ref=e2387]
+              - row "Персональный аккаунт-менеджер Подсказка" [ref=e2389]:
+                - cell "Персональный аккаунт-менеджер Подсказка" [ref=e2390]:
+                  - generic [ref=e2391]:
+                    - text: Персональный
+                    - generic [ref=e2392]:
+                      - text: аккаунт-менеджер
+                      - generic "Подсказка" [ref=e2393]:
+                        - img [ref=e2395]
+                - cell [ref=e2399]:
+                  - img [ref=e2401]
+                - cell [ref=e2403]:
+                  - img [ref=e2405]
+                - cell [ref=e2407]:
+                  - img [ref=e2409]
+              - row "Приоритетная расширенная поддержка пользователей Подсказка" [ref=e2411]:
+                - cell "Приоритетная расширенная поддержка пользователей Подсказка" [ref=e2412]:
+                  - generic [ref=e2413]:
+                    - text: Приоритетная расширенная поддержка
+                    - generic [ref=e2414]:
+                      - text: пользователей
+                      - generic "Подсказка" [ref=e2415]:
+                        - img [ref=e2417]
+                - cell [ref=e2421]:
+                  - img [ref=e2423]
+                - cell [ref=e2425]:
+                  - img [ref=e2427]
+                - cell [ref=e2429]:
+                  - img [ref=e2431]
+              - row "Выделенная линия для технических консультаций по API Подсказка" [ref=e2433]:
+                - cell "Выделенная линия для технических консультаций по API Подсказка" [ref=e2434]:
+                  - generic [ref=e2435]:
+                    - text: Выделенная линия для технических консультаций
+                    - generic [ref=e2436]:
+                      - text: по API
+                      - generic "Подсказка" [ref=e2437]:
+                        - img [ref=e2439]
+                - cell [ref=e2443]:
+                  - img [ref=e2445]
+                - cell [ref=e2447]:
+                  - img [ref=e2449]
+                - cell [ref=e2451]:
+                  - img [ref=e2453]
+    - generic [ref=e2456]:
+      - img "Поможем подобрать тариф" [ref=e2457]
+      - heading "Поможем подобрать тариф" [level=2] [ref=e2458]:
+        - text: Поможем
+        - text: подобрать тариф
+      - paragraph [ref=e2459]: Оставьте заявку — мы покажем, как Хантфлоу улучшит ваш подбор и поможем подобрать тариф
+      - button "Заявка на презентацию" [ref=e2460] [cursor=pointer]
+    - generic [ref=e2462]:
+      - heading "Частые вопросы перед приобретением Хантфлоу" [level=2] [ref=e2463]:
+        - text: Частые вопросы перед
+        - text: приобретением Хантфлоу
+      - generic [ref=e2464]:
+        - generic [ref=e2465]:
+          - term [ref=e2466] [cursor=pointer]:
+            - generic [ref=e2467]: В чем главные преимущества облачного рекрутингового сервиса?
+            - img [ref=e2469]
+          - definition:
+            - generic [ref=e2473]: "Все компании в мире переходят на облачные (SaaS) сервисы. У них много неоспоримых преимуществ: доступность на любом устройстве в любой точке мира, отсутствие затрат на техническую поддержку в штате, постоянные релизы новинок и быстрое исправление ошибок."
+        - generic [ref=e2474]:
+          - term [ref=e2475] [cursor=pointer]:
+            - generic [ref=e2476]: Какой тариф мне подойдет?
+            - img [ref=e2478]
+          - definition:
+            - generic [ref=e2481]:
+              - generic [ref=e2482]:
+                - paragraph [ref=e2483]: Если вам важно получить все передовые возможности автоматизации для ускорения закрытия вакансий и решения любых задач рекрутимента, то тариф Максимальный — для вас. Это самый полнофункциональный тариф Хантфлоу с большим количеством уникальных функциональных возможностей.
+                - paragraph [ref=e2484]: Ключевые инструменты для автоматизации рутины, работы с заказчиками и рекрутинговой аналитики собраны в тарифе Профессиональный.
+                - paragraph [ref=e2485]: Премьер — это выделенное направление Хантфлоу по работе с крупными компаниями по индивидуальным процедурам приобретения и сопровождения Хантфлоу и с реализацией индивидуальных IT-решений.
+                - paragraph [ref=e2486]: Если вы не можете определиться, оставьте заявку — мы поможем выбрать тариф, который поможет решить задачи рекрутмента вашей компании.
+              - button "Оставить заявку" [ref=e2487] [cursor=pointer]
+        - generic [ref=e2488]:
+          - term [ref=e2489] [cursor=pointer]:
+            - generic [ref=e2490]: Вы сможете перенести мою базу резюме при переходе на Хантфлоу?
+            - img [ref=e2492]
+          - definition:
+            - paragraph [ref=e2497]: Да, мы переносим наработанные базы резюме из других рекрутинговых систем или файлов в Хантфлоу. Сроки и стоимость работ зависят от количества резюме и источника, откуда нужно забрать базу.
+        - generic [ref=e2498]:
+          - term [ref=e2499] [cursor=pointer]:
+            - generic [ref=e2500]: Какие методы оплаты возможны?
+            - img [ref=e2502]
+          - definition:
+            - generic [ref=e2506]: Хантфлоу оплачивается ежегодно. Оплата по счету-оферте или двустороннему договору, если сумма большая. Возможна оплата по карте как в интернет-магазине.
+        - generic [ref=e2507]:
+          - term [ref=e2508] [cursor=pointer]:
+            - generic [ref=e2509]: Если у вас выйдет какая-то новинка, она будет мне доступна?
+            - img [ref=e2511]
+          - definition:
+            - generic [ref=e2515]: Конечно! Мы постоянно улучшаем функциональность сервиса и все клиенты получают все новинки Хантфлоу в рамках своего тарифа.
+        - generic [ref=e2516]:
+          - term [ref=e2517] [cursor=pointer]:
+            - generic [ref=e2518]: Можно ли перейти на тариф выше? А увеличить число рекрутеров?
+            - img [ref=e2520]
+          - definition:
+            - generic [ref=e2524]: Да, в любой момент вы можете перейти на более функциональный тариф или увеличить число рабочих мест рекрутера. Вам надо будет просто доплатить разницу в стоимости до конца оплаченного периода доступа.
+        - generic [ref=e2525]:
+          - term [ref=e2526] [cursor=pointer]:
+            - generic [ref=e2527]: Как Хантфлоу обеспечивает безопасность и надежность работы?
+            - img [ref=e2529]
+          - definition:
+            - list [ref=e2534]:
+              - listitem [ref=e2535]:
+                - text: Мы ежегодно успешно проходим независимый аудит безопасности инфраструктуры и приложения Хантфлоу в крупнейшей международной компании
+                - link "Bishop Fox" [ref=e2536] [cursor=pointer]:
+                  - /url: https://www.bishopfox.com
+                - text: .
+              - listitem [ref=e2537]: Все данные хранятся в дата-центре Selectel уровня надежности Tier III.
+              - listitem [ref=e2538]: В Хантфлоу настроено непрерывное резервное копирование всех данных клиентов на резервный сервер.
+              - listitem [ref=e2539]: В Хантфлоу нет ни одного внешнего скрипта вроде Яндекс.Метрики, Google Analytics, Facebook Pixel, чатов поддержки Carrot Quest, JivoSite, Chatra и других внешних скриптов после входа в личный кабинет. Технически все они имеют доступ к вашим данным, что противоречит приватности персональных данных.
+        - generic [ref=e2540]:
+          - term [ref=e2541] [cursor=pointer]:
+            - generic [ref=e2542]: Как Хантфлоу выполняет 152-ФЗ «О персональных данных»?
+            - img [ref=e2544]
+          - definition:
+            - generic [ref=e2548]: Мы строго следим за выполнением закона 152-ФЗ. Сервера Хантфлоу находятся в России, в дата-центре Selectel, компания входит в реестр операторов персональных данных, а ИТ-инфраструктура защищена аппаратным фаерволлом.
+        - generic [ref=e2549]:
+          - term [ref=e2550] [cursor=pointer]:
+            - generic [ref=e2551]: Что будет с базой, если мы прекратим использовать Хантфлоу?
+            - img [ref=e2553]
+          - definition:
+            - generic [ref=e2557]: Мы по договору обязуемся бесплатно вернуть клиенту базу в универсальном компьютерном формате JSON со всеми вакансиями, резюме, взаимосвязями, комментариями, хронологией и пользователями для переноса в любую другую программу. Или же просто резюме в PDF или DOCX, по вашему усмотрению.
+  - contentinfo [ref=e2558]:
+    - generic [ref=e2559]:
+      - paragraph [ref=e2561]: © ООО «Хантфлоу», 2015 — 2026
+      - generic [ref=e2562]:
+        - generic [ref=e2563]:
+          - heading "Продукт" [level=2] [ref=e2564]
+          - list [ref=e2565]:
+            - listitem [ref=e2566]:
+              - link "Что такое Хантфлоу" [ref=e2567] [cursor=pointer]:
+                - /url: /newfeatures
+            - listitem [ref=e2568]:
+              - link "Тарифы" [ref=e2569] [cursor=pointer]:
+                - /url: /price
+            - listitem [ref=e2570]:
+              - link "Внедрение" [ref=e2571] [cursor=pointer]:
+                - /url: /start
+            - listitem [ref=e2572]:
+              - link "Безопасность" [ref=e2573] [cursor=pointer]:
+                - /url: /security
+            - listitem [ref=e2574]:
+              - link "API" [ref=e2575] [cursor=pointer]:
+                - /url: /api
+        - generic [ref=e2576]:
+          - heading "Преимущества" [level=2] [ref=e2577]
+          - list [ref=e2578]:
+            - listitem [ref=e2579]:
+              - link "Интерактивные отчеты" [ref=e2580] [cursor=pointer]:
+                - /url: /features/reports
+            - listitem [ref=e2581]:
+              - link "Экономия с Хантфлоу" [ref=e2582] [cursor=pointer]:
+                - /url: /calc
+            - listitem [ref=e2583]:
+              - link "Для крупных клиентов" [ref=e2584] [cursor=pointer]:
+                - /url: /premier
+            - listitem [ref=e2585]:
+              - link "Для IT-компаний" [ref=e2586] [cursor=pointer]:
+                - /url: /industry/it
+            - listitem [ref=e2587]:
+              - link "Решение для КА с AmoCRM" [ref=e2588] [cursor=pointer]:
+                - /url: /features/agency
+        - generic [ref=e2589]:
+          - heading "Как нанимать" [level=2] [ref=e2590]
+          - list [ref=e2591]:
+            - listitem [ref=e2592]:
+              - link "Журнал Хантфлоу" [ref=e2593] [cursor=pointer]:
+                - /url: https://huntflow.media/
+            - listitem [ref=e2594]:
+              - link "Руководства по подбору" [ref=e2595] [cursor=pointer]:
+                - /url: /guides
+            - listitem [ref=e2596]:
+              - link "Подкаст «Инсайт»" [ref=e2597] [cursor=pointer]:
+                - /url: https://huntflow.media/formats/podcasts/
+            - listitem [ref=e2598]:
+              - link "Митапы и вебинары" [ref=e2599] [cursor=pointer]:
+                - /url: /events
+            - listitem [ref=e2600]:
+              - link "Рассылка" [ref=e2601] [cursor=pointer]:
+                - /url: /emails
+        - generic [ref=e2602]:
+          - heading "Компания" [level=2] [ref=e2603]
+          - list [ref=e2604]:
+            - listitem [ref=e2605]:
+              - link "О компании" [ref=e2606] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e2607]:
+              - link "Карьера в Хантфлоу" [ref=e2608] [cursor=pointer]:
+                - /url: /career/
+            - listitem [ref=e2609]:
+              - link "Фирменный стиль" [ref=e2610] [cursor=pointer]:
+                - /url: /brand
+            - listitem [ref=e2611]:
+              - link "Медиакит" [ref=e2612] [cursor=pointer]:
+                - /url: /mediakit
+        - generic [ref=e2613]:
+          - heading "Официальное" [level=2] [ref=e2614]
+          - list [ref=e2615]:
+            - listitem [ref=e2616]:
+              - link "Пользовательское соглашение" [ref=e2617] [cursor=pointer]:
+                - /url: /docs/terms
+            - listitem [ref=e2618]:
+              - link "Политика конфиденциальности" [ref=e2619] [cursor=pointer]:
+                - /url: /docs/privacy-policy
+            - listitem [ref=e2620]:
+              - link "Документы" [ref=e2621] [cursor=pointer]:
+                - /url: /docs/documents
+            - listitem [ref=e2622]:
+              - link "Соблюдение GDPR" [ref=e2623] [cursor=pointer]:
+                - /url: /docs/gdpr
+            - listitem [ref=e2624]:
+              - link "Сообщить об уязвимости" [ref=e2625] [cursor=pointer]:
+                - /url: /security-report
+        - generic [ref=e2626]:
+          - heading "Социальные сети" [level=2] [ref=e2627]
+          - list [ref=e2628]:
+            - listitem [ref=e2629]:
+              - link "Telegram" [ref=e2630] [cursor=pointer]:
+                - /url: https://t.me/+jw3MbIRCSMY2MjUy
+            - listitem [ref=e2631]:
+              - link "VK" [ref=e2632] [cursor=pointer]:
+                - /url: https://vk.com/huntflow
+            - listitem [ref=e2633]:
+              - link "MAX" [ref=e2634] [cursor=pointer]:
+                - /url: https://max.ru/huntflow
+      - generic [ref=e2635]:
+        - paragraph [ref=e2636]:
+          - text: Хантфлоу — самая узнаваемая и востребованная система автоматизации рекрутмента по данным
+          - link "всероссийского ежегодного рейтинга TheHRD.ru" [ref=e2637] [cursor=pointer]:
+            - /url: https://thehrd.ru/rating/2025/
+          - text: ", опубликованного 30 сентября 2025 года"
+        - paragraph [ref=e2638]:
+          - text: Хантфлоу — самая функциональная ATS-система России по данным
+          - link "независимого исследования «Технологий Доверия»" [ref=e2639] [cursor=pointer]:
+            - /url: https://tedo.ru/ats
+          - text: (бывшего представительства PwC), опубликованного в I квартале 2024 года
+        - paragraph [ref=e2640]:
+          - text: "* Хантфлоу — рекрутинговая система № 1 по объему функциональности среди облачных рекрутинговых систем в России согласно"
+          - link "исследованию аналитического агентства TAdviser" [ref=e2641] [cursor=pointer]:
+            - /url: https://www.tadviser.ru/a/578060?roistat_visit=4183974
+          - text: ", опубликованному в феврале 2021 года"
+  - generic [ref=e2643]:
+    - paragraph [ref=e2644]: Пользуясь сайтом, вы соглашаетесь с использованием cookie
+    - button "Закрыть" [ref=e2645] [cursor=pointer]

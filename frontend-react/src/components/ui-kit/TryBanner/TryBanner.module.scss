@@ -1,0 +1,41 @@
+@import "@/styles/abstracts/variables";
+@import "@/styles/abstracts/mixins";
+
+.banner {
+  margin: 20px 0;
+  background: linear-gradient(135deg, #0f2b46, #0b1d2d);
+  border-radius: 12px;
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: $white;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    right: -10%;
+    top: -30%;
+    width: 570px;
+    height: 700px;
+    background: url("/images/background.png") no-repeat center/cover;
+  }
+}
+
+.content {
+  max-width: 100%;
+}
+
+.title {
+  color: $white;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.description {
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 20px;
+}
+

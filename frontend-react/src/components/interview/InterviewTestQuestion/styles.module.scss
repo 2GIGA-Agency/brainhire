@@ -1,0 +1,16 @@
+.answersBox {
+    display: flex;
+    gap: 12px;
+    flex-direction: column;
+}
+
+
+@media (max-width: 770px) {
+    .answersWrapper {
+        margin-top: 20px;
+    }
+
+    .answersBox {
+        gap: 20px;
+    }
+}

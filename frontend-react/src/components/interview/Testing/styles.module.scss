@@ -1,0 +1,12 @@
+.testingWrapper {
+    min-height: 320px;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 770px) {
+    .testingWrapper {
+        margin-top: 20px;
+    }
+}

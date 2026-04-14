@@ -1,0 +1,347 @@
+- generic [ref=e2]:
+  - link "К основному контенту" [ref=e3] [cursor=pointer]:
+    - /url: "#t-main-content"
+  - banner [ref=e4]:
+    - generic [ref=e7]:
+      - link [ref=e10] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e12]:
+        - list [ref=e13]:
+          - listitem [ref=e14]:
+            - button "Продукты" [ref=e15] [cursor=pointer]
+          - listitem [ref=e16]:
+            - button "Решения" [ref=e17] [cursor=pointer]
+          - listitem [ref=e18]:
+            - link "Тарифы" [ref=e19] [cursor=pointer]:
+              - /url: /pricing/
+          - listitem [ref=e20]:
+            - link "Блог" [ref=e21] [cursor=pointer]:
+              - /url: /blog
+      - generic [ref=e25]:
+        - link "Личный кабинет" [ref=e27] [cursor=pointer]:
+          - /url: https://my.vcv.ru/login
+          - generic [ref=e28]: Личный кабинет
+        - link "Пробная версия" [ref=e30] [cursor=pointer]:
+          - /url: https://my.vcv.ru/signup/
+          - generic [ref=e31]: Пробная версия
+    - generic [ref=e33]:
+      - link [ref=e36] [cursor=pointer]:
+        - /url: /
+      - navigation [ref=e38]:
+        - list [ref=e39]:
+          - listitem [ref=e40]:
+            - button "Продукты" [ref=e41] [cursor=pointer]
+          - listitem [ref=e42]:
+            - button "Решения" [ref=e43] [cursor=pointer]
+          - listitem [ref=e44]:
+            - link "Тарифы" [ref=e45] [cursor=pointer]:
+              - /url: /pricing/
+          - listitem [ref=e46]:
+            - link "Блог" [ref=e47] [cursor=pointer]:
+              - /url: /blog
+      - generic [ref=e51]:
+        - link "Личный кабинет" [ref=e53] [cursor=pointer]:
+          - /url: https://my.vcv.ru/login
+          - generic [ref=e54]: Личный кабинет
+        - link "Пробная версия" [ref=e56] [cursor=pointer]:
+          - /url: https://my.vcv.ru/registration/ru
+          - generic [ref=e57]: Пробная версия
+  - generic [ref=e60]:
+    - heading "Выберите тариф:" [level=1] [ref=e66]
+    - generic [ref=e68]: Подберите план, исходя из объема найма и типа бизнеса. У нас гибкий подход, и мы можем сформировать индивидуальный тариф под ваш запрос (напишите на sales@vcv.ru)
+  - generic [ref=e71]:
+    - generic [ref=e77]: Индвидуальный
+    - generic [ref=e79]: Если вы крупный клиент и вам нужен персональный подход, помощь с внедрением или выбором тарифа
+    - button "Заказать звонок" [ref=e81] [cursor=pointer]:
+      - generic [ref=e83]: Заказать звонок
+    - generic [ref=e87]: Подходит для крупных компаний (Enterprise)
+    - generic [ref=e91]: Расширенный
+    - generic [ref=e93]: Без ограничений по вакансиям
+    - generic [ref=e95]: От 20 человек в команде, несколько отделов, много позиций
+    - link "Начать" [ref=e97] [cursor=pointer]:
+      - /url: https://my.vcv.ru/signup
+      - generic [ref=e99]: Начать
+    - generic [ref=e103]: 4 490 ₽/мес
+    - generic [ref=e107]: Базовый
+    - generic [ref=e109]: 2 490 ₽/мес
+    - generic [ref=e111]: Без ограничений по вакансиям
+    - generic [ref=e113]: Подходит для небольших команд
+    - link "Начать" [ref=e115] [cursor=pointer]:
+      - /url: https://my.vcv.ru/signup
+      - generic [ref=e117]: Начать
+    - generic [ref=e123]: Пробный
+    - generic [ref=e125]: 0 ₽
+    - generic [ref=e127]: Действует семь дней после регистрации
+    - generic [ref=e129]: Попробуйте все функции на своей вакансии
+    - link "Начать" [ref=e131] [cursor=pointer]:
+      - /url: https://my.vcv.ru/signup
+      - generic [ref=e133]: Начать
+  - generic [ref=e141]:
+    - generic [ref=e142]:
+      - generic [ref=e144]: Функции
+      - generic [ref=e146]: Пробный
+      - generic [ref=e148]: Базовый
+      - generic [ref=e150]: Расширенный
+    - generic [ref=e151]:
+      - generic [ref=e152]:
+        - generic [ref=e154]: Стоимость Тарифа за 1 месяц (руб.)
+        - generic [ref=e156]: 0 р на 7 дней
+        - generic [ref=e158]: 2 490
+        - generic [ref=e160]: 4 490
+      - generic [ref=e161]:
+        - generic [ref=e163]: Стоимость Тарифа за 6 месяцев (руб.) при условии единовременной оплаты.
+        - generic [ref=e165]: ➖
+        - generic [ref=e167]: 13 490
+        - generic [ref=e169]: 23 990
+      - generic [ref=e170]:
+        - generic [ref=e172]: Стоимость за 12 месяцев (руб.) при условии единовременной оплаты
+        - generic [ref=e174]: ➖
+        - generic [ref=e176]: 24 990
+        - generic [ref=e178]: 45 490
+      - generic [ref=e179]:
+        - generic [ref=e181]: Кол-во вакансий
+        - generic [ref=e183]: "1"
+        - strong [ref=e186]: Без ограничений
+        - strong [ref=e189]: Без ограничений
+      - generic [ref=e190]:
+        - generic [ref=e192]:
+          - text: Откликов в месяц*..
+          - button "Подробнее" [ref=e194] [cursor=pointer]
+        - generic [ref=e196]: "10"
+        - generic [ref=e198]: "30"
+        - generic [ref=e200]: "50"
+      - generic [ref=e201]:
+        - generic [ref=e203]:
+          - text: Доп.отклики (несгораемые*)..
+          - button "Подробнее" [ref=e205] [cursor=pointer]
+        - generic [ref=e207]: Не предусмотрено
+        - generic [ref=e209]: Не предусмотрено
+        - generic [ref=e211]: Зависит от количества единовременно приобретаемых откликов
+      - generic [ref=e212]:
+        - generic [ref=e214]:
+          - text: Лендинг вакансии..
+          - button "Подробнее" [ref=e216] [cursor=pointer]
+        - generic [ref=e218]: ✔️
+        - generic [ref=e220]: ✔️
+        - generic [ref=e222]: ✔️
+      - generic [ref=e223]:
+        - generic [ref=e225]:
+          - text: Анкета с отсечением по критериям..
+          - button "Подробнее" [ref=e227] [cursor=pointer]
+        - generic [ref=e229]: ✔️
+        - generic [ref=e231]: ✔️
+        - generic [ref=e233]: ✔️
+      - generic [ref=e234]:
+        - generic [ref=e236]:
+          - text: Тестирование..
+          - button "Подробнее" [ref=e238] [cursor=pointer]
+        - generic [ref=e240]: ✔️
+        - generic [ref=e242]: ✔️
+        - generic [ref=e244]: ✔️
+      - generic [ref=e245]:
+        - generic [ref=e247]:
+          - text: Расширенное тестирование..
+          - button "Подробнее" [ref=e249] [cursor=pointer]
+        - generic [ref=e251]: ✔️
+        - generic [ref=e253]: ➖
+        - generic [ref=e255]: ✔️
+      - generic [ref=e256]:
+        - generic [ref=e258]:
+          - text: Видео/аудио интервью..
+          - button "Подробнее" [ref=e260] [cursor=pointer]
+        - generic [ref=e262]: ✔️
+        - generic [ref=e264]: ✔️
+        - generic [ref=e266]: ✔️
+      - generic [ref=e267]:
+        - generic [ref=e269]:
+          - text: Доп.этапы со своей интеграцией..
+          - button "Подробнее" [ref=e271] [cursor=pointer]
+        - generic [ref=e273]: ✔️
+        - generic [ref=e275]: ➖
+        - generic [ref=e277]: ✔️
+      - generic [ref=e278]:
+        - generic [ref=e280]:
+          - text: Маркетплейс интеграций..
+          - button "Подробнее" [ref=e282] [cursor=pointer]
+        - generic [ref=e284]: ✔️
+        - generic [ref=e286]: ✔️
+        - generic [ref=e288]: ✔️
+      - generic [ref=e289]:
+        - generic [ref=e291]:
+          - text: История событий..
+          - button "Подробнее" [ref=e293] [cursor=pointer]
+        - generic [ref=e295]: ✔️
+        - generic [ref=e297]: ➖
+        - generic [ref=e299]: ✔️
+      - generic [ref=e300]:
+        - generic [ref=e302]:
+          - text: Настройка прав на вакансию..
+          - button "Подробнее" [ref=e304] [cursor=pointer]
+        - generic [ref=e306]: ✔️
+        - generic [ref=e308]: ➖
+        - generic [ref=e310]: ✔️
+      - generic [ref=e311]:
+        - generic [ref=e313]:
+          - text: Документы компании..
+          - button "Подробнее" [ref=e315] [cursor=pointer]
+        - generic [ref=e317]: ✔️
+        - generic [ref=e319]: ✔️
+        - generic [ref=e321]: ✔️
+      - generic [ref=e322]:
+        - generic [ref=e324]:
+          - text: Открытое API..
+          - button "Подробнее" [ref=e326] [cursor=pointer]
+        - generic [ref=e328]: ✔️
+        - generic [ref=e330]: ✔️
+        - generic [ref=e332]: ✔️
+      - generic [ref=e333]:
+        - generic [ref=e335]:
+          - text: Чат-бот..
+          - button "Подробнее" [ref=e337] [cursor=pointer]
+        - generic [ref=e339]: ✔️
+        - generic [ref=e341]: ➖
+        - generic [ref=e343]: ✔️
+      - generic [ref=e344]:
+        - generic [ref=e346]:
+          - text: Компетенции..
+          - button "Подробнее" [ref=e348] [cursor=pointer]
+        - generic [ref=e350]: ✔️
+        - generic [ref=e352]: ➖
+        - generic [ref=e354]: ✔️
+      - generic [ref=e355]:
+        - generic [ref=e357]:
+          - text: Распознавание речи и эмоций..
+          - button "Подробнее" [ref=e359] [cursor=pointer]
+        - generic [ref=e361]: ✔️
+        - generic [ref=e363]: ➖
+        - generic [ref=e365]: ➖
+      - generic [ref=e366]:
+        - generic [ref=e368]:
+          - text: Управление парольной политикой..
+          - button "Читать далее" [ref=e370] [cursor=pointer]
+        - generic [ref=e372]: ✔️
+        - generic [ref=e374]: ➖
+        - generic [ref=e376]: ✔️
+      - generic [ref=e377]:
+        - generic [ref=e379]:
+          - text: Чат-бот с ИИ..
+          - button "Подробнее" [ref=e381] [cursor=pointer]
+        - generic [ref=e383]: ➖
+        - generic [ref=e385]: ➖
+        - generic [ref=e387]: ✔️
+      - generic [ref=e388]:
+        - generic [ref=e390]: Персональный менеджер
+        - generic [ref=e392]: Доступен на индивидуальном тарифе
+        - generic [ref=e394]: Доступен на индивидуальном тарифе
+        - generic [ref=e396]: Доступен на индивидуальном тарифе
+      - generic [ref=e397]:
+        - generic [ref=e399]: Договор с индивидуальными условиями
+        - generic [ref=e401]: Доступен на индивидуальном тарифе
+        - generic [ref=e403]: Доступен на индивидуальном тарифе
+        - generic [ref=e405]: Доступен на индивидуальном тарифе
+  - contentinfo [ref=e406]:
+    - generic [ref=e409]:
+      - generic [ref=e410]:
+        - img "Продукты" [ref=e411]
+        - list "Social media links" [ref=e413]:
+          - listitem [ref=e414]:
+            - link "vk" [ref=e415] [cursor=pointer]:
+              - /url: https://vk.com/vcv_ru
+          - listitem [ref=e417]:
+            - link "youtube" [ref=e418] [cursor=pointer]:
+              - /url: https://www.youtube.com/channel/UCa528SOIC1-vQI_kz2zMShw
+          - listitem [ref=e420]:
+            - link "linkedin" [ref=e421] [cursor=pointer]:
+              - /url: https://www.linkedin.com/company/vcv-ru?trk=mini-profile
+        - generic [ref=e423]:
+          - text: Авторские права © 2025 VCV Inc.
+          - text: Все права защищены.
+          - text: ОБЩЕСТВО С ОГРАНИЧЕННОЙ
+          - text: ОТВЕТСТВЕННОСТЬЮ "ВИСИВИ"
+          - text: 123557, Российская
+          - text: Федерация, город Москва, вн.тер.г . муниципальный округ Пресненский, улица Пресненски
+          - text: Вал , дом 16, строение 3, помещение 1/1
+          - text: "ИНН: 7703436629"
+          - text: sales@vcv.ru
+      - generic [ref=e424]:
+        - generic [ref=e425]: Продукты
+        - list [ref=e427]:
+          - listitem [ref=e428]:
+            - link "HR бот помощник" [ref=e429] [cursor=pointer]:
+              - /url: /products/bot
+          - listitem [ref=e430]:
+            - link "VCV для образования" [ref=e431] [cursor=pointer]:
+              - /url: /products/edu
+          - listitem [ref=e432]:
+            - link "HR аналитика" [ref=e433] [cursor=pointer]:
+              - /url: /products/hr-analitika
+          - listitem [ref=e434]:
+            - link "Массовый подбор персонала" [ref=e435] [cursor=pointer]:
+              - /url: /products/massovyj-podbor-personala
+          - listitem [ref=e436]:
+            - link "Воронка подбора персонала" [ref=e437] [cursor=pointer]:
+              - /url: /products/voronka-podbora-personala
+          - listitem [ref=e438]:
+            - link "Система управления талантами" [ref=e439] [cursor=pointer]:
+              - /url: /products/sistema-upravleniya-talantami
+          - listitem [ref=e440]:
+            - link "Интеграция с другими платформами" [ref=e441] [cursor=pointer]:
+              - /url: /products/integracziya-s-drugimi-platformami
+          - listitem [ref=e442]:
+            - link "Автоматизация рекрутмента" [ref=e443] [cursor=pointer]:
+              - /url: /products/avtomatizacziya-rekrutmenta
+          - listitem [ref=e444]:
+            - link "Конструктор интервью" [ref=e445] [cursor=pointer]:
+              - /url: /products/konstruktor-intervyu
+          - listitem [ref=e446]:
+            - link "Инструмент для автопоиска кандидатов" [ref=e447] [cursor=pointer]:
+              - /url: /products/instrument-dlya-avtopoiska-kandidatov
+          - listitem [ref=e448]:
+            - link "Массовый найм персонала" [ref=e449] [cursor=pointer]:
+              - /url: /products/massovyj-najm-personala
+          - listitem [ref=e450]:
+            - link "Автоматический прокторинг при собеседованиях" [ref=e451] [cursor=pointer]:
+              - /url: /products/avtomaticheskij-proktoring-pri-sobesedovaniyakh
+      - generic:
+        - generic [ref=e452]:
+          - generic [ref=e453]: О проекте
+          - list [ref=e455]:
+            - listitem [ref=e456]:
+              - link "Контакты" [ref=e457] [cursor=pointer]:
+                - /url: /about/contacts
+            - listitem [ref=e458]:
+              - link "СМИ о нас" [ref=e459] [cursor=pointer]:
+                - /url: https://blog.vcv.ru/#!/tab/208255298-3
+            - listitem [ref=e460]:
+              - link "О компании" [ref=e461] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e462]:
+              - link "Отзывы" [ref=e463] [cursor=pointer]:
+                - /url: /reviews
+            - listitem [ref=e464]:
+              - link "API" [ref=e465] [cursor=pointer]:
+                - /url: https://developer.vcv.ru/
+            - listitem [ref=e466]:
+              - link "FAQ" [ref=e467] [cursor=pointer]:
+                - /url: /faq/
+        - generic [ref=e468]:
+          - generic [ref=e469]: Правовая документация
+          - list [ref=e471]:
+            - listitem [ref=e472]:
+              - link "Публичная оферта" [ref=e473] [cursor=pointer]:
+                - /url: /public_offer
+            - listitem [ref=e474]:
+              - link "Пользовательское соглашение" [ref=e475] [cursor=pointer]:
+                - /url: /user-agreement
+            - listitem [ref=e476]:
+              - link "Политика конфиденциальности" [ref=e477] [cursor=pointer]:
+                - /url: /privacy-policy/
+            - listitem [ref=e478]:
+              - link "Политика в отношении обработки ПДН" [ref=e479] [cursor=pointer]:
+                - /url: /personal_data_policy
+    - alertdialog [ref=e481]:
+      - generic [ref=e482]:
+        - text: Мы используем cookie-файлы для аналитики, чтобы ваше посещение сайта было удобным и вы скорее могли закрыть вакансии .
+        - text: Нажимая «Продолжить» или закрывая окно, вы соглашаетесь с использованием cookie-файлов и обработкой персональных данных с использованием Яндекс.Метрики.
+      - generic [ref=e484] [cursor=pointer]: Продолжить
+      - button "Закрыть уведомление" [ref=e485] [cursor=pointer]

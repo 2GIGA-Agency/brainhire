@@ -1,0 +1,10 @@
+.actionsWrapper {
+	display: flex;
+	gap: 24px;
+	margin-bottom: 12px;
+
+	.actionsButtons {
+		display: flex;
+		gap: 8px;
+	}
+}

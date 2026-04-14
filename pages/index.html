@@ -1,0 +1,2997 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>BRaiN HR — ИИ-платформа для автоматизации рекрутинга и оценки персонала</title>
+<meta name="description" content="Нанимайте в 5 раз дешевле и быстрее. ИИ-создание вакансий, автоматический скрининг резюме, видеоинтервью с прокторингом, Real-time интервью с ИИ-аватаром.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand1:   #4096FF;
+    --brand1-h: #69B1FF;
+    --brand1-bg:#E6F4FF;
+    --brand2:   #FF7401;
+    --brand2-bg:#FFF3E8;
+    --brand3:   #12536D;
+    --text1:    #11263A;
+    --text2:    #717680;
+    --grey1:    #F5F6F8;
+    --grey2:    #D5D7DA;
+    --grey3:    rgba(29,29,29,0.10);
+    --grey4:    #535862;
+    --white:    #FFFFFF;
+    --radius:   12px;
+    --radius-sm: 8px;
+    --shadow:   0 1px 3px rgba(17,38,58,0.08), 0 4px 16px rgba(17,38,58,0.06);
+    --shadow-md:0 4px 24px rgba(17,38,58,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--white);
+    color: var(--text1);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── URGENCY BANNER ─── */
+  .urgency-banner {
+    background: #4096FF;
+    padding: 10px 24px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .urgency-banner strong { color: var(--white); font-weight: 700; }
+  .urgency-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #ffffff; flex-shrink: 0;
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+
+  /* ─── HEADER ─── */
+  .site-header { position: sticky; top: 0; z-index: 100; background: var(--white); box-shadow: 0 1px 0 var(--grey2); }
+
+  /* Top bar */
+  .header-topbar { background: var(--grey1); border-bottom: 1px solid var(--grey2); }
+  .topbar-links { display: flex; align-items: center; justify-content: center; width: 100%; gap: 0; }
+  .topbar-link { font-size: 12px; font-weight: 500; color: var(--text2); text-decoration: none; padding: 0 20px; border-right: 1px solid var(--grey2); line-height: 36px; transition: color .2s; }
+  .topbar-link:first-child { border-left: 1px solid var(--grey2); }
+  .topbar-link:hover { color: var(--brand1); }
+
+  /* Main nav */
+  .header-main { background: var(--white); overflow: visible; }
+  .header-inner { max-width: 1240px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; gap: 4px; overflow: visible; }
+  .logo { display: flex; align-items: center; flex-shrink: 0; margin-right: 8px; }
+  .logo img { height: 24px; }
+  .main-nav { display: flex; align-items: center; flex: 1; gap: 0; overflow: visible; }
+
+  /* Nav items */
+  .mnav-item { position: relative; overflow: visible; }
+  .mnav-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 0 14px; height: 64px; background: none; border: none;
+    border-bottom: 2px solid transparent;
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 500;
+    color: var(--text2); cursor: pointer; white-space: nowrap;
+    transition: color .2s, border-color .2s;
+  }
+  .mnav-btn:hover, .mnav-item.open .mnav-btn { color: var(--text1); border-bottom-color: var(--brand1); }
+  .mnav-btn svg { opacity: .6; transition: transform .2s; flex-shrink: 0; }
+  .mnav-item.open .mnav-btn svg { transform: rotate(180deg); }
+  .mnav-link {
+    display: inline-flex; align-items: center;
+    padding: 0 14px; height: 64px; font-size: 14px; font-weight: 500;
+    color: var(--text2); text-decoration: none; white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  .mnav-link:hover { color: var(--text1); border-bottom-color: var(--brand1); }
+  .nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; margin-left: auto; }
+
+  /* Mega panel */
+  .mega-panel {
+    display: none; position: absolute; top: 100%; left: 0;
+    margin-top: 1px;
+    background: var(--white); border: 1px solid var(--grey2);
+    border-radius: 0 0 var(--radius) var(--radius);
+    box-shadow: 0 8px 32px rgba(17,38,58,0.12);
+    min-width: 270px; padding: 8px;
+    z-index: 999;
+  }
+  .mnav-item.open .mega-panel { display: flex; }
+  .mega-col { display: flex; flex-direction: column; gap: 2px; width: 100%; }
+
+  .mega-section-item { position: relative; }
+  .mega-section-link {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 12px; border-radius: var(--radius-sm); cursor: pointer;
+    text-decoration: none; transition: background .15s;
+  }
+  a.mega-section-link:hover,
+  .mega-section-item:hover > .mega-section-link { background: var(--grey1); }
+  .mega-section-icon { font-size: 20px; flex-shrink: 0; width: 32px; text-align: center; display: flex; align-items: center; justify-content: center; }
+  .mega-section-title { font-size: 13px; font-weight: 700; color: var(--text1); }
+  .mega-section-desc { font-size: 11px; color: var(--text2); margin-top: 1px; }
+  .mega-arrow { flex-shrink: 0; margin-left: auto; color: var(--text2); opacity: .5; }
+
+  /* Sub panel */
+  .sub-panel {
+    display: none; position: absolute; left: calc(100% + 4px); top: 0;
+    background: var(--white); border: 1px solid var(--grey2);
+    border-radius: var(--radius); box-shadow: 0 8px 32px rgba(17,38,58,0.12);
+    min-width: 280px; padding: 8px; z-index: 1000;
+  }
+  .has-sub.sub-open .sub-panel { display: block; }
+  .sub-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 12px; border-radius: var(--radius-sm);
+    text-decoration: none; transition: background .15s;
+  }
+  .sub-item:hover { background: var(--grey1); }
+  .sub-item-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; }
+  .sub-item-title { font-size: 13px; font-weight: 700; color: var(--text1); }
+  .sub-item-desc { font-size: 11px; color: var(--text2); margin-top: 1px; }
+
+  /* Dropdown */
+  .drop-panel {
+    display: none; position: absolute; top: 100%; left: 0;
+    margin-top: 1px;
+    background: var(--white); border: 1px solid var(--grey2);
+    border-radius: 0 0 var(--radius) var(--radius);
+    box-shadow: 0 8px 32px rgba(17,38,58,0.12);
+    min-width: 210px; padding: 8px; z-index: 999;
+  }
+  .mnav-item.open .drop-panel { display: block; }
+  .drop-item {
+    display: block; padding: 9px 14px; border-radius: var(--radius-sm);
+    font-size: 13px; font-weight: 500; color: var(--text1);
+    text-decoration: none; transition: background .15s, color .15s;
+  }
+  .drop-item:hover { background: var(--grey1); color: var(--brand1); }
+  .drop-item-active { color: var(--brand1); font-weight: 700; background: var(--brand1-bg); }
+  .drop-group { margin-top: 4px; padding-top: 4px; border-top: 1px solid var(--grey1); }
+  .drop-group-label { padding: 8px 14px 4px; font-size: 11px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; }
+
+  @media (max-width: 960px) {
+    .main-nav { display: none; }
+    .header-topbar { display: none; }
+  }
+
+  /* BUTTONS */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border: none; border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--white); background: var(--brand1); cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background: var(--brand1-h); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(64,150,255,0.35); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border: 1.5px solid var(--grey2); border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--text1); background: var(--white); cursor: pointer;
+    transition: border-color .2s, color .2s, background .2s;
+    text-decoration: none;
+  }
+  .btn-secondary:hover { border-color: var(--brand1); color: var(--brand1); background: var(--brand1-bg); }
+
+  .btn-hero-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 16px 32px; border: none; border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700;
+    color: var(--white); background: var(--brand1); cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    text-decoration: none; box-shadow: 0 4px 20px rgba(64,150,255,0.35);
+  }
+  .btn-hero-primary:hover { background: var(--brand1-h); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(64,150,255,0.45); }
+
+  .btn-hero-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 15px 32px; border: 1.5px solid var(--grey2); border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 600;
+    color: var(--text1); background: var(--white); cursor: pointer;
+    transition: border-color .2s, color .2s; text-decoration: none;
+  }
+  .btn-hero-outline:hover { border-color: var(--brand1); color: var(--brand1); }
+
+  /* ─── HERO ─── */
+  .hero-section { background: var(--white); padding: 80px 0 88px; }
+  .hero-wrap {
+    max-width: 1240px; margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: 1fr 440px; gap: 72px; align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.3);
+    border-radius: 100px; padding: 5px 14px 5px 10px;
+    font-size: 12px; font-weight: 600; color: var(--brand1); margin-bottom: 20px;
+    letter-spacing: 0.3px;
+  }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand1); animation: pulse 2s infinite; }
+
+  h1 {
+    font-size: clamp(36px, 4vw, 52px); font-weight: 800;
+    line-height: 1.1; letter-spacing: -1.2px; color: var(--text1); margin-bottom: 20px;
+  }
+  h1 em { font-style: normal; color: var(--brand1); }
+  h1 .accent-orange { color: var(--brand2); }
+  h1 sup { font-size: 14px; font-weight: 600; color: var(--text2); vertical-align: super; }
+
+  .hero-sub {
+    font-size: 17px; color: var(--text2); margin-bottom: 36px;
+    max-width: 500px; line-height: 1.7; font-weight: 400;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+  .hero-proof { display: flex; gap: 24px; flex-wrap: wrap; }
+  .proof-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 13px; font-weight: 500; color: var(--text2);
+  }
+  .proof-item::before {
+    content:''; width:16px; height:16px; border-radius:50%; flex-shrink:0;
+    background: var(--brand1-bg); border: 1.5px solid var(--brand1);
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%234096FF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: center;
+  }
+
+  /* ─── PIPELINE CARD ─── */
+  .pipeline-card {
+    background: var(--white); border: 1px solid var(--grey2);
+    border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden;
+  }
+  .pipeline-header {
+    padding: 14px 18px; border-bottom: 1px solid var(--grey2);
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600; color: var(--text2); background: var(--grey1);
+  }
+  .pipeline-header .dots { display: flex; gap: 6px; }
+  .wdot { width: 10px; height: 10px; border-radius: 50%; }
+  .pipeline-body { padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .pipeline-stage {
+    background: var(--grey1); border: 1px solid var(--grey2); border-radius: var(--radius-sm);
+    padding: 11px 14px; display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; transition: border-color .2s, box-shadow .2s;
+  }
+  .pipeline-stage:hover { border-color: var(--brand1); box-shadow: 0 0 0 3px rgba(64,150,255,0.08); }
+  .ps-left { display: flex; align-items: center; gap: 10px; }
+  .ps-icon { font-size: 16px; flex-shrink: 0; display: flex; align-items: center; }
+  .ps-name { font-size: 12px; font-weight: 600; color: var(--text1); }
+  .ps-meta { font-size: 11px; color: var(--text2); margin-top: 1px; }
+  .ps-badge {
+    font-size: 11px; font-weight: 600; padding: 3px 10px;
+    border-radius: 100px; white-space: nowrap;
+  }
+  .ps-badge.blue { background: var(--brand1-bg); color: var(--brand1); border: 1px solid rgba(64,150,255,0.25); }
+  .ps-badge.orange { background: var(--brand2-bg); color: var(--brand2); border: 1px solid rgba(255,116,1,0.25); }
+  .ps-badge.teal { background: rgba(18,83,109,0.08); color: var(--brand3); border: 1px solid rgba(18,83,109,0.2); }
+  .ps-badge.grey { background: var(--grey2); color: var(--grey4); }
+  .pipeline-summary {
+    margin-top: 2px; padding: 10px 14px;
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.25);
+    border-radius: var(--radius-sm); font-size: 12px; font-weight: 500; color: var(--brand3);
+    display: flex; align-items: center; gap: 7px; line-height: 1.4;
+  }
+  .pipeline-summary span { flex: 1; }
+  .pipeline-summary strong { font-weight: 700; color: var(--brand1); }
+
+  /* ─── TICKER ─── */
+  .ticker-wrap {
+    border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2);
+    background: var(--grey1); overflow: hidden; padding: 13px 0;
+  }
+  .ticker { display: flex; animation: ticker 32s linear infinite; width: max-content; }
+  .ticker-item {
+    display: flex; align-items: center; gap: 8px; padding: 0 32px;
+    font-size: 13px; font-weight: 500; color: var(--text2); white-space: nowrap;
+  }
+  .ticker-item .ti { color: var(--brand1); font-size: 14px; display: flex; align-items: center; flex-shrink: 0; }
+  .ticker-item b { color: var(--text1); font-weight: 600; }
+  @keyframes ticker { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 80px 0; }
+  .section-bg { background: var(--grey1); }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--brand1); background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.25);
+    padding: 4px 12px; border-radius: 100px; margin-bottom: 14px;
+  }
+  .section-title {
+    font-size: clamp(26px, 3vw, 38px); font-weight: 800; line-height: 1.18;
+    letter-spacing: -0.7px; color: var(--text1); margin-bottom: 12px;
+  }
+  .section-title em { font-style: normal; color: var(--brand1); }
+  .section-title .emo { color: var(--brand2); }
+  .section-sub { font-size: 15px; color: var(--text2); max-width: 540px; line-height: 1.72; margin-bottom: 48px; }
+
+  /* ─── LOGOS ─── */
+  .logos-section { background: var(--grey1); border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2); padding: 28px 0; }
+  .logos-label { font-size: 12px; font-weight: 600; text-align: center; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+  .logos-slider-wrap { overflow: hidden; position: relative; }
+  .logos-slider-wrap::before, .logos-slider-wrap::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+  }
+  .logos-slider-wrap::before { left: 0; background: linear-gradient(90deg, var(--grey1), transparent); }
+  .logos-slider-wrap::after { right: 0; background: linear-gradient(-90deg, var(--grey1), transparent); }
+  .logos-slider-track {
+    display: flex; align-items: center; gap: 0;
+    animation: ticker 30s linear infinite; width: max-content;
+  }
+  .logos-slider-track:hover { animation-play-state: paused; }
+  .logo-item {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0 36px; height: 68px; flex-shrink: 0;
+    border-right: 1px solid var(--grey2);
+    text-decoration: none; white-space: nowrap;
+    opacity: .6; transition: opacity .25s;
+    line-height: 1.2;
+  }
+  .logo-item:last-child { border-right: none; }
+  .logo-item:hover { opacity: 1; }
+
+  /* ─── FEATURE ROWS ─── */
+  .feat-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+    padding: 56px 0; border-bottom: 1px solid var(--grey2);
+  }
+  .feat-row:last-child { border-bottom: none; }
+  .feat-row-rev { direction: rtl; }
+  .feat-row-rev > * { direction: ltr; }
+
+  .feat-screen { position: relative; }
+  .feat-screen-inner {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: 12px;
+    box-shadow: 0 8px 40px rgba(17,38,58,0.12); overflow: hidden;
+  }
+  .feat-browser-bar {
+    background: var(--grey1); border-bottom: 1px solid var(--grey2);
+    padding: 10px 14px; display: flex; gap: 6px; align-items: center;
+  }
+  .feat-browser-bar span { width: 10px; height: 10px; border-radius: 50%; }
+  .feat-browser-bar span:nth-child(1) { background: #FD6B5B; }
+  .feat-browser-bar span:nth-child(2) { background: #FEBC2E; }
+  .feat-browser-bar span:nth-child(3) { background: #28C840; }
+
+  .feat-mock { padding: 16px; }
+  .feat-mock-header { margin-bottom: 12px; }
+  .feat-mock-breadcrumb { font-size: 11px; color: var(--text2); margin-bottom: 4px; }
+  .feat-mock-title { font-size: 15px; font-weight: 700; color: var(--text1); }
+  .feat-mock-steps {
+    display: flex; gap: 0; margin-bottom: 14px; font-size: 11px;
+    background: var(--grey1); border-radius: 8px; padding: 6px 8px;
+    flex-wrap: wrap; gap: 4px;
+  }
+  .feat-mock-step { padding: 3px 10px; border-radius: 6px; color: var(--text2); font-weight: 500; }
+  .feat-mock-step.active { background: var(--brand1); color: var(--white); }
+  .feat-mock-step.done { color: var(--brand1); }
+
+  .feat-mock-card {
+    background: var(--grey1); border: 1px solid var(--grey2); border-radius: 8px; padding: 14px;
+  }
+  .feat-mock-card-title { font-size: 13px; font-weight: 700; color: var(--text1); margin-bottom: 3px; }
+  .feat-mock-card-sub { font-size: 11px; color: var(--text2); margin-bottom: 10px; }
+  .feat-mock-info { background: rgba(64,150,255,0.06); border: 1px solid rgba(64,150,255,0.15); border-radius: 6px; padding: 10px; margin-bottom: 10px; }
+  .feat-mock-info-text { font-size: 11px; color: var(--text1); font-weight: 600; margin-bottom: 6px; }
+  .feat-mock-info-item { font-size: 10px; color: var(--text2); margin-bottom: 3px; line-height: 1.4; }
+  .feat-mock-label { font-size: 11px; color: var(--text2); margin-bottom: 8px; }
+  .feat-mock-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .feat-btn-primary { background: var(--brand1); color: var(--white); border: none; border-radius: 6px; padding: 7px 12px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Montserrat', sans-serif; }
+  .feat-btn-outline { background: var(--white); color: var(--brand1); border: 1px solid var(--brand1); border-radius: 6px; padding: 7px 12px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Montserrat', sans-serif; }
+
+  /* Scoring mock */
+  .feat-candidates { display: flex; flex-direction: column; gap: 8px; }
+  .feat-candidate {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: 8px;
+    padding: 10px 12px; display: flex; align-items: center; gap: 10px;
+  }
+  .feat-candidate-top { border-color: rgba(64,150,255,0.3); }
+  .feat-cand-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .feat-cand-info { flex: 1; }
+  .feat-cand-name { font-size: 12px; font-weight: 700; color: var(--text1); }
+  .feat-cand-role { font-size: 10px; color: var(--text2); }
+  .feat-cand-score { font-size: 12px; font-weight: 800; padding: 3px 10px; border-radius: 100px; flex-shrink: 0; }
+
+  /* Interview mock */
+  .feat-mock-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--grey2); }
+  .feat-tab { padding: 10px 14px; font-size: 11px; font-weight: 600; color: var(--text2); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .feat-tab.active { color: var(--brand1); border-bottom-color: var(--brand1); }
+  .feat-mock-interview-body { padding: 14px; }
+  .feat-interview-score { font-size: 11px; font-weight: 600; color: var(--text2); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .feat-score-badge { background: var(--brand1); color: var(--white); padding: 2px 8px; border-radius: 100px; font-size: 12px; font-weight: 800; }
+  .feat-interview-q { font-size: 12px; font-weight: 600; color: var(--text1); background: var(--grey1); border-radius: 6px; padding: 10px; margin-bottom: 8px; line-height: 1.5; }
+  .feat-interview-a { font-size: 11px; color: var(--text2); background: rgba(64,150,255,0.04); border: 1px solid rgba(64,150,255,0.1); border-radius: 6px; padding: 10px; margin-bottom: 10px; line-height: 1.5; }
+  .feat-interview-meta { display: flex; gap: 8px; }
+  .feat-tag { font-size: 10px; font-weight: 600; background: var(--grey1); border: 1px solid var(--grey2); border-radius: 100px; padding: 3px 8px; color: var(--text2); }
+
+  /* Avatar mock */
+  .feat-avatar-body { padding: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .feat-avatar-screen {
+    background: linear-gradient(135deg, #12536D, #1a6b8a);
+    border-radius: 8px; padding: 20px 12px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  }
+  .feat-avatar-face { font-size: 36px; }
+  .feat-avatar-label { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.8); }
+  .feat-avatar-analysis { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+  .feat-analysis-row { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--text2); }
+  .feat-analysis-row span:first-child { min-width: 90px; font-size: 10px; }
+  .feat-bar { flex: 1; height: 4px; background: var(--grey2); border-radius: 2px; overflow: hidden; }
+  .feat-bar-fill { height: 100%; background: var(--brand1); border-radius: 2px; }
+  .feat-analysis-row span:last-child { min-width: 28px; text-align: right; font-weight: 700; color: var(--text1); font-size: 10px; }
+
+  /* Feature text */
+  .feat-num { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--brand1); text-transform: uppercase; margin-bottom: 10px; }
+  .feat-title { font-size: clamp(20px,2vw,26px); font-weight: 800; color: var(--text1); margin-bottom: 14px; line-height: 1.25; letter-spacing: -0.4px; }
+  .feat-desc { font-size: 14px; color: var(--text2); line-height: 1.72; margin-bottom: 20px; }
+  .feat-checks { display: flex; flex-direction: column; gap: 8px; }
+  .feat-check { font-size: 13px; color: var(--text1); font-weight: 500; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+  .feat-check svg { flex-shrink: 0; margin-top: 2px; }
+  .feat-cta-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 20px;
+    padding: 11px 22px;
+    background: var(--white); color: var(--brand1);
+    border: 1.5px solid var(--brand1); border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+    text-decoration: none; cursor: pointer;
+    transition: background .2s, color .2s, box-shadow .2s, transform .15s;
+  }
+  .feat-cta-btn:hover {
+    background: var(--brand1); color: var(--white);
+    box-shadow: 0 4px 16px rgba(64,150,255,0.3);
+    transform: translateY(-1px);
+  }
+  .feat-cta-actions { display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+  .feat-cta-actions .feat-cta-btn { margin-top: 0; }
+  .feat-cta-primary {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 11px 22px;
+    background: var(--brand1); color: var(--white);
+    border: 1.5px solid var(--brand1); border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+    text-decoration: none; cursor: pointer;
+    transition: background .2s, box-shadow .2s, transform .15s;
+  }
+  .feat-cta-primary:hover {
+    background: var(--brand1-h); border-color: var(--brand1-h);
+    box-shadow: 0 4px 16px rgba(64,150,255,0.3);
+    transform: translateY(-1px);
+  }
+  .feat-footnote { font-size: 12px; color: var(--text2); margin-top: 32px; line-height: 1.6; font-style: italic; }
+
+  /* ─── STATS SECTION ─── */
+  .stats-section { background: var(--grey1); border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2); }
+  .stats-header { text-align: center; margin-bottom: 48px; }
+  .stats-header .section-sub { margin: 0 auto; }
+  .stats-chart-wrap {
+    max-width: 800px; margin: 0 auto;
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    padding: 40px 48px; box-shadow: var(--shadow);
+  }
+  .stats-chart-title { font-size: 14px; font-weight: 700; color: var(--text1); margin-bottom: 32px; text-align: center; }
+  .stats-bars { display: flex; flex-direction: column; gap: 28px; }
+  .stats-bar-row { display: flex; align-items: center; gap: 16px; }
+  .stats-bar-label { min-width: 220px; font-size: 14px; color: var(--text2); font-weight: 500; text-align: right; }
+  .stats-bar-track { flex: 1; height: 40px; background: var(--grey1); border-radius: 8px; overflow: hidden; position: relative; }
+  .stats-bar-fill { height: 100%; border-radius: 8px; display: flex; align-items: center; justify-content: flex-end; padding-right: 14px; font-size: 16px; font-weight: 800; color: var(--white); transition: width 1s ease; }
+  .stats-bar-fill.bar-blue { background: linear-gradient(90deg, #4096FF, #69B1FF); }
+  .stats-bar-fill.bar-orange { background: linear-gradient(90deg, #FF7401, #FFa040); }
+  .stats-bar-fill.bar-teal { background: linear-gradient(90deg, #12536D, #1a7a9c); }
+  .stats-footnote { font-size: 11px; color: var(--text2); margin-top: 32px; text-align: center; line-height: 1.6; font-style: italic; }
+
+  /* ─── AUDIENCE TABS ─── */
+  .audience-section { background: var(--grey1); padding: 80px 0; }
+  .audience-header { text-align: left; margin-bottom: 40px; max-width: 600px; }
+  .audience-header .section-title { text-align: left; }
+  .audience-header .section-sub { margin: 0; text-align: left; }
+  .audience-tabs { display: flex; justify-content: flex-start; gap: 10px; margin-bottom: 32px; flex-wrap: wrap; }
+  .audience-tab {
+    padding: 12px 24px; border-radius: 100px; border: 1.5px solid var(--grey2);
+    background: var(--white); font-family: 'Montserrat', sans-serif;
+    font-size: 14px; font-weight: 600; color: var(--text2); cursor: pointer;
+    transition: all .2s;
+  }
+  .audience-tab:hover { border-color: var(--brand1); color: var(--brand1); }
+  .audience-tab.active { background: var(--brand1); color: var(--white); border-color: var(--brand1); }
+  .audience-panel { display: none; }
+  .audience-panel.active { display: block; }
+  .audience-card {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: 16px;
+    padding: 48px; box-shadow: var(--shadow);
+  }
+  .audience-card-title {
+    font-size: clamp(22px, 2.5vw, 30px); font-weight: 800; color: var(--text1);
+    line-height: 1.25; margin-bottom: 16px; letter-spacing: -0.5px;
+  }
+  .audience-card-title em { font-style: normal; color: var(--brand1); }
+  .audience-content {
+    display: flex; flex-direction: column; gap: 32px;
+  }
+  .audience-text { font-size: 15px; color: var(--text2); line-height: 1.7; margin-bottom: 0; max-width: 620px; }
+  .audience-checks { display: flex; flex-direction: column; gap: 12px; }
+  .audience-check {
+    display: flex; align-items: center; gap: 10px;
+    font-size: 14px; color: var(--text1); line-height: 1.55; font-weight: 500;
+  }
+  .audience-check svg { flex-shrink: 0; }
+  .audience-stats {
+    display: flex; gap: 32px; align-items: flex-end;
+    border-top: 1px solid var(--grey2); padding-top: 28px; margin-top: 4px;
+  }
+  .audience-stat {
+    text-align: left;
+  }
+  .audience-stat-num { font-size: 36px; font-weight: 900; color: var(--brand1); line-height: 1; margin-bottom: 6px; letter-spacing: -1px; }
+  .audience-stat-desc { font-size: 13px; color: var(--text2); line-height: 1.4; }
+  @media(max-width:600px) {
+    .audience-card { padding: 28px 20px; }
+    .audience-stats { flex-wrap: wrap; gap: 24px; }
+  }
+
+  /* ─── PAIN SECTION ─── */
+  .pain-section { background: var(--white); padding: 80px 0; }
+  .pain-header { text-align: left; margin-bottom: 48px; max-width: 650px; }
+  .pain-header .section-title { text-align: left; }
+  .pain-header .section-sub { margin: 0; text-align: left; }
+  .pain-grid {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .pain-card {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: 16px;
+    padding: 36px 32px; transition: box-shadow .25s, border-color .25s;
+  }
+  .pain-card:hover { border-color: var(--brand1); box-shadow: 0 8px 24px rgba(64,150,255,0.08); }
+  .pain-card-icon {
+    width: 48px; height: 48px; border-radius: 12px; background: var(--brand1-bg);
+    display: flex; align-items: center; justify-content: center; margin-bottom: 20px;
+  }
+  .pain-card-title { font-size: 17px; font-weight: 700; color: var(--text1); margin-bottom: 10px; line-height: 1.35; }
+  .pain-card-text { font-size: 14px; color: var(--text2); line-height: 1.65; }
+  .pain-footnote { text-align: center; font-size: 12px; color: var(--text2); margin-top: 32px; }
+
+  /* ─── HOW IT WORKS ─── */
+  .howitworks { background: var(--grey1); padding: 80px 0; border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2); }
+  .howitworks-header { text-align: left; margin-bottom: 48px; max-width: 650px; }
+  .howitworks-header .section-title { text-align: left; }
+  .howitworks-header .section-sub { margin: 0; text-align: left; }
+  .howitworks-grid {
+    display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px;
+  }
+  .hiw-step {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    padding: 26px 22px; box-shadow: var(--shadow); transition: border-color .25s, box-shadow .25s, transform .25s;
+  }
+  .hiw-step:hover { border-color: var(--brand1); box-shadow: 0 8px 24px rgba(64,150,255,0.12); transform: translateY(-4px); }
+  .hiw-num {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--brand1);
+    text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 6px;
+  }
+  .hiw-time {
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.2);
+    border-radius: 100px; padding: 2px 8px; font-size: 10px; color: var(--brand1); font-weight: 600;
+  }
+  .hiw-icon { display: flex; align-items: center; margin-bottom: 12px; }
+  .hiw-title { font-size: 15px; font-weight: 700; color: var(--text1); margin-bottom: 8px; }
+  .hiw-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+  @media(max-width:960px) {
+    .howitworks-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media(max-width:600px) {
+    .howitworks-grid { grid-template-columns: 1fr; }
+  }
+  @media(max-width:700px) {
+    .pain-grid { grid-template-columns: 1fr; }
+  }
+
+  /* ─── VIDEO DEMO ─── */
+  .video-demo-section {
+    background: #F5F6F8; border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2);
+    padding: 88px 0; position: relative; overflow: hidden;
+  }
+  .video-demo-section::before {
+    content: ''; position: absolute; top: -80px; right: -80px;
+    width: 420px; height: 420px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(64,150,255,0.08), transparent 70%); pointer-events: none;
+  }
+  .video-demo-section::after {
+    content: ''; position: absolute; bottom: -60px; left: -60px;
+    width: 300px; height: 300px; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,116,1,0.06), transparent 70%); pointer-events: none;
+  }
+  .video-demo-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  .video-demo-left .section-tag { background: var(--brand1-bg); border-color: rgba(64,150,255,0.25); color: var(--brand1); }
+  .video-demo-left .section-title { color: var(--text1); text-align: left; }
+  .video-demo-left .section-title em { color: var(--brand1); }
+  .vd-features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .vd-feature {
+    display: flex; align-items: flex-start; gap: 14px; padding: 14px 16px;
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius-sm);
+    box-shadow: 0 1px 4px rgba(17,38,58,0.05); transition: border-color .2s, box-shadow .2s;
+  }
+  .vd-feature:hover { border-color: rgba(64,150,255,0.35); box-shadow: 0 4px 16px rgba(64,150,255,0.1); }
+  .vd-feature-icon {
+    width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px;
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .vd-feature-title { font-size: 13px; font-weight: 700; color: var(--text1); margin-bottom: 3px; }
+  .vd-feature-text { font-size: 12px; color: var(--text2); line-height: 1.5; }
+  .vd-stats {
+    display: flex; align-items: center; gap: 0; padding: 20px 24px;
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius-sm);
+    box-shadow: 0 1px 4px rgba(17,38,58,0.05);
+  }
+  .vd-stat { flex: 1; text-align: center; }
+  .vd-stat-num { font-size: 32px; font-weight: 900; color: var(--brand1); line-height: 1; letter-spacing: -1px; margin-bottom: 4px; }
+  .vd-stat-desc { font-size: 12px; color: var(--text2); line-height: 1.4; }
+  .vd-stat-divider { width: 1px; height: 48px; background: var(--grey2); flex-shrink: 0; margin: 0 8px; }
+  .video-demo-right { position: relative; }
+  .video-demo-right .video-player-wrap { border-radius: 16px; box-shadow: 0 16px 56px rgba(17,38,58,0.14); }
+  .vd-badge {
+    position: absolute; bottom: 16px; left: 20px;
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--white); border-radius: 100px; padding: 8px 16px 8px 10px;
+    font-size: 12px; font-weight: 600; color: var(--text1);
+    box-shadow: 0 4px 16px rgba(17,38,58,0.15); z-index: 4;
+  }
+  .vd-badge-dot {
+    width: 8px; height: 8px; border-radius: 50%; background: #FF7401; flex-shrink: 0;
+    animation: pulse 2s infinite; box-shadow: 0 0 0 3px rgba(255,116,1,0.2);
+  }
+  .video-player-wrap { border-radius: 14px; overflow: hidden; box-shadow: 0 8px 48px rgba(17,38,58,0.16); position: relative; }
+  .video-thumb {
+    position: relative; cursor: pointer; border-radius: 14px; overflow: hidden;
+    aspect-ratio: 16/9; background: #1a2a3a;
+  }
+  .video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+  .video-thumb:hover img { transform: scale(1.03); }
+  .video-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(17,38,58,0.1) 0%, rgba(17,38,58,0.35) 100%); transition: background .3s;
+  }
+  .video-thumb:hover .video-overlay { background: linear-gradient(180deg, rgba(17,38,58,0.15) 0%, rgba(17,38,58,0.5) 100%); }
+  .video-play-btn {
+    position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; z-index: 2;
+  }
+  .video-play-btn svg {
+    width: 72px; height: 72px; background: var(--brand1); border-radius: 50%;
+    padding: 16px; box-shadow: 0 4px 32px rgba(64,150,255,0.5); transition: transform .25s, box-shadow .25s;
+  }
+  .video-thumb:hover .video-play-btn svg { transform: scale(1.1); box-shadow: 0 8px 48px rgba(64,150,255,0.65); }
+  .video-fallback { display: none; flex-direction: column; align-items: center; justify-content: center; height: 100%; gap: 12px; }
+  .video-fallback-icon { opacity: .5; }
+  .video-fallback-text { font-size: 14px; font-weight: 600; color: rgba(255,255,255,0.7); }
+  @media(max-width:960px) { .video-demo-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+  /* ─── COMPARE ─── */
+  .compare-section { background: var(--white); padding: 80px 0; }
+  .compare-header-text { text-align: left; margin-bottom: 48px; max-width: 650px; }
+  .compare-header-text .section-title { text-align: left; }
+  .compare-header-text .section-sub { margin: 0; text-align: left; }
+  .compare-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .compare-col { background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .compare-col.good { border-color: var(--brand1); }
+  .compare-col-header {
+    padding: 16px 24px; border-bottom: 1px solid var(--grey2);
+    font-size: 14px; font-weight: 700; background: var(--grey1);
+    display: flex; align-items: center; gap: 10px; color: var(--text2);
+  }
+  .compare-col.good .compare-col-header { background: var(--brand1-bg); color: var(--brand3); border-bottom-color: rgba(64,150,255,0.2); }
+  .compare-badge {
+    font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 100px;
+    background: var(--brand1); color: var(--white);
+  }
+  .compare-list { padding: 4px 0; }
+  .compare-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 13px 24px; border-bottom: 1px solid var(--grey1);
+    font-size: 14px; color: var(--text2);
+  }
+  .compare-item:last-child { border-bottom: none; }
+  .compare-col.good .compare-item { color: var(--text1); }
+  .compare-item svg { flex-shrink: 0; margin-top: 2px; }
+  .compare-total {
+    padding: 14px 24px; font-size: 13px; font-weight: 700;
+    border-top: 1px solid var(--grey2); background: var(--grey1);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .compare-col.good .compare-total { background: var(--brand1-bg); color: var(--brand1); border-top-color: rgba(64,150,255,0.2); }
+  @media(max-width:960px) { .compare-wrap { grid-template-columns: 1fr; } }
+
+  /* ─── CALCULATOR ─── */
+  .calc-wrap {
+    background: var(--white); border: 1.5px solid var(--grey2); border-radius: var(--radius);
+    box-shadow: var(--shadow-md); overflow: hidden;
+  }
+  .calc-header {
+    padding: 24px 32px; background: var(--grey1); border-bottom: 1px solid var(--grey2);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  .calc-header h3 { font-size: 18px; font-weight: 800; color: var(--text1); }
+  .calc-header p { font-size: 13px; color: var(--text2); }
+  .calc-body { padding: 32px; }
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .calc-col-title {
+    font-size: 14px; font-weight: 700; color: var(--text2); margin-bottom: 20px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--grey2);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .calc-col-title.good { color: var(--brand1); border-bottom-color: rgba(64,150,255,0.3); }
+  .calc-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 10px 0; border-bottom: 1px solid var(--grey1); font-size: 13px;
+  }
+  .calc-row:last-child { border-bottom: none; }
+  .calc-label { color: var(--text2); flex: 1; }
+  .calc-value { font-weight: 700; color: var(--text1); text-align: right; white-space: nowrap; }
+  .calc-value.highlight { color: var(--brand1); font-size: 15px; }
+  .calc-value.danger { color: #F04438; }
+  .calc-input {
+    width: 120px; padding: 7px 12px; border: 1.5px solid var(--grey2); border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; color: var(--text1);
+    text-align: right; outline: none; transition: border-color .2s;
+  }
+  .calc-input:focus { border-color: var(--brand1); box-shadow: 0 0 0 3px rgba(64,150,255,0.12); }
+  .calc-total {
+    margin-top: 16px; padding: 16px 20px; border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 14px; font-weight: 700;
+  }
+  .calc-total.bad { background: rgba(240,68,56,0.06); border: 1px solid rgba(240,68,56,0.2); color: #F04438; }
+  .calc-total.good { background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.25); color: var(--brand1); }
+  .calc-total .calc-total-num { font-size: 22px; font-weight: 900; letter-spacing: -0.5px; }
+  .calc-savings {
+    margin-top: 24px; padding: 24px; border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--brand1-bg) 0%, rgba(64,150,255,0.05) 100%);
+    border: 1px solid rgba(64,150,255,0.25); text-align: center;
+  }
+  .calc-savings-num { font-size: 36px; font-weight: 900; color: var(--brand1); letter-spacing: -1px; margin-bottom: 4px; }
+  .calc-savings-label { font-size: 14px; font-weight: 600; color: var(--brand3); }
+  @media(max-width:960px) { .calc-grid { grid-template-columns: 1fr; } }
+  @media(max-width:600px) { .calc-body { padding: 20px; } .calc-input { width: 100px; } }
+
+  /* ─── CASES ─── */
+  .cases-section { background: var(--grey1); padding: 80px 0; border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2); }
+  .cases-header { text-align: left; margin-bottom: 48px; max-width: 700px; }
+  .cases-header .section-title { text-align: left; }
+  .cases-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+  .case-card {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    padding: 24px; text-decoration: none; display: flex; flex-direction: column;
+    box-shadow: var(--shadow); transition: border-color .25s, box-shadow .25s, transform .25s;
+    cursor: pointer;
+  }
+  .case-card:hover { border-color: var(--brand1); box-shadow: 0 8px 24px rgba(64,150,255,0.12); transform: translateY(-4px); }
+  .case-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 4px; }
+  .case-tag { font-size: 11px; font-weight: 700; color: var(--brand1); background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.2); border-radius: 100px; padding: 3px 10px; }
+  .case-date { font-size: 11px; color: var(--text2); font-weight: 500; }
+  .case-title { font-size: 16px; font-weight: 800; color: var(--text1); line-height: 1.3; margin-bottom: 12px; letter-spacing: -0.2px; flex: 1; }
+  .case-text { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 16px; }
+  .case-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid var(--grey1); margin-top: auto; }
+  .case-author { font-size: 12px; font-weight: 600; color: var(--text1); }
+  .case-read { font-size: 12px; color: var(--text2); display: flex; align-items: center; gap: 4px; }
+  @media(max-width:960px) { .cases-grid { grid-template-columns: 1fr 1fr; } }
+  @media(max-width:600px) { .cases-grid { grid-template-columns: 1fr; } }
+
+  /* ─── SOLUTIONS GRID ─── */
+  .solutions-section { background: var(--grey1); border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2); }
+  .solutions-header { text-align: left; margin-bottom: 48px; }
+  .solutions-header .section-title { text-align: left; }
+  .solutions-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 20px; max-width: 1060px; margin: 0 auto; }
+  .solution-card {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    padding: 28px 24px; text-decoration: none; display: flex; flex-direction: column;
+    box-shadow: var(--shadow); transition: border-color .25s, box-shadow .25s, transform .25s;
+    min-height: 200px;
+  }
+  .solution-card:hover { border-color: var(--brand1); box-shadow: 0 8px 24px rgba(64,150,255,0.12); transform: translateY(-4px); }
+  .solution-card.coming-soon { opacity: .6; pointer-events: none; }
+  .solution-card-icon { font-size: 32px; margin-bottom: 16px; display: block; }
+  .solution-card-title { font-size: 16px; font-weight: 700; color: var(--text1); margin-bottom: 8px; }
+  .solution-card-text { font-size: 13px; color: var(--text2); line-height: 1.55; flex: 1; }
+  .solution-card-arrow { margin-top: 16px; font-size: 13px; font-weight: 600; color: var(--brand1); display: flex; align-items: center; gap: 6px; }
+  .solution-card-badge {
+    font-size: 10px; font-weight: 700; color: var(--brand2); background: var(--brand2-bg);
+    border: 1px solid rgba(255,116,1,0.25); border-radius: 100px;
+    padding: 3px 10px; margin-top: 16px; display: inline-flex; align-self: flex-start;
+  }
+
+  /* ─── TRUST ─── */
+  .trust-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 48px; }
+  .trust-card {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    padding: 32px 28px; box-shadow: var(--shadow); transition: border-color .25s, box-shadow .25s;
+    text-align: center;
+  }
+  .trust-card:hover { border-color: var(--brand1); box-shadow: 0 4px 24px rgba(64,150,255,0.12); }
+  .trust-card-icon { font-size: 36px; margin-bottom: 16px; display: block; }
+  .trust-card-title { font-size: 17px; font-weight: 700; color: var(--text1); margin-bottom: 10px; }
+  .trust-card-text { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+  /* ─── CTA ─── */
+  .cta-section { background: var(--white); border-top: 1px solid var(--grey2); }
+  .cta-inner {
+    max-width: 1240px; margin: 0 auto; padding: 80px 24px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+  }
+  .cta-left h2 {
+    font-size: clamp(26px, 3vw, 36px); font-weight: 800;
+    line-height: 1.2; letter-spacing: -0.7px; color: var(--text1); margin-bottom: 14px;
+  }
+  .cta-left h2 em { font-style: normal; color: var(--brand1); }
+  .cta-left > p { font-size: 15px; color: var(--text2); line-height: 1.7; margin-bottom: 28px; }
+  .cta-points { display: flex; flex-direction: column; gap: 14px; }
+  .cta-point {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 16px; background: var(--grey1); border: 1px solid var(--grey2);
+    border-radius: var(--radius-sm); font-size: 13px; color: var(--text2);
+  }
+  .cp-icon {
+    width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .cta-point strong { display: block; font-size: 13px; color: var(--text1); font-weight: 700; margin-bottom: 2px; }
+
+  /* FORM */
+  .form-card {
+    background: var(--white); border: 1px solid var(--grey2);
+    border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-md);
+  }
+  .form-title { font-size: 18px; font-weight: 700; color: var(--text1); margin-bottom: 4px; }
+  .form-sub { font-size: 14px; color: var(--text2); margin-bottom: 22px; }
+  .form-label { font-size: 12px; font-weight: 600; color: var(--text1); margin-bottom: 5px; display: block; }
+  .form-group { margin-bottom: 14px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-input {
+    width: 100%; padding: 11px 14px;
+    background: var(--white); border: 1.5px solid var(--grey2);
+    border-radius: var(--radius-sm); font-family: 'Montserrat', sans-serif;
+    font-size: 13px; color: var(--text1); transition: border-color .2s, box-shadow .2s; outline: none;
+  }
+  .form-input::placeholder { color: var(--text2); }
+  .form-input:focus { border-color: var(--brand1); box-shadow: 0 0 0 3px rgba(64,150,255,0.12); }
+  .form-full { grid-column: 1 / -1; }
+  .btn-form {
+    width: 100%; padding: 14px; background: var(--brand1); border: none;
+    border-radius: var(--radius-sm); font-family: 'Montserrat', sans-serif; font-size: 14px;
+    font-weight: 700; color: var(--white); cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s; margin-top: 6px;
+    box-shadow: 0 4px 16px rgba(64,150,255,0.3);
+  }
+  .btn-form:hover { background: var(--brand1-h); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(64,150,255,0.4); }
+  .form-note { font-size: 11px; color: var(--text2); margin-top: 12px; line-height: 1.5; }
+  .form-note a { color: var(--brand1); text-decoration: none; }
+
+  /* ─── FAQ ─── */
+  #faq { padding: 80px 0; }
+  .faq-header { text-align: center; margin-bottom: 48px; }
+  .faq-header .section-title { text-align: center; }
+  .faq-list { max-width: 860px; margin: 0 auto; }
+  .faq-item { border-top: 1px solid var(--grey2); }
+  .faq-item:last-child { border-bottom: 1px solid var(--grey2); }
+  .faq-question {
+    width: 100%; background: none; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 24px 0; text-align: left;
+    font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 600;
+    color: var(--text1); transition: color .2s;
+  }
+  .faq-question:hover { color: var(--brand1); }
+  .faq-question:hover .faq-icon { color: var(--brand1); border-color: var(--brand1); }
+  .faq-icon {
+    width: 28px; height: 28px; flex-shrink: 0; color: var(--grey4);
+    border: 1.5px solid var(--grey2); border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    transition: transform .3s, color .2s, border-color .2s;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--brand1); border-color: var(--brand1); }
+  .faq-item.open .faq-question { color: var(--brand1); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+  .faq-item.open .faq-answer { max-height: 500px; }
+  .faq-answer-inner { padding: 0 0 24px; font-size: 14px; color: var(--text2); line-height: 1.75; max-width: 780px; }
+
+  /* ─── BLOG ─── */
+  .blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  .blog-card {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    overflow: hidden; text-decoration: none; display: flex; flex-direction: column;
+    box-shadow: var(--shadow); transition: border-color .25s, box-shadow .25s, transform .25s;
+  }
+  .blog-card:hover { border-color: var(--brand1); box-shadow: 0 8px 32px rgba(64,150,255,0.12); transform: translateY(-4px); }
+  .blog-card-img { width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+  .blog-card-img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .blog-card-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+  .blog-card-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .blog-tag {
+    font-size: 11px; font-weight: 700; color: var(--brand1);
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.2);
+    border-radius: 100px; padding: 3px 10px;
+  }
+  .blog-date { font-size: 11px; color: var(--text2); font-weight: 500; }
+  .blog-card-title { font-size: 16px; font-weight: 800; color: var(--text1); line-height: 1.35; margin-bottom: 10px; letter-spacing: -0.2px; }
+  .blog-card-text { font-size: 13px; color: var(--text2); line-height: 1.65; margin-bottom: 18px; flex: 1; }
+  .blog-card-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 14px; border-top: 1px solid var(--grey1); margin-top: auto;
+  }
+  .blog-author { display: flex; align-items: center; gap: 8px; }
+  .blog-author-avatar {
+    width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+    background: var(--brand1-bg); border: 1.5px solid rgba(64,150,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 800; color: var(--brand1);
+  }
+  .blog-author-name { font-size: 12px; font-weight: 600; color: var(--text1); }
+  .blog-card-stats { display: flex; gap: 12px; font-size: 12px; color: var(--text2); }
+
+  @media (max-width: 960px) { .blog-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
+
+  /* ─── REVEAL ─── */
+  .js-loaded .reveal { opacity:0; transform:translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+  .js-loaded .reveal.visible { opacity:1; transform:none; }
+  .js-loaded .d1 { transition-delay:.08s; }
+  .js-loaded .d2 { transition-delay:.16s; }
+  .js-loaded .d3 { transition-delay:.24s; }
+
+  /* ─── SECTION DIVIDER ─── */
+  .section-divider { height: 1px; background: var(--grey2); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .hero-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .feat-row, .feat-row-rev { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
+    .trust-grid { grid-template-columns: 1fr; }
+    .solutions-grid { grid-template-columns: 1fr 1fr; }
+    .cta-inner { grid-template-columns: 1fr; gap: 40px; }
+    .audience-content { grid-template-columns: 1fr; }
+    .stats-bar-label { min-width: 140px; font-size: 12px; }
+    nav { display: none; }
+  }
+  @media (max-width: 600px) {
+    .form-grid { grid-template-columns: 1fr; }
+    .solutions-grid { grid-template-columns: 1fr; }
+    .audience-stats { flex-wrap: wrap; }
+    .feat-avatar-body { grid-template-columns: 1fr; }
+    .stats-bar-row { flex-direction: column; align-items: flex-start; gap: 6px; }
+    .stats-bar-label { min-width: auto; text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
+  <span class="urgency-dot"></span>
+  Каждый день без нужного сотрудника — это упущенная выручка, переработки команды и задержка развития бизнеса
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <!-- Top bar -->
+  <div class="header-topbar">
+    <div class="header-inner" style="height:36px; justify-content:center;">
+      <div class="topbar-links">
+        <a href="about.html" class="topbar-link">О компании</a>
+        <a href="contacts.html" class="topbar-link">Контакты</a>
+        <a href="hr-cashback.html" class="topbar-link">Партнёрская программа</a>
+        <a href="calculator.html" class="topbar-link">Калькулятор выгоды</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <div class="header-main">
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+      </a>
+      <nav class="main-nav">
+
+        <!-- Как это работает — megamenu -->
+        <div class="mnav-item has-mega" id="megaHow">
+          <button class="mnav-btn">
+            Как это работает
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel">
+            <div class="mega-col">
+              <!-- Рекрутинг → sub -->
+              <div class="mega-section-item has-sub" id="subRecruiting">
+                <div class="mega-section-link">
+                  <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                  <div>
+                    <div class="mega-section-title">Рекрутинг</div>
+                    <div class="mega-section-desc">Полный цикл подбора с ИИ</div>
+                  </div>
+                  <svg class="mega-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div class="sub-panel">
+                  <a href="features/ai-vacancy-creation.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-создание вакансий</div>
+                      <div class="sub-item-desc">Описание вакансии за минуты</div>
+                    </div>
+                  </a>
+                  <a href="features/ai-screening.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-анализ резюме</div>
+                      <div class="sub-item-desc">Скоринг и ранжирование откликов</div>
+                    </div>
+                  </a>
+                  <a href="features/ai-videointerview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Первичное ИИ-видеоинтервью</div>
+                      <div class="sub-item-desc">Тестирование с прокторингом</div>
+                    </div>
+                  </a>
+                  <a href="features/ai-realtime-interview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Real-time интервью с ИИ-аватаром</div>
+                      <div class="sub-item-desc">Адаптивное интервью в реальном времени</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Оценка персонала -->
+              <a href="features/ai-staff-scoring.html" class="mega-section-link mega-section-item">
+                <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 017 4.5v1A2.5 2.5 0 009.5 8h5A2.5 2.5 0 0017 5.5v-1A2.5 2.5 0 0014.5 2h-5z"/><path d="M9.5 8a2.5 2.5 0 00-2.5 2.5A2.5 2.5 0 004.5 13a2.5 2.5 0 002.5 2.5 2.5 2.5 0 002.5 2.5h5a2.5 2.5 0 002.5-2.5 2.5 2.5 0 002.5-2.5 2.5 2.5 0 00-2.5-2.5A2.5 2.5 0 0014.5 8h-5z"/></svg></span>
+                <div>
+                  <div class="mega-section-title">Оценка персонала</div>
+                  <div class="mega-section-desc">ИИ-оценка soft skills и компетенций</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Отраслевые решения — dropdown -->
+        <div class="mnav-item has-drop" id="dropSolutions">
+          <button class="mnav-btn">
+            Отраслевые решения
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="drop-panel">
+            <a href="solutions/smb.html" class="drop-item">Малый бизнес</a>
+            <a href="solutions/enterprise.html" class="drop-item">Корпорации</a>
+            <a href="solutions/it.html" class="drop-item">ИТ компании</a>
+            <a href="solutions/finance.html" class="drop-item">Финансовый сектор</a>
+            <a href="solutions/hr.html" class="drop-item">HR агентства</a>
+            <div class="drop-group">
+              <div class="drop-group-label">Маркетплейсы</div>
+              <a href="solutions/marketplaces.html" class="drop-item" style="padding-left:24px;">Владельцам ПВЗ</a>
+              <a href="solutions/sellers.html" class="drop-item" style="padding-left:24px;">Селлерам</a>
+            </div>
+            <a href="solutions/horeca.html" class="drop-item">HoReCa</a>
+            <a href="solutions/education.html" class="drop-item">Образование</a>
+            <a href="solutions/sales.html" class="drop-item">Продажи</a>
+            <a href="solutions/logistics.html" class="drop-item">Логистика</a>
+            <a href="solutions/marketing.html" class="drop-item">Маркетинг</a>
+          </div>
+        </div>
+
+        <a href="cases.html" class="mnav-link">Кейсы</a>
+        <a href="reviews.html" class="mnav-link">Отзывы</a>
+        <a href="pricing.html" class="mnav-link">Тарифы</a>
+        <a href="https://brainhire.ru/blog" class="mnav-link">Блог</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://brainhire.ru/signup" class="btn-primary">100 кандидатов бесплатно</a>
+        <a href="https://brainhire.ru/signin" class="btn-secondary">Войти</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+// ─── HEADER MENU — hover-based ───
+document.addEventListener('DOMContentLoaded', function() {
+  var items = document.querySelectorAll('.mnav-item.has-mega, .mnav-item.has-drop');
+
+  items.forEach(function(item) {
+    var timer;
+
+    item.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      items.forEach(function(other) {
+        if (other !== item) other.classList.remove('open');
+      });
+      item.classList.add('open');
+    });
+
+    item.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        item.classList.remove('open');
+        item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      }, 120);
+    });
+
+    var panel = item.querySelector('.mega-panel, .drop-panel');
+    if (panel) {
+      panel.addEventListener('mouseenter', function() { clearTimeout(timer); });
+      panel.addEventListener('mouseleave', function() {
+        timer = setTimeout(function() {
+          item.classList.remove('open');
+          item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+        }, 120);
+      });
+    }
+  });
+
+  document.querySelectorAll('.has-sub').forEach(function(sub) {
+    sub.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      sub.classList.add('sub-open');
+    });
+  });
+
+  // Close sub-panels when hovering over non-sub mega items
+  document.querySelectorAll('.mega-section-item:not(.has-sub)').forEach(function(item) {
+    item.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+    });
+  });
+});
+
+function toggleMega() {}
+function showSub(id) {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  var el = document.getElementById(id);
+  if (el) el.classList.add('sub-open');
+}
+function hideSubs() {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+}
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.mnav-item').forEach(function(e){ e.classList.remove('open'); });
+    document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  }
+});
+</script>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- HERO -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="hero-section">
+  <div class="hero-wrap">
+    <div>
+      <div class="hero-badge reveal">
+        <span class="dot"></span>
+        ИИ-платформа для HR и рекрутинга
+      </div>
+      <h1 class="reveal d1">
+        Нанимайте в <em>5 раз дешевле</em><br>
+        и в <em>5 раз быстрее</em><sup>*</sup>
+      </h1>
+      <p class="hero-sub reveal d2">
+        ИИ для автоматизации рекрутинга и оценки персонала
+      </p>
+      <div class="hero-actions reveal d2">
+        <a href="https://brainhire.ru/signup" class="btn-hero-primary">
+          100 кандидатов бесплатно
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#form" class="btn-hero-outline">Хочу демонстрацию</a>
+      </div>
+      <div class="hero-proof reveal d3">
+        <span class="proof-item">Собственные ИИ решения</span>
+        <span class="proof-item">Данные хранятся в РФ</span>
+        <span class="proof-item">Реестр отечественного ПО</span>
+      </div>
+    </div>
+
+    <!-- PIPELINE CARD -->
+    <div class="pipeline-card reveal d2">
+      <div class="pipeline-header">
+        <div class="dots">
+          <div class="wdot" style="background:#FD6B5B;"></div>
+          <div class="wdot" style="background:#FEBC2E;"></div>
+          <div class="wdot" style="background:#28C840;"></div>
+        </div>
+        <span>Воронка найма — Менеджер по продажам</span>
+      </div>
+      <div class="pipeline-body">
+        <div class="pipeline-stage">
+          <div class="ps-left">
+            <span class="ps-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9 2H7a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2h-2"/><rect x="9" y="1" width="6" height="4" rx="1" ry="1"/></svg></span>
+            <div>
+              <div class="ps-name">ИИ-создание вакансии</div>
+              <div class="ps-meta">Текст за 30 секунд</div>
+            </div>
+          </div>
+          <span class="ps-badge blue">Готово</span>
+        </div>
+        <div class="pipeline-stage">
+          <div class="ps-left">
+            <span class="ps-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span>
+            <div>
+              <div class="ps-name">ИИ-скрининг резюме</div>
+              <div class="ps-meta">Обработано 214 откликов</div>
+            </div>
+          </div>
+          <span class="ps-badge blue">Top 18</span>
+        </div>
+        <div class="pipeline-stage">
+          <div class="ps-left">
+            <span class="ps-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+            <div>
+              <div class="ps-name">ИИ-видеоинтервью</div>
+              <div class="ps-meta">Прошли первичный отбор</div>
+            </div>
+          </div>
+          <span class="ps-badge orange">12</span>
+        </div>
+        <div class="pipeline-stage">
+          <div class="ps-left">
+            <span class="ps-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg></span>
+            <div>
+              <div class="ps-name">Real-time ИИ-аватар</div>
+              <div class="ps-meta">Глубокая оценка финалистов</div>
+            </div>
+          </div>
+          <span class="ps-badge teal">5</span>
+        </div>
+        <div class="pipeline-summary">
+          <svg width="14" height="14" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          <span>214 откликов обработаны за <strong>2 дня</strong> вместо 3 недель</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TICKER -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item"><span class="ti"><svg width="14" height="14" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span> <b>Создание вакансии за 30 секунд</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="14" height="14" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span> <b>ИИ-скрининг 200+ откликов</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="14" height="14" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span> <b>Видеоинтервью 24/7</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="14" height="14" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span> <b>Real-time ИИ-аватар</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="14" height="14" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span> <b>Прокторинг ответов</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="14" height="14" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span> <b>Аналитика воронки</b></div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><span class="ti"><svg width="14" height="14" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span> <b>Создание вакансии за 30 секунд</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="14" height="14" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span> <b>ИИ-скрининг 200+ откликов</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="14" height="14" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span> <b>Видеоинтервью 24/7</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="14" height="14" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span> <b>Real-time ИИ-аватар</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="14" height="14" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span> <b>Прокторинг ответов</b></div>
+    <div class="ticker-item"><span class="ti"><svg width="14" height="14" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></span> <b>Аналитика воронки</b></div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- PAIN POINTS -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="pain-section">
+  <div class="container">
+    <div class="pain-header">
+      <h2 class="section-title reveal">Почему традиционный найм<br><em>работает против вас</em></h2>
+      <p class="section-sub reveal d1">Каждая незакрытая вакансия обходится бизнесу в 5 000-16 000 ₽ в день. За 30-45 дней стандартного найма потери достигают сотен тысяч рублей.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <div class="pain-card-icon">
+          <svg width="24" height="24" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+        </div>
+        <div class="pain-card-title">54% времени HR уходит на дозвоны</div>
+        <div class="pain-card-text">Больше половины рабочего дня рекрутер тратит на звонки кандидатам, которые не берут трубку. При 100+ откликах скрининг резюме занимает целые рабочие недели.</div>
+      </div>
+      <div class="pain-card reveal d1">
+        <div class="pain-card-icon">
+          <svg width="24" height="24" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <div class="pain-card-title">40% новых сотрудников уходят на испытательном</div>
+        <div class="pain-card-text">Без стандартизированного интервью оценка субъективна. Структурированное интервью на 65% точнее прогнозирует успешность кандидата, чем традиционное собеседование.</div>
+      </div>
+      <div class="pain-card reveal d2">
+        <div class="pain-card-icon">
+          <svg width="24" height="24" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+        </div>
+        <div class="pain-card-title">-10% кандидатов за каждый день задержки</div>
+        <div class="pain-card-text">Каждый дополнительный день в процессе найма увеличивает вероятность потери кандидата на 10%. Лучшие специалисты уходят к конкурентам, которые отвечают быстрее.</div>
+      </div>
+      <div class="pain-card reveal d3">
+        <div class="pain-card-icon">
+          <svg width="24" height="24" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg>
+        </div>
+        <div class="pain-card-title">40-60 часов собственника на одну вакансию</div>
+        <div class="pain-card-text">Без HR-специалиста руководитель сам выполняет роль рекрутера — от написания вакансии до проведения собеседований. Это отвлекает от развития бизнеса на недели.</div>
+      </div>
+    </div>
+    <p class="pain-footnote reveal">*Согласно исследованиям SberIndex, HeadHunter, Rabota.ru, Росстат, ВШЭ, РБК, Forbes Russia, PwC, BCG и ЦБ РФ.</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- HOW IT WORKS -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="howitworks">
+  <div class="container">
+    <div class="howitworks-header">
+      <div class="section-tag reveal">Как это работает</div>
+      <h2 class="section-title reveal d1">От вакансии до оффера —<br><em>5 простых шагов</em></h2>
+      <p class="section-sub reveal d2">BRaiN HR автоматизирует каждый этап воронки найма, чтобы вы получили лучших кандидатов без рутины</p>
+    </div>
+    <div class="howitworks-grid">
+      <div class="hiw-step reveal">
+        <div class="hiw-num">Шаг 1 <span class="hiw-time">30 секунд</span></div>
+        <span class="hiw-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+        <div class="hiw-title">ИИ создаёт вакансию</div>
+        <div class="hiw-text">Опишите позицию в свободной форме — ИИ сгенерирует профессиональный текст вакансии с требованиями и условиями.</div>
+      </div>
+      <div class="hiw-step reveal d1">
+        <div class="hiw-num">Шаг 2 <span class="hiw-time">Автоматически</span></div>
+        <span class="hiw-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+        <div class="hiw-title">Скрининг всех откликов</div>
+        <div class="hiw-text">ИИ анализирует каждое резюме, оценивает соответствие требованиям и ранжирует кандидатов по релевантности.</div>
+      </div>
+      <div class="hiw-step reveal d2">
+        <div class="hiw-num">Шаг 3 <span class="hiw-time">24/7</span></div>
+        <span class="hiw-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+        <div class="hiw-title">Первичное видеоинтервью</div>
+        <div class="hiw-text">Кандидат проходит профессиональный тест с включённой камерой. Прокторинг фиксирует подсказки, посторонних и использование ChatGPT.</div>
+      </div>
+      <div class="hiw-step reveal d3">
+        <div class="hiw-num">Шаг 4 <span class="hiw-time">Real-time</span></div>
+        <span class="hiw-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+        <div class="hiw-title">Интервью с ИИ-аватаром</div>
+        <div class="hiw-text">Финалисты проходят глубокое интервью с ИИ-аватаром в реальном времени. Оценка soft skills, мотивации и профессиональных компетенций.</div>
+      </div>
+      <div class="hiw-step reveal d3">
+        <div class="hiw-num">Шаг 5 <span class="hiw-time">5 мин/кандидат</span></div>
+        <span class="hiw-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg></span>
+        <div class="hiw-title">Готовый шорт-лист</div>
+        <div class="hiw-text">Вы получаете ранжированный список лучших кандидатов с детальными отчётами для принятия решения.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- COMPARE -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="compare-section">
+  <div class="container">
+    <div class="compare-header-text">
+      <h2 class="section-title reveal">Ускорьте процесс найма<br><em>с помощью автоматизации</em></h2>
+      <p class="section-sub reveal d1">Ручной скрининг отнимает дни и пропускает сильных кандидатов. Сравните сами.</p>
+    </div>
+    <div class="compare-wrap">
+      <div class="compare-col reveal">
+        <div class="compare-col-header">
+          <svg width="16" height="16" stroke="#717680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Ручной метод
+        </div>
+        <div class="compare-list">
+          <div class="compare-item"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg> 15-20 минут на анализ резюме одного кандидата</div>
+          <div class="compare-item"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg> Субъективная оценка кандидата, зависящая от специалиста</div>
+          <div class="compare-item"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/></svg> Невозможно эффективно обработать сотни резюме</div>
+          <div class="compare-item"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="15" x2="15" y2="15"/></svg> Риск пропустить подходящего кандидата в потоке откликов</div>
+          <div class="compare-item"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg> Задержки в ответах портят впечатление о компании</div>
+        </div>
+        <div class="compare-total" style="color:#FF7401;">
+          <svg width="18" height="18" stroke="#FF7401" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg> Долго, субъективно, кандидаты теряются
+        </div>
+      </div>
+      <div class="compare-col good reveal d1">
+        <div class="compare-col-header">
+          <svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+          С BRaiN HR
+          <span class="compare-badge">Рекомендуем</span>
+        </div>
+        <div class="compare-list">
+          <div class="compare-item"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg> Мгновенный анализ резюме и оценка за секунды</div>
+          <div class="compare-item"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg> Объективные оценки кандидатов по единым критериям с AI</div>
+          <div class="compare-item"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg> Параллельное сканирование резюме любого объема</div>
+          <div class="compare-item"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg> Умные фильтры выявляют всех релевантных кандидатов</div>
+          <div class="compare-item"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg> Автоматическая работа с кандидатами 24/7</div>
+        </div>
+        <div class="compare-total">
+          <svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg> Быстро, объективно, ни один кандидат не потерян
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- CLIENT BRANDS -->
+<!-- ═══════════════════════════════════════════ -->
+<div class="logos-section" style="background:var(--white); border-top:1px solid var(--grey2); border-bottom:1px solid var(--grey2); padding:32px 0;">
+  <div class="container">
+    <div class="logos-label">Нам доверяют компании — технологические лидеры из разных отраслей</div>
+  </div>
+  <div class="logos-slider-wrap">
+    <div class="logos-slider-track">
+      <a href="https://itpeoplegroup.ru/" target="_blank" class="logo-item">
+        <span style="font-size:12px; font-weight:800; color:#1a1a1a; letter-spacing:1.5px; text-transform:uppercase; border:2px solid #1a1a1a; padding:4px 8px;">IT PEOPLE</span>
+      </a>
+      <a href="https://moby.estate/" target="_blank" class="logo-item">
+        <span style="font-size:17px; font-weight:800; color:#2b4de3; letter-spacing:-0.5px;">●● moby</span>
+      </a>
+      <a href="https://neyrox.com/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#111; letter-spacing:-0.3px;">neyrox</span>
+      </a>
+      <a href="https://idaproject.com/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#c0392b; letter-spacing:-0.3px;">ida<span style="color:#222;">project</span></span>
+      </a>
+      <a href="https://prodamus.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#6c3db5; letter-spacing:-0.3px;">prodamus</span>
+      </a>
+      <a href="https://www.hr-rocket.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:800; color:#1a1a1a; letter-spacing:0.5px;">HR<span style="color:#e03030;">⚡</span>ROCKET</span>
+      </a>
+      <a href="https://livecargo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#1a5c3a; letter-spacing:-0.3px;">live<span style="color:#27ae60;">cargo</span></span>
+      </a>
+      <a href="https://ledgo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:900; color:#f39c12; letter-spacing:-0.5px;">LED<span style="color:#e67e22;">GO</span></span>
+      </a>
+      <a href="https://www.penoplex.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#e03030; letter-spacing:0.5px;">PENOPLEX</span>
+      </a>
+      <a href="https://pshb.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#1a3a8a; letter-spacing:1px;">ПШБ</span>
+      </a>
+      <a href="https://www.simbirsoft.com/" target="_blank" class="logo-item">
+        <span style="font-size:18px; font-weight:800; color:#1a1a2e; letter-spacing:-0.5px;">Simbir<span style="color:#e03030;">S</span>oft</span>
+      </a>
+      <a href="https://bssys.com/" target="_blank" class="logo-item">
+        <span style="background:#1a3a8a; color:#fff; font-size:15px; font-weight:900; padding:5px 10px; border-radius:4px; letter-spacing:1px;">BSS</span>
+      </a>
+      <a href="https://3logic.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:800; color:#1a1a1a; letter-spacing:-0.3px;">3<span style="color:#e03030;">LOGIC</span><br><span style="font-size:9px; font-weight:600; color:#555; letter-spacing:1px;">GROUP</span></span>
+      </a>
+      <!-- duplicate for seamless loop -->
+      <a href="https://itpeoplegroup.ru/" target="_blank" class="logo-item">
+        <span style="font-size:12px; font-weight:800; color:#1a1a1a; letter-spacing:1.5px; text-transform:uppercase; border:2px solid #1a1a1a; padding:4px 8px;">IT PEOPLE</span>
+      </a>
+      <a href="https://moby.estate/" target="_blank" class="logo-item">
+        <span style="font-size:17px; font-weight:800; color:#2b4de3; letter-spacing:-0.5px;">●● moby</span>
+      </a>
+      <a href="https://neyrox.com/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#111; letter-spacing:-0.3px;">neyrox</span>
+      </a>
+      <a href="https://idaproject.com/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#c0392b; letter-spacing:-0.3px;">ida<span style="color:#222;">project</span></span>
+      </a>
+      <a href="https://prodamus.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#6c3db5; letter-spacing:-0.3px;">prodamus</span>
+      </a>
+      <a href="https://www.hr-rocket.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:800; color:#1a1a1a; letter-spacing:0.5px;">HR<span style="color:#e03030;">⚡</span>ROCKET</span>
+      </a>
+      <a href="https://livecargo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#1a5c3a; letter-spacing:-0.3px;">live<span style="color:#27ae60;">cargo</span></span>
+      </a>
+      <a href="https://ledgo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:900; color:#f39c12; letter-spacing:-0.5px;">LED<span style="color:#e67e22;">GO</span></span>
+      </a>
+      <a href="https://www.penoplex.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#e03030; letter-spacing:0.5px;">PENOPLEX</span>
+      </a>
+      <a href="https://pshb.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#1a3a8a; letter-spacing:1px;">ПШБ</span>
+      </a>
+      <a href="https://www.simbirsoft.com/" target="_blank" class="logo-item">
+        <span style="font-size:18px; font-weight:800; color:#1a1a2e; letter-spacing:-0.5px;">Simbir<span style="color:#e03030;">S</span>oft</span>
+      </a>
+      <a href="https://bssys.com/" target="_blank" class="logo-item">
+        <span style="background:#1a3a8a; color:#fff; font-size:15px; font-weight:900; padding:5px 10px; border-radius:4px; letter-spacing:1px;">BSS</span>
+      </a>
+      <a href="https://3logic.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:800; color:#1a1a1a; letter-spacing:-0.3px;">3<span style="color:#e03030;">LOGIC</span><br><span style="font-size:9px; font-weight:600; color:#555; letter-spacing:1px;">GROUP</span></span>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- AUDIENCE TABS -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="audience-section" id="audience">
+  <div class="container">
+    <div class="audience-header">
+      <div class="section-tag reveal">Кому подойдёт</div>
+      <h2 class="section-title reveal d1">Кому будет полезен сервис</h2>
+      <p class="section-sub reveal d2">Автоматизируйте скрининг резюме и проверку резюме, фокусируясь на общении с лучшими кандидатами</p>
+    </div>
+
+    <div class="audience-tabs reveal">
+      <button class="audience-tab active" onclick="switchAudienceTab(0)">HR-отделам</button>
+      <button class="audience-tab" onclick="switchAudienceTab(1)">Рекрутинговым агентствам</button>
+      <button class="audience-tab" onclick="switchAudienceTab(2)">IT-компаниям</button>
+      <button class="audience-tab" onclick="switchAudienceTab(3)">Стартапам</button>
+      <button class="audience-tab" onclick="switchAudienceTab(4)">Корпорациям</button>
+    </div>
+
+    <!-- Tab 1: HR-отделам -->
+    <div class="audience-panel active" id="audPanel0">
+      <div class="audience-card reveal">
+        <div class="audience-content">
+          <div class="audience-left">
+            <div class="audience-card-title">Рекрутер обрабатывает отклики <em>в 5 раз быстрее</em></div>
+            <p class="audience-text">Вместо часов на просмотр резюме — мгновенный анализ и скоринг. Освободите время для работы с лучшими кандидатами, а не для чтения сотен резюме.</p>
+            <div class="audience-checks">
+              <div class="audience-check">
+                <svg width="18" height="18" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Автоматический скрининг всех откликов
+              </div>
+              <div class="audience-check">
+                <svg width="18" height="18" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Единые критерии оценки для всех рекрутеров
+              </div>
+              <div class="audience-check">
+                <svg width="18" height="18" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Детализированные карточки кандидатов
+              </div>
+            </div>
+          </div>
+          <div class="audience-stats">
+            <div class="audience-stat">
+              <div class="audience-stat-num">5x</div>
+              <div class="audience-stat-desc">быстрее скрининг</div>
+            </div>
+            <div class="audience-stat">
+              <div class="audience-stat-num">15 мин</div>
+              <div class="audience-stat-desc">от отклика до оценки</div>
+            </div>
+            <div class="audience-stat">
+              <div class="audience-stat-num">87%</div>
+              <div class="audience-stat-desc">точность</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 2: Рекрутинговым агентствам -->
+    <div class="audience-panel" id="audPanel1">
+      <div class="audience-card reveal">
+        <div class="audience-content">
+          <div class="audience-left">
+            <div class="audience-card-title">Масштабируйте подбор <em>без роста штата</em></div>
+            <p class="audience-text">Ведите десятки вакансий параллельно силами небольшой команды. ИИ берёт на себя первичный отбор и оценку кандидатов.</p>
+            <div class="audience-checks">
+              <div class="audience-check">
+                <svg width="18" height="18" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Ведение множества вакансий параллельно
+              </div>
+              <div class="audience-check">
+                <svg width="18" height="18" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Объективная оценка кандидатов для клиентов
+              </div>
+              <div class="audience-check">
+                <svg width="18" height="18" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Увеличение маржинальности проектов
+              </div>
+            </div>
+          </div>
+          <div class="audience-stats">
+            <div class="audience-stat">
+              <div class="audience-stat-num">3x</div>
+              <div class="audience-stat-desc">больше вакансий на рекрутера</div>
+            </div>
+            <div class="audience-stat">
+              <div class="audience-stat-num">-60%</div>
+              <div class="audience-stat-desc">времени на первичный отбор</div>
+            </div>
+            <div class="audience-stat">
+              <div class="audience-stat-num">+40%</div>
+              <div class="audience-stat-desc">маржинальность</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 3: IT-компаниям -->
+    <div class="audience-panel" id="audPanel2">
+      <div class="audience-card reveal">
+        <div class="audience-content">
+          <div class="audience-left">
+            <div class="audience-card-title">Нанимайте разработчиков <em>быстрее конкурентов</em></div>
+            <p class="audience-text">ИИ оценивает технические навыки, проводит первичное интервью и формирует шорт-лист лучших кандидатов для вашей команды.</p>
+            <div class="audience-checks">
+              <div class="audience-check">
+                <svg width="18" height="18" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Оценка технических навыков по стеку
+              </div>
+              <div class="audience-check">
+                <svg width="18" height="18" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                ИИ-интервью с проверкой знаний
+              </div>
+              <div class="audience-check">
+                <svg width="18" height="18" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Интеграция с вашими HR-системами
+              </div>
+            </div>
+          </div>
+          <div class="audience-stats">
+            <div class="audience-stat">
+              <div class="audience-stat-num">-70%</div>
+              <div class="audience-stat-desc">рутинной работы</div>
+            </div>
+            <div class="audience-stat">
+              <div class="audience-stat-num">5 дн</div>
+              <div class="audience-stat-desc">до закрытия вакансии</div>
+            </div>
+            <div class="audience-stat">
+              <div class="audience-stat-num">24/7</div>
+              <div class="audience-stat-desc">автоинтервью</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 4: Стартапам -->
+    <div class="audience-panel" id="audPanel3">
+      <div class="audience-card reveal">
+        <div class="audience-content">
+          <div class="audience-left">
+            <div class="audience-card-title">Профессиональный найм <em>без HR-отдела</em></div>
+            <p class="audience-text">Закрывайте вакансии за дни, а не недели. Минимальное вовлечение фаундера — ИИ делает всю рутину за вас.</p>
+            <div class="audience-checks">
+              <div class="audience-check">
+                <svg width="18" height="18" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Оплата только за обработанные отклики
+              </div>
+              <div class="audience-check">
+                <svg width="18" height="18" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Закрытие вакансий за 3-7 дней
+              </div>
+              <div class="audience-check">
+                <svg width="18" height="18" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Минимальное вовлечение руководителя
+              </div>
+            </div>
+          </div>
+          <div class="audience-stats">
+            <div class="audience-stat">
+              <div class="audience-stat-num">0</div>
+              <div class="audience-stat-desc">нужен HR-отдел</div>
+            </div>
+            <div class="audience-stat">
+              <div class="audience-stat-num">3-7</div>
+              <div class="audience-stat-desc">дней до закрытия</div>
+            </div>
+            <div class="audience-stat">
+              <div class="audience-stat-num">-80%</div>
+              <div class="audience-stat-desc">бюджета на подбор</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tab 5: Корпорациям -->
+    <div class="audience-panel" id="audPanel4">
+      <div class="audience-card reveal">
+        <div class="audience-content">
+          <div class="audience-left">
+            <div class="audience-card-title">Единый стандарт найма <em>для всей компании</em></div>
+            <p class="audience-text">Стандартизируйте процессы оценки по всем филиалам. Прозрачная аналитика воронки и объективные данные для принятия решений.</p>
+            <div class="audience-checks">
+              <div class="audience-check">
+                <svg width="18" height="18" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Стандартизация процессов оценки и интервью
+              </div>
+              <div class="audience-check">
+                <svg width="18" height="18" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Прозрачная аналитика воронки подбора
+              </div>
+              <div class="audience-check">
+                <svg width="18" height="18" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+                Централизованная база кандидатов
+              </div>
+            </div>
+          </div>
+          <div class="audience-stats">
+            <div class="audience-stat">
+              <div class="audience-stat-num">-50%</div>
+              <div class="audience-stat-desc">затрат на подбор</div>
+            </div>
+            <div class="audience-stat">
+              <div class="audience-stat-num">200+</div>
+              <div class="audience-stat-desc">откликов в час</div>
+            </div>
+            <div class="audience-stat">
+              <div class="audience-stat-num">100%</div>
+              <div class="audience-stat-desc">прозрачность</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- FEATURES — 4 FEATURE ROWS -->
+<!-- ═══════════════════════════════════════════ -->
+<section id="features">
+  <div class="container">
+    <div class="section-tag reveal">Возможности платформы</div>
+    <h2 class="section-title reveal d1">Как BRaiN HR помогает бизнесу получать<br><em>лучших кандидатов</em> на рынке?</h2>
+    <p class="section-sub reveal d2">Экономьте бюджет и время на подбор с помощью искусственного интеллекта</p>
+
+    <!-- FEAT ROW 1 — Vacancy editor -->
+    <div class="feat-row reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <div class="feat-mock-header">
+              <div class="feat-mock-breadcrumb">Вакансии / Создание</div>
+              <div class="feat-mock-title">Новая вакансия</div>
+            </div>
+            <div class="feat-mock-steps">
+              <span class="feat-mock-step done">Название</span>
+              <span class="feat-mock-step done">Требования</span>
+              <span class="feat-mock-step active">ИИ-генерация</span>
+              <span class="feat-mock-step">Публикация</span>
+            </div>
+            <div class="feat-mock-card">
+              <div class="feat-mock-card-title">ИИ создал описание вакансии</div>
+              <div class="feat-mock-card-sub">На основе ваших данных и лучших HR-методик</div>
+              <div class="feat-mock-info">
+                <div class="feat-mock-info-text">Менеджер по продажам</div>
+                <div class="feat-mock-info-item">Опыт: от 2 лет в B2B продажах</div>
+                <div class="feat-mock-info-item">Навыки: CRM, переговоры, презентации</div>
+                <div class="feat-mock-info-item">Зарплата: 120 000 - 180 000 руб.</div>
+              </div>
+              <div class="feat-mock-label">Публикация на площадках:</div>
+              <div class="feat-mock-btns">
+                <button class="feat-btn-primary">hh.ru</button>
+                <button class="feat-btn-outline">Avito</button>
+                <button class="feat-btn-outline">SuperJob</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">01 / Создание вакансии</div>
+        <h3 class="feat-title">Больше никакой рутины по созданию и публикации вакансии</h3>
+        <p class="feat-desc">*По статистике более 52% времени рекрутера занимают рутинные административные задачи. Наш ИИ создает привлекательные тексты вакансий на основе ваших данных о вакансии и лучших HR-методик, точно формулируя требования для привлечения нужных кандидатов. Сразу после этого система автоматически публикует объявление на ведущих платформах (hh.ru, Avito, SuperJob и др.) и предоставляет вам персональную ссылку для распространения. Это экономит ваше время, улучшает качество откликов и расширяет охват.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Генерация текста вакансии за 30 секунд</div>
+          <div class="feat-check"><svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Автопубликация на ведущих площадках</div>
+          <div class="feat-check"><svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Персональная ссылка для распространения</div>
+        </div>
+        <div class="feat-cta-actions">
+          <a href="https://brainhire.ru/signup" class="feat-cta-primary">Создать вакансию бесплатно <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="features/ai-vacancy-creation.html" class="feat-cta-btn">Подробнее <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEAT ROW 2 — Resume scoring -->
+    <div class="feat-row feat-row-rev reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <div class="feat-mock-header">
+              <div class="feat-mock-breadcrumb">Вакансии / Менеджер по продажам / Отклики</div>
+              <div class="feat-mock-title">ИИ-скоринг кандидатов</div>
+            </div>
+            <div class="feat-candidates">
+              <div class="feat-candidate feat-candidate-top">
+                <div class="feat-cand-avatar" style="background:var(--brand1-bg);color:var(--brand1);">АС</div>
+                <div class="feat-cand-info">
+                  <div class="feat-cand-name">Алексей Смирнов</div>
+                  <div class="feat-cand-role">B2B Sales, 4 года опыта</div>
+                </div>
+                <span class="feat-cand-score" style="background:var(--brand1-bg);color:var(--brand1);">94%</span>
+              </div>
+              <div class="feat-candidate feat-candidate-top">
+                <div class="feat-cand-avatar" style="background:var(--brand2-bg);color:var(--brand2);">ОК</div>
+                <div class="feat-cand-info">
+                  <div class="feat-cand-name">Ольга Козлова</div>
+                  <div class="feat-cand-role">Enterprise Sales, 3 года</div>
+                </div>
+                <span class="feat-cand-score" style="background:var(--brand1-bg);color:var(--brand1);">89%</span>
+              </div>
+              <div class="feat-candidate">
+                <div class="feat-cand-avatar" style="background:var(--grey1);color:var(--grey4);">ДП</div>
+                <div class="feat-cand-info">
+                  <div class="feat-cand-name">Дмитрий Попов</div>
+                  <div class="feat-cand-role">Retail Sales, 2 года</div>
+                </div>
+                <span class="feat-cand-score" style="background:var(--grey1);color:var(--grey4);">72%</span>
+              </div>
+              <div class="feat-candidate">
+                <div class="feat-cand-avatar" style="background:var(--grey1);color:var(--grey4);">ИН</div>
+                <div class="feat-cand-info">
+                  <div class="feat-cand-name">Ирина Новикова</div>
+                  <div class="feat-cand-role">Телемаркетинг, 1 год</div>
+                </div>
+                <span class="feat-cand-score" style="background:var(--grey1);color:var(--grey4);">58%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">02 / Скоринг резюме</div>
+        <h3 class="feat-title">Экономьте до 23 часов на просмотре резюме и скоринге кандидатов</h3>
+        <p class="feat-desc">*Забудьте о ручном разборе сотен резюме. Искусственный интеллект от BRaiN HR берет эту задачу на себя. Сразу после поступления отклика наш ИИ мгновенно анализирует каждое резюме, сопоставляя опыт, навыки и образование кандидата с ключевыми требованиями вашей вакансии. Система автоматически проводит скоринг, объективно оценивая степень соответствия. В результате вы получаете приоритезированный список наиболее релевантных кандидатов, экономя до 50% времени на первичном отборе.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Мгновенный анализ каждого резюме</div>
+          <div class="feat-check"><svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Объективный скоринг соответствия</div>
+          <div class="feat-check"><svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Приоритезированный список кандидатов</div>
+        </div>
+        <div class="feat-cta-actions">
+          <a href="https://brainhire.ru/signup" class="feat-cta-primary">Попробовать скрининг <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="features/ai-screening.html" class="feat-cta-btn">Подробнее <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEAT ROW 3 — Video interview -->
+    <div class="feat-row reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock-tabs">
+            <div class="feat-tab active">Интервью</div>
+            <div class="feat-tab">Прокторинг</div>
+            <div class="feat-tab">Результат</div>
+          </div>
+          <div class="feat-mock-interview-body">
+            <div class="feat-interview-score">Общий балл: <span class="feat-score-badge">82/100</span></div>
+            <div class="feat-interview-q">Вопрос: Расскажите о вашем самом успешном проекте в продажах. Какие были цели и как вы их достигли?</div>
+            <div class="feat-interview-a">Ответ: В прошлом году я вел проект по выходу на новый рынок B2B. Мы сформировали воронку из 200+ лидов, провели квалификацию и за 3 месяца закрыли 15 сделок на общую сумму 12 млн руб...</div>
+            <div class="feat-interview-meta">
+              <span class="feat-tag">Прокторинг: чисто</span>
+              <span class="feat-tag">Уверенность: высокая</span>
+              <span class="feat-tag">Время: 2:45</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">03 / ИИ-видеоинтервью</div>
+        <h3 class="feat-title">Первичный отбор - больше не ваша задача</h3>
+        <p class="feat-desc">Оцените кандидатов беспристрастно и глубоко уже на первом этапе с помощью уникального ИИ-интервью от BRaiN HR. Наша система не только стандартизирует процесс, задавая всем кандидатам единые структурированные вопросы, но и обеспечивает полную объективность. Искусственный интеллект анализирует содержание ответов, а встроенная система прокторинга выявляет использование сторонних подсказок или программ. Это гарантирует честность процесса отбора и позволяет вам принимать решения на основе достоверных данных о реальных знаниях и навыках кандидатов.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Единые структурированные вопросы</div>
+          <div class="feat-check"><svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Встроенный прокторинг</div>
+          <div class="feat-check"><svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Объективная оценка на основе данных</div>
+        </div>
+        <div class="feat-cta-actions">
+          <a href="https://brainhire.ru/signup" class="feat-cta-primary">Запустить интервью <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="features/ai-videointerview.html" class="feat-cta-btn">Подробнее <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- FEAT ROW 4 — Avatar interview -->
+    <div class="feat-row feat-row-rev reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-avatar-body">
+            <div class="feat-avatar-screen">
+              <div class="feat-avatar-face">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 00-16 0"/></svg>
+              </div>
+              <div class="feat-avatar-label">ИИ-аватар ведет интервью</div>
+            </div>
+            <div class="feat-avatar-analysis">
+              <div class="feat-analysis-row">
+                <span>Уверенность</span>
+                <div class="feat-bar"><div class="feat-bar-fill" style="width:87%;"></div></div>
+                <span>87%</span>
+              </div>
+              <div class="feat-analysis-row">
+                <span>Стрессоуст.</span>
+                <div class="feat-bar"><div class="feat-bar-fill" style="width:74%;"></div></div>
+                <span>74%</span>
+              </div>
+              <div class="feat-analysis-row">
+                <span>Коммуникации</span>
+                <div class="feat-bar"><div class="feat-bar-fill" style="width:91%;"></div></div>
+                <span>91%</span>
+              </div>
+              <div class="feat-analysis-row">
+                <span>Мотивация</span>
+                <div class="feat-bar"><div class="feat-bar-fill" style="width:82%;"></div></div>
+                <span>82%</span>
+              </div>
+              <div class="feat-analysis-row">
+                <span>Soft skills</span>
+                <div class="feat-bar"><div class="feat-bar-fill" style="width:79%;"></div></div>
+                <span>79%</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">04 / Real-time интервью</div>
+        <h3 class="feat-title">Перестаньте тратить часы руководителей на проведение собеседований</h3>
+        <p class="feat-desc">Перейдите на новый уровень оценки с Real-time интервью с ИИ-аватаром. Для кандидатов, успешно прошедших первичный отбор, наш ИИ-аватар проводит динамичный второй раунд, где вопросы адаптируются в режиме реального времени на основе предыдущих ответов. Но это не все: система анализирует язык тела и мимику кандидата, помогая сформировать его более полный психологический портрет и оценить не только профессиональные компетенции, но и soft skills, а также потенциальное соответствие корпоративной культуре.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Адаптивные вопросы в реальном времени</div>
+          <div class="feat-check"><svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Анализ мимики и языка тела</div>
+          <div class="feat-check"><svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Оценка soft skills и культурного соответствия</div>
+        </div>
+        <div class="feat-cta-actions">
+          <a href="https://brainhire.ru/signup" class="feat-cta-primary">Запросить демо <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+          <a href="features/ai-realtime-interview.html" class="feat-cta-btn">Подробнее <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- REAL-TIME AVATAR INTERVIEW -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="video-demo-section">
+  <div class="container">
+    <div class="video-demo-grid">
+
+      <!-- Left: text + stats -->
+      <div class="video-demo-left">
+        <div class="section-tag" style="display:inline-flex; margin-bottom: 20px;">Real-time интервью с ИИ-аватаром</div>
+        <h2 class="section-title reveal" style="margin-bottom: 16px;">Автоматизируйте даже<br><em>финальное интервью</em></h2>
+        <p class="reveal" style="font-size: 15px; color: var(--text2); line-height: 1.75; margin-bottom: 32px;">
+          Инновационная функция Real-time интервью с ИИ-аватаром проводит полноценное собеседование, оценивая опыт и soft-skills кандидата — без участия руководителя.
+        </p>
+
+        <div class="vd-features reveal">
+          <div class="vd-feature">
+            <div class="vd-feature-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div>
+              <div class="vd-feature-title">Адаптивные вопросы</div>
+              <div class="vd-feature-text">ИИ меняет вопросы в реальном времени на основе ответов кандидата</div>
+            </div>
+          </div>
+          <div class="vd-feature">
+            <div class="vd-feature-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div>
+              <div class="vd-feature-title">Анализ мимики и поведения</div>
+              <div class="vd-feature-text">Оценка уверенности, стрессоустойчивости и культурного фита</div>
+            </div>
+          </div>
+          <div class="vd-feature">
+            <div class="vd-feature-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg></div>
+            <div>
+              <div class="vd-feature-title">Полный профиль кандидата</div>
+              <div class="vd-feature-text">Видеозапись, транскрипт и аналитика — всё готово для руководителя</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vd-stats reveal">
+          <div class="vd-stat">
+            <div class="vd-stat-num">5 мин</div>
+            <div class="vd-stat-desc">руководитель смотрит видео вместо часа собеседования</div>
+          </div>
+          <div class="vd-stat-divider"></div>
+          <div class="vd-stat">
+            <div class="vd-stat-num">0</div>
+            <div class="vd-stat-desc">звонков от руководителя до финального этапа</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: video -->
+      <div class="video-demo-right reveal">
+        <div class="video-player-wrap" id="videoBlock">
+          <div class="video-thumb" id="videoThumb" onclick="playVideo()">
+            <img
+              src="https://brainhire.ru/images/videoPreview.avif"
+              alt="Демонстрация Real-time интервью с ИИ-аватаром"
+              onerror="this.style.display='none'; document.getElementById('videoFallback').style.display='flex';"
+            >
+            <div class="video-fallback" id="videoFallback">
+              <div class="video-fallback-icon"><svg width="64" height="64" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>
+              <div class="video-fallback-text">Real-time интервью с ИИ-аватаром</div>
+            </div>
+            <div class="video-play-btn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 5.14v14l11-7-11-7z" fill="white"/></svg>
+            </div>
+            <div class="video-overlay"></div>
+          </div>
+          <div class="video-frame" id="videoFrame" style="display:none;">
+            <video controls style="width:100%; border-radius:12px; display:block;">
+              <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+            </video>
+          </div>
+          <div class="vd-badge">
+            <div class="vd-badge-dot"></div>
+            <span>ИИ-интервью идёт прямо сейчас</span>
+          </div>
+        </div>
+        <div class="reveal" style="margin-top: 20px; text-align: center;">
+          <a href="#form" class="btn-hero-primary" style="display:inline-flex; width:100%; justify-content:center;">
+            Запросить демо Real-time интервью
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- CASES -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cases-section">
+  <div class="container">
+    <div class="cases-header">
+      <div class="section-tag reveal">Кейсы</div>
+      <h2 class="section-title reveal d1">Компании уже<br><em>автоматизируют найм с BRaiN HR</em></h2>
+    </div>
+    <div class="cases-grid">
+      <a href="https://brainhire.ru/case" target="_blank" class="case-card reveal">
+        <div class="case-top">
+          <span class="case-tag">Ритейл</span>
+          <span class="case-date">25 мая 2025</span>
+        </div>
+        <h3 class="case-title">Торговая сеть — массовый подбор продавцов-консультантов</h3>
+        <p class="case-text">Кейс о том, как розничная сеть сократила время закрытия линейных вакансий с 3 недель до 5 дней с помощью ИИ-скрининга и автоматических видеоинтервью.</p>
+        <div class="case-footer">
+          <span class="case-author">Елена Петрова</span>
+          <span class="case-read"><svg width="14" height="14" stroke="currentColor" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg> 4 мин</span>
+        </div>
+      </a>
+      <a href="https://brainhire.ru/case" target="_blank" class="case-card reveal d1">
+        <div class="case-top">
+          <span class="case-tag">Финансы</span>
+          <span class="case-date">12 апреля 2025</span>
+        </div>
+        <h3 class="case-title">Банк — стандартизация оценки кандидатов на ключевые позиции</h3>
+        <p class="case-text">Кейс о том, как финансовая организация внедрила единые критерии оценки для 12 филиалов и снизила текучесть новых сотрудников на 35%.</p>
+        <div class="case-footer">
+          <span class="case-author">Андрей Волков</span>
+          <span class="case-read"><svg width="14" height="14" stroke="currentColor" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg> 5 мин</span>
+        </div>
+      </a>
+      <a href="https://brainhire.ru/case" target="_blank" class="case-card reveal d2">
+        <div class="case-top">
+          <span class="case-tag">ИТ и разработка</span>
+          <span class="case-date">3 марта 2025</span>
+        </div>
+        <h3 class="case-title">IT-компания — автоматизация технического интервью для разработчиков</h3>
+        <p class="case-text">Кейс о том, как продуктовая компания с командой 200+ человек автоматизировала техническое интервью и снизила нагрузку на тимлидов в 8 раз.</p>
+        <div class="case-footer">
+          <span class="case-author">Наталья Козлова</span>
+          <span class="case-read"><svg width="14" height="14" stroke="currentColor" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg> 4 мин</span>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="https://brainhire.ru/case" target="_blank" class="btn-hero-primary" style="display:inline-flex;">Все кейсы с разбивкой по отраслям</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- CALCULATOR -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="section-bg" style="border-top:1px solid var(--grey2); border-bottom:1px solid var(--grey2);">
+  <div class="container">
+    <div class="section-tag reveal">Калькулятор экономии</div>
+    <h2 class="section-title reveal">Рассчитайте выгоду<br><em>на одной вакансии</em></h2>
+    <p class="section-sub reveal">Введите ваши данные — калькулятор покажет, сколько вы экономите с BRaiN HR на каждой вакансии.</p>
+
+    <div class="calc-wrap reveal">
+      <div class="calc-header">
+        <div>
+          <h3>Калькулятор стоимости закрытия вакансии</h3>
+          <p>Измените значения в полях, чтобы увидеть персональный расчёт</p>
+        </div>
+      </div>
+      <div class="calc-body">
+        <div style="margin-bottom:32px;">
+          <div class="calc-col-title">
+            <svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+            Ваши данные
+          </div>
+          <div class="calc-row">
+            <span class="calc-label">ФОТ рекрутера (руб./мес)</span>
+            <input class="calc-input" type="number" id="fot_recruiter" value="80000" onchange="calcUpdate()" oninput="calcUpdate()">
+          </div>
+          <div class="calc-row">
+            <span class="calc-label">ФОТ руководителя (руб./мес)</span>
+            <input class="calc-input" type="number" id="fot_manager" value="150000" onchange="calcUpdate()" oninput="calcUpdate()">
+          </div>
+          <div class="calc-row">
+            <span class="calc-label">Зарплата специалиста по вакансии (руб./мес)</span>
+            <input class="calc-input" type="number" id="salary" value="100000" onchange="calcUpdate()" oninput="calcUpdate()">
+          </div>
+          <div class="calc-row">
+            <span class="calc-label">Количество откликов на вакансию</span>
+            <input class="calc-input" type="number" id="responses" value="500" onchange="calcUpdate()" oninput="calcUpdate()">
+          </div>
+        </div>
+
+        <div class="calc-grid">
+          <div>
+            <div class="calc-col-title">
+              <svg width="16" height="16" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Без BRaiN HR
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Время закрытия</span>
+              <span class="calc-value" id="old_days">25 дней</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Стоимость рекрутера</span>
+              <span class="calc-value" id="old_recruiter">77 020 руб.</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Стоимость руководителя</span>
+              <span class="calc-value" id="old_manager">14 118 руб.</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Цена простоя позиции</span>
+              <span class="calc-value" id="old_downtime">119 048 руб.</span>
+            </div>
+            <div class="calc-row" style="visibility:hidden;">
+              <span class="calc-label">&nbsp;</span>
+              <span class="calc-value">&nbsp;</span>
+            </div>
+            <div class="calc-total bad">
+              <span>Итого на 1 вакансию</span>
+              <span class="calc-total-num" id="old_total">210 185 руб.</span>
+            </div>
+          </div>
+
+          <div>
+            <div class="calc-col-title good">
+              <svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+              С BRaiN HR
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Время закрытия</span>
+              <span class="calc-value highlight" id="new_days">7 дней</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Стоимость рекрутера</span>
+              <span class="calc-value" id="new_recruiter">2 353 руб.</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Стоимость руководителя</span>
+              <span class="calc-value" id="new_manager">7 353 руб.</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Цена простоя позиции</span>
+              <span class="calc-value" id="new_downtime">33 333 руб.</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Стоимость BRaiN HR</span>
+              <span class="calc-value" id="new_brain">27 000 руб.</span>
+            </div>
+            <div class="calc-total good">
+              <span>Итого на 1 вакансию</span>
+              <span class="calc-total-num" id="new_total">70 039 руб.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-savings" id="savings_block">
+          <div class="calc-savings-num" id="savings_num">140 146 руб.</div>
+          <div class="calc-savings-label">выгода на каждой вакансии с BRaiN HR</div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size: 11px; color: var(--text2); line-height: 1.5; margin-top: 16px;">В таблице приведены ориентировочные данные для расчёта затрат на поиск по одной вакансии. Стоимость открытой вакансии основана на HR-исследованиях.</p>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SOLUTIONS GRID -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="solutions-section" style="padding:80px 0;">
+  <div class="container">
+    <div class="solutions-header">
+      <div class="section-tag reveal">Отрасли</div>
+      <h2 class="section-title reveal d1">Отраслевые решения <em>BRaiN HR</em></h2>
+    </div>
+    <div class="solutions-grid reveal">
+      <a href="solutions/it.html" class="solution-card">
+        <span class="solution-card-icon">
+          <svg width="32" height="32" stroke="#4096FF" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </span>
+        <div class="solution-card-title">ИТ компании</div>
+        <div class="solution-card-text">Автоматизация найма разработчиков, тимлидов и технических специалистов. ИИ-оценка hard skills.</div>
+        <span class="solution-card-arrow">Подробнее <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href="solutions/smb.html" class="solution-card">
+        <span class="solution-card-icon">
+          <svg width="32" height="32" stroke="#4096FF" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/><polyline points="9,22 9,12 15,12 15,22"/></svg>
+        </span>
+        <div class="solution-card-title">Малый бизнес</div>
+        <div class="solution-card-text">Профессиональный найм без HR-отдела. Закрывайте вакансии в 5 раз быстрее с оплатой за результат.</div>
+        <span class="solution-card-arrow">Подробнее <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <a href="solutions/enterprise.html" class="solution-card">
+        <span class="solution-card-icon">
+          <svg width="32" height="32" stroke="#4096FF" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><rect x="1" y="6" width="22" height="16" rx="2"/><path d="M1 10h22"/><path d="M8 6V2h8v4"/></svg>
+        </span>
+        <div class="solution-card-title">Корпорации</div>
+        <div class="solution-card-text">Масштабируемая HR-автоматизация для крупного бизнеса. Интеграция с корпоративными системами.</div>
+        <span class="solution-card-arrow">Подробнее <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </a>
+      <div class="solution-card coming-soon">
+        <span class="solution-card-icon">
+          <svg width="32" height="32" stroke="#4096FF" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </span>
+        <div class="solution-card-title">Финансовый сектор</div>
+        <div class="solution-card-text">Подбор специалистов в финансовой сфере с учетом отраслевых требований и комплаенса.</div>
+        <span class="solution-card-badge">Скоро</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TRUST INDICATORS -->
+<!-- ═══════════════════════════════════════════ -->
+<section id="trust">
+  <div class="container">
+    <div style="text-align:left; margin-bottom:12px;">
+      <div class="section-tag reveal">Безопасность</div>
+      <h2 class="section-title reveal d1" style="text-align:left;">Ваши данные под <em>надежной защитой</em></h2>
+    </div>
+    <div class="trust-grid reveal">
+      <div class="trust-card">
+        <span class="trust-card-icon">
+          <svg width="36" height="36" stroke="#4096FF" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="15" rx="2"/><path d="M17 2l-5 5-5-5"/></svg>
+        </span>
+        <div class="trust-card-title">Инфраструктура в России</div>
+        <div class="trust-card-text">При развертывании системы в облаке BRaiN HR, все данные хранятся на наших серверах в РФ</div>
+      </div>
+      <div class="trust-card">
+        <span class="trust-card-icon">
+          <svg width="36" height="36" stroke="#4096FF" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </span>
+        <div class="trust-card-title">Полный контроль</div>
+        <div class="trust-card-text">Вы можете развернуть систему на своих серверах — тогда все данные останутся внутри организации</div>
+      </div>
+      <div class="trust-card">
+        <span class="trust-card-icon">
+          <svg width="36" height="36" stroke="#4096FF" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+        </span>
+        <div class="trust-card-title">Аккредитация</div>
+        <div class="trust-card-text">Реестр отечественного ПО</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- CTA + FORM -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="cta-section" id="form">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <h2 class="reveal">Подберем <em>решение</em> для вас</h2>
+      <p class="reveal d1">Расскажите о ваших задачах, и мы предложим оптимальный вариант автоматизации рекрутинга для вашей компании.</p>
+      <div class="cta-points reveal d2">
+        <div class="cta-point">
+          <div class="cp-icon"><svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></div>
+          <div>
+            <strong>Бесплатная консультация</strong>
+            Разберем вашу задачу и покажем демонстрацию платформы
+          </div>
+        </div>
+        <div class="cta-point">
+          <div class="cp-icon"><svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></div>
+          <div>
+            <strong>Индивидуальный расчет</strong>
+            Подготовим расчет экономии для вашего объема найма
+          </div>
+        </div>
+        <div class="cta-point">
+          <div class="cp-icon"><svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg></div>
+          <div>
+            <strong>Быстрый запуск</strong>
+            Настроим систему и запустим первую вакансию за 1 день
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-card reveal">
+      <div class="form-title">Оставьте заявку</div>
+      <div class="form-sub">Мы свяжемся с вами в течение рабочего дня</div>
+      <form>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Как вас зовут?</label>
+            <input type="text" class="form-input" placeholder="Имя">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Где вы работаете?</label>
+            <input type="text" class="form-input" placeholder="Компания">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="email@company.com">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Телефон</label>
+            <input type="tel" class="form-input" placeholder="+7 (___) ___-__-__">
+          </div>
+          <div class="form-group form-full">
+            <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--text2);cursor:pointer;">
+              <input type="checkbox" style="margin-top:2px;accent-color:var(--brand1);">
+              Согласен на обработку персональных данных
+            </label>
+          </div>
+          <div class="form-group form-full">
+            <label style="display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--text2);cursor:pointer;">
+              <input type="checkbox" style="margin-top:2px;accent-color:var(--brand1);">
+              Хочу получать полезные материалы о HR и рекрутинге
+            </label>
+          </div>
+          <div class="form-full">
+            <button type="submit" class="btn-form">Отправить заявку</button>
+          </div>
+        </div>
+        <div class="form-note">
+          Нажимая кнопку, вы соглашаетесь с <a href="https://brainhire.ru/docs/privacy-policy">Политикой конфиденциальности</a> и <a href="https://brainhire.ru/docs/user-agreement">Пользовательским соглашением</a>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- BLOG -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="section-bg" id="blog">
+  <div class="container">
+    <div style="text-align:left; margin-bottom:48px;">
+      <div class="section-tag reveal">Блог</div>
+      <h2 class="section-title reveal d1" style="text-align:left;">Узнайте как еще улучшить свой HR<br>в блоге <em>BRaiN HR</em></h2>
+    </div>
+
+    <div class="blog-grid reveal">
+      <!-- Blog card 1 -->
+      <a href="https://brainhire.ru/blog" class="blog-card">
+        <div class="blog-card-img">
+          <div class="blog-card-img-placeholder" style="background:linear-gradient(135deg, #E6F4FF, #C4E0FF);">
+            <svg width="48" height="48" stroke="#4096FF" stroke-width="1.5" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">ИИ в HR</span>
+            <span class="blog-date">20 марта 2026</span>
+          </div>
+          <div class="blog-card-title">Как ИИ меняет процесс найма: тренды 2026 года</div>
+          <div class="blog-card-text">Обзор ключевых технологий искусственного интеллекта, которые трансформируют рекрутинг: от автоматического скрининга до предиктивной аналитики.</div>
+          <div class="blog-card-footer">
+            <div class="blog-author">
+              <div class="blog-author-avatar">BR</div>
+              <span class="blog-author-name">BRaiN HR</span>
+            </div>
+            <div class="blog-card-stats">5 мин</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Blog card 2 -->
+      <a href="https://brainhire.ru/blog" class="blog-card">
+        <div class="blog-card-img">
+          <div class="blog-card-img-placeholder" style="background:linear-gradient(135deg, #FFF3E8, #FFE0C2);">
+            <svg width="48" height="48" stroke="#FF7401" stroke-width="1.5" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">Видеоинтервью</span>
+            <span class="blog-date">12 марта 2026</span>
+          </div>
+          <div class="blog-card-title">Видеоинтервью с прокторингом: как обеспечить честный отбор</div>
+          <div class="blog-card-text">Почему традиционные телефонные интервью уступают ИИ-видеоинтервью, и как прокторинг помогает выявить использование подсказок.</div>
+          <div class="blog-card-footer">
+            <div class="blog-author">
+              <div class="blog-author-avatar">BR</div>
+              <span class="blog-author-name">BRaiN HR</span>
+            </div>
+            <div class="blog-card-stats">7 мин</div>
+          </div>
+        </div>
+      </a>
+
+      <!-- Blog card 3 -->
+      <a href="https://brainhire.ru/blog" class="blog-card">
+        <div class="blog-card-img">
+          <div class="blog-card-img-placeholder" style="background:linear-gradient(135deg, rgba(18,83,109,0.08), rgba(18,83,109,0.18));">
+            <svg width="48" height="48" stroke="#12536D" stroke-width="1.5" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">Аналитика</span>
+            <span class="blog-date">5 марта 2026</span>
+          </div>
+          <div class="blog-card-title">ROI автоматизации рекрутинга: считаем экономию на реальных кейсах</div>
+          <div class="blog-card-text">Подробный разбор экономического эффекта от внедрения ИИ-платформы в HR-процессы компаний разного масштаба.</div>
+          <div class="blog-card-footer">
+            <div class="blog-author">
+              <div class="blog-author-avatar">BR</div>
+              <span class="blog-author-name">BRaiN HR</span>
+            </div>
+            <div class="blog-card-stats">6 мин</div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <div style="text-align:center;margin-top:40px;" class="reveal">
+      <a href="https://brainhire.ru/blog" class="btn-primary">
+        Читать блог
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- FAQ -->
+<!-- ═══════════════════════════════════════════ -->
+<section id="faq">
+  <div class="container">
+    <div class="faq-header">
+      <h2 class="section-title reveal">Ответы на часто задаваемые вопросы</h2>
+    </div>
+
+    <div class="faq-list reveal">
+
+      <!-- FAQ 1 — original -->
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Как BRaiN HR использует искусственный интеллект для автоматизации рекрутинга?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="7" x2="12" y2="17"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">BRaiN HR использует собственные модели искусственного интеллекта на каждом этапе найма: ИИ генерирует тексты вакансий на основе лучших HR-методик, автоматически анализирует и ранжирует резюме по степени соответствия требованиям, проводит видеоинтервью с прокторингом и Real-time интервью с ИИ-аватаром. Это позволяет автоматизировать до 80% рутинных задач рекрутера и сократить время закрытия вакансии в 5 раз.</div>
+        </div>
+      </div>
+
+      <!-- FAQ 2 — original -->
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Что такое ИИ-интервью с прокторингом?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="7" x2="12" y2="17"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">ИИ-интервью с прокторингом — это автоматизированное видеоинтервью, в котором искусственный интеллект задает кандидатам структурированные вопросы и анализирует содержание ответов. Встроенная система прокторинга контролирует честность процесса, отслеживая использование сторонних подсказок, переключение вкладок браузера и другие признаки нечестного прохождения. Кандидаты могут пройти интервью 24/7, в удобное для них время.</div>
+        </div>
+      </div>
+
+      <!-- FAQ 3 — original -->
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Как работает Real-time интервью с ИИ-аватаром и оценка мимики?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="7" x2="12" y2="17"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Real-time интервью с ИИ-аватаром — это продвинутый формат собеседования, где ИИ-аватар ведет динамичный диалог с кандидатом в режиме реального времени. Вопросы адаптируются на основе предыдущих ответов, создавая естественный разговор. Одновременно система анализирует мимику и язык тела кандидата, формируя комплексный психологический портрет и оценивая soft skills, стрессоустойчивость и соответствие корпоративной культуре.</div>
+        </div>
+      </div>
+
+      <!-- FAQ 4 — original -->
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Помогает ли BRaiN HR создавать описания вакансий?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="7" x2="12" y2="17"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Да, BRaiN HR использует ИИ для создания профессиональных текстов вакансий за 30 секунд. Вы задаете базовые параметры (должность, требования, условия), а ИИ генерирует привлекательное описание на основе лучших HR-методик. Система точно формулирует требования, чтобы привлечь нужных кандидатов и отсечь нерелевантные отклики. После создания вакансия автоматически публикуется на hh.ru, Avito, SuperJob и других площадках.</div>
+        </div>
+      </div>
+
+      <!-- FAQ 5 — original -->
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Можно ли интегрировать BRaiN HR с другими системами, которые мы уже используем?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="7" x2="12" y2="17"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Да, BRaiN HR поддерживает интеграцию с популярными HR-системами, CRM и корпоративными платформами — включая 1С, Битрикс24 и другие. Через API можно настроить обмен данными с вашими существующими системами управления персоналом. Мы также помогаем с настройкой интеграций и предлагаем техническую поддержку на каждом этапе.</div>
+        </div>
+      </div>
+
+      <!-- FAQ 6 — original -->
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Подходит ли BRaiN HR для массового подбора персонала?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="7" x2="12" y2="17"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Абсолютно. BRaiN HR создан для работы с большими объемами. Система способна обрабатывать сотни откликов одновременно, автоматически проводить скоринг резюме, организовывать массовые ИИ-видеоинтервью и ранжировать кандидатов. Это особенно полезно для компаний, которые ведут массовый набор в ритейле, логистике, производстве и других отраслях с высоким оборотом персонала.</div>
+        </div>
+      </div>
+
+      <!-- FAQ 7 — NEW -->
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Сколько стоит использование BRaiN HR?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="7" x2="12" y2="17"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">BRaiN HR предлагает гибкие тарифы с оплатой за обработанные отклики. Первые 100 кандидатов вы можете обработать бесплатно, чтобы оценить эффективность платформы. Нет ежемесячных подписок и скрытых платежей — вы платите только за реальный результат. Для крупных компаний доступны корпоративные тарифы и развертывание на собственных серверах.</div>
+        </div>
+      </div>
+
+      <!-- FAQ 8 — NEW -->
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Как быстро можно начать работу с платформой?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="7" x2="12" y2="17"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Начать работу с BRaiN HR можно за один день. Регистрация занимает 2 минуты, после чего вы сразу можете создать свою первую вакансию с помощью ИИ, опубликовать ее на площадках и начать принимать отклики. Настройка ИИ-видеоинтервью и скоринга происходит автоматически. Наша команда поддержки помогает на каждом этапе.</div>
+        </div>
+      </div>
+
+      <!-- FAQ 9 — NEW -->
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Где хранятся данные кандидатов и насколько это безопасно?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="7" x2="12" y2="17"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Все данные хранятся на серверах в России и обрабатываются в соответствии с требованиями 152-ФЗ о персональных данных. BRaiN HR входит в Реестр отечественного ПО. Для компаний с повышенными требованиями к безопасности доступно развертывание системы на собственных серверах (on-premise), при котором все данные остаются полностью внутри организации.</div>
+        </div>
+      </div>
+
+      <!-- FAQ 10 — NEW -->
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          Чем BRaiN HR отличается от обычных ATS-систем?
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><line x1="12" y1="7" x2="12" y2="17"/><line x1="7" y1="12" x2="17" y2="12"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">В отличие от традиционных ATS, BRaiN HR не просто хранит резюме и отслеживает статусы — платформа активно участвует в процессе подбора. ИИ создает вакансии, анализирует и ранжирует резюме, проводит видеоинтервью с прокторингом и Real-time интервью с аватаром. Это не система учета, а полноценный ИИ-помощник рекрутера, который берет на себя до 80% рутинной работы.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- FOOTER -->
+<!-- ═══════════════════════════════════════════ -->
+<footer class="site-footer-new">
+  <div class="footer-new-inner">
+
+    <!-- TOP: 5 columns -->
+    <div class="footer-new-top">
+
+      <!-- Col 1: Logo + desc + socials -->
+      <div class="footer-new-col footer-new-col-brand">
+        <a href="https://brainhire.ru/" class="footer-new-logo">
+          <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+        </a>
+        <p class="footer-new-desc">ИИ-платформа для автоматизации рекрутинга и оценки персонала. Нанимайте в 5 раз дешевле и быстрее.</p>
+        <div class="footer-new-socials">
+          <a href="https://vk.com/brain_hr" target="_blank" class="footer-social-btn" title="ВКонтакте">В</a>
+          <a href="https://t.me/BRaiN_HR" target="_blank" class="footer-social-btn" title="Telegram">Т</a>
+          <a href="https://www.instagram.com/brain_hire/" target="_blank" class="footer-social-btn" title="Instagram">I</a>
+          <a href="https://www.linkedin.com/company/105875559/" target="_blank" class="footer-social-btn" title="LinkedIn">in</a>
+        </div>
+      </div>
+
+      <!-- Col 2: Отраслевые решения -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Отраслевые решения</div>
+        <div class="footer-new-links">
+          <a href="solutions/it.html" class="footer-new-link">Автоматизация HR в IT</a>
+          <a href="solutions/finance.html" class="footer-new-link">Автоматизация HR в финансовом секторе</a>
+          <a href="solutions/smb.html" class="footer-new-link">Автоматизация HR для малого бизнеса</a>
+          <a href="solutions/enterprise.html" class="footer-new-link">Автоматизация HR для корпораций</a>
+        </div>
+      </div>
+
+      <!-- Col 3: Функции -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Функции</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/recruiting" class="footer-new-link">Рекрутинг</a>
+          <a href="https://brainhire.ru/ai-vacancy-creation" class="footer-new-link">ИИ-создание вакансий</a>
+          <a href="https://brainhire.ru/ai-resume-analysis" class="footer-new-link">ИИ-анализ резюме</a>
+          <a href="https://brainhire.ru/ai-videointerview" class="footer-new-link">ИИ-видеоинтервью</a>
+          <a href="https://brainhire.ru/ai-staff-scoring" class="footer-new-link">ИИ-оценка кандидатов</a>
+        </div>
+      </div>
+
+      <!-- Col 4: Компания -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Компания</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/about" class="footer-new-link">О нас</a>
+          <a href="https://brainhire.ru/contacts" class="footer-new-link">Контакты</a>
+          <a href="https://brainhire.ru/tariffs" class="footer-new-link">Тарифы</a>
+          <a href="https://brainhire.ru/reviews" class="footer-new-link">Отзывы</a>
+          <a href="https://brainhire.ru/case" class="footer-new-link">Кейсы</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">СМИ о нас</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">Блог</a>
+        </div>
+      </div>
+
+      <!-- Col 5: Контакты -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Контакты</div>
+        <div class="footer-new-contact-block">
+          <a href="tel:+74959703976" class="footer-new-phone">+7 (495) 970-39-76</a>
+          <span class="footer-new-contact-sub">Служба поддержки</span>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Электронная почта:</span>
+          <a href="mailto:info@brainhire.ru" class="footer-new-email">info@brainhire.ru</a>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Адрес:</span>
+          <span class="footer-new-address">142005 Московская область, г. Домодедово, мкр. Центральный, ул. Кирова, д. 7, к.1, пом. 0011, офис 5</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-new-bottom">
+      <div class="footer-new-bottom-top">
+        <span class="footer-new-copy">&copy; ООО &laquo;НДК&raquo;, ОГРН 1225000105010. Все права защищены.</span>
+        <div class="footer-new-legal">
+          <a href="https://brainhire.ru/docs/privacy-policy" class="footer-new-legal-link">Политика конфиденциальности</a>
+          <a href="https://brainhire.ru/docs/user-agreement" class="footer-new-legal-link">Пользовательское соглашение</a>
+          <a href="https://brainhire.ru/docs/personal-data-consent" class="footer-new-legal-link">Обработка данных</a>
+        </div>
+      </div>
+      <div class="footer-new-bottom-docs">
+        <a href="https://brainhire.ru/docs/user-instructions" class="footer-new-legal-link">Инструкция по установке и эксплуатации ПО</a>
+        <a href="https://brainhire.ru/docs/product-description" class="footer-new-legal-link">Описание функциональных характеристик ПО</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+/* ─── NEW FOOTER ─── */
+.site-footer-new {
+  background: #F5F6F8;
+  border-top: 1px solid #D5D7DA;
+  padding: 64px 0 0;
+}
+.footer-new-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.footer-new-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1.3fr 1fr 1fr 1.3fr;
+  gap: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid #D5D7DA;
+}
+
+/* Brand col */
+.footer-new-logo { display: block; margin-bottom: 16px; }
+.footer-new-logo img { height: 24px; filter: none; }
+.footer-new-desc { font-size: 13px; color: #717680; line-height: 1.75; margin-bottom: 20px; }
+.footer-new-socials { display: flex; gap: 8px; }
+.footer-social-btn {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: #fff; border: 1px solid #D5D7DA;
+  display: flex; align-items: center; justify-content: center;
+  color: #717680; font-size: 13px; font-weight: 700;
+  text-decoration: none; transition: background .2s, color .2s;
+}
+.footer-social-btn:hover { background: #E6F4FF; color: #4096FF; border-color: rgba(64,150,255,0.35); }
+
+/* Cols */
+.footer-new-col-title {
+  font-size: 12px; font-weight: 700; color: #11263A;
+  margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.8px;
+}
+.footer-new-links { display: flex; flex-direction: column; gap: 12px; }
+.footer-new-link {
+  font-size: 13px; color: #717680;
+  text-decoration: none; line-height: 1.4;
+  transition: color .2s;
+}
+.footer-new-link:hover { color: #4096FF; }
+
+/* Contacts col */
+.footer-new-contact-block { margin-bottom: 18px; }
+.footer-new-contact-block:last-child { margin-bottom: 0; }
+.footer-new-phone {
+  display: block; font-size: 16px; font-weight: 700;
+  color: #4096FF; text-decoration: none; margin-bottom: 3px;
+  transition: color .2s;
+}
+.footer-new-phone:hover { color: #69B1FF; }
+.footer-new-contact-sub { font-size: 12px; color: #717680; }
+.footer-new-contact-label { display: block; font-size: 12px; color: #717680; margin-bottom: 4px; font-weight: 600; }
+.footer-new-email {
+  font-size: 13px; color: #11263A; text-decoration: none;
+  transition: color .2s;
+}
+.footer-new-email:hover { color: #4096FF; }
+.footer-new-address { font-size: 12px; color: #717680; line-height: 1.6; }
+
+/* Bottom */
+.footer-new-bottom { padding: 20px 0; }
+.footer-new-bottom-top {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 20px; flex-wrap: wrap; padding-bottom: 12px;
+  border-bottom: 1px solid #D5D7DA;
+  margin-bottom: 12px;
+}
+.footer-new-copy { font-size: 12px; color: #717680; }
+.footer-new-legal { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-new-legal-link {
+  font-size: 12px; color: #717680;
+  text-decoration: none; transition: color .2s;
+}
+.footer-new-legal-link:hover { color: #4096FF; }
+.footer-new-bottom-docs { display: flex; gap: 40px; flex-wrap: wrap; }
+
+@media (max-width: 1100px) {
+  .footer-new-top { grid-template-columns: 1fr 1fr 1fr; }
+}
+@media (max-width: 700px) {
+  .footer-new-top { grid-template-columns: 1fr 1fr; }
+  .footer-new-bottom-top { flex-direction: column; align-items: flex-start; }
+  .footer-new-bottom-docs { flex-direction: column; gap: 10px; }
+}
+@media (max-width: 480px) {
+  .footer-new-top { grid-template-columns: 1fr; }
+}
+</style>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- SCRIPTS -->
+<!-- ═══════════════════════════════════════════ -->
+<script>
+  document.body.classList.add('js-loaded');
+
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('open');
+  }
+
+  function fmt(n) {
+    return Math.round(n).toLocaleString('ru-RU');
+  }
+
+  function calcUpdate() {
+    var fotR = parseFloat(document.getElementById('fot_recruiter').value) || 80000;
+    var fotM = parseFloat(document.getElementById('fot_manager').value) || 150000;
+    var sal = parseFloat(document.getElementById('salary').value) || 100000;
+    var resp = parseFloat(document.getElementById('responses').value) || 500;
+
+    var hourR = fotR / 170;
+    var hourM = fotM / 170;
+    var dayVacancy = sal / 21;
+
+    var oldDays = 25;
+    var relCand = resp * 0.6;
+    var oldRecruiter = (resp * 5 / 60 + relCand * 10 / 60 + 60 * 60 / 60) * hourR;
+    var oldManager = (24 * 10 / 60 + 12 * 60 / 60) * hourM;
+    var oldDowntime = dayVacancy * oldDays;
+    var oldTotal = oldRecruiter + oldManager + oldDowntime;
+
+    var newDays = 7;
+    var newRecruiter = (20 * 10 / 60) * hourR;
+    var newManager = (20 * 10 / 60 + 5 * 60 / 60) * hourM;
+    var newDowntime = dayVacancy * newDays;
+    var brainCost = 27000;
+    var newTotal = newRecruiter + newManager + newDowntime + brainCost;
+
+    var savings = oldTotal - newTotal;
+
+    document.getElementById('old_days').textContent = oldDays + ' дней';
+    document.getElementById('old_recruiter').textContent = fmt(oldRecruiter) + ' руб.';
+    document.getElementById('old_manager').textContent = fmt(oldManager) + ' руб.';
+    document.getElementById('old_downtime').textContent = fmt(oldDowntime) + ' руб.';
+    document.getElementById('old_total').textContent = fmt(oldTotal) + ' руб.';
+
+    document.getElementById('new_days').textContent = newDays + ' дней';
+    document.getElementById('new_recruiter').textContent = fmt(newRecruiter) + ' руб.';
+    document.getElementById('new_manager').textContent = fmt(newManager) + ' руб.';
+    document.getElementById('new_downtime').textContent = fmt(newDowntime) + ' руб.';
+    document.getElementById('new_brain').textContent = fmt(brainCost) + ' руб.';
+    document.getElementById('new_total').textContent = fmt(newTotal) + ' руб.';
+
+    document.getElementById('savings_num').textContent = fmt(savings) + ' руб.';
+  }
+
+  function playVideo() {
+    var thumb = document.getElementById('videoThumb');
+    var frame = document.getElementById('videoFrame');
+    if (thumb && frame) {
+      thumb.style.display = 'none';
+      frame.style.display = 'block';
+      var video = frame.querySelector('video');
+      if (video) video.play();
+    }
+  }
+
+  function switchAudienceTab(idx) {
+    document.querySelectorAll('.audience-tab').forEach(function(t, i) {
+      t.classList.toggle('active', i === idx);
+    });
+    document.querySelectorAll('.audience-panel').forEach(function(p, i) {
+      p.classList.toggle('active', i === idx);
+    });
+  }
+
+  // Reveal on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.15 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+<style>
+.float-video-widget{position:fixed;bottom:28px;left:28px;z-index:200;display:flex;flex-direction:column;align-items:flex-start;animation:floatIn .5s ease .8s both}
+@keyframes floatIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.float-video-close{align-self:flex-end;margin-bottom:6px;width:22px;height:22px;border-radius:50%;background:#4096FF;color:#fff;font-size:11px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:background .2s;line-height:1;z-index:2;position:relative}
+.float-video-close:hover{background:#69B1FF}
+.float-video-wrap{width:148px;height:148px;border-radius:16px;overflow:hidden;cursor:pointer;position:relative;box-shadow:0 8px 32px rgba(64,150,255,0.4);border:3px solid #4096FF;background:#E6F4FF;transition:transform .25s,box-shadow .25s}
+.float-video-wrap:hover{transform:scale(1.04);box-shadow:0 12px 40px rgba(64,150,255,0.55)}
+.float-video-poster{position:absolute;inset:0;z-index:1}.float-video-poster img{width:100%;height:100%;object-fit:cover;display:block}
+.float-poster-fallback{display:none;position:absolute;inset:0;background:linear-gradient(135deg,#4096FF,#69B1FF);flex-direction:column;align-items:center;justify-content:center;gap:6px}
+.float-video-wrap.playing .float-video-poster{display:none}
+.float-video-overlay{position:absolute;inset:0;z-index:3;background:rgba(64,150,255,0.25);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;opacity:0;transition:opacity .25s}
+.float-video-wrap:hover .float-video-overlay{opacity:1}
+.float-video-play{width:44px;height:44px;border-radius:50%;background:#4096FF;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 16px rgba(64,150,255,0.7)}
+.float-video-label{font-family:'Montserrat',sans-serif;font-size:11px;font-weight:700;color:#fff;text-shadow:0 1px 4px rgba(0,0,0,0.4)}
+.float-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.88);z-index:1000;align-items:center;justify-content:center;padding:24px;backdrop-filter:blur(6px)}
+.float-modal.open{display:flex;animation:modalIn .25s ease}
+@keyframes modalIn{from{opacity:0}to{opacity:1}}
+.float-modal-inner{position:relative;width:100%;max-width:900px}
+.float-modal-close{position:absolute;top:-44px;right:0;background:rgba(255,255,255,0.15);border:none;color:#fff;width:36px;height:36px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;font-family:'Montserrat',sans-serif}
+.float-modal-close:hover{background:rgba(255,255,255,0.3)}
+@media(max-width:600px){.float-video-wrap{width:110px;height:110px}.float-video-widget{bottom:16px;left:16px}}
+</style>
+<script>
+(function(){var v=document.getElementById('floatVideo'),w=document.getElementById('floatVideoWrap');if(v){v.addEventListener('canplay',function(){var p=v.play();if(p!==undefined)p.then(function(){w.classList.add('playing')}).catch(function(){})},{once:true});v.load()}})();
+function openFloatFullscreen(){var m=document.getElementById('floatModal'),v=document.getElementById('floatModalVideo');if(m&&v){m.classList.add('open');document.body.style.overflow='hidden';v.load()}}
+function closeFloatModal(){var m=document.getElementById('floatModal'),v=document.getElementById('floatModalVideo');if(m){m.classList.remove('open');document.body.style.overflow=''}if(v){v.pause();v.currentTime=0}}
+function closeFloatWidget(){var e=document.getElementById('floatWidget');if(e)e.style.display='none'}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeFloatModal()});
+</script>
+<style>
+.sticky-sidebar{position:fixed;right:0;top:50%;transform:translateY(-50%);z-index:90;display:flex;flex-direction:column;border-radius:14px 0 0 14px;overflow:hidden;box-shadow:-4px 4px 24px rgba(17,38,58,0.12)}
+.sticky-btn{display:flex;align-items:center;gap:12px;background:var(--white);border:none;border-left:1px solid var(--grey2);padding:14px 15px;text-decoration:none;cursor:pointer;transition:background .25s,padding .35s cubic-bezier(.4,0,.2,1);color:var(--text2);position:relative}
+.sticky-btn+.sticky-btn::before{content:'';position:absolute;top:0;left:12px;right:12px;height:1px;background:var(--grey2);transition:opacity .25s}
+.sticky-btn:hover+.sticky-btn::before,.sticky-btn:hover::before{opacity:0}
+.sticky-btn:hover{padding-right:20px;background:var(--grey1);color:var(--text1)}
+.sticky-btn-primary{background:var(--brand1);border-color:var(--brand1);color:var(--white)}
+.sticky-btn-primary+.sticky-btn::before{background:rgba(255,255,255,0.15)}
+.sticky-btn-primary:hover{background:var(--brand1-h);color:var(--white)}
+.sticky-btn-accent{background:var(--brand2);border-color:var(--brand2);color:var(--white)}
+.sticky-btn-accent+.sticky-btn::before{background:rgba(255,255,255,0.15)}
+.sticky-btn-accent:hover{background:#ff8c2e;color:var(--white)}
+.sticky-btn-secondary:hover{color:var(--brand1)}
+.sticky-btn svg{flex-shrink:0;transition:transform .25s}
+.sticky-btn:hover svg{transform:scale(1.1)}
+.sticky-label{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:600;white-space:nowrap;max-width:0;overflow:hidden;transition:max-width .35s cubic-bezier(.4,0,.2,1),opacity .25s .05s;opacity:0}
+.sticky-sidebar:hover .sticky-label{max-width:220px;opacity:1}
+@media(max-width:768px){.sticky-sidebar{display:none}}
+</style>
+<!-- STICKY SIDEBAR -->
+<div class="sticky-sidebar">
+  <a href="#form" class="sticky-btn sticky-btn-primary" title="Запросить демо">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2z" stroke="currentColor" stroke-width="1.8"/><path d="M12 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Запросить демо</span>
+  </a>
+  <a href="calculator.html" class="sticky-btn sticky-btn-accent" title="Калькулятор экономии">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="10" x2="10" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="14" x2="10" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="14" x2="16" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="18" x2="10" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="18" x2="16" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Калькулятор экономии</span>
+  </a>
+  <a href="tel:+74958591070" class="sticky-btn sticky-btn-secondary" title="+7 (495) 859-10-70">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">+7 (495) 859-10-70</span>
+  </a>
+  <a href="mailto:info@brainhire.ru" class="sticky-btn sticky-btn-secondary" title="info@brainhire.ru">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">info@brainhire.ru</span>
+  </a>
+</div>
+
+<!-- FLOAT VIDEO WIDGET -->
+<div class="float-video-widget" id="floatWidget">
+  <div class="float-video-close" onclick="closeFloatWidget()" title="Закрыть">✕</div>
+  <div class="float-video-wrap" id="floatVideoWrap" onclick="openFloatFullscreen()">
+    <div class="float-video-poster" id="floatPoster">
+      <img src="https://brainhire.ru/images/videoPreview.avif" onerror="this.style.display='none'; document.getElementById('floatPosterFallback').style.display='flex';" alt="Demo">
+      <div class="float-poster-fallback" id="floatPosterFallback">
+        <svg width="40" height="40" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+        <span style="font-size:11px;font-weight:700;color:#fff;">BRaiN HR</span>
+      </div>
+    </div>
+    <video id="floatVideo" muted loop playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+    <div class="float-video-overlay">
+      <div class="float-video-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="white"/></svg></div>
+      <div class="float-video-label">Смотреть демо</div>
+    </div>
+  </div>
+</div>
+<div class="float-modal" id="floatModal" onclick="closeFloatModal()">
+  <div class="float-modal-inner" onclick="event.stopPropagation()">
+    <button class="float-modal-close" onclick="closeFloatModal()">✕</button>
+    <video id="floatModalVideo" controls playsinline preload="none" style="width:100%;border-radius:12px;display:block;max-height:80vh;background:#000;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+</body>
+</html>

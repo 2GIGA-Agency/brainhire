@@ -1,0 +1,50 @@
+.container {
+	width: 90%;
+	margin: 0 auto;
+}
+
+.text {
+	line-height: 24;
+	font-weight: 400;
+}
+
+.title {
+	margin-bottom: 32px;
+}
+
+.h4VisualStyle {
+	margin-bottom: 32px;
+	font-size: 1.5rem;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.h4VisualStyle:nth-child(2) {
+	margin: 32px 0;
+}
+
+.info {
+	display: flex;
+	flex-direction: column;
+	padding-bottom: 120px;
+
+	&Container {
+		display: flex;
+		gap: 32px;
+		justify-content: space-between;
+		align-items: center;
+	}
+}
+
+@media (max-width: 768px) {
+	.info {
+		padding-bottom: 40px;
+
+		&Container {
+			flex-wrap: wrap;
+		}
+	}
+	.mb {
+		margin-bottom: 24px;
+	}
+}

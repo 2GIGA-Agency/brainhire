@@ -1,0 +1,31 @@
+.table {
+	border-radius: 16px;
+	border-collapse: separate;
+	border-spacing: 0;
+	overflow: hidden;
+	border: 1px solid #e2e8f0;
+	// Убираем все внутренние границы
+	tr,
+	td,
+	th {
+		border: none;
+	}
+
+	// Добавляем границы только между ячейками
+	td,
+	th {
+		border-top: 1px solid #e2e8f0;
+		border-left: 1px solid #e2e8f0;
+	}
+
+	// Убираем лишние границы у крайних ячеек
+	tr:first-child td,
+	tr:first-child th {
+		border-top: none;
+	}
+
+	td:first-child,
+	th:first-child {
+		border-left: none;
+	}
+}

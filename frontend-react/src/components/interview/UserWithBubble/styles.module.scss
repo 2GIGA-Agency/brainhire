@@ -1,0 +1,52 @@
+.barContainer {
+	min-width: 230px;
+	min-height: 120px;
+	margin-left: 116px;
+	display: flex;
+	justify-content: center;
+	align-items: end;
+	position: relative;
+	background-color: #e2e8f0;
+	/* голубая полоса */
+	border-radius: 8px;
+	padding: 8px 16px 2px;
+	/* внутренние отступы сверху/снизу */
+	flex: 1;
+
+	&::after {
+		content: '';
+		position: absolute;
+		right: -15px;
+		bottom: 0px;
+		border: 20px solid transparent;
+		border-bottom: 20px solid #e2e8f0;
+		border-left: 20px solid #e2e8f0;
+	}
+}
+
+.container {
+	display: flex;
+	justify-content: end;
+	align-items: end;
+	margin-bottom: 24px;
+	width: 100%;
+	gap: 20px;
+}
+
+@media (max-width: 770px) {
+	.container {
+		margin-top: 30px;
+		flex-direction: column;
+		align-items: center;
+		margin-bottom: 24px;
+	}
+
+	.barContainer {
+		margin-left: 0;
+		width: 100%;
+
+		&::after {
+			display: none;
+		}
+	}
+}

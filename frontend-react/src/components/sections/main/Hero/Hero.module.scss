@@ -1,0 +1,150 @@
+@import '@/styles/abstracts/variables';
+@import '@/styles/abstracts/mixins';
+
+.hero {
+	width: 100%;
+	background: $grey-1;
+	padding: 80px 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	strong {
+		color: #4096ff;
+	}
+
+	b {
+		color: #ff7401;
+	}
+}
+
+.heroButtons {
+	display: flex;
+	justify-content: center;
+	gap: 12px;
+
+	a {
+		white-space: wrap !important;
+	}
+}
+
+.container {
+	width: 90%;
+	margin: auto;
+	text-align: center;
+}
+
+.subheading {
+	margin: 32px auto;
+	max-width: 1000px;
+	font-size: 22px;
+	font-weight: 500;
+}
+
+.cta {
+	margin-top: 16px;
+}
+
+// Исправления для Swiper
+.swapperContainer {
+	max-height: 340px;
+	// Центрирование слайдов по вертикали
+	.swiper-wrapper {
+		align-items: center;
+	}
+}
+
+.imageContainer {
+	// Убираем фиксированную высоту, чтобы не обрезалось
+	height: auto;
+	min-height: 340px;
+	display: flex;
+	justify-content: center;
+	margin-top: 32px;
+	padding-bottom: 10px;
+
+	// Обертка для центрирования всего Swiper
+	.swiper {
+		width: 100%;
+	}
+}
+
+.poster {
+	// Заменяем cover на contain или scale-down
+	object-fit: contain; // Или используйте scale-down для адаптации
+	width: 100%;
+	height: auto; // Автоматическая высота
+	max-height: 340px; // Ограничиваем максимальную высоту
+}
+
+.imgWrapper {
+	padding-bottom: 5px;
+	overflow: visible;
+	// Убираем фиксированную высоту
+	height: auto;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	// Добавляем внутренние отступы
+	padding: 10px;
+}
+
+.partners {
+	margin-top: 40px;
+}
+
+@media (max-width: 768px) {
+	.hero {
+		padding: 48px 0;
+	}
+
+	.imageContainer {
+		min-height: 280px;
+	}
+
+	.poster {
+		max-height: 280px;
+	}
+}
+
+@media (max-width: 538px) {
+	.heroButtons {
+		flex-direction: column;
+	}
+
+	.imageContainer {
+		min-height: 220px;
+	}
+
+	.poster {
+		max-height: 220px;
+	}
+}
+
+// Для больших экранов - центрирование по горизонтали
+@media (min-width: 1024px) {
+	.swapperContainer {
+		.swiper-wrapper {
+			justify-content: center;
+		}
+
+		// Убираем обрезку на больших экранах
+		.swiper-slide {
+			width: calc(100% / 3 - 20px) !important; // 3 слайда с отступами
+		}
+	}
+}
+
+// Альтернатива: если хотите сохранить одинаковую высоту всех изображений
+@media (min-width: 768px) {
+	.imgWrapper {
+		height: 320px; // Фиксированная высота только на десктопе
+	}
+
+	.poster {
+		height: 100%;
+		width: auto;
+		max-width: 100%;
+		object-fit: contain;
+	}
+}

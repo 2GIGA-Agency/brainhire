@@ -1,0 +1,338 @@
+<!--
+  ═══════════════════════════════════════════════════
+  ШАБЛОН: Лендинг функции BRaiN HR
+  ═══════════════════════════════════════════════════
+  Использование:
+  1. Скопировать этот файл в pages/features/
+  2. Заменить все {{PLACEHOLDER}} на реальный контент
+  3. Обновить пути к CSS: ../../shared/styles.css
+  4. Обязательно: header + footer копируются из page-template.html
+  ═══════════════════════════════════════════════════
+-->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>{{FEATURE_NAME}} — BRaiN HR</title>
+<meta name="description" content="{{FEATURE_DESCRIPTION}}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../../shared/styles.css">
+<link rel="stylesheet" href="../../shared/components.css">
+<style>
+  /* Page-specific styles */
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER — скопировать из templates/page-template.html ═══ -->
+<!-- ... header HTML ... -->
+<!-- ═══ /HEADER ═══ -->
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 1: HERO                                  -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="hero-section">
+  <div class="hero-wrap">
+    <div>
+      <div class="hero-badge reveal">
+        <span class="dot"></span>
+        {{BADGE_TEXT}}
+      </div>
+      <h1 class="reveal d1">
+        {{HERO_TITLE_LINE_1}}<br>
+        <em>{{HERO_TITLE_ACCENT}}</em>
+      </h1>
+      <p class="hero-sub reveal d2">
+        {{HERO_SUBTITLE}}
+      </p>
+      <div class="hero-actions reveal d2">
+        <a href="https://brainhire.ru/signup" class="btn-hero-primary">
+          Попробовать бесплатно
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#form" class="btn-hero-outline">Хочу демонстрацию</a>
+      </div>
+      <div class="hero-proof reveal d3">
+        <span class="proof-item">{{PROOF_1}}</span>
+        <span class="proof-item">{{PROOF_2}}</span>
+        <span class="proof-item">{{PROOF_3}}</span>
+      </div>
+    </div>
+
+    <!-- Hero visual — мокап интерфейса, pipeline-карточка или скриншот -->
+    <div class="reveal d2">
+      <!-- {{HERO_VISUAL}} -->
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 2: ПРОБЛЕМЫ / БОЛИ                       -->
+<!-- ════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title reveal">{{PAIN_TITLE}}<br><em>{{PAIN_TITLE_ACCENT}}</em></h2>
+    <p class="section-sub reveal">{{PAIN_SUBTITLE}}</p>
+    <div class="pain-grid">
+      <!-- Повторить 4 раза -->
+      <div class="pain-card reveal">
+        <span class="pain-emoji"><!-- SVG icon --></span>
+        <div class="pain-title">{{PAIN_1_TITLE}}</div>
+        <div class="pain-text">{{PAIN_1_TEXT}}</div>
+      </div>
+      <div class="pain-card reveal d1">
+        <span class="pain-emoji"><!-- SVG icon --></span>
+        <div class="pain-title">{{PAIN_2_TITLE}}</div>
+        <div class="pain-text">{{PAIN_2_TEXT}}</div>
+      </div>
+      <div class="pain-card reveal d2">
+        <span class="pain-emoji"><!-- SVG icon --></span>
+        <div class="pain-title">{{PAIN_3_TITLE}}</div>
+        <div class="pain-text">{{PAIN_3_TEXT}}</div>
+      </div>
+      <div class="pain-card reveal d3">
+        <span class="pain-emoji"><!-- SVG icon --></span>
+        <div class="pain-title">{{PAIN_4_TITLE}}</div>
+        <div class="pain-text">{{PAIN_4_TEXT}}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 3: STATS BAR                             -->
+<!-- ════════════════════════════════════════════════ -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num"><span>{{STAT_1_NUM}}</span></div>
+      <div class="stat-desc">{{STAT_1_DESC}}</div>
+    </div>
+    <div class="stat-item reveal d1">
+      <div class="stat-num"><span>{{STAT_2_NUM}}</span></div>
+      <div class="stat-desc">{{STAT_2_DESC}}</div>
+    </div>
+    <div class="stat-item reveal d2">
+      <div class="stat-num"><span>{{STAT_3_NUM}}</span></div>
+      <div class="stat-desc">{{STAT_3_DESC}}</div>
+    </div>
+    <div class="stat-item reveal d3">
+      <div class="stat-num"><span>{{STAT_4_NUM}}</span></div>
+      <div class="stat-desc">{{STAT_4_DESC}}</div>
+    </div>
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 4: КАК ЭТО РАБОТАЕТ (шаги)              -->
+<!-- ════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <div class="section-tag">Как это работает</div>
+    <h2 class="section-title reveal">{{STEPS_TITLE}}<br><em>{{STEPS_TITLE_ACCENT}}</em></h2>
+    <p class="section-sub reveal">{{STEPS_SUBTITLE}}</p>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">Шаг 1 <span class="step-time">{{STEP_1_TIME}}</span></div>
+        <span class="step-icon"><!-- SVG --></span>
+        <div class="step-title">{{STEP_1_TITLE}}</div>
+        <div class="step-text">{{STEP_1_TEXT}}</div>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-num">Шаг 2 <span class="step-time">{{STEP_2_TIME}}</span></div>
+        <span class="step-icon"><!-- SVG --></span>
+        <div class="step-title">{{STEP_2_TITLE}}</div>
+        <div class="step-text">{{STEP_2_TEXT}}</div>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-num">Шаг 3 <span class="step-time">{{STEP_3_TIME}}</span></div>
+        <span class="step-icon"><!-- SVG --></span>
+        <div class="step-title">{{STEP_3_TITLE}}</div>
+        <div class="step-text">{{STEP_3_TEXT}}</div>
+      </div>
+      <div class="step reveal d3">
+        <div class="step-num">Шаг 4 <span class="step-time">{{STEP_4_TIME}}</span></div>
+        <span class="step-icon"><!-- SVG --></span>
+        <div class="step-title">{{STEP_4_TITLE}}</div>
+        <div class="step-text">{{STEP_4_TEXT}}</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 5: FEATURE ROWS (функции с мокапами)     -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="section-bg">
+  <div class="container">
+    <div class="section-tag">Возможности</div>
+    <h2 class="section-title reveal">{{FEATURES_TITLE}}<br><em>{{FEATURES_TITLE_ACCENT}}</em></h2>
+    <p class="section-sub reveal">{{FEATURES_SUBTITLE}}</p>
+
+    <!-- Feature Row 1 (мокап слева, текст справа) -->
+    <div class="feat-row reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <!-- Mock UI content -->
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">01</div>
+        <div class="feat-title">{{FEAT_1_TITLE}}</div>
+        <div class="feat-desc">{{FEAT_1_DESC}}</div>
+        <div class="feat-checks">
+          <div class="feat-check">
+            <svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+            {{FEAT_1_CHECK_1}}
+          </div>
+          <div class="feat-check">
+            <svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+            {{FEAT_1_CHECK_2}}
+          </div>
+          <div class="feat-check">
+            <svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+            {{FEAT_1_CHECK_3}}
+          </div>
+        </div>
+        <a href="#form" class="feat-cta-btn">Попробовать →</a>
+      </div>
+    </div>
+
+    <!-- Feature Row 2 (текст слева, мокап справа) -->
+    <div class="feat-row feat-row-rev reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <!-- Mock UI content -->
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="feat-num">02</div>
+        <div class="feat-title">{{FEAT_2_TITLE}}</div>
+        <div class="feat-desc">{{FEAT_2_DESC}}</div>
+        <div class="feat-checks">
+          <div class="feat-check">
+            <svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg>
+            {{FEAT_2_CHECK_1}}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 6: СРАВНЕНИЕ                             -->
+<!-- ════════════════════════════════════════════════ -->
+<section>
+  <div class="container">
+    <h2 class="section-title reveal">{{COMPARE_TITLE}}<br><em>{{COMPARE_TITLE_ACCENT}}</em></h2>
+    <div class="compare-wrap">
+      <div class="compare-col reveal">
+        <div class="compare-header">
+          <svg width="16" height="16" stroke="#717680" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Без {{FEATURE_NAME}}
+        </div>
+        <div class="compare-list">
+          <!-- Пункты: .compare-item с .check-x -->
+        </div>
+      </div>
+      <div class="compare-col good reveal d1">
+        <div class="compare-header">
+          С BRaiN HR
+          <span class="compare-header-badge">Рекомендуем</span>
+        </div>
+        <div class="compare-list">
+          <!-- Пункты: .compare-item с .check-ok -->
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 7: FAQ                                   -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="section-bg">
+  <div class="container">
+    <h2 class="section-title reveal" style="text-align:center;">Частые вопросы</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          {{FAQ_1_Q}}
+          <svg class="faq-icon" width="22" height="22" stroke="currentColor" stroke-width="2" fill="none" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        </button>
+        <div class="faq-answer"><div class="faq-answer-inner">{{FAQ_1_A}}</div></div>
+      </div>
+      <!-- Повторить 5-8 раз -->
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════════ -->
+<!-- СЕКЦИЯ 8: CTA + ФОРМА                           -->
+<!-- ════════════════════════════════════════════════ -->
+<section class="cta-section" id="form">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <h2>{{CTA_TITLE}} <em>{{CTA_TITLE_ACCENT}}</em></h2>
+      <p>{{CTA_SUBTITLE}}</p>
+      <div class="cta-points">
+        <!-- 3 пункта с .cta-point -->
+      </div>
+    </div>
+    <div class="form-card">
+      <div class="form-title">Попробуйте бесплатно</div>
+      <div class="form-sub">Запустим первую вакансию за 15 минут</div>
+      <div class="form-grid">
+        <div class="form-group">
+          <label class="form-label">Имя</label>
+          <input class="form-input" type="text" placeholder="Ваше имя">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Email</label>
+          <input class="form-input" type="email" placeholder="name@company.ru">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Телефон</label>
+          <input class="form-input" type="tel" placeholder="+7 (999) 000-00-00">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Компания</label>
+          <input class="form-input" type="text" placeholder="Название компании">
+        </div>
+        <div class="form-group form-full">
+          <button class="btn-form">Начать бесплатно →</button>
+        </div>
+      </div>
+      <div class="form-note">Нажимая кнопку, вы соглашаетесь с <a href="https://brainhire.ru/docs/privacy-policy">политикой конфиденциальности</a></div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ FOOTER — скопировать из templates/page-template.html ═══ -->
+<!-- ... footer HTML ... -->
+<!-- ═══ /FOOTER ═══ -->
+
+<script src="../../shared/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,179 @@
+- generic [ref=e4]:
+  - banner [ref=e5]:
+    - navigation [ref=e7]:
+      - link [ref=e9] [cursor=pointer]:
+        - /url: /
+        - img [ref=e10]
+      - generic [ref=e14]:
+        - generic [ref=e15]:
+          - link "О нас" [ref=e16] [cursor=pointer]:
+            - /url: /about/
+          - link "Список тестов" [ref=e17] [cursor=pointer]:
+            - /url: /tests/
+          - link "Контакты" [ref=e18] [cursor=pointer]:
+            - /url: /contacts/
+        - generic [ref=e19]:
+          - generic [ref=e20]:
+            - link "Вход" [ref=e21] [cursor=pointer]:
+              - /url: /signin/
+            - button "Регистрация" [ref=e22] [cursor=pointer]
+          - generic [ref=e24]:
+            - link "8 (926) 822-23-88" [ref=e25] [cursor=pointer]:
+              - /url: tel:+79268222388
+            - generic [ref=e26]: бесплатно по РФ
+  - generic [ref=e28]:
+    - navigation [ref=e29]:
+      - list [ref=e30]:
+        - listitem [ref=e31]:
+          - link "TestWork" [ref=e32] [cursor=pointer]:
+            - /url: /
+        - listitem [ref=e33]: /
+        - listitem [ref=e34]: Цены
+    - heading "Цены" [level=1] [ref=e36]
+    - list [ref=e40]:
+      - listitem [ref=e41]:
+        - generic [ref=e42]:
+          - generic [ref=e43]:
+            - generic [ref=e44]:
+              - text: 29 990 ₽
+              - generic [ref=e45]: / месяц
+            - generic [ref=e46]: 100 тестирований
+          - generic [ref=e47]:
+            - list [ref=e48]:
+              - listitem [ref=e49]: Платформа для онлайн тестирования
+              - listitem [ref=e50]: Готовые тесты способностей
+              - listitem [ref=e51]: Отправка писем со ссылками на тесты
+              - listitem [ref=e52]: Отчеты тестов в реальном времени
+              - listitem [ref=e53]: Интуитивно понятный интерфейс
+            - button "Выбрать" [ref=e54] [cursor=pointer]
+      - listitem [ref=e55]:
+        - generic [ref=e56]:
+          - generic [ref=e57]:
+            - generic [ref=e58]:
+              - text: 49 990 ₽
+              - generic [ref=e59]: / месяц
+            - generic [ref=e60]: 500 тестирований
+          - generic [ref=e61]:
+            - list [ref=e62]:
+              - listitem [ref=e63]: Платформа для онлайн тестирования
+              - listitem [ref=e64]: Готовые тесты способностей
+              - listitem [ref=e65]: Отправка писем со ссылками на тесты
+              - listitem [ref=e66]: Отчеты тестов в реальном времени
+              - listitem [ref=e67]: Интуитивно понятный интерфейс
+            - button "Выбрать" [ref=e68] [cursor=pointer]
+      - listitem [ref=e69]:
+        - generic [ref=e70]:
+          - generic [ref=e71]:
+            - generic [ref=e72]:
+              - text: 9 990 ₽
+              - generic [ref=e73]: / месяц
+            - generic [ref=e74]: 50 тестирований
+          - generic [ref=e75]:
+            - list [ref=e76]:
+              - listitem [ref=e77]: Платформа для онлайн тестирования
+              - listitem [ref=e78]: Готовые тесты способностей
+              - listitem [ref=e79]: Отправка писем со ссылками на тесты
+              - listitem [ref=e80]: Отчеты тестов в реальном времени
+              - listitem [ref=e81]: Интуитивно понятный интерфейс
+            - button "Выбрать" [ref=e82] [cursor=pointer]
+    - generic [ref=e83]:
+      - heading "Остались вопросы?" [level=2] [ref=e84]
+      - generic [ref=e85]:
+        - generic [ref=e86] [cursor=pointer]: Как получить бесплатный доступ к платформе?
+        - paragraph [ref=e88]: На период Бета-тестирования функционала сервиса мы предоставляем возможность бесплатного использования платформы TestWork. Для того чтобы получить доступ нажмите на кнопку «Регистрация» в верхней части сайта.
+      - generic [ref=e90] [cursor=pointer]: Нужно ли обучение для работы с вашим сервисом?
+      - generic [ref=e92] [cursor=pointer]: Как мне выбрать нужные тесты?
+      - generic [ref=e94] [cursor=pointer]: Какой тариф мне подойдет?
+      - generic [ref=e96] [cursor=pointer]: Как оплатить и заключить договор?
+      - generic [ref=e98] [cursor=pointer]: Как мне получить закрывающие документы для бухгалтерии?
+      - generic [ref=e100] [cursor=pointer]: Что делать если у меня остались вопросы/нужны дополнительные документы?
+  - generic [ref=e102]:
+    - heading "СМИ о нас" [level=2] [ref=e103]
+    - generic [ref=e104]:
+      - generic [ref=e105]:
+        - list [ref=e107]:
+          - listitem [ref=e108]:
+            - generic [ref=e111]: Почему потенциал сотрудника важнее резюме
+          - listitem [ref=e112]:
+            - generic [ref=e115]: "Рынок HR-tech: куда двигаться стартапам"
+          - listitem [ref=e116]:
+            - generic [ref=e119]: ТОП 10 тестов, которые применяются при оценке персонала
+          - listitem [ref=e120]:
+            - generic [ref=e123]: Что такое дизайн-мышление и зачем оно нужно
+        - list:
+          - listitem [ref=e124]:
+            - button "Go to page 1" [ref=e125]
+          - listitem [ref=e126]:
+            - button "Go to page 2" [ref=e127]
+      - link "Все публикации" [ref=e128] [cursor=pointer]:
+        - /url: /media/
+  - generic [ref=e132]:
+    - generic [ref=e133]: Попробуйте TestWork в деле
+    - generic [ref=e134]: Дарим 7 дней для всесторонней оценки персонала совершенно бесплатно!
+    - button "7 дней бесплатно" [ref=e135] [cursor=pointer]
+  - contentinfo [ref=e137]:
+    - generic [ref=e138]:
+      - generic [ref=e139]:
+        - generic [ref=e140]:
+          - link [ref=e141] [cursor=pointer]:
+            - /url: /
+            - img [ref=e142]
+          - link "admin@testwork.ru" [ref=e144] [cursor=pointer]:
+            - /url: mailto:admin@testwork.ru
+          - generic [ref=e145]:
+            - link "8 (926) 822-23-88" [ref=e146] [cursor=pointer]:
+              - /url: tel:+79268222388
+            - generic [ref=e147]: бесплатно по РФ
+          - generic [ref=e148]:
+            - link [ref=e149] [cursor=pointer]:
+              - /url: https://vk.com
+              - img [ref=e150]
+            - link [ref=e152] [cursor=pointer]:
+              - /url: https://facebook.com
+              - img [ref=e153]
+            - link [ref=e155] [cursor=pointer]:
+              - /url: https://youtube.com
+              - img [ref=e156]
+        - generic [ref=e158]:
+          - list [ref=e160]:
+            - listitem [ref=e161]:
+              - link "Отзывы и кейсы" [ref=e162] [cursor=pointer]:
+                - /url: /case/
+            - listitem [ref=e163]:
+              - link "Список тестов" [ref=e164] [cursor=pointer]:
+                - /url: /tests/
+            - listitem [ref=e165]:
+              - link "СМИ о нас" [ref=e166] [cursor=pointer]:
+                - /url: /media/
+          - list [ref=e168]:
+            - listitem [ref=e169]:
+              - link "Контакты" [ref=e170] [cursor=pointer]:
+                - /url: /contacts/
+            - listitem [ref=e171]:
+              - link "Цены" [ref=e172] [cursor=pointer]:
+                - /url: /prices/
+          - list [ref=e174]:
+            - listitem [ref=e175]:
+              - link "О нас" [ref=e176] [cursor=pointer]:
+                - /url: /about/
+            - listitem [ref=e177]:
+              - link "Блог" [ref=e178] [cursor=pointer]:
+                - /url: /blog/
+        - generic [ref=e179]:
+          - generic [ref=e180]: Хотите быть в курсе новостей?
+          - generic [ref=e181]: Подпишитесь на нашу рассылку и получайте первым всё самое свежее о работе нашего сервиса
+          - generic [ref=e185]:
+            - textbox "Введите Ваш email" [ref=e186]
+            - img [ref=e188]
+      - generic [ref=e190]:
+        - generic [ref=e191]: © 2026, TestWork. Все права защищены
+        - list [ref=e193]:
+          - listitem [ref=e194]:
+            - link "Оферта" [ref=e195] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e196]:
+            - link "Политика конфиденциальности" [ref=e197] [cursor=pointer]:
+              - /url: /
+          - listitem [ref=e198]:
+            - link "Согласие на обработку персональных данных" [ref=e199] [cursor=pointer]:
+              - /url: /

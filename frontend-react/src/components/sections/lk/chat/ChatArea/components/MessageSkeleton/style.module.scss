@@ -1,0 +1,22 @@
+@import '@/styles/abstracts/variables';
+
+.messageInbound,
+.messageOutbound {
+	display: flex;
+}
+
+.messageInbound {
+	justify-content: flex-start;
+}
+
+.messageOutbound {
+	justify-content: flex-end;
+}
+
+.messageOutbound .bubble {
+	padding: 15px;
+	border-radius: 16px;
+	background: $blue-100;
+	color: $grey-800;
+	border-color: transparent;
+}

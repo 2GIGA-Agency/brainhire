@@ -1,0 +1,54 @@
+.become {
+	display: flex;
+	gap: 30px;
+	align-items: start;
+}
+
+.text {
+	width: 60%;
+}
+
+.title {
+	margin-bottom: 48px;
+}
+
+.subtitle {
+	font-size: 24px;
+}
+
+.hrImg {
+	margin: 0 auto;
+	width: 100%;
+	max-width: 650px;
+	height: auto;
+}
+
+@media (max-width: 1312px) {
+	.become {
+		flex-direction: column;
+	}
+
+	.text {
+		width: 100%;
+	}
+
+	.hrImg {
+		margin: 0 auto;
+		width: 100%;
+		max-width: 450px;
+		height: auto;
+	}
+}
+
+@media (max-width: 767px) {
+	.title {
+		margin-bottom: 24px;
+	}
+
+	.hrImg {
+		margin: 0 auto;
+		width: 100%;
+		max-width: 350px;
+		height: auto;
+	}
+}

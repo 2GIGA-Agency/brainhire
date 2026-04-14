@@ -1,0 +1,48 @@
+/* Для <Box className={styles.heading}> */
+.heading {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+/* Для <Box mb="1px" className={styles.tip}> */
+.tip {
+	z-index: 1000;
+}
+
+/* Для <Image ... className={styles.done}> */
+.done {
+	fill: white;
+	color: white;
+}
+
+/* Для <Box className={styles.px}> */
+.px {
+	padding-left: 24px;
+	padding-right: 24px;
+}
+
+/* ---- Медиа-запросы (Адаптивные стили) ---- */
+
+/* Для экранов шириной до 1600px */
+@media (max-width: 1600px) {
+	/* Для <Box className={styles.heading}> */
+	.heading {
+		flex-direction: column;
+
+		/* Для <Flex ... className={styles.headingButtons}> */
+		/* Этот стиль применяется к дочернему элементу .headingButtons */
+		&Buttons {
+			flex-wrap: wrap;
+			margin-top: 12px;
+		}
+	}
+}
+
+/* Для экранов шириной до 470px */
+@media (max-width: 470px) {
+	/* Для <Button ... className={styles.copyLinkButton}> */
+	.copyLinkButton {
+		margin-bottom: 8px;
+	}
+}

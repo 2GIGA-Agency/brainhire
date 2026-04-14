@@ -1,0 +1,1167 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Кейсы внедрения — BRaiN HR</title>
+<meta name="description" content="Кейсы внедрения BRaiN HR. Как компании из IT, финансов, производства, медицины и ритейла ускорили найм на 60-73% с помощью ИИ-автоматизации.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../shared/styles.css">
+<link rel="stylesheet" href="../shared/components.css">
+<style>
+  /* ─── HERO ─── */
+  .cases-hero {
+    background: var(--white);
+    padding: 88px 0 56px;
+  }
+  .cases-hero h1 {
+    font-size: clamp(36px, 5vw, 52px);
+    font-weight: 800;
+    line-height: 1.1;
+    letter-spacing: -1.2px;
+    color: var(--text1);
+    margin-bottom: 16px;
+  }
+  .cases-hero h1 em { font-style: normal; color: var(--brand1); }
+  .cases-hero p {
+    font-size: 17px;
+    color: var(--text2);
+    max-width: 640px;
+    line-height: 1.7;
+  }
+
+  /* ─── LOGOS SLIDER ─── */
+  .logos-section {
+    background: var(--white);
+    border-top: 1px solid var(--grey2);
+    border-bottom: 1px solid var(--grey2);
+    padding: 32px 0;
+  }
+  .logos-label {
+    font-size: 12px; font-weight: 600; text-align: center;
+    color: var(--text2); text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 20px;
+  }
+  .logos-slider-wrap {
+    overflow: hidden; position: relative;
+  }
+  .logos-slider-wrap::before, .logos-slider-wrap::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+  }
+  .logos-slider-wrap::before { left: 0; background: linear-gradient(90deg, var(--white), transparent); }
+  .logos-slider-wrap::after { right: 0; background: linear-gradient(-90deg, var(--white), transparent); }
+  .logos-slider-track {
+    display: flex; align-items: center; gap: 0;
+    animation: logoscroll 30s linear infinite; width: max-content;
+  }
+  .logos-slider-track:hover { animation-play-state: paused; }
+  @keyframes logoscroll { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+  .logo-item {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0 36px; height: 68px; flex-shrink: 0;
+    border-right: 1px solid var(--grey2);
+    text-decoration: none; white-space: nowrap;
+    opacity: .6; transition: opacity .25s;
+    line-height: 1.2;
+  }
+  .logo-item:last-child { border-right: none; }
+  .logo-item:hover { opacity: 1; }
+
+  /* ─── FILTER PILLS ─── */
+  .filter-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: flex-start;
+    margin-bottom: 40px;
+  }
+  .filter-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 22px;
+    border-radius: 100px;
+    border: 1px solid var(--grey2);
+    background: var(--grey1);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text2);
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .filter-pill:hover {
+    border-color: var(--brand1);
+    color: var(--brand1);
+  }
+  .filter-pill.active {
+    background: var(--brand1);
+    color: var(--white);
+    border-color: var(--brand1);
+  }
+
+  /* ─── CASE CARDS ─── */
+  .cases-list {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+  }
+  .case-card {
+    background: var(--white);
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius);
+    padding: 32px 36px;
+    box-shadow: 0 1px 3px rgba(17,38,58,0.08), 0 4px 16px rgba(17,38,58,0.06);
+    transition: border-color .25s, box-shadow .25s;
+  }
+  .case-card:hover {
+    border-color: var(--brand1);
+  }
+  .case-card.hidden {
+    display: none;
+  }
+  .case-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 14px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .case-tag.tag-it { background: var(--brand1); color: var(--white); }
+  .case-tag.tag-finance { background: var(--brand2); color: var(--white); }
+  .case-tag.tag-production { background: var(--brand3); color: var(--white); }
+  .case-tag.tag-medicine { background: #f0fdf4; color: #16a34a; }
+  .case-tag.tag-retail { background: #faf5ff; color: #9333ea; }
+
+  .case-card h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text1);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+  .case-problem {
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.7;
+    margin-bottom: 24px;
+    max-width: 800px;
+  }
+  .case-metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .case-metric {
+    text-align: center;
+    padding: 16px 8px;
+    background: var(--grey1);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--grey2);
+  }
+  .case-metric-num {
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--brand1);
+    line-height: 1.2;
+    margin-bottom: 4px;
+  }
+  .case-metric-label {
+    font-size: 12px;
+    color: var(--text2);
+    line-height: 1.4;
+    font-weight: 500;
+  }
+  .case-quote {
+    position: relative;
+    padding: 20px 24px;
+    background: var(--brand1-bg);
+    border-radius: var(--radius-sm);
+    border-left: 3px solid var(--brand1);
+    margin-bottom: 20px;
+  }
+  .case-quote-text {
+    font-size: 14px;
+    color: var(--text1);
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 10px;
+  }
+  .case-quote-author {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text1);
+  }
+  .case-quote-title {
+    font-size: 12px;
+    color: var(--text2);
+  }
+  .case-actions {
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+  }
+  .case-read-link {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 600; color: var(--brand1);
+    text-decoration: none; padding: 10px 22px;
+    border: 1px solid var(--brand1); border-radius: 100px;
+    transition: all .2s;
+  }
+  .case-read-link:hover {
+    background: var(--brand1); color: var(--white);
+  }
+  /* ─── SUMMARY RESULTS ─── */
+  .summary-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 20px;
+    margin-top: 40px;
+  }
+  .summary-card {
+    background: var(--white);
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius);
+    padding: 28px 16px 20px;
+    text-align: center;
+    box-shadow: 0 1px 3px rgba(17,38,58,0.08), 0 4px 16px rgba(17,38,58,0.06);
+  }
+  .summary-num {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--brand1);
+    line-height: 1.2;
+    margin-bottom: 8px;
+  }
+  .summary-label {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.5;
+    margin-bottom: 12px;
+  }
+  .summary-pill {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 100px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  /* ─── CTA ─── */
+  .cta-cases {
+    padding: 80px 0;
+    text-align: center;
+  }
+  .cta-cases h2 {
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.7px;
+    color: var(--text1);
+    margin-bottom: 16px;
+  }
+  .cta-cases p {
+    font-size: 15px;
+    color: var(--text2);
+    line-height: 1.72;
+    max-width: 520px;
+    margin: 0 auto 32px;
+  }
+  .cta-btns {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ─── FAQ TWO-COL ─── */
+  .faq-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .faq-left h2 {
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.7px;
+    color: var(--text1);
+    margin-bottom: 12px;
+  }
+  .faq-left h2 em { font-style: normal; color: var(--brand1); }
+  .faq-left p {
+    font-size: 15px; color: var(--text2); line-height: 1.72;
+  }
+  .faq-right {
+    display: flex; flex-direction: column;
+  }
+  .faq-item-v2 {
+    border-bottom: 1px dashed var(--grey2);
+  }
+  .faq-item-v2:first-child {
+    border-top: 1px dashed var(--grey2);
+  }
+  .faq-q-v2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text1);
+    transition: color .2s;
+  }
+  .faq-q-v2:hover { color: var(--brand1); }
+  .faq-q-v2 .faq-chevron {
+    width: 20px; height: 20px;
+    flex-shrink: 0;
+    transition: transform .3s ease;
+    color: var(--text2);
+  }
+  .faq-item-v2.open .faq-q-v2 .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--brand1);
+  }
+  .faq-a-v2 {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease, padding .35s ease;
+  }
+  .faq-item-v2.open .faq-a-v2 {
+    max-height: 200px;
+  }
+  .faq-a-v2-inner {
+    padding: 0 0 20px;
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  /* ─── REVEAL ─── */
+  .js-loaded .reveal { opacity:0; transform:translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+  .js-loaded .reveal.visible { opacity:1; transform:none; }
+  .js-loaded .d1 { transition-delay:.08s; }
+  .js-loaded .d2 { transition-delay:.16s; }
+  .js-loaded .d3 { transition-delay:.24s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .case-metrics { grid-template-columns: repeat(2, 1fr); }
+    .summary-grid { grid-template-columns: repeat(3, 1fr); }
+    .faq-two-col { grid-template-columns: 1fr; gap: 32px; }
+    .case-card { padding: 24px 20px; }
+  }
+  @media (max-width: 700px) {
+    .summary-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .case-metrics { grid-template-columns: 1fr 1fr; }
+    .filter-pill { padding: 8px 16px; font-size: 12px; }
+    .case-metric-num { font-size: 20px; }
+  }
+  @media (max-width: 480px) {
+    .case-metrics { grid-template-columns: 1fr; }
+    .summary-grid { grid-template-columns: 1fr; }
+    .cta-btns { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER ═══ -->
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
+  <span class="urgency-dot"></span>
+  Каждый день без нужного сотрудника — это упущенная выручка, переработки команды и задержка развития бизнеса
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <!-- Top bar -->
+  <div class="header-topbar">
+    <div class="header-inner" style="height:36px; justify-content:center;">
+      <div class="topbar-links">
+        <a href="about.html" class="topbar-link">О компании</a>
+        <a href="contacts.html" class="topbar-link">Контакты</a>
+        <a href="hr-cashback.html" class="topbar-link">Партнёрская программа</a>
+        <a href="calculator.html" class="topbar-link">Калькулятор выгоды</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <div class="header-main">
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+      </a>
+      <nav class="main-nav">
+
+        <!-- Как это работает — megamenu -->
+        <div class="mnav-item has-mega" id="megaHow">
+          <button class="mnav-btn">
+            Как это работает
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel">
+            <div class="mega-col">
+              <!-- Рекрутинг → sub -->
+              <div class="mega-section-item has-sub" id="subRecruiting">
+                <div class="mega-section-link">
+                  <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                  <div>
+                    <div class="mega-section-title">Рекрутинг</div>
+                    <div class="mega-section-desc">Полный цикл подбора с ИИ</div>
+                  </div>
+                  <svg class="mega-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div class="sub-panel">
+                  <a href="features/ai-vacancy-creation.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-создание вакансий</div>
+                      <div class="sub-item-desc">Описание вакансии за минуты</div>
+                    </div>
+                  </a>
+                  <a href="features/ai-screening.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-анализ резюме</div>
+                      <div class="sub-item-desc">Скоринг и ранжирование откликов</div>
+                    </div>
+                  </a>
+                  <a href="features/ai-videointerview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Первичное ИИ-видеоинтервью</div>
+                      <div class="sub-item-desc">Тестирование с прокторингом</div>
+                    </div>
+                  </a>
+                  <a href="features/ai-realtime-interview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Real-time интервью с ИИ-аватаром</div>
+                      <div class="sub-item-desc">Адаптивное интервью в реальном времени</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Оценка персонала -->
+              <a href="features/ai-staff-scoring.html" class="mega-section-link mega-section-item">
+                <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 017 4.5v1A2.5 2.5 0 009.5 8h5A2.5 2.5 0 0017 5.5v-1A2.5 2.5 0 0014.5 2h-5z"/><path d="M9.5 8a2.5 2.5 0 00-2.5 2.5A2.5 2.5 0 004.5 13a2.5 2.5 0 002.5 2.5 2.5 2.5 0 002.5 2.5h5a2.5 2.5 0 002.5-2.5 2.5 2.5 0 002.5-2.5 2.5 2.5 0 00-2.5-2.5A2.5 2.5 0 0014.5 8h-5z"/></svg></span>
+                <div>
+                  <div class="mega-section-title">Оценка персонала</div>
+                  <div class="mega-section-desc">ИИ-оценка soft skills и компетенций</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Отраслевые решения — dropdown -->
+        <div class="mnav-item has-drop" id="dropSolutions">
+          <button class="mnav-btn">
+            Отраслевые решения
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="drop-panel">
+            <a href="solutions/smb.html" class="drop-item">Малый бизнес</a>
+            <a href="solutions/enterprise.html" class="drop-item">Корпорации</a>
+            <a href="solutions/it.html" class="drop-item">ИТ компании</a>
+            <a href="solutions/finance.html" class="drop-item">Финансовый сектор</a>
+            <a href="solutions/hr.html" class="drop-item">HR агентства</a>
+            <div class="drop-group">
+              <div class="drop-group-label">Маркетплейсы</div>
+              <a href="solutions/marketplaces.html" class="drop-item" style="padding-left:24px;">Владельцам ПВЗ</a>
+              <a href="solutions/sellers.html" class="drop-item" style="padding-left:24px;">Селлерам</a>
+            </div>
+            <a href="solutions/horeca.html" class="drop-item">HoReCa</a>
+            <a href="solutions/education.html" class="drop-item">Образование</a>
+            <a href="solutions/sales.html" class="drop-item">Продажи</a>
+            <a href="solutions/logistics.html" class="drop-item">Логистика</a>
+            <a href="solutions/marketing.html" class="drop-item">Маркетинг</a>
+          </div>
+        </div>
+
+        <a href="cases.html" class="mnav-link">Кейсы</a>
+        <a href="reviews.html" class="mnav-link">Отзывы</a>
+        <a href="pricing.html" class="mnav-link">Тарифы</a>
+        <a href="https://brainhire.ru/blog" class="mnav-link">Блог</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://brainhire.ru/signup" class="btn-primary">100 кандидатов бесплатно</a>
+        <a href="https://brainhire.ru/signin" class="btn-secondary">Войти</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+// ─── HEADER MENU — hover-based ───
+document.addEventListener('DOMContentLoaded', function() {
+  var items = document.querySelectorAll('.mnav-item.has-mega, .mnav-item.has-drop');
+
+  items.forEach(function(item) {
+    var timer;
+
+    item.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      items.forEach(function(other) {
+        if (other !== item) other.classList.remove('open');
+      });
+      item.classList.add('open');
+    });
+
+    item.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        item.classList.remove('open');
+        item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      }, 120);
+    });
+
+    var panel = item.querySelector('.mega-panel, .drop-panel');
+    if (panel) {
+      panel.addEventListener('mouseenter', function() { clearTimeout(timer); });
+      panel.addEventListener('mouseleave', function() {
+        timer = setTimeout(function() {
+          item.classList.remove('open');
+          item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+        }, 120);
+      });
+    }
+  });
+
+  document.querySelectorAll('.has-sub').forEach(function(sub) {
+    sub.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      sub.classList.add('sub-open');
+    });
+  });
+
+  // Close sub-panels when hovering over non-sub mega items
+  document.querySelectorAll('.mega-section-item:not(.has-sub)').forEach(function(item) {
+    item.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+    });
+  });
+});
+
+function toggleMega() {}
+function showSub(id) {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  var el = document.getElementById(id);
+  if (el) el.classList.add('sub-open');
+}
+function hideSubs() {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+}
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.mnav-item').forEach(function(e){ e.classList.remove('open'); });
+    document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  }
+});
+</script>
+
+
+<main>
+
+<!-- ═══ BLOCK 1: HERO ═══ -->
+<section class="cases-hero">
+  <div class="container">
+    <h1 class="reveal">Кейсы внедрения <em>BRaiN HR</em></h1>
+    <p class="reveal d1">Как компании из разных отраслей ускорили найм и снизили расходы с помощью ИИ-автоматизации</p>
+  </div>
+</section>
+
+
+<!-- ═══ BLOCK 2: LOGOS SLIDER ═══ -->
+<div class="logos-section">
+  <div class="container">
+    <div class="logos-label">Нам доверяют компании из разных отраслей</div>
+  </div>
+  <div class="logos-slider-wrap">
+    <div class="logos-slider-track">
+      <a href="https://kazan.rt.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:700; color:#1a1a1a; letter-spacing:0.5px;">РОСТЕЛЕКОМ</span>
+      </a>
+      <a href="https://e-flops.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:800; color:#222; letter-spacing:-0.5px;">e<span style="color:#4096FF;">-</span>flops</span>
+      </a>
+      <a href="https://itpeoplegroup.ru/" target="_blank" class="logo-item">
+        <span style="font-size:12px; font-weight:800; color:#1a1a1a; letter-spacing:1.5px; text-transform:uppercase; border:2px solid #1a1a1a; padding:4px 8px;">IT PEOPLE</span>
+      </a>
+      <a href="https://moby.estate/" target="_blank" class="logo-item">
+        <span style="font-size:17px; font-weight:800; color:#2b4de3; letter-spacing:-0.5px;">●● moby</span>
+      </a>
+      <a href="https://neyrox.com/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#111; letter-spacing:-0.3px;">neyrox</span>
+      </a>
+      <a href="https://idaproject.com/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#c0392b; letter-spacing:-0.3px;">ida<span style="color:#222;">project</span></span>
+      </a>
+      <a href="https://prodamus.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#6c3db5; letter-spacing:-0.3px;">prodamus</span>
+      </a>
+      <a href="https://www.hr-rocket.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:800; color:#1a1a1a; letter-spacing:0.5px;">HR<span style="color:#e03030;">⚡</span>ROCKET</span>
+      </a>
+      <a href="https://livecargo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#1a5c3a; letter-spacing:-0.3px;">live<span style="color:#27ae60;">cargo</span></span>
+      </a>
+      <a href="https://ledgo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:900; color:#f39c12; letter-spacing:-0.5px;">LED<span style="color:#e67e22;">GO</span></span>
+      </a>
+      <a href="https://www.simbirsoft.com/" target="_blank" class="logo-item">
+        <span style="font-size:18px; font-weight:800; color:#1a1a2e; letter-spacing:-0.5px;">Simbir<span style="color:#e03030;">S</span>oft</span>
+      </a>
+      <a href="https://bssys.com/" target="_blank" class="logo-item">
+        <span style="background:#1a3a8a; color:#fff; font-size:15px; font-weight:900; padding:5px 10px; border-radius:4px; letter-spacing:1px;">BSS</span>
+      </a>
+      <a href="https://3logic.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:800; color:#1a1a1a; letter-spacing:-0.3px;">3<span style="color:#e03030;">LOGIC</span><br><span style="font-size:9px; font-weight:600; color:#555; letter-spacing:1px;">GROUP</span></span>
+      </a>
+      <a href="https://www.penoplex.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#e03030; letter-spacing:0.5px;">PENOPLEX</span>
+      </a>
+      <a href="https://pshb.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#1a3a8a; letter-spacing:1px;">ПШБ</span>
+      </a>
+      <!-- duplicate for seamless loop -->
+      <a href="https://kazan.rt.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:700; color:#1a1a1a; letter-spacing:0.5px;">РОСТЕЛЕКОМ</span>
+      </a>
+      <a href="https://e-flops.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:800; color:#222; letter-spacing:-0.5px;">e<span style="color:#4096FF;">-</span>flops</span>
+      </a>
+      <a href="https://itpeoplegroup.ru/" target="_blank" class="logo-item">
+        <span style="font-size:12px; font-weight:800; color:#1a1a1a; letter-spacing:1.5px; text-transform:uppercase; border:2px solid #1a1a1a; padding:4px 8px;">IT PEOPLE</span>
+      </a>
+      <a href="https://moby.estate/" target="_blank" class="logo-item">
+        <span style="font-size:17px; font-weight:800; color:#2b4de3; letter-spacing:-0.5px;">●● moby</span>
+      </a>
+      <a href="https://neyrox.com/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#111; letter-spacing:-0.3px;">neyrox</span>
+      </a>
+      <a href="https://idaproject.com/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#c0392b; letter-spacing:-0.3px;">ida<span style="color:#222;">project</span></span>
+      </a>
+      <a href="https://prodamus.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#6c3db5; letter-spacing:-0.3px;">prodamus</span>
+      </a>
+      <a href="https://www.hr-rocket.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:800; color:#1a1a1a; letter-spacing:0.5px;">HR<span style="color:#e03030;">⚡</span>ROCKET</span>
+      </a>
+      <a href="https://livecargo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#1a5c3a; letter-spacing:-0.3px;">live<span style="color:#27ae60;">cargo</span></span>
+      </a>
+      <a href="https://ledgo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:900; color:#f39c12; letter-spacing:-0.5px;">LED<span style="color:#e67e22;">GO</span></span>
+      </a>
+      <a href="https://www.simbirsoft.com/" target="_blank" class="logo-item">
+        <span style="font-size:18px; font-weight:800; color:#1a1a2e; letter-spacing:-0.5px;">Simbir<span style="color:#e03030;">S</span>oft</span>
+      </a>
+      <a href="https://bssys.com/" target="_blank" class="logo-item">
+        <span style="background:#1a3a8a; color:#fff; font-size:15px; font-weight:900; padding:5px 10px; border-radius:4px; letter-spacing:1px;">BSS</span>
+      </a>
+      <a href="https://3logic.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:800; color:#1a1a1a; letter-spacing:-0.3px;">3<span style="color:#e03030;">LOGIC</span><br><span style="font-size:9px; font-weight:600; color:#555; letter-spacing:1px;">GROUP</span></span>
+      </a>
+      <a href="https://www.penoplex.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#e03030; letter-spacing:0.5px;">PENOPLEX</span>
+      </a>
+      <a href="https://pshb.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#1a3a8a; letter-spacing:1px;">ПШБ</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ BLOCK 3: FILTERS + CASE CARDS ═══ -->
+<section class="section-bg" style="padding:80px 0;">
+  <div class="container">
+    <h2 class="section-title reveal">Все кейсы</h2>
+
+    <div class="filter-wrap reveal d1">
+      <button class="filter-pill active" onclick="filterCases('all', this)">Все</button>
+      <button class="filter-pill" onclick="filterCases('it', this)">IT</button>
+      <button class="filter-pill" onclick="filterCases('finance', this)">Финансы</button>
+      <button class="filter-pill" onclick="filterCases('production', this)">Производство</button>
+      <button class="filter-pill" onclick="filterCases('medicine', this)">Медицина</button>
+      <button class="filter-pill" onclick="filterCases('retail', this)">Ритейл</button>
+    </div>
+
+    <div class="cases-list">
+
+      <!-- CASE 1: IT -->
+      <div class="case-card reveal" data-category="it">
+        <span class="case-tag tag-it">IT</span>
+        <h3>Автоматизация подбора технических специалистов</h3>
+        <p class="case-problem">Компания испытывала острую нехватку разработчиков, тестировщиков и DevOps-инженеров. Цикл найма составлял 2-3 месяца, 60% кандидатов отказывались из-за длительного процесса.</p>
+
+        <div class="case-metrics">
+          <div class="case-metric">
+            <div class="case-metric-num">-67%</div>
+            <div class="case-metric-label">время найма</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">+78%</div>
+            <div class="case-metric-label">качество подбора</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">в 5 раз</div>
+            <div class="case-metric-label">рост команды</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">180→450</div>
+            <div class="case-metric-label">специалистов</div>
+          </div>
+        </div>
+
+        <div class="case-quote">
+          <div class="case-quote-text">&laquo;Сократили время найма на 67% и существенно снизили нагрузку на technical-лидов, которые теперь встречаются только с предквалифицированными специалистами.&raquo;</div>
+          <div class="case-quote-author">Елена Петрова</div>
+          <div class="case-quote-title">Head of People</div>
+        </div>
+
+        <div class="case-actions">
+          <a href="cases/it.html" class="case-read-link">Читать полностью <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <!-- CASE 2: Банк -->
+      <div class="case-card reveal d1" data-category="finance">
+        <span class="case-tag tag-finance">Финансы</span>
+        <h3>Трансформация процессов найма в финансовом секторе</h3>
+        <p class="case-problem">Банк столкнулся с критическими вызовами в подборе персонала. Кандидаты проходили до 7 этапов отбора за 60-90 дней. Требовался найм 150-200 специалистов ежеквартально для новых отделений.</p>
+
+        <div class="case-metrics">
+          <div class="case-metric">
+            <div class="case-metric-num">-71%</div>
+            <div class="case-metric-label">цикл найма</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">+76%</div>
+            <div class="case-metric-label">качество отбора</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">в 8 раз</div>
+            <div class="case-metric-label">рост персонала</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">3 200→6 800</div>
+            <div class="case-metric-label">сотрудников</div>
+          </div>
+        </div>
+
+        <div class="case-quote">
+          <div class="case-quote-text">&laquo;Сократили цикл найма более чем на 70%, при этом значительно улучшили качество отбора. Видим снижение текучести на 58% среди сотрудников, нанятых через новую систему.&raquo;</div>
+          <div class="case-quote-author">Марина Волкова</div>
+          <div class="case-quote-title">Директор по управлению талантами</div>
+        </div>
+
+        <div class="case-actions">
+          <a href="cases/finance.html" class="case-read-link">Читать полностью <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <!-- CASE 3: Производство -->
+      <div class="case-card reveal d2" data-category="production">
+        <span class="case-tag tag-production">Производство</span>
+        <h3>Автоматизация подбора производственного персонала</h3>
+        <p class="case-problem">Критическая нехватка производственного персонала. Требовалось закрывать 150-200 вакансий ежемесячно. 35% новых сотрудников увольнялись в первые 3 месяца. 4 рекрутера не справлялись с потоком.</p>
+
+        <div class="case-metrics">
+          <div class="case-metric">
+            <div class="case-metric-num">-65%</div>
+            <div class="case-metric-label">время найма</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">+72%</div>
+            <div class="case-metric-label">удержание</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">в 9 раз</div>
+            <div class="case-metric-label">рост штата</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">3 300→8 500</div>
+            <div class="case-metric-label">сотрудников</div>
+          </div>
+        </div>
+
+        <div class="case-quote">
+          <div class="case-quote-text">&laquo;Сократили время закрытия вакансий на 65% и значительно повысили качество подбора. Система помогла масштабировать найм без пропорционального увеличения HR-команды.&raquo;</div>
+          <div class="case-quote-author">Александра Михайлова</div>
+          <div class="case-quote-title">HR-директор</div>
+        </div>
+
+        <div class="case-actions">
+          <a href="cases/production.html" class="case-read-link">Читать полностью <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <!-- CASE 4: Медицина -->
+      <div class="case-card reveal d3" data-category="medicine">
+        <span class="case-tag tag-medicine">Медицина</span>
+        <h3>Оптимизация найма медицинского персонала</h3>
+        <p class="case-problem">Острый дефицит врачей — особенно узких специалистов. Процесс найма 3-4 месяца. Сложная верификация квалификации. 30% среднего медперсонала увольнялись в первые полгода.</p>
+
+        <div class="case-metrics">
+          <div class="case-metric">
+            <div class="case-metric-num">-69%</div>
+            <div class="case-metric-label">время найма</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">+83%</div>
+            <div class="case-metric-label">охват специалистов</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">в 6 раз</div>
+            <div class="case-metric-label">рост персонала</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">1 100→2 400</div>
+            <div class="case-metric-label">специалистов</div>
+          </div>
+        </div>
+
+        <div class="case-quote">
+          <div class="case-quote-text">&laquo;Ускорили процесс найма на 69% и значительно расширили воронку кандидатов. Система находит специалистов, о которых мы даже не знали, и оценивает их квалификацию ещё до первого контакта.&raquo;</div>
+          <div class="case-quote-author">Анна Козлова</div>
+          <div class="case-quote-title">Руководитель HR-департамента</div>
+        </div>
+
+        <div class="case-actions">
+          <a href="cases/medicine.html" class="case-read-link">Читать полностью <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+      <!-- CASE 5: Ритейл -->
+      <div class="case-card reveal" data-category="retail">
+        <span class="case-tag tag-retail">Ритейл</span>
+        <h3>Масштабный подбор персонала в регионах</h3>
+        <p class="case-problem">Агрессивное расширение сети: 300-400 вакансий ежемесячно по всей стране. Только 15% откликнувшихся доходили до оффера. 40% новых сотрудников увольнялись в первые 2 месяца.</p>
+
+        <div class="case-metrics">
+          <div class="case-metric">
+            <div class="case-metric-num">-73%</div>
+            <div class="case-metric-label">время закрытия</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">+85%</div>
+            <div class="case-metric-label">охват кандидатов</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">в 11 раз</div>
+            <div class="case-metric-label">эффективность</div>
+          </div>
+          <div class="case-metric">
+            <div class="case-metric-num">2 100→12 000</div>
+            <div class="case-metric-label">наймов/год</div>
+          </div>
+        </div>
+
+        <div class="case-quote">
+          <div class="case-quote-text">&laquo;Сократили время найма на 73% и существенно улучшили качество подбора. Теперь открытие новых магазинов не сдерживается дефицитом персонала.&raquo;</div>
+          <div class="case-quote-author">Дмитрий Соколов</div>
+          <div class="case-quote-title">Руководитель департамента HR</div>
+        </div>
+
+        <div class="case-actions">
+          <a href="cases/retail.html" class="case-read-link">Читать полностью <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ BLOCK 4: SUMMARY RESULTS ═══ -->
+<section class="section-bg" style="padding:80px 0;">
+  <div class="container">
+    <h2 class="section-title reveal">Результаты наших клиентов</h2>
+
+    <div class="summary-grid">
+      <div class="summary-card reveal">
+        <div class="summary-num">в 5×</div>
+        <div class="summary-label">Рост команды разработки за 12 месяцев</div>
+        <span class="summary-pill" style="background:var(--brand1-bg); color:var(--brand1);">IT</span>
+      </div>
+      <div class="summary-card reveal d1">
+        <div class="summary-num">в 8×</div>
+        <div class="summary-label">Масштабирование штата банка за 18 месяцев</div>
+        <span class="summary-pill" style="background:var(--brand2-bg); color:var(--brand2);">Финансы</span>
+      </div>
+      <div class="summary-card reveal d2">
+        <div class="summary-num">в 9×</div>
+        <div class="summary-label">Рост производственного штата за 24 месяца</div>
+        <span class="summary-pill" style="background:rgba(18,83,109,0.1); color:var(--brand3);">Производство</span>
+      </div>
+      <div class="summary-card reveal d3">
+        <div class="summary-num">в 6×</div>
+        <div class="summary-label">Расширение медицинского персонала за 18 месяцев</div>
+        <span class="summary-pill" style="background:#f0fdf4; color:#16a34a;">Медицина</span>
+      </div>
+      <div class="summary-card reveal">
+        <div class="summary-num">в 11×</div>
+        <div class="summary-label">Рост эффективности найма в ритейле за 12 месяцев</div>
+        <span class="summary-pill" style="background:#faf5ff; color:#9333ea;">Ритейл</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ BLOCK 5: CTA ═══ -->
+<section class="cta-cases">
+  <div class="container">
+    <h2 class="reveal">Хотите таких же результатов?</h2>
+    <p class="reveal d1">Начните с бесплатного пилота — первые 100 кандидатов без оплаты</p>
+    <div class="cta-btns reveal d2">
+      <a href="https://brainhire.ru/signup" class="btn-hero-primary">100 кандидатов бесплатно</a>
+      <a href="https://brainhire.ru/demo" class="btn-hero-outline">Получить демо</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ BLOCK 6: FAQ ═══ -->
+<section style="padding:80px 0;">
+  <div class="container">
+    <div class="faq-two-col reveal">
+      <div class="faq-left">
+        <h2>Частые вопросы</h2>
+        <p>Ответы на популярные вопросы о внедрении и использовании BRaiN HR</p>
+      </div>
+      <div class="faq-right">
+
+        <div class="faq-item-v2">
+          <button class="faq-q-v2" onclick="toggleFaqV2(this)">
+            Как начать пилот?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a-v2">
+            <div class="faq-a-v2-inner">Зарегистрируйтесь и получите 100 бесплатных кандидатов для оценки платформы. Подключение занимает 1-2 дня.</div>
+          </div>
+        </div>
+
+        <div class="faq-item-v2">
+          <button class="faq-q-v2" onclick="toggleFaqV2(this)">
+            Сколько длится внедрение?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a-v2">
+            <div class="faq-a-v2-inner">Система готова к работе сразу после регистрации. Полная настройка под ваши процессы — 1-2 дня с менеджером.</div>
+          </div>
+        </div>
+
+        <div class="faq-item-v2">
+          <button class="faq-q-v2" onclick="toggleFaqV2(this)">
+            Подходит ли BRaiN HR для нашей отрасли?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a-v2">
+            <div class="faq-a-v2-inner">Да, платформа адаптируется под любую отрасль — от IT до производства и медицины. Это подтверждают кейсы выше.</div>
+          </div>
+        </div>
+
+        <div class="faq-item-v2">
+          <button class="faq-q-v2" onclick="toggleFaqV2(this)">
+            Какие результаты ожидать?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="faq-a-v2">
+            <div class="faq-a-v2-inner">Клиенты сокращают время найма на 60-73% и снижают текучесть на 25-58% уже в первые месяцы использования.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+
+<!-- ═══ FOOTER ═══ -->
+<footer class="site-footer-new">
+  <div class="footer-new-inner">
+    <div class="footer-new-top">
+      <div class="footer-new-col footer-new-col-brand">
+        <a href="https://brainhire.ru/" class="footer-new-logo">
+          <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+        </a>
+        <p class="footer-new-desc">ИИ-платформа для автоматизации рекрутинга и оценки персонала. Нанимайте в 5 раз дешевле и быстрее.</p>
+        <div class="footer-new-socials">
+          <a href="https://vk.com/brain_hr" target="_blank" class="footer-social-btn" title="ВКонтакте">В</a>
+          <a href="https://t.me/BRaiN_HR" target="_blank" class="footer-social-btn" title="Telegram">Т</a>
+          <a href="https://www.instagram.com/brain_hire/" target="_blank" class="footer-social-btn" title="Instagram">I</a>
+          <a href="https://www.linkedin.com/company/105875559/" target="_blank" class="footer-social-btn" title="LinkedIn">in</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Отраслевые решения</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/solutions/it" class="footer-new-link">Автоматизация HR в IT</a>
+          <a href="https://brainhire.ru/solutions/finance" class="footer-new-link">Автоматизация HR в финансовом секторе</a>
+          <a href="https://brainhire.ru/solutions/marketplaces" class="footer-new-link">Автоматизация HR для маркетплейсов</a>
+          <a href="https://brainhire.ru/solutions/smb" class="footer-new-link">Автоматизация HR для малого бизнеса</a>
+          <a href="https://brainhire.ru/solutions/enterprise" class="footer-new-link">Автоматизация HR для корпораций</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Функции</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/recruiting" class="footer-new-link">Рекрутинг</a>
+          <a href="https://brainhire.ru/ai-vacancy-creation" class="footer-new-link">ИИ-создание вакансий</a>
+          <a href="https://brainhire.ru/ai-resume-analysis" class="footer-new-link">ИИ-анализ резюме</a>
+          <a href="https://brainhire.ru/ai-videointerview" class="footer-new-link">ИИ-видеоинтервью</a>
+          <a href="https://brainhire.ru/ai-staff-scoring" class="footer-new-link">ИИ-оценка кандидатов</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Компания</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/about" class="footer-new-link">О нас</a>
+          <a href="https://brainhire.ru/contacts" class="footer-new-link">Контакты</a>
+          <a href="https://brainhire.ru/tariffs" class="footer-new-link">Тарифы</a>
+          <a href="https://brainhire.ru/reviews" class="footer-new-link">Отзывы</a>
+          <a href="https://brainhire.ru/case" class="footer-new-link">Кейсы</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">СМИ о нас</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">Блог</a>
+          <a href="https://brainhire.ru/partner" class="footer-new-link">Партнёрская программа</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Контакты</div>
+        <div class="footer-new-contact-block">
+          <a href="tel:+74959703976" class="footer-new-phone">+7 (495) 970-39-76</a>
+          <span class="footer-new-contact-sub">Служба поддержки</span>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Электронная почта:</span>
+          <a href="mailto:info@brainhire.ru" class="footer-new-email">info@brainhire.ru</a>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Адрес:</span>
+          <span class="footer-new-address">142005 Московская область, г. Домодедово, мкр. Центральный, ул. Кирова, д. 7, к.1, пом. 0011, офис 5</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-new-bottom">
+      <div class="footer-new-bottom-top">
+        <span class="footer-new-copy">&copy; ООО &laquo;НДК&raquo;, ОГРН 1225000105010. Все права защищены.</span>
+        <div class="footer-new-legal">
+          <a href="https://brainhire.ru/docs/privacy-policy" class="footer-new-legal-link">Политика конфиденциальности</a>
+          <a href="https://brainhire.ru/docs/user-agreement" class="footer-new-legal-link">Пользовательское соглашение</a>
+          <a href="https://brainhire.ru/docs/personal-data-consent" class="footer-new-legal-link">Обработка данных</a>
+        </div>
+      </div>
+      <div class="footer-new-bottom-docs">
+        <a href="https://brainhire.ru/docs/user-instructions" class="footer-new-legal-link">Инструкция по установке и эксплуатации ПО</a>
+        <a href="https://brainhire.ru/docs/product-description" class="footer-new-legal-link">Описание функциональных характеристик ПО</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- ═══ /FOOTER ═══ -->
+
+<script src="../shared/scripts.js"></script>
+<script>
+/* ─── Filter Cases ─── */
+function filterCases(category, btn) {
+  // Update active pill
+  document.querySelectorAll('.filter-pill').forEach(function(p) { p.classList.remove('active'); });
+  btn.classList.add('active');
+
+  // Show/hide cards
+  document.querySelectorAll('.case-card').forEach(function(card) {
+    if (category === 'all' || card.dataset.category === category) {
+      card.classList.remove('hidden');
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+}
+
+/* ─── FAQ Accordion ─── */
+function toggleFaqV2(btn) {
+  var item = btn.closest('.faq-item-v2');
+  var wasOpen = item.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.faq-item-v2').forEach(function(el) { el.classList.remove('open'); });
+  // Toggle clicked
+  if (!wasOpen) item.classList.add('open');
+}
+</script>
+<!-- STICKY SIDEBAR -->
+<div class="sticky-sidebar">
+  <a href="#form" class="sticky-btn sticky-btn-primary" title="Запросить демо">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2z" stroke="currentColor" stroke-width="1.8"/><path d="M12 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Запросить демо</span>
+  </a>
+  <a href="calculator.html" class="sticky-btn sticky-btn-accent" title="Калькулятор экономии">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="10" x2="10" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="14" x2="10" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="14" x2="16" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="18" x2="10" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="18" x2="16" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Калькулятор экономии</span>
+  </a>
+  <a href="tel:+74958591070" class="sticky-btn sticky-btn-secondary" title="+7 (495) 859-10-70">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">+7 (495) 859-10-70</span>
+  </a>
+  <a href="mailto:info@brainhire.ru" class="sticky-btn sticky-btn-secondary" title="info@brainhire.ru">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">info@brainhire.ru</span>
+  </a>
+</div>
+
+<!-- FLOAT VIDEO WIDGET -->
+<div class="float-video-widget" id="floatWidget">
+  <div class="float-video-close" onclick="closeFloatWidget()" title="Закрыть">✕</div>
+  <div class="float-video-wrap" id="floatVideoWrap" onclick="openFloatFullscreen()">
+    <div class="float-video-poster" id="floatPoster">
+      <img src="https://brainhire.ru/images/videoPreview.avif" onerror="this.style.display='none'; document.getElementById('floatPosterFallback').style.display='flex';" alt="Demo">
+      <div class="float-poster-fallback" id="floatPosterFallback">
+        <svg width="40" height="40" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+        <span style="font-size:11px;font-weight:700;color:#fff;">BRaiN HR</span>
+      </div>
+    </div>
+    <video id="floatVideo" muted loop playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+    <div class="float-video-overlay">
+      <div class="float-video-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="white"/></svg></div>
+      <div class="float-video-label">Смотреть демо</div>
+    </div>
+  </div>
+</div>
+<div class="float-modal" id="floatModal" onclick="closeFloatModal()">
+  <div class="float-modal-inner" onclick="event.stopPropagation()">
+    <button class="float-modal-close" onclick="closeFloatModal()">✕</button>
+    <video id="floatModalVideo" controls playsinline preload="none" style="width:100%;border-radius:12px;display:block;max-height:80vh;background:#000;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+</body>
+</html>

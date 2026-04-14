@@ -1,0 +1,67 @@
+// Основной контейнер аккордеона. Он будет служить точкой отсчета для выпадающего меню.
+.accordion {
+	position: relative; // Обязательно для position: absolute у дочернего элемента
+	display: inline-block; // Чтобы занимал место как текстовый элемент
+}
+
+// Заголовок аккордеона. Стилизуем его так, чтобы он был похож на другие ссылки.
+.accordionHeader {
+	display: flex;
+	align-items: center;
+	gap: 6px; // Небольшой отступ между текстом и иконкой
+	cursor: pointer;
+	user-select: none;
+	// При наведении на заголовок меняем цвет текста, как у других ссылок
+	&:hover .title {
+		color: #0052cc; // Используйте вашу переменную $brand-primary
+	}
+}
+
+// Стили для текста заголовка
+.title {
+	transition: color 0.2s ease; // Плавная смена цвета при наведении
+}
+
+// Контейнер для иконки
+.icon {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	transition: transform 0.3s ease;
+}
+
+// Контент, который выпадает. Самая важная часть.
+.accordionContent {
+	// Абсолютное позиционирование
+	position: absolute;
+	top: 100%; // Появляется сразу под заголовком
+	left: 50%; // Центрируем относительно родителя
+	transform: translate(-50%, 10px); // Смещаем по центру и чуть вниз для анимации
+
+	// Стили для анимации
+	opacity: 0;
+	visibility: hidden;
+	transition:
+		opacity 0.2s ease,
+		transform 0.2s ease,
+		visibility 0.2s;
+	z-index: 1000; // Должен быть поверх всего остального
+
+	// Внешний вид выпадающего меню
+	background-color: #ffffff;
+	border-radius: 12px;
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+	padding: 8px;
+	margin-top: 12px; // Отступ от заголовка
+	min-width: 220px; // Минимальная ширина, чтобы ссылки не переносились
+	display: flex;
+	flex-direction: column;
+	gap: 4px; // Отступ между ссылками внутри
+
+	// Когда аккордеон открыт
+	&.open {
+		opacity: 1;
+		visibility: visible;
+		transform: translate(-50%, 0); // Возвращаем в финальное положение
+	}
+}

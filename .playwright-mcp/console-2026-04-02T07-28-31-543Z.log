@@ -1,0 +1,4 @@
+[    5360ms] [LOG] blockScroll null @ https://skillaz.ru/:1938
+[    6414ms] [ERROR] Failed to load resource: net::ERR_QUIC_PROTOCOL_ERROR.QUIC_NETWORK_IDLE_TIMEOUT @ https://static.tildacdn.com/tild3538-3633-4765-b133-653564323534/MartianMono-Medium.woff:0
+[    7084ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://privacy-cs.mail.ru/static/sync-loader.js:0
+[    7596ms] [ERROR] WebSocket connection to 'wss://mc.yandex.com/solid.ws' failed: Error in connection establishment: net::ERR_CONNECTION_CLOSED @ https://mc.yandex.ru/metrika/tag.js:454

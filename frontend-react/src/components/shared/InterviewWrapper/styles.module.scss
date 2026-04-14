@@ -1,0 +1,43 @@
+.img {
+	position: absolute;
+	left: 0;
+	top: 50%;
+	transform: translateY(-50%);
+}
+
+.wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	min-height: 100vh;
+	padding: 0 4px;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	position: relative;
+
+	&Wrapper {
+		margin-bottom: 16px;
+	}
+}
+
+@media (max-width: 770px) {
+	.contentBox {
+		padding: 30px 10px !important;
+	}
+
+	.header {
+		flex-direction: column;
+		justify-content: center;
+
+		&Wrapper {
+			margin-bottom: 0;
+		}
+	}
+
+	.img {
+		position: static;
+	}
+}

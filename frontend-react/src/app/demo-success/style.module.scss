@@ -1,0 +1,46 @@
+@import '@/styles/abstracts/variables';
+
+.main {
+	width: 100%;
+	height: calc(100vh - 82px);
+	background-color: $brand-primary;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+.title {
+	text-align: center;
+}
+
+.backLink:hover {
+	text-decoration: underline;
+}
+
+@media (max-width: $navigationHideBreakPoint) {
+	.main {
+		height: calc(100vh - 74px);
+	}
+}
+
+@media (max-width: 1000px) {
+	.title {
+		font-size: 24px;
+		line-height: 1.25;
+	}
+
+	.backLink {
+		font-size: 22px;
+	}
+}
+
+@media (max-width: 768px) {
+	.title {
+		font-size: 18px;
+	}
+
+	.backLink {
+		font-size: 18px;
+	}
+}

@@ -1,0 +1,13 @@
+.container {
+	margin: 0 auto;
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: 30px;
+	justify-content: center;
+	align-items: center;
+	font-size: 32px;
+	color: black;
+	max-width: 1440px;
+	height: 100vh;
+	text-align: center;
+}

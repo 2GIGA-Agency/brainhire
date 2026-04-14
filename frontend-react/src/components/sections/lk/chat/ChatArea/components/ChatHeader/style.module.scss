@@ -1,0 +1,56 @@
+@import '@/styles/abstracts/variables';
+
+.header {
+	padding: 0 12px;
+}
+
+// Если headerBlock и headerContent используются внутри Typography или Skeleton, оставляем их тут,
+// но судя по JSX, они могут быть не нужны. Оставим headerText.
+.headerText {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.vacancyInfo {
+	margin-top: 4px;
+	padding: 4px 0px 4px 12px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	border: 1px solid #e2e8f0;
+	border-radius: 8px;
+}
+
+.reducedVacancyInfo {
+	margin-top: 0.5rem;
+	padding: 0.5rem;
+}
+
+.backButton {
+	cursor: pointer;
+	color: $grey-4;
+	width: 32px;
+	height: 32px;
+	// Скрываем по умолчанию, если логика показа только на мобильных
+	display: none;
+	background: transparent;
+	border: none;
+	padding: 0;
+}
+
+.candidateInfo {
+	display: flex;
+	justify-content: space-between;
+}
+
+// .isMobile класс добавляется в JSX, поэтому используем его или медиа-запрос
+.isMobile .backButton {
+	display: block;
+}
+
+@media (max-width: 1024px) {
+	.backButton {
+		display: block;
+	}
+}

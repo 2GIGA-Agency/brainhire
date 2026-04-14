@@ -1,0 +1,107 @@
+@import '@/styles/abstracts/variables';
+
+.chatItem {
+	display: grid;
+	grid-template-columns: 40px 1fr;
+
+	gap: 12px;
+	width: 100%;
+	padding: 16px 12px 12px;
+	border: none;
+	background: transparent;
+	border-radius: 12px;
+	text-align: left;
+	transition: all 0.15 ease;
+	cursor: pointer;
+	border-bottom: 1px solid $grey-3;
+
+	&:hover {
+		background: rgba(64, 150, 255, 0.08);
+	}
+
+	&:focus-visible {
+		outline: 2px solid rgba(64, 150, 255, 0.4);
+		outline-offset: 2px;
+	}
+}
+
+.selected {
+	background: $brand-primary;
+	color: $white;
+
+	&:hover {
+		background: $brand-primary;
+	}
+}
+
+.avatar {
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background: $blue-3;
+	color: $brand-primary;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-weight: 600;
+	font-size: 14px;
+}
+
+.content {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	overflow: hidden;
+}
+
+.headerRow {
+	display: flex;
+	justify-content: space-between;
+	text-overflow: ellipsis;
+	align-items: center;
+	text-overflow: ellipsis;
+	word-wrap: break-word;
+	text-overflow: ellipsis;
+	gap: 8px;
+
+	p {
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+}
+
+.previewRow {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	gap: 8px;
+}
+
+.previewText {
+	max-height: 34px;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+}
+
+.unreadBadge {
+	min-width: 22px;
+	padding: 0 6px;
+	border-radius: 12px;
+	background: $red-500;
+	color: $white;
+	font-size: 12px;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.vacancyName {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	-webkit-box-orient: vertical;
+}

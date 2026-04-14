@@ -1,0 +1,51 @@
+@import "@/styles/abstracts/variables";
+
+.loader {
+  margin: auto;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 3px;
+  animation: spin 1s linear infinite;
+
+  &.small {
+    width: 20px;
+    height: 20px;
+    border-width: 2px;
+  }
+
+  &.medium {
+    width: 40px;
+    height: 40px;
+    border-width: 3px;
+  }
+
+  &.large {
+    width: 60px;
+    height: 60px;
+    border-width: 4px;
+  }
+
+  &.primary {
+    border-color: rgba($brand-primary, 0.3);
+    border-top-color: $brand-primary;
+  }
+
+  &.white {
+    border-color: rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+  }
+
+  &.grey {
+    border-color: rgba(150, 150, 150, 0.3);
+    border-top-color: grey;
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

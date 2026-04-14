@@ -1,0 +1,2637 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRaiN HR — Найм в ИТ без боли для тимлидов и HR</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand1:   #4096FF;
+    --brand1-h: #69B1FF;
+    --brand1-bg:#E6F4FF;
+    --brand2:   #FF7401;
+    --brand2-bg:#FFF3E8;
+    --brand3:   #12536D;
+    --text1:    #11263A;
+    --text2:    #717680;
+    --grey1:    #F5F6F8;
+    --grey2:    #D5D7DA;
+    --grey3:    rgba(29,29,29,0.10);
+    --grey4:    #535862;
+    --white:    #FFFFFF;
+    --radius:   12px;
+    --radius-sm: 8px;
+    --shadow:   0 1px 3px rgba(17,38,58,0.08), 0 4px 16px rgba(17,38,58,0.06);
+    --shadow-md:0 4px 24px rgba(17,38,58,0.12);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--white);
+    color: var(--text1);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ─── URGENCY BANNER ─── */
+  .urgency-banner {
+    background: #4096FF;
+    padding: 10px 24px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+  .urgency-banner strong { color: var(--white); font-weight: 700; }
+  .urgency-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: #ffffff; flex-shrink: 0;
+    animation: pulse 1.8s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+
+  /* ─── HEADER ─── */
+  .site-header { position: sticky; top: 0; z-index: 100; background: var(--white); box-shadow: 0 1px 0 var(--grey2); }
+
+  /* Top bar */
+  .header-topbar { background: var(--grey1); border-bottom: 1px solid var(--grey2); }
+  .topbar-links { display: flex; align-items: center; justify-content: center; width: 100%; gap: 0; }
+  .topbar-link { font-size: 12px; font-weight: 500; color: var(--text2); text-decoration: none; padding: 0 20px; border-right: 1px solid var(--grey2); line-height: 36px; transition: color .2s; }
+  .topbar-link:first-child { border-left: 1px solid var(--grey2); }
+  .topbar-link:hover { color: var(--brand1); }
+
+  /* Main nav */
+  .header-main { background: var(--white); overflow: visible; }
+  .header-inner { max-width: 1240px; margin: 0 auto; padding: 0 24px; height: 64px; display: flex; align-items: center; gap: 4px; overflow: visible; }
+  .logo { display: flex; align-items: center; flex-shrink: 0; margin-right: 8px; }
+  .logo img { height: 24px; }
+  .main-nav { display: flex; align-items: center; flex: 1; gap: 0; overflow: visible; }
+
+  /* Nav items */
+  .mnav-item { position: relative; overflow: visible; }
+  .mnav-btn {
+    display: inline-flex; align-items: center; gap: 4px;
+    padding: 0 14px; height: 64px; background: none; border: none;
+    border-bottom: 2px solid transparent;
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 500;
+    color: var(--text2); cursor: pointer; white-space: nowrap;
+    transition: color .2s, border-color .2s;
+  }
+  .mnav-btn:hover, .mnav-item.open .mnav-btn { color: var(--text1); border-bottom-color: var(--brand1); }
+  .mnav-btn svg { opacity: .6; transition: transform .2s; flex-shrink: 0; }
+  .mnav-item.open .mnav-btn svg { transform: rotate(180deg); }
+  .mnav-link {
+    display: inline-flex; align-items: center;
+    padding: 0 14px; height: 64px; font-size: 14px; font-weight: 500;
+    color: var(--text2); text-decoration: none; white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  .mnav-link:hover { color: var(--text1); border-bottom-color: var(--brand1); }
+  .nav-actions { display: flex; align-items: center; gap: 8px; flex-shrink: 0; margin-left: auto; }
+
+  /* Mega panel */
+  .mega-panel {
+    display: none; position: absolute; top: 100%; left: 0;
+    margin-top: 1px;
+    background: var(--white); border: 1px solid var(--grey2);
+    border-radius: 0 0 var(--radius) var(--radius);
+    box-shadow: 0 8px 32px rgba(17,38,58,0.12);
+    min-width: 270px; padding: 8px;
+    z-index: 999;
+  }
+  .mnav-item.open .mega-panel { display: flex; }
+  .mega-col { display: flex; flex-direction: column; gap: 2px; width: 100%; }
+
+  .mega-section-item { position: relative; }
+  .mega-section-link {
+    display: flex; align-items: center; gap: 12px;
+    padding: 10px 12px; border-radius: var(--radius-sm); cursor: pointer;
+    text-decoration: none; transition: background .15s;
+  }
+  a.mega-section-link:hover,
+  .mega-section-item:hover > .mega-section-link { background: var(--grey1); }
+  .mega-section-icon { font-size: 20px; flex-shrink: 0; width: 32px; text-align: center; }
+  .mega-section-title { font-size: 13px; font-weight: 700; color: var(--text1); }
+  .mega-section-desc { font-size: 11px; color: var(--text2); margin-top: 1px; }
+  .mega-arrow { flex-shrink: 0; margin-left: auto; color: var(--text2); opacity: .5; }
+
+  /* Sub panel */
+  .sub-panel {
+    display: none; position: absolute; left: calc(100% + 4px); top: 0;
+    background: var(--white); border: 1px solid var(--grey2);
+    border-radius: var(--radius); box-shadow: 0 8px 32px rgba(17,38,58,0.12);
+    min-width: 280px; padding: 8px; z-index: 1000;
+  }
+  .has-sub.sub-open .sub-panel { display: block; }
+  .sub-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 10px 12px; border-radius: var(--radius-sm);
+    text-decoration: none; transition: background .15s;
+  }
+  .sub-item:hover { background: var(--grey1); }
+  .sub-item-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; }
+  .sub-item-title { font-size: 13px; font-weight: 700; color: var(--text1); }
+  .sub-item-desc { font-size: 11px; color: var(--text2); margin-top: 1px; }
+
+  /* Dropdown */
+  .drop-panel {
+    display: none; position: absolute; top: 100%; left: 0;
+    margin-top: 1px;
+    background: var(--white); border: 1px solid var(--grey2);
+    border-radius: 0 0 var(--radius) var(--radius);
+    box-shadow: 0 8px 32px rgba(17,38,58,0.12);
+    min-width: 210px; padding: 8px; z-index: 999;
+  }
+  .mnav-item.open .drop-panel { display: block; }
+  .drop-item {
+    display: block; padding: 9px 14px; border-radius: var(--radius-sm);
+    font-size: 13px; font-weight: 500; color: var(--text1);
+    text-decoration: none; transition: background .15s, color .15s;
+  }
+  .drop-item:hover { background: var(--grey1); color: var(--brand1); }
+  .drop-item-active { color: var(--brand1); font-weight: 700; background: var(--brand1-bg); }
+
+  @media (max-width: 960px) {
+    .main-nav { display: none; }
+    .header-topbar { display: none; }
+  }
+
+  /* BUTTONS */
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border: none; border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--white); background: var(--brand1); cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    text-decoration: none;
+  }
+  .btn-primary:hover { background: var(--brand1-h); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(64,150,255,0.35); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 10px 20px; border: 1.5px solid var(--grey2); border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600;
+    color: var(--text1); background: var(--white); cursor: pointer;
+    transition: border-color .2s, color .2s, background .2s;
+    text-decoration: none;
+  }
+  .btn-secondary:hover { border-color: var(--brand1); color: var(--brand1); background: var(--brand1-bg); }
+
+  .btn-hero-primary {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 16px 32px; border: none; border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 700;
+    color: var(--white); background: var(--brand1); cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    text-decoration: none; box-shadow: 0 4px 20px rgba(64,150,255,0.35);
+  }
+  .btn-hero-primary:hover { background: var(--brand1-h); transform: translateY(-2px); box-shadow: 0 8px 32px rgba(64,150,255,0.45); }
+
+  .btn-hero-outline {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 15px 32px; border: 1.5px solid var(--grey2); border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 600;
+    color: var(--text1); background: var(--white); cursor: pointer;
+    transition: border-color .2s, color .2s; text-decoration: none;
+  }
+  .btn-hero-outline:hover { border-color: var(--brand1); color: var(--brand1); }
+
+  /* ─── HERO ─── */
+  .hero-section { background: var(--white); padding: 80px 0 88px; }
+  .hero-wrap {
+    max-width: 1240px; margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: 1fr 440px; gap: 72px; align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.3);
+    border-radius: 100px; padding: 5px 14px 5px 10px;
+    font-size: 12px; font-weight: 600; color: var(--brand1); margin-bottom: 20px;
+    letter-spacing: 0.3px;
+  }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand1); animation: pulse 2s infinite; }
+
+  h1 {
+    font-size: clamp(36px, 4vw, 52px); font-weight: 800;
+    line-height: 1.1; letter-spacing: -1.2px; color: var(--text1); margin-bottom: 20px;
+  }
+  h1 em { font-style: normal; color: var(--brand1); }
+  h1 .accent-orange { color: var(--brand2); }
+
+  .hero-sub {
+    font-size: 17px; color: var(--text2); margin-bottom: 36px;
+    max-width: 500px; line-height: 1.7; font-weight: 400;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+  .hero-proof { display: flex; gap: 24px; flex-wrap: wrap; }
+  .proof-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 13px; font-weight: 500; color: var(--text2);
+  }
+  .proof-item::before {
+    content:''; width:16px; height:16px; border-radius:50%; flex-shrink:0;
+    background: var(--brand1-bg); border: 1.5px solid var(--brand1);
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%234096FF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: center;
+  }
+
+  /* ─── PIPELINE CARD ─── */
+  .pipeline-card {
+    background: var(--white); border: 1px solid var(--grey2);
+    border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden;
+  }
+  .pipeline-header {
+    padding: 14px 18px; border-bottom: 1px solid var(--grey2);
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600; color: var(--text2); background: var(--grey1);
+  }
+  .pipeline-header .dots { display: flex; gap: 6px; }
+  .wdot { width: 10px; height: 10px; border-radius: 50%; }
+  .pipeline-body { padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .pipeline-stage {
+    background: var(--grey1); border: 1px solid var(--grey2); border-radius: var(--radius-sm);
+    padding: 11px 14px; display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; transition: border-color .2s, box-shadow .2s;
+  }
+  .pipeline-stage:hover { border-color: var(--brand1); box-shadow: 0 0 0 3px rgba(64,150,255,0.08); }
+  .ps-left { display: flex; align-items: center; gap: 10px; }
+  .ps-icon { font-size: 16px; flex-shrink: 0; }
+  .ps-name { font-size: 12px; font-weight: 600; color: var(--text1); }
+  .ps-meta { font-size: 11px; color: var(--text2); margin-top: 1px; }
+  .ps-badge {
+    font-size: 11px; font-weight: 600; padding: 3px 10px;
+    border-radius: 100px; white-space: nowrap;
+  }
+  .ps-badge.blue { background: var(--brand1-bg); color: var(--brand1); border: 1px solid rgba(64,150,255,0.25); }
+  .ps-badge.orange { background: var(--brand2-bg); color: var(--brand2); border: 1px solid rgba(255,116,1,0.25); }
+  .ps-badge.teal { background: rgba(18,83,109,0.08); color: var(--brand3); border: 1px solid rgba(18,83,109,0.2); }
+  .ps-badge.grey { background: var(--grey2); color: var(--grey4); }
+  .pipeline-summary {
+    margin-top: 2px; padding: 10px 14px;
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.25);
+    border-radius: var(--radius-sm); font-size: 12px; font-weight: 500; color: var(--brand3);
+    display: flex; align-items: center; gap: 7px; line-height: 1.4;
+  }
+  .pipeline-summary span { flex: 1; }
+  .pipeline-summary strong { font-weight: 700; }
+  .pipeline-summary strong { color: var(--brand1); }
+
+  /* ─── TICKER ─── */
+  .ticker-wrap {
+    border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2);
+    background: var(--grey1); overflow: hidden; padding: 13px 0;
+  }
+  .ticker { display: flex; animation: ticker 32s linear infinite; width: max-content; }
+  .ticker-item {
+    display: flex; align-items: center; gap: 8px; padding: 0 32px;
+    font-size: 13px; font-weight: 500; color: var(--text2); white-space: nowrap;
+  }
+  .ticker-item .ti { color: var(--brand1); font-size: 14px; display: flex; align-items: center; flex-shrink: 0; }
+  .ticker-item b { color: var(--text1); font-weight: 600; }
+  @keyframes ticker { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 80px 0; }
+  .section-bg { background: var(--grey1); }
+  .container { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 11px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;
+    color: var(--brand1); background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.25);
+    padding: 4px 12px; border-radius: 100px; margin-bottom: 14px;
+  }
+  .section-title {
+    font-size: clamp(26px, 3vw, 38px); font-weight: 800; line-height: 1.18;
+    letter-spacing: -0.7px; color: var(--text1); margin-bottom: 12px;
+  }
+  .section-title em { font-style: normal; color: var(--brand1); }
+  .section-title .emo { color: var(--brand2); }
+  .section-sub { font-size: 15px; color: var(--text2); max-width: 540px; line-height: 1.72; margin-bottom: 48px; }
+
+  /* ─── PAIN CARDS ─── */
+  .pain-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-top: 48px; }
+  .pain-card {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    padding: 28px; transition: border-color .25s, box-shadow .25s; box-shadow: var(--shadow);
+  }
+  .pain-card:hover { border-color: var(--brand1); box-shadow: 0 4px 24px rgba(64,150,255,0.12); }
+  .pain-emoji { font-size: 28px; margin-bottom: 14px; display: block; }
+  .pain-title { font-size: 16px; font-weight: 700; color: var(--text1); margin-bottom: 8px; }
+  .pain-text { font-size: 14px; color: var(--text2); line-height: 1.65; }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar { background: #F5F6F8; border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2); padding: 48px 0; }
+  .stats-inner {
+    max-width: 1240px; margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
+  }
+  .stat-item {
+    text-align: left; padding: 32px 48px;
+    border-right: 1px solid var(--grey2);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 48px; font-weight: 800; color: var(--text1); line-height: 1; letter-spacing: -2px; margin-bottom: 12px; }
+  .stat-num span { color: #4096FF; }
+  .stat-desc { font-size: 13px; color: var(--text2); line-height: 1.55; font-weight: 500; }
+
+  /* ─── STEPS ─── */
+  .steps-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-top: 48px; }
+  .step {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    padding: 26px 22px; box-shadow: var(--shadow); transition: border-color .25s, box-shadow .25s, transform .25s;
+  }
+  .step:hover { border-color: var(--brand1); box-shadow: 0 8px 24px rgba(64,150,255,0.12); transform: translateY(-4px); }
+  .step-num {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px; color: var(--brand1);
+    text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 6px;
+  }
+  .step-time {
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.2);
+    border-radius: 100px; padding: 2px 8px; font-size: 10px; color: var(--brand1); font-weight: 600;
+  }
+  .step-icon { font-size: 26px; margin-bottom: 12px; display: block; }
+  .step-title { font-size: 15px; font-weight: 700; color: var(--text1); margin-bottom: 8px; }
+  .step-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+
+  /* ─── TIMLEAD ─── */
+  .timlead-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px; }
+  .timlead-col { background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .timlead-col.good { border-color: var(--brand1); box-shadow: 0 4px 24px rgba(64,150,255,0.12); }
+  .timlead-head {
+    padding: 16px 22px; border-bottom: 1px solid var(--grey2);
+    font-size: 14px; font-weight: 700; background: var(--grey1);
+    display: flex; align-items: center; gap: 8px; color: var(--text2);
+  }
+  .timlead-col.good .timlead-head { background: var(--brand1-bg); color: var(--brand3); border-bottom-color: rgba(64,150,255,0.2); }
+  .timlead-badge {
+    font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 100px;
+    background: var(--brand1); color: var(--white);
+  }
+  .timlead-items { padding: 6px 0; }
+  .timlead-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 13px 22px; border-bottom: 1px solid var(--grey1);
+    font-size: 13px; color: var(--text2);
+  }
+  .timlead-item:last-child { border-bottom: none; }
+  .ti-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; }
+  .ti-title { font-weight: 600; color: var(--text1); font-size: 13px; }
+  .timlead-col.good .ti-title { color: var(--text1); }
+  .ti-time { font-size: 12px; color: var(--text2); margin-top: 2px; }
+  .timlead-col.good .ti-time { color: var(--brand1); font-weight: 600; }
+  .ti-total {
+    padding: 14px 22px; font-size: 13px; font-weight: 700;
+    border-top: 1px solid var(--grey2); background: var(--grey1);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .timlead-col.good .ti-total { background: var(--brand1-bg); color: var(--brand1); border-top-color: rgba(64,150,255,0.2); }
+
+  /* ─── QUARTER ─── */
+  .quarter-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 48px; }
+  .q-card {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    padding: 28px; box-shadow: var(--shadow); transition: border-color .25s;
+  }
+  .q-card.active { border-color: var(--brand1); box-shadow: 0 4px 24px rgba(64,150,255,0.12); }
+  .q-week { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--text2); margin-bottom: 10px; }
+  .q-card.active .q-week { color: var(--brand1); }
+  .q-title { font-size: 17px; font-weight: 700; color: var(--text1); margin-bottom: 8px; }
+  .q-text { font-size: 13px; color: var(--text2); line-height: 1.6; }
+  .q-result { margin-top: 14px; font-size: 14px; font-weight: 700; color: var(--brand1); display: flex; align-items: center; gap: 6px; }
+
+  /* ─── FEATURES ─── */
+  .features-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-top: 48px; }
+  .feature-card {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    padding: 30px; display: flex; gap: 18px; box-shadow: var(--shadow);
+    transition: border-color .25s, box-shadow .25s, transform .25s;
+  }
+  .feature-card:hover { border-color: var(--brand1); box-shadow: 0 8px 24px rgba(64,150,255,0.1); transform: translateY(-3px); }
+  .feature-icon-wrap {
+    width: 48px; height: 48px; flex-shrink: 0; border-radius: 10px;
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.2);
+    display: flex; align-items: center; justify-content: center; font-size: 22px;
+  }
+  .feature-title { font-size: 16px; font-weight: 700; color: var(--text1); margin-bottom: 8px; }
+  .feature-text { font-size: 13px; color: var(--text2); line-height: 1.65; }
+
+  /* ─── COMPARE ─── */
+  .compare-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px; }
+  .compare-col { background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .compare-col.good { border-color: var(--brand1); }
+  .compare-header {
+    padding: 16px 24px; border-bottom: 1px solid var(--grey2);
+    font-size: 14px; font-weight: 700; background: var(--grey1);
+    display: flex; align-items: center; gap: 10px; color: var(--text2);
+  }
+  .compare-col.good .compare-header { background: var(--brand1-bg); color: var(--brand3); border-bottom-color: rgba(64,150,255,0.2); }
+  .compare-header-badge {
+    font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 100px;
+    background: var(--brand1); color: var(--white);
+  }
+  .compare-list { padding: 4px 0; }
+  .compare-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 13px 24px; border-bottom: 1px solid var(--grey1);
+    font-size: 14px; color: var(--text2);
+  }
+  .compare-item:last-child { border-bottom: none; }
+  .compare-col.good .compare-item { color: var(--text1); }
+  .check-x { color: #F04438; flex-shrink: 0; margin-top: 2px; font-size: 13px; }
+  .check-ok { color: var(--brand1); flex-shrink: 0; margin-top: 2px; font-size: 13px; }
+
+  /* ─── LOGOS ─── */
+  .logos-section { background: var(--grey1); border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2); padding: 32px 0; }
+  .logos-label { font-size: 12px; font-weight: 600; text-align: center; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px; }
+  .logos-wrap { overflow: hidden; }
+  .logos-track { display: flex; animation: ticker 22s linear infinite; width: max-content; gap: 8px; }
+  .logo-pill {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: 100px;
+    padding: 8px 20px; font-size: 13px; font-weight: 600; color: var(--grey4); white-space: nowrap;
+    transition: color .2s, border-color .2s, box-shadow .2s;
+  }
+  .logo-pill:hover { color: var(--brand1); border-color: var(--brand1); box-shadow: 0 0 0 3px rgba(64,150,255,0.08); }
+
+  /* ─── CTA ─── */
+  .cta-section { background: var(--white); border-top: 1px solid var(--grey2); }
+  .cta-inner {
+    max-width: 1240px; margin: 0 auto; padding: 80px 24px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+  }
+  .cta-left h2 {
+    font-size: clamp(26px, 3vw, 36px); font-weight: 800;
+    line-height: 1.2; letter-spacing: -0.7px; color: var(--text1); margin-bottom: 14px;
+  }
+  .cta-left h2 em { font-style: normal; color: var(--brand1); }
+  .cta-left > p { font-size: 15px; color: var(--text2); line-height: 1.7; margin-bottom: 28px; }
+  .cta-points { display: flex; flex-direction: column; gap: 14px; }
+  .cta-point {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 14px 16px; background: var(--grey1); border: 1px solid var(--grey2);
+    border-radius: var(--radius-sm); font-size: 13px; color: var(--text2);
+  }
+  .cp-icon {
+    width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0;
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.2);
+    display: flex; align-items: center; justify-content: center; font-size: 15px;
+  }
+  .cta-point strong { display: block; font-size: 13px; color: var(--text1); font-weight: 700; margin-bottom: 2px; }
+
+  /* FORM */
+  .form-card {
+    background: var(--white); border: 1px solid var(--grey2);
+    border-radius: var(--radius); padding: 32px; box-shadow: var(--shadow-md);
+  }
+  .form-title { font-size: 18px; font-weight: 700; color: var(--text1); margin-bottom: 4px; }
+  .form-sub { font-size: 14px; color: var(--text2); margin-bottom: 22px; }
+  .form-label { font-size: 12px; font-weight: 600; color: var(--text1); margin-bottom: 5px; display: block; }
+  .form-group { margin-bottom: 14px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-input {
+    width: 100%; padding: 11px 14px;
+    background: var(--white); border: 1.5px solid var(--grey2);
+    border-radius: var(--radius-sm); font-family: 'Montserrat', sans-serif;
+    font-size: 13px; color: var(--text1); transition: border-color .2s, box-shadow .2s; outline: none;
+  }
+  .form-input::placeholder { color: var(--text2); }
+  .form-input:focus { border-color: var(--brand1); box-shadow: 0 0 0 3px rgba(64,150,255,0.12); }
+  .form-full { grid-column: 1 / -1; }
+  .btn-form {
+    width: 100%; padding: 14px; background: var(--brand1); border: none;
+    border-radius: var(--radius-sm); font-family: 'Montserrat', sans-serif; font-size: 14px;
+    font-weight: 700; color: var(--white); cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s; margin-top: 6px;
+    box-shadow: 0 4px 16px rgba(64,150,255,0.3);
+  }
+  .btn-form:hover { background: var(--brand1-h); transform: translateY(-1px); box-shadow: 0 6px 24px rgba(64,150,255,0.4); }
+  .form-note { font-size: 11px; color: var(--text2); margin-top: 12px; line-height: 1.5; }
+  .form-note a { color: var(--brand1); text-decoration: none; }
+
+  /* ─── FOOTER ─── */
+  footer { background: var(--text1); padding: 52px 0 32px; }
+  .footer-inner { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+  .footer-top {
+    display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 40px;
+    padding-bottom: 40px; border-bottom: 1px solid rgba(255,255,255,0.1); margin-bottom: 28px;
+  }
+  .footer-logo img { height: 24px; margin-bottom: 14px; display: block; filter: brightness(10); }
+  .footer-desc { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; max-width: 230px; margin-bottom: 20px; }
+  .social-links { display: flex; gap: 8px; }
+  .social-link {
+    width: 34px; height: 34px; border-radius: 8px;
+    background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+    display: flex; align-items: center; justify-content: center;
+    color: rgba(255,255,255,0.5); font-size: 13px; text-decoration: none; font-weight: 700;
+    transition: background .2s, color .2s;
+  }
+  .social-link:hover { background: rgba(64,150,255,0.2); color: var(--white); border-color: rgba(64,150,255,0.4); }
+  .footer-col-title { font-size: 12px; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 14px; }
+  .footer-links { display: flex; flex-direction: column; gap: 8px; }
+  .footer-link { font-size: 13px; color: rgba(255,255,255,0.5); text-decoration: none; transition: color .2s; }
+  .footer-link:hover { color: var(--white); }
+  .footer-bottom { display: flex; justify-content: space-between; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .footer-copy { font-size: 12px; color: rgba(255,255,255,0.35); }
+  .footer-legal { display: flex; gap: 20px; flex-wrap: wrap; }
+  .footer-legal a { font-size: 12px; color: rgba(255,255,255,0.35); text-decoration: none; transition: color .2s; }
+  .footer-legal a:hover { color: rgba(255,255,255,0.7); }
+
+  /* ─── FAQ ─── */
+  .faq-list { max-width: 860px; margin: 0 auto; }
+  .faq-item { border-bottom: 1px solid var(--grey2); }
+  .faq-item:first-child { border-top: 1px solid var(--grey2); }
+  .faq-question {
+    width: 100%; background: none; border: none; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    padding: 22px 0; text-align: left;
+    font-family: 'Montserrat', sans-serif; font-size: 15px; font-weight: 600;
+    color: var(--text1); transition: color .2s;
+  }
+  .faq-question:hover { color: var(--brand1); }
+  .faq-question:hover .faq-icon { color: var(--brand1); }
+  .faq-icon {
+    width: 22px; height: 22px; flex-shrink: 0; color: var(--grey4);
+    transition: transform .3s, color .2s;
+  }
+  .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--brand1); }
+  .faq-item.open .faq-question { color: var(--brand1); }
+  .faq-answer { max-height: 0; overflow: hidden; transition: max-height .35s ease; }
+  .faq-item.open .faq-answer { max-height: 300px; }
+  .faq-answer-inner { padding: 0 0 22px; font-size: 14px; color: var(--text2); line-height: 1.75; max-width: 780px; }
+
+  /* ─── BLOG ─── */
+  .blog-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+  .blog-card {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    overflow: hidden; text-decoration: none; display: flex; flex-direction: column;
+    box-shadow: var(--shadow); transition: border-color .25s, box-shadow .25s, transform .25s;
+  }
+  .blog-card:hover { border-color: var(--brand1); box-shadow: 0 8px 32px rgba(64,150,255,0.12); transform: translateY(-4px); }
+  .blog-card-img { width: 100%; aspect-ratio: 16/9; overflow: hidden; }
+  .blog-card-img-placeholder {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .blog-card-body { padding: 20px 22px 22px; display: flex; flex-direction: column; flex: 1; }
+  .blog-card-meta { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+  .blog-tag {
+    font-size: 11px; font-weight: 700; color: var(--brand1);
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.2);
+    border-radius: 100px; padding: 3px 10px;
+  }
+  .blog-date { font-size: 11px; color: var(--text2); font-weight: 500; }
+  .blog-card-title { font-size: 16px; font-weight: 800; color: var(--text1); line-height: 1.35; margin-bottom: 10px; letter-spacing: -0.2px; }
+  .blog-card-text { font-size: 13px; color: var(--text2); line-height: 1.65; margin-bottom: 18px; flex: 1; }
+  .blog-card-footer {
+    display: flex; justify-content: space-between; align-items: center;
+    padding-top: 14px; border-top: 1px solid var(--grey1); margin-top: auto;
+  }
+  .blog-author { display: flex; align-items: center; gap: 8px; }
+  .blog-author-avatar {
+    width: 28px; height: 28px; border-radius: 50%; flex-shrink: 0;
+    background: var(--brand1-bg); border: 1.5px solid rgba(64,150,255,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 9px; font-weight: 800; color: var(--brand1);
+  }
+  .blog-author-name { font-size: 12px; font-weight: 600; color: var(--text1); }
+  .blog-card-stats { display: flex; gap: 12px; font-size: 12px; color: var(--text2); }
+
+  @media (max-width: 960px) { .blog-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 600px) { .blog-grid { grid-template-columns: 1fr; } }
+
+  /* ─── REVEAL ─── */
+  .js-loaded .reveal { opacity:0; transform:translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+  .js-loaded .reveal.visible { opacity:1; transform:none; }
+  .js-loaded .d1 { transition-delay:.08s; }
+  .js-loaded .d2 { transition-delay:.16s; }
+  .js-loaded .d3 { transition-delay:.24s; }
+
+  /* ─── VIDEO DEMO ─── */
+  .video-demo-section {
+    background: #F5F6F8;
+    border-top: 1px solid var(--grey2);
+    border-bottom: 1px solid var(--grey2);
+    padding: 88px 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .video-demo-section::before {
+    content: '';
+    position: absolute;
+    top: -80px; right: -80px;
+    width: 420px; height: 420px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(64,150,255,0.08), transparent 70%);
+    pointer-events: none;
+  }
+  .video-demo-section::after {
+    content: '';
+    position: absolute;
+    bottom: -60px; left: -60px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,116,1,0.06), transparent 70%);
+    pointer-events: none;
+  }
+  .video-demo-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 72px;
+    align-items: center;
+  }
+  .video-demo-left .section-tag {
+    background: var(--brand1-bg);
+    border-color: rgba(64,150,255,0.25);
+    color: var(--brand1);
+  }
+  .video-demo-left .section-title { color: var(--text1); }
+  .video-demo-left .section-title em { color: var(--brand1); }
+
+  .vd-features { display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px; }
+  .vd-feature {
+    display: flex; align-items: flex-start; gap: 14px;
+    padding: 14px 16px;
+    background: var(--white);
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 1px 4px rgba(17,38,58,0.05);
+    transition: border-color .2s, box-shadow .2s;
+  }
+  .vd-feature:hover { border-color: rgba(64,150,255,0.35); box-shadow: 0 4px 16px rgba(64,150,255,0.1); }
+  .vd-feature-icon {
+    width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px;
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.2);
+    display: flex; align-items: center; justify-content: center; font-size: 16px;
+  }
+  .vd-feature-title { font-size: 13px; font-weight: 700; color: var(--text1); margin-bottom: 3px; }
+  .vd-feature-text { font-size: 12px; color: var(--text2); line-height: 1.5; }
+
+  .vd-stats {
+    display: flex; align-items: center; gap: 0;
+    padding: 20px 24px;
+    background: var(--white);
+    border: 1px solid var(--grey2);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 1px 4px rgba(17,38,58,0.05);
+  }
+  .vd-stat { flex: 1; text-align: center; }
+  .vd-stat-num { font-size: 32px; font-weight: 900; color: var(--brand1); line-height: 1; letter-spacing: -1px; margin-bottom: 4px; }
+  .vd-stat-desc { font-size: 12px; color: var(--text2); line-height: 1.4; }
+  .vd-stat-divider { width: 1px; height: 48px; background: var(--grey2); flex-shrink: 0; margin: 0 8px; }
+
+  .video-demo-right { position: relative; }
+  .video-demo-right .video-player-wrap {
+    border-radius: 16px;
+    box-shadow: 0 16px 56px rgba(17,38,58,0.14);
+  }
+
+  .vd-badge {
+    position: absolute;
+    bottom: 16px; left: 20px;
+    display: inline-flex;
+    align-items: center; gap: 8px;
+    background: var(--white);
+    border-radius: 100px;
+    padding: 8px 16px 8px 10px;
+    font-size: 12px; font-weight: 600; color: var(--text1);
+    box-shadow: 0 4px 16px rgba(17,38,58,0.15);
+    z-index: 4;
+  }
+  .vd-badge-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: #FF7401; flex-shrink: 0;
+    animation: pulse 2s infinite;
+    box-shadow: 0 0 0 3px rgba(255,116,1,0.2);
+  }
+
+  @media (max-width: 960px) {
+    .video-demo-grid { grid-template-columns: 1fr; gap: 48px; }
+  }
+
+  /* ─── VIDEO PLAYER ─── */
+  .video-player-wrap { border-radius: 14px; overflow: hidden; box-shadow: 0 8px 48px rgba(17,38,58,0.16); position: relative; }
+  .video-thumb {
+    position: relative; cursor: pointer; border-radius: 14px; overflow: hidden;
+    aspect-ratio: 16/9; background: #1a2a3a;
+  }
+  .video-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s; }
+  .video-thumb:hover img { transform: scale(1.03); }
+  .video-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(17,38,58,0.1) 0%, rgba(17,38,58,0.35) 100%);
+    transition: background .3s;
+  }
+  .video-thumb:hover .video-overlay { background: linear-gradient(180deg, rgba(17,38,58,0.15) 0%, rgba(17,38,58,0.5) 100%); }
+  .video-play-btn {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    z-index: 2;
+  }
+  .video-play-btn svg {
+    width: 72px; height: 72px;
+    background: var(--brand1); border-radius: 50%;
+    padding: 16px; box-shadow: 0 4px 32px rgba(64,150,255,0.5);
+    transition: transform .25s, box-shadow .25s;
+  }
+  .video-thumb:hover .video-play-btn svg {
+    transform: scale(1.1);
+    box-shadow: 0 8px 48px rgba(64,150,255,0.65);
+  }
+  .video-fallback {
+    display: none; flex-direction: column; align-items: center; justify-content: center;
+    width: 100%; height: 100%; background: linear-gradient(135deg, #12536D, #1a6b8a);
+    gap: 16px;
+  }
+  .video-fallback-icon { display: flex; align-items: center; justify-content: center; }
+  .video-fallback-text { font-size: 18px; font-weight: 700; color: var(--white); }
+
+  /* ─── FEATURE ROWS ─── */
+  .feat-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+    padding: 56px 0; border-bottom: 1px solid var(--grey2);
+  }
+  .feat-row:last-child { border-bottom: none; }
+  .feat-row-rev { direction: rtl; }
+  .feat-row-rev > * { direction: ltr; }
+
+  .feat-screen { position: relative; }
+  .feat-screen-inner {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: 12px;
+    box-shadow: 0 8px 40px rgba(17,38,58,0.12); overflow: hidden;
+  }
+  .feat-browser-bar {
+    background: var(--grey1); border-bottom: 1px solid var(--grey2);
+    padding: 10px 14px; display: flex; gap: 6px; align-items: center;
+  }
+  .feat-browser-bar span { width: 10px; height: 10px; border-radius: 50%; }
+  .feat-browser-bar span:nth-child(1) { background: #FD6B5B; }
+  .feat-browser-bar span:nth-child(2) { background: #FEBC2E; }
+  .feat-browser-bar span:nth-child(3) { background: #28C840; }
+
+  .feat-mock { padding: 16px; }
+  .feat-mock-header { margin-bottom: 12px; }
+  .feat-mock-breadcrumb { font-size: 11px; color: var(--text2); margin-bottom: 4px; }
+  .feat-mock-title { font-size: 15px; font-weight: 700; color: var(--text1); }
+  .feat-mock-steps {
+    display: flex; gap: 0; margin-bottom: 14px; font-size: 11px;
+    background: var(--grey1); border-radius: 8px; padding: 6px 8px;
+    flex-wrap: wrap; gap: 4px;
+  }
+  .feat-mock-step { padding: 3px 10px; border-radius: 6px; color: var(--text2); font-weight: 500; }
+  .feat-mock-step.active { background: var(--brand1); color: var(--white); }
+  .feat-mock-step.done { color: var(--brand1); }
+
+  .feat-mock-card {
+    background: var(--grey1); border: 1px solid var(--grey2); border-radius: 8px; padding: 14px;
+  }
+  .feat-mock-card-title { font-size: 13px; font-weight: 700; color: var(--text1); margin-bottom: 3px; }
+  .feat-mock-card-sub { font-size: 11px; color: var(--text2); margin-bottom: 10px; }
+  .feat-mock-info { background: rgba(64,150,255,0.06); border: 1px solid rgba(64,150,255,0.15); border-radius: 6px; padding: 10px; margin-bottom: 10px; }
+  .feat-mock-info-text { font-size: 11px; color: var(--text1); font-weight: 600; margin-bottom: 6px; }
+  .feat-mock-info-item { font-size: 10px; color: var(--text2); margin-bottom: 3px; line-height: 1.4; }
+  .feat-mock-label { font-size: 11px; color: var(--text2); margin-bottom: 8px; }
+  .feat-mock-btns { display: flex; gap: 8px; flex-wrap: wrap; }
+  .feat-btn-primary { background: var(--brand1); color: var(--white); border: none; border-radius: 6px; padding: 7px 12px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Montserrat', sans-serif; }
+  .feat-btn-outline { background: var(--white); color: var(--brand1); border: 1px solid var(--brand1); border-radius: 6px; padding: 7px 12px; font-size: 11px; font-weight: 600; cursor: pointer; font-family: 'Montserrat', sans-serif; }
+
+  /* Scoring mock */
+  .feat-candidates { display: flex; flex-direction: column; gap: 8px; }
+  .feat-candidate {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: 8px;
+    padding: 10px 12px; display: flex; align-items: center; gap: 10px;
+  }
+  .feat-candidate-top { border-color: rgba(64,150,255,0.3); }
+  .feat-cand-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .feat-cand-info { flex: 1; }
+  .feat-cand-name { font-size: 12px; font-weight: 700; color: var(--text1); }
+  .feat-cand-role { font-size: 10px; color: var(--text2); }
+  .feat-cand-score { font-size: 12px; font-weight: 800; padding: 3px 10px; border-radius: 100px; flex-shrink: 0; }
+
+  /* Interview mock */
+  .feat-mock-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--grey2); }
+  .feat-tab { padding: 10px 14px; font-size: 11px; font-weight: 600; color: var(--text2); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .feat-tab.active { color: var(--brand1); border-bottom-color: var(--brand1); }
+  .feat-mock-interview-body { padding: 14px; }
+  .feat-interview-score { font-size: 11px; font-weight: 600; color: var(--text2); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .feat-score-badge { background: var(--brand1); color: var(--white); padding: 2px 8px; border-radius: 100px; font-size: 12px; font-weight: 800; }
+  .feat-interview-q { font-size: 12px; font-weight: 600; color: var(--text1); background: var(--grey1); border-radius: 6px; padding: 10px; margin-bottom: 8px; line-height: 1.5; }
+  .feat-interview-a { font-size: 11px; color: var(--text2); background: rgba(64,150,255,0.04); border: 1px solid rgba(64,150,255,0.1); border-radius: 6px; padding: 10px; margin-bottom: 10px; line-height: 1.5; }
+  .feat-interview-meta { display: flex; gap: 8px; }
+  .feat-tag { font-size: 10px; font-weight: 600; background: var(--grey1); border: 1px solid var(--grey2); border-radius: 100px; padding: 3px 8px; color: var(--text2); }
+
+  /* Avatar mock */
+  .feat-avatar-body { padding: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .feat-avatar-screen {
+    background: linear-gradient(135deg, #12536D, #1a6b8a);
+    border-radius: 8px; padding: 20px 12px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  }
+  .feat-avatar-face { font-size: 36px; }
+  .feat-avatar-label { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.8); }
+  .feat-avatar-analysis { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+  .feat-analysis-row { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--text2); }
+  .feat-analysis-row span:first-child { min-width: 90px; font-size: 10px; }
+  .feat-bar { flex: 1; height: 4px; background: var(--grey2); border-radius: 2px; overflow: hidden; }
+  .feat-bar-fill { height: 100%; background: var(--brand1); border-radius: 2px; }
+  .feat-analysis-row span:last-child { min-width: 28px; text-align: right; font-weight: 700; color: var(--text1); font-size: 10px; }
+
+  /* Feature text */
+  .feat-num { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--brand1); text-transform: uppercase; margin-bottom: 10px; }
+  .feat-title { font-size: clamp(20px,2vw,26px); font-weight: 800; color: var(--text1); margin-bottom: 14px; line-height: 1.25; letter-spacing: -0.4px; }
+  .feat-desc { font-size: 14px; color: var(--text2); line-height: 1.72; margin-bottom: 20px; }
+  .feat-checks { display: flex; flex-direction: column; gap: 8px; }
+  .pain-emoji { display: flex; align-items: center; justify-content: flex-start; margin-bottom: 14px; }
+  .step-icon { display: flex; align-items: center; margin-bottom: 12px; }
+  .ps-icon { font-size: 16px; flex-shrink: 0; display: flex; align-items: center; }
+  .ti-icon { flex-shrink: 0; font-size: 15px; margin-top: 1px; display: flex; align-items: center; }
+  .mega-section-icon { font-size: 20px; flex-shrink: 0; width: 32px; text-align: center; display: flex; align-items: center; justify-content: center; }
+  .sub-item-icon { font-size: 17px; flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; }
+  .vd-feature-icon { width: 36px; height: 36px; flex-shrink: 0; border-radius: 8px; background: rgba(64,150,255,0.15); border: 1px solid rgba(64,150,255,0.2); display: flex; align-items: center; justify-content: center; }
+  .cp-icon { width: 32px; height: 32px; border-radius: 8px; flex-shrink: 0; background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.2); display: flex; align-items: center; justify-content: center; }
+  .feat-check { font-size: 13px; color: var(--text1); font-weight: 500; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+  .feat-check svg { flex-shrink: 0; margin-top: 2px; }
+  .feat-cta-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 20px;
+    padding: 11px 22px;
+    background: var(--white); color: var(--brand1);
+    border: 1.5px solid var(--brand1); border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+    text-decoration: none; cursor: pointer;
+    transition: background .2s, color .2s, box-shadow .2s, transform .15s;
+  }
+  .feat-cta-btn:hover {
+    background: var(--brand1); color: var(--white);
+    box-shadow: 0 4px 16px rgba(64,150,255,0.3);
+    transform: translateY(-1px);
+  }
+
+  /* ─── LOGOS SLIDER with images ─── */
+  .logos-section { background: var(--grey1); border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2); padding: 28px 0; }
+  .logos-label { font-size: 12px; font-weight: 600; text-align: center; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+  .logos-slider-wrap { overflow: hidden; position: relative; }
+  .logos-slider-wrap::before, .logos-slider-wrap::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+  }
+  .logos-slider-wrap::before { left: 0; background: linear-gradient(90deg, var(--grey1), transparent); }
+  .logos-slider-wrap::after { right: 0; background: linear-gradient(-90deg, var(--grey1), transparent); }
+  .logos-slider-track {
+    display: flex; align-items: center; gap: 0;
+    animation: ticker 30s linear infinite; width: max-content;
+  }
+  .logos-slider-track:hover { animation-play-state: paused; }
+  .logo-text-pill {
+    display: inline-flex; align-items: center;
+    padding: 10px 24px; height: 52px; flex-shrink: 0;
+    border-right: 1px solid var(--grey2);
+    font-size: 14px; font-weight: 600; color: var(--grey4);
+    text-decoration: none; white-space: nowrap;
+    transition: color .2s;
+  }
+  .logo-text-pill:last-child { border-right: none; }
+  .logo-text-pill:hover { color: var(--brand1); }
+  .logo-item {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0 36px; height: 68px; flex-shrink: 0;
+    border-right: 1px solid var(--grey2);
+    text-decoration: none; white-space: nowrap;
+    opacity: .6; transition: opacity .25s;
+    line-height: 1.2;
+  }
+  .logo-item:last-child { border-right: none; }
+  .logo-item:hover { opacity: 1; }
+    display: flex; align-items: center; justify-content: center;
+    padding: 10px 28px; height: 60px; flex-shrink: 0;
+    border-right: 1px solid var(--grey2);
+    opacity: .55; transition: opacity .25s;
+  }
+  .logo-img-wrap:last-child { border-right: none; }
+  .logo-img-wrap:hover { opacity: 1; }
+  .logo-img-wrap img { max-height: 30px; max-width: 120px; width: auto; height: auto; object-fit: contain; filter: grayscale(1) contrast(0.75); transition: filter .25s; display: block; }
+  .logo-img-wrap:hover img { filter: grayscale(0) contrast(1); }
+
+  /* ─── CASES ─── */
+  .cases-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 48px; }
+  .case-card {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius);
+    padding: 24px; text-decoration: none; display: flex; flex-direction: column;
+    box-shadow: var(--shadow); transition: border-color .25s, box-shadow .25s, transform .25s;
+    cursor: pointer;
+  }
+  .case-card:hover { border-color: var(--brand1); box-shadow: 0 8px 24px rgba(64,150,255,0.12); transform: translateY(-4px); }
+  .case-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; flex-wrap: wrap; gap: 4px; }
+  .case-tag { font-size: 11px; font-weight: 700; color: var(--brand1); background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.2); border-radius: 100px; padding: 3px 10px; }
+  .case-date { font-size: 11px; color: var(--text2); font-weight: 500; }
+  .case-title { font-size: 16px; font-weight: 800; color: var(--text1); line-height: 1.3; margin-bottom: 12px; letter-spacing: -0.2px; flex: 1; }
+  .case-text { font-size: 13px; color: var(--text2); line-height: 1.6; margin-bottom: 16px; }
+  .case-footer { display: flex; justify-content: space-between; align-items: center; padding-top: 14px; border-top: 1px solid var(--grey1); margin-top: auto; }
+  .case-author { font-size: 12px; font-weight: 600; color: var(--text1); }
+  .case-read { font-size: 12px; color: var(--text2); }
+
+  /* ─── DIVIDER ─── */
+  .section-divider { height: 1px; background: var(--grey2); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .hero-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .pain-grid, .features-grid, .compare-wrap, .timlead-wrap { grid-template-columns: 1fr; }
+    .feat-row, .feat-row-rev { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
+    .cases-grid { grid-template-columns: 1fr 1fr; }
+    .steps-grid, .quarter-grid { grid-template-columns: 1fr 1fr; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .cta-inner { grid-template-columns: 1fr; gap: 40px; }
+    .footer-top { grid-template-columns: 1fr 1fr; }
+    nav { display: none; }
+  }
+  @media (max-width: 600px) {
+    .steps-grid, .quarter-grid { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; }
+    .cases-grid { grid-template-columns: 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--grey2); }
+    .stat-item:last-child { border-bottom: none; }
+    .feat-avatar-body { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
+  <span class="urgency-dot"></span>
+  Каждый день без нужного разработчика — это задержка релиза, переработки команды и упущенный рост.
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <!-- Top bar -->
+  <div class="header-topbar">
+    <div class="header-inner" style="height:36px; justify-content:center;">
+      <div class="topbar-links">
+        <a href="https://brainhire.ru/about" class="topbar-link">О компании</a>
+        <a href="https://brainhire.ru/contacts" class="topbar-link">Контакты</a>
+        <a href="https://brainhire.ru/partner" class="topbar-link">Партнёрская программа</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <div class="header-main">
+    <div class="header-inner">
+      <a class="logo" href="https://brainhire.ru/">
+        <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+      </a>
+      <nav class="main-nav">
+
+        <!-- Как это работает — megamenu -->
+        <div class="mnav-item has-mega" id="megaHow">
+          <button class="mnav-btn">
+            Как это работает
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel">
+            <div class="mega-col">
+              <!-- Рекрутинг → sub -->
+              <div class="mega-section-item has-sub" id="subRecruiting">
+                <div class="mega-section-link">
+                  <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                  <div>
+                    <div class="mega-section-title">Рекрутинг</div>
+                    <div class="mega-section-desc">Полный цикл подбора с ИИ</div>
+                  </div>
+                  <svg class="mega-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div class="sub-panel">
+                  <a href="https://brainhire.ru/recruiting" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9 2H7a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2h-2"/><rect x="9" y="1" width="6" height="4" rx="1" ry="1"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Рекрутинг</div>
+                      <div class="sub-item-desc">Обзор возможностей платформы</div>
+                    </div>
+                  </a>
+                  <a href="https://brainhire.ru/ai-vacancy-creation" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-создание вакансий</div>
+                      <div class="sub-item-desc">Описание вакансии за минуты</div>
+                    </div>
+                  </a>
+                  <a href="https://brainhire.ru/ai-resume-analysis" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-анализ резюме</div>
+                      <div class="sub-item-desc">Скоринг и ранжирование откликов</div>
+                    </div>
+                  </a>
+                  <a href="https://brainhire.ru/ai-videointerview" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-видеоинтервью</div>
+                      <div class="sub-item-desc">Автоматические интервью с прокторингом</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Оценка персонала -->
+              <a href="https://brainhire.ru/ai-staff-scoring" class="mega-section-link mega-section-item">
+                <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 017 4.5v1A2.5 2.5 0 009.5 8h5A2.5 2.5 0 0017 5.5v-1A2.5 2.5 0 0014.5 2h-5z"/><path d="M9.5 8a2.5 2.5 0 00-2.5 2.5A2.5 2.5 0 004.5 13a2.5 2.5 0 002.5 2.5 2.5 2.5 0 002.5 2.5h5a2.5 2.5 0 002.5-2.5 2.5 2.5 0 002.5-2.5 2.5 2.5 0 00-2.5-2.5A2.5 2.5 0 0014.5 8h-5z"/></svg></span>
+                <div>
+                  <div class="mega-section-title">Оценка персонала</div>
+                  <div class="mega-section-desc">ИИ-оценка soft skills и компетенций</div>
+                </div>
+                <svg class="mega-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Отраслевые решения — dropdown -->
+        <div class="mnav-item has-drop" id="dropSolutions">
+          <button class="mnav-btn">
+            Отраслевые решения
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="drop-panel">
+            <a href="brainhire-it-v3-pain.html" class="drop-item drop-item-active">ИТ компании</a>
+            <a href="https://brainhire.ru/#solutions" class="drop-item">Финансовый сектор</a>
+            <a href="brainhire-marketplaces-v2.html" class="drop-item">Маркетплейсы</a>
+            <a href="https://brainhire.ru/#solutions" class="drop-item">Малый бизнес</a>
+            <a href="https://brainhire.ru/#solutions" class="drop-item">Корпорации</a>
+          </div>
+        </div>
+
+        <a href="https://brainhire.ru/case" class="mnav-link">Кейсы</a>
+        <a href="https://brainhire.ru/reviews" class="mnav-link">Отзывы</a>
+        <a href="https://brainhire.ru/tariffs" class="mnav-link">Тарифы</a>
+        <a href="https://brainhire.ru/blog" class="mnav-link">Блог</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://brainhire.ru/signup" class="btn-primary">100 кандидатов бесплатно</a>
+        <a href="https://brainhire.ru/signin" class="btn-secondary">Войти</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+// ─── HEADER MENU — hover-based ───
+document.addEventListener('DOMContentLoaded', function() {
+  var items = document.querySelectorAll('.mnav-item.has-mega, .mnav-item.has-drop');
+
+  items.forEach(function(item) {
+    var timer;
+
+    item.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      // close others
+      items.forEach(function(other) {
+        if (other !== item) other.classList.remove('open');
+      });
+      item.classList.add('open');
+    });
+
+    item.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        item.classList.remove('open');
+        item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      }, 120);
+    });
+
+    // keep open if hovering the panel itself
+    var panel = item.querySelector('.mega-panel, .drop-panel');
+    if (panel) {
+      panel.addEventListener('mouseenter', function() { clearTimeout(timer); });
+      panel.addEventListener('mouseleave', function() {
+        timer = setTimeout(function() {
+          item.classList.remove('open');
+          item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+        }, 120);
+      });
+    }
+  });
+
+  // Sub-menu hover
+  document.querySelectorAll('.has-sub').forEach(function(sub) {
+    sub.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      sub.classList.add('sub-open');
+    });
+  });
+});
+
+// Keep toggleMega as no-op so onclick="" in HTML doesn't break anything
+function toggleMega() {}
+function showSub(id) {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  var el = document.getElementById(id);
+  if (el) el.classList.add('sub-open');
+}
+function hideSubs() {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+}
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.mnav-item').forEach(function(e){ e.classList.remove('open'); });
+    document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  }
+});
+</script>
+
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="hero-wrap">
+    <div>
+      <div class="hero-badge reveal">
+        <span class="dot"></span>
+        Для ИТ-компаний — CEO, HRD, IT-директоров
+      </div>
+      <h1 class="reveal d1">
+        Тимлиды тратят дни<br>
+        на собеседования. <em>Лучшие</em><br>
+        <em>разработчики уходят к конкурентам</em>
+      </h1>
+      <p class="hero-sub reveal d2">
+        90% откликов — не те люди. Пока вы их разбираете, сильный кандидат уже принял другой оффер. BRaiN HR отсеивает нерелевантных автоматически — тимлид смотрит 5-минутное видео вместо 5 часов собеседований.
+      </p>
+      <div class="hero-actions reveal d2">
+        <a href="https://brainhire.ru/signup" class="btn-hero-primary">
+          100 кандидатов бесплатно
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#form" class="btn-hero-outline">Хочу демонстрацию</a>
+      </div>
+      <div class="hero-proof reveal d3">
+        <span class="proof-item">Собственные ИИ решения</span>
+        <span class="proof-item">Данные хранятся в РФ</span>
+        <span class="proof-item">Реестр отечественного ПО</span>
+      </div>
+    </div>
+
+    <!-- PIPELINE CARD -->
+    <div class="pipeline-card reveal d2">
+      <div class="pipeline-header">
+        <div class="dots">
+          <div class="wdot" style="background:#FD6B5B;"></div>
+          <div class="wdot" style="background:#FEBC2E;"></div>
+          <div class="wdot" style="background:#28C840;"></div>
+        </div>
+        <span>Воронка найма — Senior Backend</span>
+      </div>
+      <div class="pipeline-body">
+        <div class="pipeline-stage">
+          <div class="ps-left">
+            <span class="ps-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9 2H7a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2h-2"/><rect x="9" y="1" width="6" height="4" rx="1" ry="1"/></svg></span>
+            <div>
+              <div class="ps-name">Получено откликов</div>
+              <div class="ps-meta">За 48 часов после публикации</div>
+            </div>
+          </div>
+          <span class="ps-badge grey">247</span>
+        </div>
+        <div class="pipeline-stage">
+          <div class="ps-left">
+            <span class="ps-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span>
+            <div>
+              <div class="ps-name">ИИ-скоринг резюме</div>
+              <div class="ps-meta">Автоматически ранжировано</div>
+            </div>
+          </div>
+          <span class="ps-badge blue">→ 38 релевантных</span>
+        </div>
+        <div class="pipeline-stage">
+          <div class="ps-left">
+            <span class="ps-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+            <div>
+              <div class="ps-name">ИИ-интервью пройдено</div>
+              <div class="ps-meta">С прокторингом и анализом ответов</div>
+            </div>
+          </div>
+          <span class="ps-badge orange">→ 12 сильных</span>
+        </div>
+        <div class="pipeline-stage">
+          <div class="ps-left">
+            <span class="ps-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg></span>
+            <div>
+              <div class="ps-name">Шорт-лист для тимлида</div>
+              <div class="ps-meta">Видео + профиль + soft skills</div>
+            </div>
+          </div>
+          <span class="ps-badge teal">5 звёзд</span>
+        </div>
+        <div class="pipeline-summary">
+          <svg width="14" height="14" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          <span>Тимлид потратил <strong style="color:#4096FF;">25 минут</strong> — вместо 2 дней на прозвоны</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span><b>ИИ-скоринг резюме</b> — ранжирует 200+ откликов мгновенно</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span><b>Техническое ИИ-интервью</b> — с прокторингом и анализом ответов</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 007 4.5v1A2.5 2.5 0 009.5 8h5A2.5 2.5 0 0017 5.5v-1A2.5 2.5 0 0014.5 2h-5z"/><path d="M9.5 8a2.5 2.5 0 00-2.5 2.5A2.5 2.5 0 004.5 13a2.5 2.5 0 002.5 2.5 2.5 2.5 0 002.5 2.5h5a2.5 2.5 0 002.5-2.5 2.5 2.5 0 002.5-2.5 2.5 2.5 0 00-2.5-2.5A2.5 2.5 0 0014.5 8h-5z"/></svg></span><b>Оценка soft skills</b> — анализ мимики и языка тела</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="16,16 12,12 8,16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg></span><b>Публикация на hh.ru, Avito, SuperJob</b> — одним кликом</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg></span><b>Шорт-лист за 48 часов</b> — тимлид смотрит только лучших</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><b>Аналитика воронки</b> — полная прозрачность процесса</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span><b>ИИ-скоринг резюме</b> — ранжирует 200+ откликов мгновенно</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span><b>Техническое ИИ-интервью</b> — с прокторингом и анализом ответов</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 007 4.5v1A2.5 2.5 0 009.5 8h5A2.5 2.5 0 0017 5.5v-1A2.5 2.5 0 0014.5 2h-5z"/><path d="M9.5 8a2.5 2.5 0 00-2.5 2.5A2.5 2.5 0 004.5 13a2.5 2.5 0 002.5 2.5 2.5 2.5 0 002.5 2.5h5a2.5 2.5 0 002.5-2.5 2.5 2.5 0 002.5-2.5 2.5 2.5 0 00-2.5-2.5A2.5 2.5 0 0014.5 8h-5z"/></svg></span><b>Оценка soft skills</b> — анализ мимики и языка тела</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="16,16 12,12 8,16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg></span><b>Публикация на hh.ru, Avito, SuperJob</b> — одним кликом</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg></span><b>Шорт-лист за 48 часов</b> — тимлид смотрит только лучших</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><b>Аналитика воронки</b> — полная прозрачность процесса</div>
+  </div>
+</div>
+
+<!-- PAIN -->
+<section>
+  <div class="container">
+    <h2 class="section-title reveal">Почему найм в IT стал<br><em>неэффективным в 2026 году</em></h2>
+    <p class="section-sub reveal">Это не проблема конкретной компании — это системные боли рынка, с которыми сталкивается каждый HRD и IT-директор.</p>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="3,6 5,6 21,6"/><path d="M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></span>
+        <div class="pain-title">90% откликов — мимо</div>
+        <div class="pain-text">На вакансию Senior приходит 300 резюме — из них 270 не читали описание вакансии. HR-специалист тратит дни на ручную сортировку, а по-настоящему сильные кандидаты теряются в этой куче.</div>
+      </div>
+      <div class="pain-card reveal d1">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.1 8.5a16 16 0 006.29 6.29l1.02-1.02a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.09z"/></svg></span>
+        <div class="pain-title">54% времени HR — дозвоны до кандидатов</div>
+        <div class="pain-text">Кандидаты не берут трубку. HR звонит снова и снова. В итоге половина рабочего дня уходит не на оценку людей, а на попытки с ними связаться.</div>
+      </div>
+      <div class="pain-card reveal d2">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span>
+        <div class="pain-title">Тимлид — самый дорогой рекрутер</div>
+        <div class="pain-text">Лучшие разработчики в команде тратят 20–23 часа на каждую позицию: скрининг-звонки, техинтервью, повторные встречи. Вместо кода — звонки. Продуктивность падает, команда раздражена.</div>
+      </div>
+      <div class="pain-card reveal d3">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span>
+        <div class="pain-title">Лучшие уходят к конкурентам</div>
+        <div class="pain-text">Каждый дополнительный день в процессе найма увеличивает вероятность потери кандидата на 10%. Пока вы согласовываете следующий этап, звёздный разработчик уже принял оффер конкурента.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num"><span>90%</span></div>
+      <div class="stat-desc">откликов нерелевантны —<br>ИИ отсеивает автоматически</div>
+    </div>
+    <div class="stat-item reveal d1">
+      <div class="stat-num"><span>54%</span></div>
+      <div class="stat-desc">рабочего времени HR<br>уходит на дозвоны</div>
+    </div>
+    <div class="stat-item reveal d2">
+      <div class="stat-num"><span>+10%</span></div>
+      <div class="stat-desc">вероятность потери кандидата<br>за каждый лишний день</div>
+    </div>
+    <div class="stat-item reveal d3">
+      <div class="stat-num"><span>23 ч</span></div>
+      <div class="stat-desc">тимлида на каждую позицию<br>при ручном найме</div>
+    </div>
+  </div>
+  <div style="max-width:1240px; margin:0 auto; padding: 16px 24px 0; text-align:center;">
+    <p style="font-size: 11px; color: var(--text2); line-height: 1.5;">*Согласно исследованиям SberIndex, HeadHunter, Rabota.ru, Росстат, ВШЭ, РБК, Forbes Russia, PwC, BCG и ЦБ РФ.</p>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="container">
+    <div class="section-tag">Как это работает</div>
+    <h2 class="section-title reveal">ИИ берёт рутину на себя<br><em>Тимлид отбирает из лучших</em></h2>
+    <p class="section-sub reveal">Ни один нерелевантный кандидат не доберётся до технического интервью — ИИ закрывает вход на 90%.</p>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">Шаг 1 <span class="step-time">15 минут</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+        <div class="step-title">ИИ создаёт вакансию</div>
+        <div class="step-text">Описываете роль и стек — ИИ пишет точное описание вакансии и публикует на hh.ru, Avito, SuperJob. Больше не нужно переписывать одно и то же три раза.</div>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-num">Шаг 2 <span class="step-time">Без HR</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+        <div class="step-title">Скоринг 200+ резюме</div>
+        <div class="step-text">ИИ анализирует каждый отклик — стек, опыт, проекты. 90% нерелевантных отсекаются автоматически. HR получает только тех, кто реально подходит.</div>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-num">Шаг 3 <span class="step-time">Без тимлида</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+        <div class="step-title">Техническое ИИ-интервью</div>
+        <div class="step-text">Кандидаты проходят структурированное видеоинтервью в удобное им время. Прокторинг исключает ChatGPT и подсказки. Ни одного звонка от тимлида.</div>
+      </div>
+      <div class="step reveal d3">
+        <div class="step-num">Шаг 4 <span class="step-time">5 мин/кандидат</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg></span>
+        <div class="step-title">Тимлид смотрит топ-5</div>
+        <div class="step-text">Видео + аналитический профиль по каждому. Тимлид принимает решение на данных, а не на ощущениях от часового звонка. Только реальные звёзды доходят до него.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMLEAD -->
+<section style="background: #F5F6F8; border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2);">
+  <div class="container">
+    <h2 class="section-title reveal">Перестаньте отвлекать команду<br><em>от разработки на найм</em></h2>
+    <p class="section-sub reveal">20+ часов в неделю на прозвоны — это не найм, это кража времени у вашей команды.</p>
+    <div class="timlead-wrap">
+      <div class="timlead-col reveal">
+        <div class="timlead-head">
+          <svg width="16" height="16" stroke="#717680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Сейчас — без BRaiN HR</div>
+        <div class="timlead-items">
+          <div class="timlead-item">
+            <span class="ti-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.1 8.5a16 16 0 006.29 6.29l1.02-1.02a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.09z"/></svg></span>
+            <div>
+              <div class="ti-title">Скрининг-звонки с HR</div>
+              <div class="ti-time">~30 мин × 20 кандидатов = 10 часов</div>
+            </div>
+          </div>
+          <div class="timlead-item">
+            <span class="ti-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></span>
+            <div>
+              <div class="ti-title">Техническое интервью тимлида</div>
+              <div class="ti-time">~60 мин × 8 кандидатов = 8 часов</div>
+            </div>
+          </div>
+          <div class="timlead-item">
+            <span class="ti-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="1,4 1,10 7,10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg></span>
+            <div>
+              <div class="ti-title">Повторные интервью</div>
+              <div class="ti-time">~45 мин × 4 = 3 часа</div>
+            </div>
+          </div>
+          <div class="timlead-item">
+            <span class="ti-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9 2H7a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2h-2"/><rect x="9" y="1" width="6" height="4" rx="1" ry="1"/></svg></span>
+            <div>
+              <div class="ti-title">Обсуждение и согласование</div>
+              <div class="ti-time">~2 часа суммарно</div>
+            </div>
+          </div>
+        </div>
+        <div class="ti-total" style="color:#FF7401;">
+          <span><svg width="18" height="18" stroke="#FF7401" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span> Итого: 20–23 часа тимлида на 1 позицию
+        </div>
+      </div>
+      <div class="timlead-col good reveal d1">
+        <div class="timlead-head">
+          <svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,6 12,17 7,12"/><path d="M22 6L7 12l5 5 10-11z"/></svg>
+          С BRaiN HR
+          <span class="timlead-badge">Рекомендуем</span>
+        </div>
+        <div class="timlead-items">
+          <div class="timlead-item">
+            <span class="ti-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span>
+            <div>
+              <div class="ti-title">ИИ проводит скоринг 200+ резюме</div>
+              <div class="ti-time">Автоматически — 0 минут тимлида</div>
+            </div>
+          </div>
+          <div class="timlead-item">
+            <span class="ti-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+            <div>
+              <div class="ti-title">ИИ-интервью с 30 кандидатами</div>
+              <div class="ti-time">Автоматически — 0 минут тимлида</div>
+            </div>
+          </div>
+          <div class="timlead-item">
+            <span class="ti-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg></span>
+            <div>
+              <div class="ti-title">Тимлид смотрит шорт-лист из 5</div>
+              <div class="ti-time">~5 мин видео × 5 = 25 минут</div>
+            </div>
+          </div>
+          <div class="timlead-item">
+            <span class="ti-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg></span>
+            <div>
+              <div class="ti-title">Финальное интервью с 2 финалистами</div>
+              <div class="ti-time">~60 мин × 2 = 2 часа</div>
+            </div>
+          </div>
+        </div>
+        <div class="ti-total">
+          <span><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span> Итого: ~2,5 часа тимлида на 1 позицию
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS SLIDER -->
+<div class="logos-section" style="background: var(--white); border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2); padding: 32px 0;">
+  <div class="container">
+    <div class="logos-label">Нам доверяют ИТ-компании и технологические лидеры рынка</div>
+  </div>
+  <div class="logos-slider-wrap">
+    <div class="logos-slider-track">
+      <a href="https://www.simbirsoft.com/" target="_blank" class="logo-item">
+        <span style="font-size:18px; font-weight:800; color:#1a1a2e; letter-spacing:-0.5px;">Simbir<span style="color:#e03030;">S</span>oft</span>
+      </a>
+      <a href="https://bssys.com/" target="_blank" class="logo-item">
+        <span style="background:#1a3a8a; color:#fff; font-size:15px; font-weight:900; padding:5px 10px; border-radius:4px; letter-spacing:1px;">BSS</span>
+      </a>
+      <a href="https://3logic.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:800; color:#1a1a1a; letter-spacing:-0.3px;">3<span style="color:#e03030;">LOGIC</span><br><span style="font-size:9px; font-weight:600; color:#555; letter-spacing:1px;">GROUP</span></span>
+      </a>
+      <a href="https://kazan.rt.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:700; color:#1a1a1a; letter-spacing:0.5px;">РОСТЕЛЕКОМ</span>
+      </a>
+      <a href="https://e-flops.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:800; color:#222; letter-spacing:-0.5px;">e<span style="color:#4096FF;">-</span>flops</span>
+      </a>
+      <a href="https://itpeoplegroup.ru/" target="_blank" class="logo-item">
+        <span style="font-size:12px; font-weight:800; color:#1a1a1a; letter-spacing:1.5px; text-transform:uppercase; border:2px solid #1a1a1a; padding:4px 8px;">IT PEOPLE</span>
+      </a>
+      <a href="https://moby.estate/" target="_blank" class="logo-item">
+        <span style="font-size:17px; font-weight:800; color:#2b4de3; letter-spacing:-0.5px;">●● moby</span>
+      </a>
+      <a href="https://neyrox.com/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#111; letter-spacing:-0.3px;">neyrox</span>
+      </a>
+      <a href="https://idaproject.com/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#c0392b; letter-spacing:-0.3px;">ida<span style="color:#222;">project</span></span>
+      </a>
+      <a href="https://prodamus.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#6c3db5; letter-spacing:-0.3px;">prodamus</span>
+      </a>
+      <a href="https://www.hr-rocket.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:800; color:#1a1a1a; letter-spacing:0.5px;">HR<span style="color:#e03030;">⚡</span>ROCKET</span>
+      </a>
+      <a href="https://livecargo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#1a5c3a; letter-spacing:-0.3px;">live<span style="color:#27ae60;">cargo</span></span>
+      </a>
+      <a href="https://ledgo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:900; color:#f39c12; letter-spacing:-0.5px;">LED<span style="color:#e67e22;">GO</span></span>
+      </a>
+      <a href="https://www.penoplex.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#e03030; letter-spacing:0.5px;">PENOPLEX</span>
+      </a>
+      <a href="https://pshb.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#1a3a8a; letter-spacing:1px;">ПШБ</span>
+      </a>
+      <!-- duplicate for seamless loop -->
+      <a href="https://www.simbirsoft.com/" target="_blank" class="logo-item">
+        <span style="font-size:18px; font-weight:800; color:#1a1a2e; letter-spacing:-0.5px;">Simbir<span style="color:#e03030;">S</span>oft</span>
+      </a>
+      <a href="https://bssys.com/" target="_blank" class="logo-item">
+        <span style="background:#1a3a8a; color:#fff; font-size:15px; font-weight:900; padding:5px 10px; border-radius:4px; letter-spacing:1px;">BSS</span>
+      </a>
+      <a href="https://3logic.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:800; color:#1a1a1a; letter-spacing:-0.3px;">3<span style="color:#e03030;">LOGIC</span><br><span style="font-size:9px; font-weight:600; color:#555; letter-spacing:1px;">GROUP</span></span>
+      </a>
+      <a href="https://kazan.rt.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:700; color:#1a1a1a; letter-spacing:0.5px;">РОСТЕЛЕКОМ</span>
+      </a>
+      <a href="https://e-flops.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:800; color:#222; letter-spacing:-0.5px;">e<span style="color:#4096FF;">-</span>flops</span>
+      </a>
+      <a href="https://itpeoplegroup.ru/" target="_blank" class="logo-item">
+        <span style="font-size:12px; font-weight:800; color:#1a1a1a; letter-spacing:1.5px; text-transform:uppercase; border:2px solid #1a1a1a; padding:4px 8px;">IT PEOPLE</span>
+      </a>
+      <a href="https://moby.estate/" target="_blank" class="logo-item">
+        <span style="font-size:17px; font-weight:800; color:#2b4de3; letter-spacing:-0.5px;">●● moby</span>
+      </a>
+      <a href="https://neyrox.com/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#111; letter-spacing:-0.3px;">neyrox</span>
+      </a>
+      <a href="https://idaproject.com/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#c0392b; letter-spacing:-0.3px;">ida<span style="color:#222;">project</span></span>
+      </a>
+      <a href="https://prodamus.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#6c3db5; letter-spacing:-0.3px;">prodamus</span>
+      </a>
+      <a href="https://www.hr-rocket.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:800; color:#1a1a1a; letter-spacing:0.5px;">HR<span style="color:#e03030;">⚡</span>ROCKET</span>
+      </a>
+      <a href="https://livecargo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:700; color:#1a5c3a; letter-spacing:-0.3px;">live<span style="color:#27ae60;">cargo</span></span>
+      </a>
+      <a href="https://ledgo.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:900; color:#f39c12; letter-spacing:-0.5px;">LED<span style="color:#e67e22;">GO</span></span>
+      </a>
+      <a href="https://www.penoplex.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#e03030; letter-spacing:0.5px;">PENOPLEX</span>
+      </a>
+      <a href="https://pshb.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#1a3a8a; letter-spacing:1px;">ПШБ</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- CASES -->
+<section class="section-bg">
+  <div class="container">
+    <div class="section-tag">Кейсы</div>
+    <h2 class="section-title reveal">Лидеры ИТ-отрасли уже<br><em>автоматизируют найм с BRaiN HR</em></h2>
+    <div class="cases-grid">
+      <a href="https://brainhire.ru/case" target="_blank" class="case-card reveal">
+        <div class="case-top">
+          <span class="case-tag">ИТ и разработка</span>
+          <span class="case-date">25 мая 2025</span>
+        </div>
+        <h3 class="case-title">IT-компания — автоматизация подбора технических специалистов</h3>
+        <p class="case-text">Кейс о том, как IT-компания решила проблему дефицита разработчиков и долгого цикла найма с помощью интеллектуальной системы для технического рекрутинга.</p>
+        <div class="case-footer">
+          <span class="case-author">Елена Петрова</span>
+          <span class="case-read">🕐 4 мин</span>
+        </div>
+      </a>
+      <a href="https://brainhire.ru/case" target="_blank" class="case-card reveal d1">
+        <div class="case-top">
+          <span class="case-tag">ИТ и разработка</span>
+          <span class="case-date">12 апреля 2025</span>
+        </div>
+        <h3 class="case-title">Продуктовая ИТ-компания — сокращение цикла найма Senior-разработчиков</h3>
+        <p class="case-text">Кейс о том, как продуктовая компания с командой 200+ человек автоматизировала техническое интервью и снизила нагрузку на тимлидов в 8 раз.</p>
+        <div class="case-footer">
+          <span class="case-author">Андрей Волков</span>
+          <span class="case-read">🕐 5 мин</span>
+        </div>
+      </a>
+      <a href="https://brainhire.ru/case" target="_blank" class="case-card reveal d2">
+        <div class="case-top">
+          <span class="case-tag">ИТ и разработка</span>
+          <span class="case-date">3 марта 2025</span>
+        </div>
+        <h3 class="case-title">Аутсорсинговая компания — масштабный найм под проектные дедлайны</h3>
+        <p class="case-text">Кейс о том, как ИТ-аутсорсер научился закрывать пул из 10–15 позиций за 2 недели с помощью ИИ-скоринга и автоматических видеоинтервью.</p>
+        <div class="case-footer">
+          <span class="case-author">Наталья Козлова</span>
+          <span class="case-read">🕐 4 мин</span>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="https://brainhire.ru/case" target="_blank" class="btn-hero-primary" style="display:inline-flex;">Все кейсы с разбивкой по отраслям</a>
+    </div>
+  </div>
+</section>
+<!-- FEATURES — screenshot layout -->
+<section>
+  <div class="container">
+    <div class="section-tag">Возможности платформы</div>
+    <h2 class="section-title reveal">Всё, что нужно<br><em>для найма в ИТ</em></h2>
+
+    <!-- Feature 1: image left -->
+    <div class="feat-row reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock feat-mock-vacancy">
+            <div class="feat-mock-header">
+              <div class="feat-mock-breadcrumb">BRAIN / Вакансии / Создание вакансии</div>
+              <div class="feat-mock-title">Создание вакансии</div>
+            </div>
+            <div class="feat-mock-steps">
+              <div class="feat-mock-step done">✓ Описание вакансии</div>
+              <div class="feat-mock-step done">✓ Тестирование</div>
+              <div class="feat-mock-step active">3 Интервью</div>
+              <div class="feat-mock-step">4 Предпросмотр</div>
+            </div>
+            <div class="feat-mock-card">
+              <div class="feat-mock-card-title">Интервью</div>
+              <div class="feat-mock-card-sub">Добавьте вопросы вручную или сгенерируйте с помощью ИИ</div>
+              <div class="feat-mock-info">
+                <div class="feat-mock-info-text">Вы можете выбрать один из способов создания вопросов:</div>
+                <div class="feat-mock-info-item">• <b>Генерация вопросов с помощью ИИ</b> — выберите количество и нажмите «Сгенерировать»</div>
+                <div class="feat-mock-info-item">• <b>Добавление вопросов вручную</b> — создайте поля самостоятельно</div>
+                <div class="feat-mock-info-item">• <b>Комбинированный режим</b> — совместите оба подхода</div>
+              </div>
+              <div class="feat-mock-controls">
+                <div class="feat-mock-label">Количество вопросов, которые создаст ИИ: <b>10</b></div>
+                <div class="feat-mock-btns">
+                  <button class="feat-btn-primary">✦ Сгенерировать вопросы с ИИ</button>
+                  <button class="feat-btn-outline">+ Добавить вопрос вручную</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feat-text">
+        <div class="feat-num">01</div>
+        <h3 class="feat-title">Точное описание вакансии<br>за минуты</h3>
+        <p class="feat-desc">По статистике более 52% времени рекрутера занимают рутинные задачи. ИИ создаёт привлекательные тексты вакансий на основе ваших данных и лучших HR-методик — с нужным стеком, грейдом и требованиями. Сразу после этого публикует на hh.ru, Avito и SuperJob и выдаёт персональную ссылку.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Публикация на всех площадках одновременно</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Генерация вопросов для интервью с помощью ИИ</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Персональная ссылка для Telegram и LinkedIn</div>
+        </div>
+        <a href="https://brainhire.ru/signup" target="_blank" class="feat-cta-btn">Сформировать вакансию →</a>
+      </div>
+    </div>
+
+    <!-- Feature 2: image right -->
+    <div class="feat-row feat-row-rev reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock feat-mock-scoring">
+            <div class="feat-mock-header">
+              <div class="feat-mock-title" style="font-size:15px;">Экономьте до <b style="color:var(--brand1)">23 часов</b> на просмотре резюме и скоринге кандидатов</div>
+            </div>
+            <div class="feat-candidates">
+              <div class="feat-candidate feat-candidate-top">
+                <div class="feat-cand-avatar" style="background:#4096FF22;color:#4096FF;">АМ</div>
+                <div class="feat-cand-info">
+                  <div class="feat-cand-name">Алексей Морозов</div>
+                  <div class="feat-cand-role">Senior Backend · Go, PostgreSQL</div>
+                </div>
+                <div class="feat-cand-score" style="background:#E6F4FF;color:#4096FF;">98%</div>
+              </div>
+              <div class="feat-candidate feat-candidate-top">
+                <div class="feat-cand-avatar" style="background:#E6F4FF;color:#4096FF;">ЕС</div>
+                <div class="feat-cand-info">
+                  <div class="feat-cand-name">Екатерина Смирнова</div>
+                  <div class="feat-cand-role">Backend · Python, FastAPI</div>
+                </div>
+                <div class="feat-cand-score" style="background:#E6F4FF;color:#4096FF;">91%</div>
+              </div>
+              <div class="feat-candidate">
+                <div class="feat-cand-avatar" style="background:#F5F6F8;color:#717680;">ДК</div>
+                <div class="feat-cand-info">
+                  <div class="feat-cand-name">Дмитрий Козлов</div>
+                  <div class="feat-cand-role">Middle · PHP, Laravel</div>
+                </div>
+                <div class="feat-cand-score" style="background:#F5F6F8;color:#717680;">54%</div>
+              </div>
+              <div class="feat-candidate">
+                <div class="feat-cand-avatar" style="background:#F5F6F8;color:#717680;">ИП</div>
+                <div class="feat-cand-info">
+                  <div class="feat-cand-name">Иван Петров</div>
+                  <div class="feat-cand-role">Junior · Java</div>
+                </div>
+                <div class="feat-cand-score" style="background:#FFF3E8;color:#FF7401;">31%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feat-text">
+        <div class="feat-num">02</div>
+        <h3 class="feat-title">Скоринг 200+ резюме<br>без участия HR</h3>
+        <p class="feat-desc">ИИ мгновенно анализирует каждый отклик — стек, опыт коммерческой разработки, проекты. Система объективно ранжирует кандидатов и выдаёт приоритизированный список. 90% нерелевантных отсекаются до того, как HR их откроет.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Анализ стека, уровня и коммерческого опыта</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Объективный скоринг без субъективности рекрутера</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Экономия до 23 часов в неделю на первичном отборе</div>
+        </div>
+        <a href="https://brainhire.ru/signup" target="_blank" class="feat-cta-btn">Запустить скоринг резюме →</a>
+      </div>
+    </div>
+
+    <!-- Feature 3: image left -->
+    <div class="feat-row reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock feat-mock-interview">
+            <div class="feat-mock-tabs">
+              <span class="feat-tab active">Интервью</span>
+              <span class="feat-tab">Тестирование</span>
+              <span class="feat-tab">Real-time avatar</span>
+            </div>
+            <div class="feat-mock-interview-body">
+              <div class="feat-interview-score">Оценка интервью: <span class="feat-score-badge">7.8</span></div>
+              <div class="feat-interview-q">Расскажите о ситуации, когда вы занимались подбором персонала. Какие методы вы использовали для привлечения кандидатов?</div>
+              <div class="feat-interview-a">Я использовал холодный поиск и публиковал вакансии на различных сайтах. Также тестировал различные сторонние сервисы, чтобы проверить их эффективность. Ну и конечно пользовался рекомендациями...</div>
+              <div class="feat-interview-meta">
+                <span class="feat-tag">🔒 Прокторинг активен</span>
+                <span class="feat-tag">🎥 Запись ведётся</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feat-text">
+        <div class="feat-num">03</div>
+        <h3 class="feat-title">Техническое ИИ-интервью<br>с прокторингом</h3>
+        <p class="feat-desc">Кандидаты проходят структурированное видеоинтервью в удобное время — без звонков от тимлида. Прокторинг фиксирует попытки воспользоваться ChatGPT или сторонними подсказками. Видеозапись и транскрипт сохраняются для тимлида.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Стандартизированные вопросы по стеку и кейсам</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Прокторинг — защита от читов и подсказок</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Видеозапись + транскрипт для тимлида</div>
+        </div>
+        <a href="https://brainhire.ru/signup" target="_blank" class="feat-cta-btn">Провести ИИ-интервью →</a>
+      </div>
+    </div>
+
+    <!-- Feature 4: image right -->
+    <div class="feat-row feat-row-rev reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock feat-mock-avatar">
+            <div class="feat-mock-tabs">
+              <span class="feat-tab">Интервью</span>
+              <span class="feat-tab">Тестирование</span>
+              <span class="feat-tab active">Real-time avatar</span>
+            </div>
+            <div class="feat-avatar-body">
+              <div class="feat-avatar-screen">
+                <div class="feat-avatar-face" style="font-size:36px;"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>
+                <div class="feat-avatar-label">ИИ-аватар BRaiN HR</div>
+              </div>
+              <div class="feat-avatar-analysis">
+                <div class="feat-analysis-row"><span>Уверенность</span><div class="feat-bar"><div class="feat-bar-fill" style="width:82%;"></div></div><span>82%</span></div>
+                <div class="feat-analysis-row"><span>Коммуникация</span><div class="feat-bar"><div class="feat-bar-fill" style="width:74%;"></div></div><span>74%</span></div>
+                <div class="feat-analysis-row"><span>Культурный фит</span><div class="feat-bar"><div class="feat-bar-fill" style="width:91%;"></div></div><span>91%</span></div>
+                <div class="feat-analysis-row"><span>Стрессоустойчивость</span><div class="feat-bar"><div class="feat-bar-fill" style="width:68%;"></div></div><span>68%</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feat-text">
+        <div class="feat-num">04</div>
+        <h3 class="feat-title">Real-time интервью<br>с ИИ-аватаром</h3>
+        <p class="feat-desc">Для финалистов — адаптивное интервью с ИИ-аватаром. Вопросы меняются в реальном времени на основе ответов. Система анализирует мимику, язык тела и soft skills, формируя полный психологический профиль кандидата.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Адаптивные вопросы на основе ответов</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Анализ мимики, уверенности и soft skills</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Полный профиль: компетенции + личность + культурный фит</div>
+        </div>
+        <a href="#form" class="feat-cta-btn">Запросить демо аватара →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- VIDEO DEMO -->
+<section class="video-demo-section">
+  <div class="container">
+    <div class="video-demo-grid">
+
+      <!-- Left: text + stats -->
+      <div class="video-demo-left">
+        <div class="section-tag" style="display:inline-flex; margin-bottom: 20px; background: var(--brand1-bg); border-color: rgba(64,150,255,0.25); color: var(--brand1);">Real-time интервью с ИИ-аватаром</div>
+        <h2 class="section-title reveal" style="margin-bottom: 16px;">Автоматизируйте даже<br><em>финальное интервью</em></h2>
+        <p class="reveal" style="font-size: 15px; color: var(--text2); line-height: 1.75; margin-bottom: 32px;">
+          Инновационная функция Real-time интервью с ИИ-аватаром проводит полноценное собеседование, оценивая опыт и soft-skills кандидата — без участия тимлида.
+        </p>
+
+        <div class="vd-features reveal">
+          <div class="vd-feature">
+            <div class="vd-feature-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div>
+              <div class="vd-feature-title">Адаптивные вопросы</div>
+              <div class="vd-feature-text">ИИ меняет вопросы в реальном времени на основе ответов кандидата</div>
+            </div>
+          </div>
+          <div class="vd-feature">
+            <div class="vd-feature-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div>
+              <div class="vd-feature-title">Анализ мимики и поведения</div>
+              <div class="vd-feature-text">Оценка уверенности, стрессоустойчивости и культурного фита</div>
+            </div>
+          </div>
+          <div class="vd-feature">
+            <div class="vd-feature-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg></div>
+            <div>
+              <div class="vd-feature-title">Полный профиль кандидата</div>
+              <div class="vd-feature-text">Видеозапись, транскрипт и аналитика — всё готово для тимлида</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vd-stats reveal">
+          <div class="vd-stat" style="text-align:center; flex:1;">
+            <div class="vd-stat-num">5 мин</div>
+            <div class="vd-stat-desc" style="max-width:none;">тимлид смотрит видео вместо часа собеседования</div>
+          </div>
+          <div class="vd-stat-divider"></div>
+          <div class="vd-stat" style="text-align:center; flex:1;">
+            <div class="vd-stat-num">0</div>
+            <div class="vd-stat-desc" style="max-width:none;">звонков от тимлида до финального этапа</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: video -->
+      <div class="video-demo-right reveal">
+        <div class="video-player-wrap" id="videoBlock">
+          <div class="video-thumb" id="videoThumb" onclick="playVideo()">
+            <img
+              src="https://brainhire.ru/images/videoPreview.avif"
+              alt="Демонстрация Real-time интервью с ИИ-аватаром"
+              onerror="this.style.display='none'; document.getElementById('videoFallback').style.display='flex';"
+            >
+            <div class="video-fallback" id="videoFallback">
+              <div class="video-fallback-icon"><svg width="64" height="64" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>
+              <div class="video-fallback-text">Real-time интервью с ИИ-аватаром</div>
+            </div>
+            <div class="video-play-btn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 5.14v14l11-7-11-7z" fill="white"/></svg>
+            </div>
+            <div class="video-overlay"></div>
+          </div>
+          <div class="video-frame" id="videoFrame" style="display:none;">
+            <video controls style="width:100%; border-radius:12px; display:block;">
+              <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <!-- Badge overlaps video bottom-left -->
+          <div class="vd-badge">
+            <div class="vd-badge-dot"></div>
+            <span>ИИ-интервью идёт прямо сейчас</span>
+          </div>
+        </div>
+
+        <!-- CTA button under video -->
+        <div class="reveal" style="margin-top: 20px; text-align: center;">
+          <a href="#form" class="btn-hero-primary" style="display:inline-flex; width:100%; justify-content:center;">
+            Запросить демо Real-time интервью
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- CTA -->
+<div class="cta-section" id="form">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <div class="section-tag">Решите проблему найма</div>
+      <h2 class="reveal">Покажем, как ИИ<br>освободит <em>тимлидов и HR</em></h2>
+      <p class="reveal">Расскажите о своей ситуации — покажем конкретно, сколько часов в неделю вы теряете сейчас и как BRaiN HR это исправляет.</p>
+      <div class="cta-points reveal">
+        <div class="cta-point">
+          <span class="cp-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46 22,3"/></svg></span>
+          <div>
+            <strong>ИИ отсеивает 90% нерелевантных</strong>
+            HR работает с людьми, а не перебирает резюме
+          </div>
+        </div>
+        <div class="cta-point">
+          <span class="cp-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span>
+          <div>
+            <strong>Тимлид — только на финале</strong>
+            25 минут видео вместо 20+ часов прозвонов на позицию
+          </div>
+        </div>
+        <div class="cta-point">
+          <span class="cp-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+          <div>
+            <strong>100 кандидатов бесплатно</strong>
+            Убедитесь сами — без договора и предоплаты
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="form-card">
+        <div class="form-title">Разберём вашу ситуацию</div>
+        <div class="form-sub">30 минут — и вы увидите, где именно теряете время и деньги на найме.</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Имя</label>
+            <input class="form-input" type="text" placeholder="Иван Петров">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Компания</label>
+            <input class="form-input" type="text" placeholder="ООО «Техно»">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input class="form-input" type="email" placeholder="ivan@company.ru">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Телефон</label>
+            <input class="form-input" type="tel" placeholder="+7 (___) ___-__-__">
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">Задача</label>
+            <textarea class="form-input" rows="3" placeholder="Опишите главную боль в найме — что занимает больше всего времени?" style="resize:vertical;"></textarea>
+          </div>
+        </div>
+        <button class="btn-form">Получить разбор моей ситуации →</button>
+        <div class="form-note">
+          Нажимая кнопку, вы соглашаетесь с <a href="https://brainhire.ru/docs/privacy-policy">политикой конфиденциальности</a> и <a href="https://brainhire.ru/docs/personal-data-consent">обработкой персональных данных</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOG -->
+<section style="background: #F5F6F8; border-top: 1px solid var(--grey2); padding: 80px 0;">
+  <div class="container">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <div class="section-tag" style="margin-bottom:14px;">Блог BRaiN HR</div>
+        <h2 class="section-title reveal" style="margin-bottom:0;">Узнайте, как улучшить найм<br><em>разработчиков и ИТ-специалистов</em></h2>
+      </div>
+      <a href="https://brainhire.ru/blog" target="_blank" class="btn-secondary" style="flex-shrink:0; white-space:nowrap;">Читать блог →</a>
+    </div>
+
+    <div class="blog-grid">
+      <a href="https://brainhire.ru/blog" target="_blank" class="blog-card reveal">
+        <div class="blog-card-img">
+          <div class="blog-card-img-placeholder" style="background: linear-gradient(135deg, #12536D 0%, #1a6b8a 50%, #4096FF22 100%);">
+            <svg width="52" height="52" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="16,18 22,12 16,6"/><polyline points="8,6 2,12 8,18"/></svg>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">ИТ-рекрутинг</span>
+            <span class="blog-date">21.01.2026</span>
+          </div>
+          <h3 class="blog-card-title">Как нанимать Senior-разработчиков: полный гид для HRD и IT-директора</h3>
+          <p class="blog-card-text">Рынок Senior-разработчиков — самый конкурентный сегмент найма в ИТ. Рассказываем, как выстроить процесс, чтобы забирать лучших раньше конкурентов и не перегружать тимлидов.</p>
+          <div class="blog-card-footer">
+            <div class="blog-author">
+              <div class="blog-author-avatar">БГ</div>
+              <span class="blog-author-name">Борис Горштейн</span>
+            </div>
+            <div class="blog-card-stats">
+              <span>♡ 24</span>
+              <span>⏱ 10 мин</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://brainhire.ru/blog" target="_blank" class="blog-card reveal d1">
+        <div class="blog-card-img">
+          <div class="blog-card-img-placeholder" style="background: linear-gradient(135deg, #1a3a5c 0%, #12536D 50%, #4096FF33 100%);">
+            <svg width="52" height="52" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">ИТ-рекрутинг</span>
+            <span class="blog-date">21.01.2026</span>
+          </div>
+          <h3 class="blog-card-title">Техническое интервью без тимлида: как ИИ оценивает разработчиков объективнее человека</h3>
+          <p class="blog-card-text">Борис Горштейн — эксперт в области HR-технологий. За последние годы мы провели более сотни аудитов HR-процессов в компаниях разного масштаба. И везде видим одну картину: тимлиды перегружены собеседованиями.</p>
+          <div class="blog-card-footer">
+            <div class="blog-author">
+              <div class="blog-author-avatar">БГ</div>
+              <span class="blog-author-name">Борис Горштейн</span>
+            </div>
+            <div class="blog-card-stats">
+              <span>♡ 27</span>
+              <span>⏱ 25 мин</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://brainhire.ru/blog" target="_blank" class="blog-card reveal d2">
+        <div class="blog-card-img">
+          <div class="blog-card-img-placeholder" style="background: linear-gradient(135deg, #0d2137 0%, #12536D 50%, #69B1FF22 100%);">
+            <svg width="52" height="52" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">ИТ-рекрутинг</span>
+            <span class="blog-date">21.01.2026</span>
+          </div>
+          <h3 class="blog-card-title">Онбординг разработчика: роль тимлида, этапы и лучшие практики адаптации в ИТ</h3>
+          <p class="blog-card-text">Кто такой новый разработчик и что такое наставничество в ИТ-команде? Разбираем, как выстроить онбординг так, чтобы новый сотрудник вышел на полную продуктивность за первые 30 дней.</p>
+          <div class="blog-card-footer">
+            <div class="blog-author">
+              <div class="blog-author-avatar">БГ</div>
+              <span class="blog-author-name">Борис Горштейн</span>
+            </div>
+            <div class="blog-card-stats">
+              <span>♡ 18</span>
+              <span>⏱ 9 мин</span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background: var(--white); border-top: 1px solid var(--grey2); padding: 80px 0;">
+  <div class="container">
+    <h2 class="section-title reveal" style="text-align:center; margin-bottom: 48px;">Ответы на часто задаваемые вопросы</h2>
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Как BRaiN HR автоматизирует найм технических специалистов?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">BRaiN HR автоматизирует весь цикл найма ИТ-специалистов: создаёт точное описание вакансии с нужным стеком и грейдом, публикует на hh.ru, Avito и SuperJob, проводит ИИ-скоринг резюме по стеку и коммерческому опыту, организует структурированное видеоинтервью с прокторингом. Тимлид получает шорт-лист из 5 лучших кандидатов с видеозаписями и профилями — без единого звонка.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Как ИИ оценивает технический уровень разработчика?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Система использует библиотеку технических вопросов, составленных экспертами по конкретным стекам и грейдам. ИИ анализирует не только содержание ответов, но и глубину знаний, умение объяснять решения и поведенческие паттерны. Прокторинг фиксирует попытки воспользоваться ChatGPT или внешними подсказками, гарантируя честность оценки.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Что такое ИИ-интервью с прокторингом и зачем он нужен?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">ИИ-интервью — это структурированное видеособеседование, которое кандидат проходит в удобное время без участия рекрутера или тимлида. Прокторинг фиксирует переключение вкладок, использование сторонних программ и подсказок. Это особенно важно при найме разработчиков: система гарантирует, что вы оцениваете реальные знания, а не умение пользоваться Google во время интервью.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Как работает Real-time интервью с ИИ-аватаром?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">ИИ-аватар проводит финальное собеседование в режиме реального времени: задаёт адаптивные вопросы на основе предыдущих ответов, анализирует мимику, язык тела и уверенность кандидата. В итоге тимлид получает полный профиль с оценкой технических компетенций, soft skills и культурного фита — вместо часового собеседования достаточно посмотреть 5-минутное резюме.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Можно ли интегрировать BRaiN HR с нашей ATS или HR-системой?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Да. BRaiN HR интегрируется с популярными ATS-системами и HR-платформами, обеспечивая бесшовный обмен данными. Интеграция происходит поэтапно и не нарушает текущие процессы. Также доступна опция серверного размещения — все данные хранятся на ваших серверах внутри организации. Техническая поддержка сопровождает на каждом этапе.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Подходит ли BRaiN HR для массового найма ИТ-специалистов под проектные дедлайны?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Да. Система одновременно обрабатывает неограниченное количество резюме и проводит параллельно множество интервью — качество оценки не зависит от объёма. Это особенно актуально для ИТ-аутсорсеров и продуктовых компаний, которым нужно быстро закрыть пул позиций перед началом нового проекта или квартала.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STICKY SIDEBAR -->
+<div class="sticky-sidebar">
+  <a href="#form" class="sticky-btn sticky-btn-primary" title="Запросить демо">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2z" stroke="currentColor" stroke-width="1.8"/><path d="M12 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Запросить демо</span>
+  </a>
+  <a href="tel:+74958591070" class="sticky-btn sticky-btn-secondary" title="+7 (495) 859-10-70">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">+7 (495) 859-10-70</span>
+  </a>
+  <a href="/cdn-cgi/l/email-protection#f1989f979eb1938390989f99988394df8384" class="sticky-btn sticky-btn-secondary" title="info@brainhire.ru">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label"><span class="__cf_email__" data-cfemail="7d14131b123d1f0f1c141315140f18530f08">[email&#160;protected]</span></span>
+  </a>
+</div>
+
+<style>
+.sticky-sidebar {
+  position: fixed;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.sticky-btn {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  background: var(--white);
+  border: 1px solid var(--grey2);
+  border-right: none;
+  border-radius: 10px 0 0 10px;
+  padding: 13px 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all .25s;
+  overflow: hidden;
+  max-width: 48px;
+  box-shadow: -2px 2px 12px rgba(17,38,58,0.1);
+  color: var(--text1);
+}
+
+.sticky-btn:hover {
+  max-width: 220px;
+  padding: 13px 18px 13px 14px;
+  gap: 10px;
+}
+
+.sticky-btn-primary {
+  background: var(--brand1);
+  border-color: var(--brand1);
+  color: var(--white);
+}
+
+.sticky-btn-primary:hover {
+  background: var(--brand1-h);
+  border-color: var(--brand1-h);
+  color: var(--white);
+}
+
+.sticky-btn-secondary:hover {
+  border-color: var(--brand1);
+  color: var(--brand1);
+}
+
+.sticky-btn svg { flex-shrink: 0; }
+
+.sticky-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity .2s .05s;
+  max-width: 0;
+  overflow: hidden;
+}
+
+.sticky-btn:hover .sticky-label {
+  opacity: 1;
+  max-width: 180px;
+}
+
+@media (max-width: 768px) {
+  .sticky-sidebar { display: none; }
+}
+</style>
+
+<!-- FLOATING VIDEO WIDGET -->
+<div class="float-video-widget" id="floatWidget">
+  <div class="float-video-close" onclick="closeFloatWidget()" title="Закрыть">✕</div>
+  <div class="float-video-wrap" id="floatVideoWrap" onclick="openFloatFullscreen()">
+    <!-- Poster shown until/if video loads -->
+    <div class="float-video-poster" id="floatPoster">
+      <img src="https://brainhire.ru/images/videoPreview.avif"
+           onerror="this.style.display='none'; document.getElementById('floatPosterFallback').style.display='flex';"
+           alt="Demo">
+      <div class="float-poster-fallback" id="floatPosterFallback">
+        <svg width="40" height="40" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+        <span style="font-size:11px;font-weight:700;color:#fff;">BRaiN HR</span>
+      </div>
+    </div>
+    <video
+      id="floatVideo"
+      muted
+      loop
+      playsinline
+      preload="auto"
+      style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;"
+    >
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+    <div class="float-video-overlay">
+      <div class="float-video-play">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="white"/></svg>
+      </div>
+      <div class="float-video-label">Смотреть демо</div>
+    </div>
+  </div>
+</div>
+
+<!-- FULLSCREEN MODAL -->
+<div class="float-modal" id="floatModal" onclick="closeFloatModal()">
+  <div class="float-modal-inner" onclick="event.stopPropagation()">
+    <button class="float-modal-close" onclick="closeFloatModal()">✕</button>
+    <video
+      id="floatModalVideo"
+      controls
+      playsinline
+      preload="none"
+      style="width:100%;border-radius:12px;display:block;max-height:80vh;background:#000;"
+    >
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+
+<style>
+/* ─── FLOAT VIDEO WIDGET ─── */
+.float-video-widget {
+  position: fixed;
+  bottom: 28px;
+  left: 28px;
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  animation: floatIn .5s ease .8s both;
+}
+
+@keyframes floatIn {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.float-video-close {
+  align-self: flex-end;
+  margin-bottom: 6px;
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: #4096FF;
+  color: #fff;
+  font-size: 11px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer;
+  transition: background .2s;
+  line-height: 1;
+  z-index: 2;
+  position: relative;
+}
+.float-video-close:hover { background: #69B1FF; }
+
+.float-video-wrap {
+  width: 148px;
+  height: 148px;
+  border-radius: 16px;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  box-shadow: 0 8px 32px rgba(64,150,255,0.4);
+  border: 3px solid #4096FF;
+  background: #E6F4FF;
+  transition: transform .25s, box-shadow .25s;
+}
+.float-video-wrap:hover { transform: scale(1.04); box-shadow: 0 12px 40px rgba(64,150,255,0.55); }
+
+/* Poster */
+.float-video-poster {
+  position: absolute; inset: 0;
+  z-index: 1;
+}
+.float-video-poster img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.float-poster-fallback {
+  display: none;
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, #4096FF, #69B1FF);
+  flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 6px;
+  font-size: 40px;
+}
+
+/* Hide poster once video starts playing */
+.float-video-wrap.playing .float-video-poster { display: none; }
+
+.float-video-overlay {
+  position: absolute; inset: 0; z-index: 3;
+  background: rgba(64,150,255,0.25);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  gap: 6px;
+  opacity: 0;
+  transition: opacity .25s;
+}
+.float-video-wrap:hover .float-video-overlay { opacity: 1; }
+
+.float-video-play {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: #4096FF;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 2px 16px rgba(64,150,255,0.7);
+}
+.float-video-label {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px; font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.4);
+}
+
+/* ─── FULLSCREEN MODAL ─── */
+.float-modal {
+  display: none;
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.88);
+  z-index: 1000;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  backdrop-filter: blur(6px);
+}
+.float-modal.open { display: flex; animation: modalIn .25s ease; }
+@keyframes modalIn { from { opacity:0; } to { opacity:1; } }
+
+.float-modal-inner {
+  position: relative;
+  width: 100%;
+  max-width: 900px;
+}
+.float-modal-close {
+  position: absolute;
+  top: -44px; right: 0;
+  background: rgba(255,255,255,0.15);
+  border: none; color: #fff;
+  width: 36px; height: 36px;
+  border-radius: 50%; font-size: 16px;
+  cursor: pointer;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .2s;
+  font-family: 'Montserrat', sans-serif;
+}
+.float-modal-close:hover { background: rgba(255,255,255,0.3); }
+
+@media (max-width: 600px) {
+  .float-video-wrap { width: 110px; height: 110px; }
+  .float-video-widget { bottom: 16px; left: 16px; }
+}
+</style>
+
+<script>
+(function() {
+  var vid = document.getElementById('floatVideo');
+  var wrap = document.getElementById('floatVideoWrap');
+
+  function tryPlay() {
+    if (!vid) return;
+    var p = vid.play();
+    if (p !== undefined) {
+      p.then(function() {
+        wrap.classList.add('playing');
+      }).catch(function() {
+        // autoplay blocked — poster stays visible, click still works
+      });
+    }
+  }
+
+  if (vid) {
+    vid.addEventListener('canplay', tryPlay, { once: true });
+    vid.load();
+  }
+})();
+
+function playVideo() {
+  document.getElementById('videoThumb').style.display = 'none';
+  document.getElementById('videoFrame').style.display = 'block';
+}
+
+function openFloatFullscreen() {
+  var modal = document.getElementById('floatModal');
+  var mv = document.getElementById('floatModalVideo');
+  modal.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  mv.load();
+}
+
+function closeFloatModal() {
+  var modal = document.getElementById('floatModal');
+  var mv = document.getElementById('floatModalVideo');
+  modal.classList.remove('open');
+  document.body.style.overflow = '';
+  mv.pause();
+  mv.currentTime = 0;
+}
+
+function closeFloatWidget() {
+  document.getElementById('floatWidget').style.display = 'none';
+}
+
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeFloatModal();
+});
+</script>
+
+<!-- FOOTER -->
+<footer class="site-footer-new">
+  <div class="footer-new-inner">
+
+    <!-- TOP: 5 columns -->
+    <div class="footer-new-top">
+
+      <!-- Col 1: Logo + desc + socials -->
+      <div class="footer-new-col footer-new-col-brand">
+        <a href="https://brainhire.ru/" class="footer-new-logo">
+          <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+        </a>
+        <p class="footer-new-desc">ИИ-платформа для автоматизации рекрутинга и оценки персонала. Нанимайте в 5 раз дешевле и быстрее.</p>
+        <div class="footer-new-socials">
+          <a href="https://vk.com/brain_hr" target="_blank" class="footer-social-btn" title="ВКонтакте">В</a>
+          <a href="https://t.me/BRaiN_HR" target="_blank" class="footer-social-btn" title="Telegram">Т</a>
+          <a href="https://www.instagram.com/brain_hire/" target="_blank" class="footer-social-btn" title="Instagram">I</a>
+          <a href="https://www.linkedin.com/company/105875559/" target="_blank" class="footer-social-btn" title="LinkedIn">in</a>
+        </div>
+      </div>
+
+      <!-- Col 2: Отраслевые решения -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Отраслевые решения</div>
+        <div class="footer-new-links">
+          <a href="brainhire-it-v3-pain.html" class="footer-new-link">Автоматизация HR в IT</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR в финансовом секторе</a>
+          <a href="brainhire-marketplaces-v2.html" class="footer-new-link">Автоматизация HR для маркетплейсов</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR для малого бизнеса</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR для корпораций</a>
+        </div>
+      </div>
+
+      <!-- Col 3: Функции -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Функции</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/recruiting" class="footer-new-link">Рекрутинг</a>
+          <a href="https://brainhire.ru/ai-vacancy-creation" class="footer-new-link">ИИ-создание вакансий</a>
+          <a href="https://brainhire.ru/ai-resume-analysis" class="footer-new-link">ИИ-анализ резюме</a>
+          <a href="https://brainhire.ru/ai-videointerview" class="footer-new-link">ИИ-видеоинтервью</a>
+          <a href="https://brainhire.ru/ai-staff-scoring" class="footer-new-link">ИИ-оценка кандидатов</a>
+        </div>
+      </div>
+
+      <!-- Col 4: Компания -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Компания</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/about" class="footer-new-link">О нас</a>
+          <a href="https://brainhire.ru/contacts" class="footer-new-link">Контакты</a>
+          <a href="https://brainhire.ru/tariffs" class="footer-new-link">Тарифы</a>
+          <a href="https://brainhire.ru/reviews" class="footer-new-link">Отзывы</a>
+          <a href="https://brainhire.ru/case" class="footer-new-link">Кейсы</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">СМИ о нас</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">Блог</a>
+        </div>
+      </div>
+
+      <!-- Col 5: Контакты -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Контакты</div>
+        <div class="footer-new-contact-block">
+          <a href="tel:+74959703976" class="footer-new-phone">+7 (495) 970-39-76</a>
+          <span class="footer-new-contact-sub">Служба поддержки</span>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Электронная почта:</span>
+          <a href="/cdn-cgi/l/email-protection#70191e161f301e141b5d11195e0205" class="footer-new-email"><span class="__cf_email__" data-cfemail="076e6961684769636c2a666e297572">[email&#160;protected]</span></a>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Адрес:</span>
+          <span class="footer-new-address">142005 Московская область, г. Домодедово, мкр. Центральный, ул. Кирова, д. 7, к.1, пом. 0011, офис 5</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-new-bottom">
+      <div class="footer-new-bottom-top">
+        <span class="footer-new-copy">© ООО «НДК», ОГРН 1225000105010. Все права защищены.</span>
+        <div class="footer-new-legal">
+          <a href="https://brainhire.ru/docs/privacy-policy" class="footer-new-legal-link">Политика конфиденциальности</a>
+          <a href="https://brainhire.ru/docs/user-agreement" class="footer-new-legal-link">Пользовательское соглашение</a>
+          <a href="https://brainhire.ru/docs/personal-data-consent" class="footer-new-legal-link">Обработка данных</a>
+        </div>
+      </div>
+      <div class="footer-new-bottom-docs">
+        <a href="https://brainhire.ru/docs/user-instructions" class="footer-new-legal-link">Инструкция по установке и эксплуатации ПО</a>
+        <a href="https://brainhire.ru/docs/product-description" class="footer-new-legal-link">Описание функциональных характеристик ПО</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<style>
+/* ─── NEW FOOTER ─── */
+.site-footer-new {
+  background: #F5F6F8;
+  border-top: 1px solid #D5D7DA;
+  padding: 64px 0 0;
+}
+.footer-new-inner {
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+.footer-new-top {
+  display: grid;
+  grid-template-columns: 1.4fr 1.3fr 1fr 1fr 1.3fr;
+  gap: 40px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid #D5D7DA;
+}
+
+/* Brand col */
+.footer-new-logo { display: block; margin-bottom: 16px; }
+.footer-new-logo img { height: 24px; filter: none; }
+.footer-new-desc { font-size: 13px; color: #717680; line-height: 1.75; margin-bottom: 20px; }
+.footer-new-socials { display: flex; gap: 8px; }
+.footer-social-btn {
+  width: 36px; height: 36px; border-radius: 8px;
+  background: #fff; border: 1px solid #D5D7DA;
+  display: flex; align-items: center; justify-content: center;
+  color: #717680; font-size: 13px; font-weight: 700;
+  text-decoration: none; transition: background .2s, color .2s;
+}
+.footer-social-btn:hover { background: #E6F4FF; color: #4096FF; border-color: rgba(64,150,255,0.35); }
+
+/* Cols */
+.footer-new-col-title {
+  font-size: 12px; font-weight: 700; color: #11263A;
+  margin-bottom: 20px; text-transform: uppercase; letter-spacing: 0.8px;
+}
+.footer-new-links { display: flex; flex-direction: column; gap: 12px; }
+.footer-new-link {
+  font-size: 13px; color: #717680;
+  text-decoration: none; line-height: 1.4;
+  transition: color .2s;
+}
+.footer-new-link:hover { color: #4096FF; }
+
+/* Contacts col */
+.footer-new-contact-block { margin-bottom: 18px; }
+.footer-new-contact-block:last-child { margin-bottom: 0; }
+.footer-new-phone {
+  display: block; font-size: 16px; font-weight: 700;
+  color: #4096FF; text-decoration: none; margin-bottom: 3px;
+  transition: color .2s;
+}
+.footer-new-phone:hover { color: #69B1FF; }
+.footer-new-contact-sub { font-size: 12px; color: #717680; }
+.footer-new-contact-label { display: block; font-size: 12px; color: #717680; margin-bottom: 4px; font-weight: 600; }
+.footer-new-email {
+  font-size: 13px; color: #11263A; text-decoration: none;
+  transition: color .2s;
+}
+.footer-new-email:hover { color: #4096FF; }
+.footer-new-address { font-size: 12px; color: #717680; line-height: 1.6; }
+
+/* Bottom */
+.footer-new-bottom { padding: 20px 0; }
+.footer-new-bottom-top {
+  display: flex; justify-content: space-between; align-items: center;
+  gap: 20px; flex-wrap: wrap; padding-bottom: 12px;
+  border-bottom: 1px solid #D5D7DA;
+  margin-bottom: 12px;
+}
+.footer-new-copy { font-size: 12px; color: #717680; }
+.footer-new-legal { display: flex; gap: 24px; flex-wrap: wrap; }
+.footer-new-legal-link {
+  font-size: 12px; color: #717680;
+  text-decoration: none; transition: color .2s;
+}
+.footer-new-legal-link:hover { color: #4096FF; }
+.footer-new-bottom-docs { display: flex; gap: 40px; flex-wrap: wrap; }
+
+@media (max-width: 1100px) {
+  .footer-new-top { grid-template-columns: 1fr 1fr 1fr; }
+}
+@media (max-width: 700px) {
+  .footer-new-top { grid-template-columns: 1fr 1fr; }
+  .footer-new-bottom-top { flex-direction: column; align-items: flex-start; }
+  .footer-new-bottom-docs { flex-direction: column; gap: 10px; }
+}
+@media (max-width: 480px) {
+  .footer-new-top { grid-template-columns: 1fr; }
+}
+</style>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  document.body.classList.add('js-loaded');
+
+  function toggleFaq(btn) {
+    const item = btn.closest('.faq-item');
+    const isOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) item.classList.add('ope

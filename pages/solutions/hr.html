@@ -1,0 +1,1541 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>BRaiN HR — ИИ-автоматизация для кадровых агентств</title>
+<meta name="description" content="Закрывайте в 2 раза больше заявок клиентов без найма новых рекрутеров. ИИ берёт на себя 80% рутины: скрининг, интервью, аналитику.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../shared/styles.css">
+<link rel="stylesheet" href="../../shared/components.css">
+<style>
+  /* ─── PAGE-SPECIFIC HERO ─── */
+  .hero-section { background: var(--white); padding: 80px 0 88px; }
+  .hero-wrap {
+    max-width: 1240px; margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: 1fr 440px; gap: 72px; align-items: center;
+  }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.3);
+    border-radius: 100px; padding: 5px 14px 5px 10px;
+    font-size: 12px; font-weight: 600; color: var(--brand1); margin-bottom: 20px;
+    letter-spacing: 0.3px;
+  }
+  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--brand1); animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:.35;} }
+
+  h1 {
+    font-size: clamp(36px, 4vw, 52px); font-weight: 800;
+    line-height: 1.1; letter-spacing: -1.2px; color: var(--text1); margin-bottom: 20px;
+  }
+  h1 em { font-style: normal; color: var(--brand1); }
+  h1 .accent-orange { color: var(--brand2); }
+
+  .hero-sub {
+    font-size: 17px; color: var(--text2); margin-bottom: 36px;
+    max-width: 500px; line-height: 1.7; font-weight: 400;
+  }
+  .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 40px; }
+  .hero-proof { display: flex; gap: 24px; flex-wrap: wrap; }
+  .proof-item {
+    display: flex; align-items: center; gap: 7px;
+    font-size: 13px; font-weight: 500; color: var(--text2);
+  }
+  .proof-item::before {
+    content:''; width:16px; height:16px; border-radius:50%; flex-shrink:0;
+    background: var(--brand1-bg); border: 1.5px solid var(--brand1);
+    background-image: url("data:image/svg+xml,%3Csvg width='10' height='8' viewBox='0 0 10 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 4L3.5 6.5L9 1' stroke='%234096FF' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat; background-position: center;
+  }
+
+  /* ─── PIPELINE CARD ─── */
+  .pipeline-card {
+    background: var(--white); border: 1px solid var(--grey2);
+    border-radius: var(--radius); box-shadow: var(--shadow-md); overflow: hidden;
+  }
+  .pipeline-header {
+    padding: 14px 18px; border-bottom: 1px solid var(--grey2);
+    display: flex; align-items: center; gap: 8px;
+    font-size: 12px; font-weight: 600; color: var(--text2); background: var(--grey1);
+  }
+  .pipeline-header .dots { display: flex; gap: 6px; }
+  .wdot { width: 10px; height: 10px; border-radius: 50%; }
+  .pipeline-body { padding: 14px; display: flex; flex-direction: column; gap: 8px; }
+  .pipeline-stage {
+    background: var(--grey1); border: 1px solid var(--grey2); border-radius: var(--radius-sm);
+    padding: 11px 14px; display: flex; align-items: center; justify-content: space-between;
+    gap: 10px; transition: border-color .2s, box-shadow .2s;
+  }
+  .pipeline-stage:hover { border-color: var(--brand1); box-shadow: 0 0 0 3px rgba(64,150,255,0.08); }
+  .ps-left { display: flex; align-items: center; gap: 10px; }
+  .ps-icon { font-size: 16px; flex-shrink: 0; display: flex; align-items: center; }
+  .ps-name { font-size: 12px; font-weight: 600; color: var(--text1); }
+  .ps-meta { font-size: 11px; color: var(--text2); margin-top: 1px; }
+  .ps-badge {
+    font-size: 11px; font-weight: 600; padding: 3px 10px;
+    border-radius: 100px; white-space: nowrap;
+  }
+  .ps-badge.blue { background: var(--brand1-bg); color: var(--brand1); border: 1px solid rgba(64,150,255,0.25); }
+  .ps-badge.orange { background: var(--brand2-bg); color: var(--brand2); border: 1px solid rgba(255,116,1,0.25); }
+  .ps-badge.teal { background: rgba(18,83,109,0.08); color: var(--brand3); border: 1px solid rgba(18,83,109,0.2); }
+  .ps-badge.grey { background: var(--grey2); color: var(--grey4); }
+  .pipeline-summary {
+    margin-top: 2px; padding: 10px 14px;
+    background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.25);
+    border-radius: var(--radius-sm); font-size: 12px; font-weight: 500; color: var(--brand3);
+    display: flex; align-items: center; gap: 7px; line-height: 1.4;
+  }
+  .pipeline-summary span { flex: 1; }
+  .pipeline-summary strong { font-weight: 700; color: var(--brand1); }
+
+  /* ─── TICKER ─── */
+  .ticker-wrap {
+    border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2);
+    background: var(--grey1); overflow: hidden; padding: 13px 0;
+  }
+  .ticker { display: flex; animation: ticker 32s linear infinite; width: max-content; }
+  .ticker-item {
+    display: flex; align-items: center; gap: 8px; padding: 0 32px;
+    font-size: 13px; font-weight: 500; color: var(--text2); white-space: nowrap;
+  }
+  .ticker-item .ti { color: var(--brand1); font-size: 14px; display: flex; align-items: center; flex-shrink: 0; }
+  .ticker-item b { color: var(--text1); font-weight: 600; }
+  @keyframes ticker { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
+
+  /* ─── STATS BAR ─── */
+  .stats-bar { background: #F5F6F8; border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2); padding: 48px 0; }
+  .stats-inner {
+    max-width: 1240px; margin: 0 auto; padding: 0 24px;
+    display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
+  }
+  .stat-item {
+    text-align: left; padding: 32px 48px;
+    border-right: 1px solid var(--grey2);
+  }
+  .stat-item:last-child { border-right: none; }
+  .stat-num { font-size: 48px; font-weight: 800; color: var(--text1); line-height: 1; letter-spacing: -2px; margin-bottom: 12px; }
+  .stat-num span { color: #4096FF; }
+  .stat-desc { font-size: 13px; color: var(--text2); line-height: 1.55; font-weight: 500; }
+
+  /* ─── COMPARE ─── */
+  .compare-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 48px; }
+  .compare-col { background: var(--white); border: 1px solid var(--grey2); border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow); }
+  .compare-col.good { border-color: var(--brand1); }
+  .compare-header {
+    padding: 16px 24px; border-bottom: 1px solid var(--grey2);
+    font-size: 14px; font-weight: 700; background: var(--grey1);
+    display: flex; align-items: center; gap: 10px; color: var(--text2);
+  }
+  .compare-col.good .compare-header { background: var(--brand1-bg); color: var(--brand3); border-bottom-color: rgba(64,150,255,0.2); }
+  .compare-header-badge {
+    font-size: 11px; font-weight: 700; padding: 3px 9px; border-radius: 100px;
+    background: var(--brand1); color: var(--white);
+  }
+  .compare-list { padding: 4px 0; }
+  .compare-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 13px 24px; border-bottom: 1px solid var(--grey1);
+    font-size: 14px; color: var(--text2);
+  }
+  .compare-item:last-child { border-bottom: none; }
+  .compare-col.good .compare-item { color: var(--text1); }
+  .check-x { color: #F04438; flex-shrink: 0; margin-top: 2px; font-size: 13px; }
+  .check-ok { color: var(--brand1); flex-shrink: 0; margin-top: 2px; font-size: 13px; }
+
+  /* ─── FEATURE ROWS ─── */
+  .feat-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center;
+    padding: 56px 0; border-bottom: 1px solid var(--grey2);
+  }
+  .feat-row:last-child { border-bottom: none; }
+  .feat-row-rev { direction: rtl; }
+  .feat-row-rev > * { direction: ltr; }
+
+  .feat-screen { position: relative; }
+  .feat-screen-inner {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: 12px;
+    box-shadow: 0 8px 40px rgba(17,38,58,0.12); overflow: hidden;
+  }
+  .feat-browser-bar {
+    background: var(--grey1); border-bottom: 1px solid var(--grey2);
+    padding: 10px 14px; display: flex; gap: 6px; align-items: center;
+  }
+  .feat-browser-bar span { width: 10px; height: 10px; border-radius: 50%; }
+  .feat-browser-bar span:nth-child(1) { background: #FD6B5B; }
+  .feat-browser-bar span:nth-child(2) { background: #FEBC2E; }
+  .feat-browser-bar span:nth-child(3) { background: #28C840; }
+
+  .feat-mock { padding: 16px; }
+  .feat-mock-header { margin-bottom: 12px; }
+  .feat-mock-breadcrumb { font-size: 11px; color: var(--text2); margin-bottom: 4px; }
+  .feat-mock-title { font-size: 15px; font-weight: 700; color: var(--text1); }
+
+  .feat-candidates { display: flex; flex-direction: column; gap: 8px; }
+  .feat-candidate {
+    background: var(--white); border: 1px solid var(--grey2); border-radius: 8px;
+    padding: 10px 12px; display: flex; align-items: center; gap: 10px;
+  }
+  .feat-candidate-top { border-color: rgba(64,150,255,0.3); }
+  .feat-cand-avatar { width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .feat-cand-info { flex: 1; }
+  .feat-cand-name { font-size: 12px; font-weight: 700; color: var(--text1); }
+  .feat-cand-role { font-size: 10px; color: var(--text2); }
+  .feat-cand-score { font-size: 12px; font-weight: 800; padding: 3px 10px; border-radius: 100px; flex-shrink: 0; }
+
+  .feat-mock-tabs { display: flex; gap: 0; border-bottom: 1px solid var(--grey2); }
+  .feat-tab { padding: 10px 14px; font-size: 11px; font-weight: 600; color: var(--text2); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -1px; }
+  .feat-tab.active { color: var(--brand1); border-bottom-color: var(--brand1); }
+  .feat-mock-interview-body { padding: 14px; }
+  .feat-interview-score { font-size: 11px; font-weight: 600; color: var(--text2); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+  .feat-score-badge { background: var(--brand1); color: var(--white); padding: 2px 8px; border-radius: 100px; font-size: 12px; font-weight: 800; }
+  .feat-interview-q { font-size: 12px; font-weight: 600; color: var(--text1); background: var(--grey1); border-radius: 6px; padding: 10px; margin-bottom: 8px; line-height: 1.5; }
+  .feat-interview-a { font-size: 11px; color: var(--text2); background: rgba(64,150,255,0.04); border: 1px solid rgba(64,150,255,0.1); border-radius: 6px; padding: 10px; margin-bottom: 10px; line-height: 1.5; }
+  .feat-interview-meta { display: flex; gap: 8px; }
+  .feat-tag { font-size: 10px; font-weight: 600; background: var(--grey1); border: 1px solid var(--grey2); border-radius: 100px; padding: 3px 8px; color: var(--text2); }
+
+  .feat-avatar-body { padding: 14px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .feat-avatar-screen {
+    background: linear-gradient(135deg, #12536D, #1a6b8a);
+    border-radius: 8px; padding: 20px 12px; text-align: center;
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px;
+  }
+  .feat-avatar-label { font-size: 10px; font-weight: 600; color: rgba(255,255,255,0.8); }
+  .feat-avatar-analysis { display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+  .feat-analysis-row { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--text2); }
+  .feat-analysis-row span:first-child { min-width: 90px; font-size: 10px; }
+  .feat-bar { flex: 1; height: 4px; background: var(--grey2); border-radius: 2px; overflow: hidden; }
+  .feat-bar-fill { height: 100%; background: var(--brand1); border-radius: 2px; }
+  .feat-analysis-row span:last-child { min-width: 28px; text-align: right; font-weight: 700; color: var(--text1); font-size: 10px; }
+
+  .feat-num { font-size: 11px; font-weight: 800; letter-spacing: 2px; color: var(--brand1); text-transform: uppercase; margin-bottom: 10px; }
+  .feat-title { font-size: clamp(20px,2vw,26px); font-weight: 800; color: var(--text1); margin-bottom: 14px; line-height: 1.25; letter-spacing: -0.4px; }
+  .feat-desc { font-size: 14px; color: var(--text2); line-height: 1.72; margin-bottom: 20px; }
+  .feat-checks { display: flex; flex-direction: column; gap: 8px; }
+  .feat-check { font-size: 13px; color: var(--text1); font-weight: 500; display: flex; align-items: flex-start; gap: 8px; line-height: 1.4; }
+  .feat-check svg { flex-shrink: 0; margin-top: 2px; }
+  .feat-cta-btn {
+    display: inline-flex; align-items: center; gap: 6px;
+    margin-top: 20px; padding: 11px 22px;
+    background: var(--white); color: var(--brand1);
+    border: 1.5px solid var(--brand1); border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 700;
+    text-decoration: none; cursor: pointer;
+    transition: background .2s, color .2s, box-shadow .2s, transform .15s;
+  }
+  .feat-cta-btn:hover {
+    background: var(--brand1); color: var(--white);
+    box-shadow: 0 4px 16px rgba(64,150,255,0.3); transform: translateY(-1px);
+  }
+
+  /* ─── LOGOS ─── */
+  .logos-section { background: var(--white); border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2); padding: 32px 0; }
+  .logos-label { font-size: 12px; font-weight: 600; text-align: center; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 24px; }
+  .logos-slider-wrap { overflow: hidden; position: relative; }
+  .logos-slider-wrap::before, .logos-slider-wrap::after {
+    content: ''; position: absolute; top: 0; bottom: 0; width: 80px; z-index: 2; pointer-events: none;
+  }
+  .logos-slider-wrap::before { left: 0; background: linear-gradient(90deg, var(--white), transparent); }
+  .logos-slider-wrap::after { right: 0; background: linear-gradient(-90deg, var(--white), transparent); }
+  .logos-slider-track {
+    display: flex; align-items: center; gap: 0;
+    animation: ticker 30s linear infinite; width: max-content;
+  }
+  .logos-slider-track:hover { animation-play-state: paused; }
+  .logo-item {
+    display: inline-flex; align-items: center; justify-content: center;
+    padding: 0 36px; height: 68px; flex-shrink: 0;
+    border-right: 1px solid var(--grey2);
+    text-decoration: none; white-space: nowrap;
+    opacity: .6; transition: opacity .25s;
+    line-height: 1.2;
+  }
+  .logo-item:last-child { border-right: none; }
+  .logo-item:hover { opacity: 1; }
+
+  /* ─── REVEAL ─── */
+  .js-loaded .reveal { opacity:0; transform:translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+  .js-loaded .reveal.visible { opacity:1; transform:none; }
+  .js-loaded .d1 { transition-delay:.08s; }
+  .js-loaded .d2 { transition-delay:.16s; }
+  .js-loaded .d3 { transition-delay:.24s; }
+
+  .pain-emoji { display: flex; align-items: center; justify-content: flex-start; margin-bottom: 14px; }
+  .step-icon { display: flex; align-items: center; margin-bottom: 12px; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .hero-wrap { grid-template-columns: 1fr; gap: 40px; }
+    .compare-wrap { grid-template-columns: 1fr; }
+    .feat-row, .feat-row-rev { grid-template-columns: 1fr; direction: ltr; gap: 32px; }
+    .steps-grid { grid-template-columns: 1fr 1fr; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .feat-avatar-body { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 600px) {
+    .steps-grid { grid-template-columns: 1fr; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    .stat-item { border-right: none; border-bottom: 1px solid var(--grey2); }
+    .stat-item:last-child { border-bottom: none; }
+    .feat-avatar-body { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
+  <span class="urgency-dot"></span>
+  Каждый день без нужного сотрудника — это упущенная выручка, переработки команды и задержка развития бизнеса
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <!-- Top bar -->
+  <div class="header-topbar">
+    <div class="header-inner" style="height:36px; justify-content:center;">
+      <div class="topbar-links">
+        <a href="../about.html" class="topbar-link">О компании</a>
+        <a href="../contacts.html" class="topbar-link">Контакты</a>
+        <a href="../hr-cashback.html" class="topbar-link">Партнёрская программа</a>
+        <a href="../calculator.html" class="topbar-link">Калькулятор выгоды</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <div class="header-main">
+    <div class="header-inner">
+      <a class="logo" href="../index.html">
+        <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+      </a>
+      <nav class="main-nav">
+
+        <!-- Как это работает — megamenu -->
+        <div class="mnav-item has-mega" id="megaHow">
+          <button class="mnav-btn">
+            Как это работает
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel">
+            <div class="mega-col">
+              <!-- Рекрутинг → sub -->
+              <div class="mega-section-item has-sub" id="subRecruiting">
+                <div class="mega-section-link">
+                  <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                  <div>
+                    <div class="mega-section-title">Рекрутинг</div>
+                    <div class="mega-section-desc">Полный цикл подбора с ИИ</div>
+                  </div>
+                  <svg class="mega-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div class="sub-panel">
+                  <a href="../features/ai-vacancy-creation.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-создание вакансий</div>
+                      <div class="sub-item-desc">Описание вакансии за минуты</div>
+                    </div>
+                  </a>
+                  <a href="../features/ai-screening.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-анализ резюме</div>
+                      <div class="sub-item-desc">Скоринг и ранжирование откликов</div>
+                    </div>
+                  </a>
+                  <a href="../features/ai-videointerview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Первичное ИИ-видеоинтервью</div>
+                      <div class="sub-item-desc">Тестирование с прокторингом</div>
+                    </div>
+                  </a>
+                  <a href="../features/ai-realtime-interview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Real-time интервью с ИИ-аватаром</div>
+                      <div class="sub-item-desc">Адаптивное интервью в реальном времени</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Оценка персонала -->
+              <a href="../features/ai-staff-scoring.html" class="mega-section-link mega-section-item">
+                <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 017 4.5v1A2.5 2.5 0 009.5 8h5A2.5 2.5 0 0017 5.5v-1A2.5 2.5 0 0014.5 2h-5z"/><path d="M9.5 8a2.5 2.5 0 00-2.5 2.5A2.5 2.5 0 004.5 13a2.5 2.5 0 002.5 2.5 2.5 2.5 0 002.5 2.5h5a2.5 2.5 0 002.5-2.5 2.5 2.5 0 002.5-2.5 2.5 2.5 0 00-2.5-2.5A2.5 2.5 0 0014.5 8h-5z"/></svg></span>
+                <div>
+                  <div class="mega-section-title">Оценка персонала</div>
+                  <div class="mega-section-desc">ИИ-оценка soft skills и компетенций</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Отраслевые решения — dropdown -->
+        <div class="mnav-item has-drop" id="dropSolutions">
+          <button class="mnav-btn">
+            Отраслевые решения
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="drop-panel">
+            <a href="../solutions/smb.html" class="drop-item">Малый бизнес</a>
+            <a href="../solutions/enterprise.html" class="drop-item">Корпорации</a>
+            <a href="../solutions/it.html" class="drop-item">ИТ компании</a>
+            <a href="../solutions/finance.html" class="drop-item">Финансовый сектор</a>
+            <a href="../solutions/hr.html" class="drop-item drop-item-active">HR агентства</a>
+            <div class="drop-group">
+              <div class="drop-group-label">Маркетплейсы</div>
+              <a href="../solutions/marketplaces.html" class="drop-item" style="padding-left:24px;">Владельцам ПВЗ</a>
+              <a href="../solutions/sellers.html" class="drop-item" style="padding-left:24px;">Селлерам</a>
+            </div>
+            <a href="../solutions/horeca.html" class="drop-item">HoReCa</a>
+            <a href="../solutions/education.html" class="drop-item">Образование</a>
+            <a href="../solutions/sales.html" class="drop-item">Продажи</a>
+            <a href="../solutions/logistics.html" class="drop-item">Логистика</a>
+            <a href="../solutions/marketing.html" class="drop-item">Маркетинг</a>
+          </div>
+        </div>
+</header>
+
+<script>
+// ─── HEADER MENU — hover-based ───
+document.addEventListener('DOMContentLoaded', function() {
+  var items = document.querySelectorAll('.mnav-item.has-mega, .mnav-item.has-drop');
+
+  items.forEach(function(item) {
+    var timer;
+
+    item.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      items.forEach(function(other) {
+        if (other !== item) other.classList.remove('open');
+      });
+      item.classList.add('open');
+    });
+
+    item.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        item.classList.remove('open');
+        item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      }, 120);
+    });
+
+    var panel = item.querySelector('.mega-panel, .drop-panel');
+    if (panel) {
+      panel.addEventListener('mouseenter', function() { clearTimeout(timer); });
+      panel.addEventListener('mouseleave', function() {
+        timer = setTimeout(function() {
+          item.classList.remove('open');
+          item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+        }, 120);
+      });
+    }
+  });
+
+  document.querySelectorAll('.has-sub').forEach(function(sub) {
+    sub.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      sub.classList.add('sub-open');
+    });
+  });
+
+  // Close sub-panels when hovering over non-sub mega items
+  document.querySelectorAll('.mega-section-item:not(.has-sub)').forEach(function(item) {
+    item.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+    });
+  });
+});
+
+function toggleMega() {}
+function showSub(id) {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  var el = document.getElementById(id);
+  if (el) el.classList.add('sub-open');
+}
+function hideSubs() {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+}
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.mnav-item').forEach(function(e){ e.classList.remove('open'); });
+    document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  }
+});
+</script>
+
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="hero-wrap">
+    <div>
+      <div class="hero-badge reveal">
+        <span class="dot"></span>
+        Для руководителей и сотрудников кадровых агентств
+      </div>
+      <h1 class="reveal d1">
+        Рекрутеры тонут в откликах.<br>
+        <em>Клиенты уходят</em><br>
+        <em>к конкурентам</em>
+      </h1>
+      <p class="hero-sub reveal d2">
+        Прямо сейчас ваши рекрутеры тратят 54% времени на дозвоны и ручной скрининг. Подключите ИИ за 1 час — он возьмёт на себя 80% рутины, а вы сохраните маржу и закроете в 2 раза больше заявок.
+      </p>
+      <div class="hero-actions reveal d2">
+        <a href="https://brainhire.ru/signup" class="btn-hero-primary">
+          100 кандидатов бесплатно
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="#form" class="btn-hero-outline">Хочу демонстрацию</a>
+      </div>
+      <div class="hero-proof reveal d3">
+        <span class="proof-item">Оплата только за использование</span>
+        <span class="proof-item">Данные хранятся в РФ</span>
+        <span class="proof-item">Реестр отечественного ПО</span>
+      </div>
+    </div>
+
+    <!-- PIPELINE CARD -->
+    <div class="pipeline-card reveal d2">
+      <div class="pipeline-header">
+        <div class="dots">
+          <div class="wdot" style="background:#FD6B5B;"></div>
+          <div class="wdot" style="background:#FEBC2E;"></div>
+          <div class="wdot" style="background:#28C840;"></div>
+        </div>
+        <span>Заявка клиента — Менеджер по продажам</span>
+      </div>
+      <div class="pipeline-body">
+        <div class="pipeline-stage">
+          <div class="ps-left">
+            <span class="ps-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9 2H7a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2h-2"/><rect x="9" y="1" width="6" height="4" rx="1" ry="1"/></svg></span>
+            <div>
+              <div class="ps-name">Получено откликов</div>
+              <div class="ps-meta">За 24 часа после публикации</div>
+            </div>
+          </div>
+          <span class="ps-badge grey">312</span>
+        </div>
+        <div class="pipeline-stage">
+          <div class="ps-left">
+            <span class="ps-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span>
+            <div>
+              <div class="ps-name">ИИ-скоринг резюме</div>
+              <div class="ps-meta">Автоматически ранжировано</div>
+            </div>
+          </div>
+          <span class="ps-badge blue">→ 45 релевантных</span>
+        </div>
+        <div class="pipeline-stage">
+          <div class="ps-left">
+            <span class="ps-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+            <div>
+              <div class="ps-name">ИИ-интервью пройдено</div>
+              <div class="ps-meta">Без участия рекрутера</div>
+            </div>
+          </div>
+          <span class="ps-badge orange">→ 15 сильных</span>
+        </div>
+        <div class="pipeline-stage">
+          <div class="ps-left">
+            <span class="ps-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg></span>
+            <div>
+              <div class="ps-name">Шорт-лист для клиента</div>
+              <div class="ps-meta">Видео + профиль + soft skills</div>
+            </div>
+          </div>
+          <span class="ps-badge teal">7 финалистов</span>
+        </div>
+        <div class="pipeline-summary">
+          <svg width="14" height="14" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24" style="flex-shrink:0;"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg>
+          <span>Рекрутер потратил <strong>40 минут</strong> — вместо 3 дней на прозвоны и скрининг</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span><b>ИИ-скоринг резюме</b> — обработка 300+ откликов за минуты</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span><b>ИИ-видеоинтервью</b> — без участия рекрутера, с прокторингом</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><b>Аналитика для клиентов</b> — прозрачные отчёты по каждой заявке</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span><b>Параллельная работа</b> — неограниченное число вакансий одновременно</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg></span><b>Шорт-лист за 48 часов</b> — клиент видит только лучших</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="16,16 12,12 8,16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg></span><b>Публикация на hh.ru, Avito, SuperJob</b> — одним кликом</div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></span><b>ИИ-скоринг резюме</b> — обработка 300+ откликов за минуты</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span><b>ИИ-видеоинтервью</b> — без участия рекрутера, с прокторингом</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span><b>Аналитика для клиентов</b> — прозрачные отчёты по каждой заявке</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span><b>Параллельная работа</b> — неограниченное число вакансий одновременно</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg></span><b>Шорт-лист за 48 часов</b> — клиент видит только лучших</div>
+    <div class="ticker-item"><span class="ti"><svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="16,16 12,12 8,16"/><line x1="12" y1="12" x2="12" y2="21"/><path d="M20.39 18.39A5 5 0 0018 9h-1.26A8 8 0 103 16.3"/></svg></span><b>Публикация на hh.ru, Avito, SuperJob</b> — одним кликом</div>
+  </div>
+</div>
+
+<!-- PAIN -->
+<section>
+  <div class="container">
+    <h2 class="section-title reveal">Почему кадровые агентства<br><em>теряют клиентов и маржу</em></h2>
+    <p class="section-sub reveal">Это системные проблемы рынка рекрутинга — если не автоматизировать процессы, агентство проигрывает конкурентам с ИИ.</p>
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></span>
+        <div class="pain-title">Рекрутеры не справляются с объёмом</div>
+        <div class="pain-text">Один рекрутер ведёт 5-8 вакансий, на каждую приходит 200+ откликов. 54% рабочего времени уходит на дозвоны — вместо оценки кандидатов. Заявки копятся, сроки срываются.</div>
+      </div>
+      <div class="pain-card reveal d1">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span>
+        <div class="pain-title">Клиенты уходят из-за сорванных дедлайнов</div>
+        <div class="pain-text">Каждый дополнительный день в процессе найма увеличивает вероятность потери кандидата на 10%. Клиент ждёт шорт-лист 2 недели, а конкурент-агентство с ИИ предоставляет его за 3 дня.</div>
+      </div>
+      <div class="pain-card reveal d2">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span>
+        <div class="pain-title">Масштабирование = найм новых рекрутеров</div>
+        <div class="pain-text">Чтобы взять больше заявок, нужно нанимать ещё людей. Это ФОТ, обучение, текучесть. Маржа тает, а качество непредсказуемо — у каждого рекрутера свой стандарт оценки.</div>
+      </div>
+      <div class="pain-card reveal d3">
+        <span class="pain-emoji"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+        <div class="pain-title">Нет прозрачной аналитики для клиентов</div>
+        <div class="pain-text">Клиент спрашивает: «Сколько кандидатов вы просмотрели? Почему так долго?» — а у вас нет данных. Без объективных метрик сложно обосновать ценность услуг и удержать клиентов.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="stats-inner">
+    <div class="stat-item reveal">
+      <div class="stat-num"><span>54%</span></div>
+      <div class="stat-desc">рабочего времени рекрутера<br>уходит на дозвоны</div>
+    </div>
+    <div class="stat-item reveal d1">
+      <div class="stat-num"><span>+10%</span></div>
+      <div class="stat-desc">вероятность потери кандидата<br>за каждый лишний день</div>
+    </div>
+    <div class="stat-item reveal d2">
+      <div class="stat-num"><span>3-5x</span></div>
+      <div class="stat-desc">больше вакансий<br>ведёт один рекрутер с ИИ</div>
+    </div>
+    <div class="stat-item reveal d3">
+      <div class="stat-num"><span>80%</span></div>
+      <div class="stat-desc">рутинных задач<br>автоматизирует BRaiN HR</div>
+    </div>
+  </div>
+  <div style="max-width:1240px; margin:0 auto; padding: 16px 24px 0; text-align:center;">
+    <p style="font-size: 11px; color: var(--text2); line-height: 1.5;">*Согласно исследованиям SberIndex, HeadHunter, Rabota.ru, Росстат, ВШЭ, РБК, Forbes Russia, PwC, BCG и ЦБ РФ.
+
+</p>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<section>
+  <div class="container">
+    <div class="section-tag">Как это работает</div>
+    <h2 class="section-title reveal">ИИ закрывает рутину —<br><em>рекрутер закрывает заявку</em></h2>
+    <p class="section-sub reveal">Подключение за 1 час. Рекрутер работает с лучшими кандидатами, а не перебирает сотни резюме вручную.</p>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <div class="step-num">Шаг 1 <span class="step-time">10 минут</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+        <div class="step-title">ИИ создаёт вакансию</div>
+        <div class="step-text">Описываете требования клиента — ИИ формирует точное описание вакансии и публикует на hh.ru, Avito, SuperJob одновременно.</div>
+      </div>
+      <div class="step reveal d1">
+        <div class="step-num">Шаг 2 <span class="step-time">Автоматически</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+        <div class="step-title">Скоринг 300+ резюме</div>
+        <div class="step-text">ИИ анализирует каждый отклик по критериям заказчика. Нерелевантные отсеиваются автоматически. Рекрутер видит только подходящих кандидатов.</div>
+      </div>
+      <div class="step reveal d2">
+        <div class="step-num">Шаг 3 <span class="step-time">Без рекрутера</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+        <div class="step-title">ИИ-интервью с кандидатами</div>
+        <div class="step-text">Кандидаты проходят видеоинтервью в удобное время. Прокторинг исключает подсказки. Ни одного звонка от рекрутера на этом этапе.</div>
+      </div>
+      <div class="step reveal d3">
+        <div class="step-num">Шаг 4 <span class="step-time">5 мин/кандидат</span></div>
+        <span class="step-icon"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg></span>
+        <div class="step-title">Шорт-лист для клиента</div>
+        <div class="step-text">Видео + аналитический профиль по каждому финалисту. Клиент получает объективный отчёт с метриками — доверие к агентству растёт.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARE: Without vs With BRaiN HR -->
+<section style="background: #F5F6F8; border-top: 1px solid var(--grey2); border-bottom: 1px solid var(--grey2);">
+  <div class="container">
+    <h2 class="section-title reveal">Перестаньте нанимать рекрутеров,<br><em>чтобы закрывать больше заявок</em></h2>
+    <p class="section-sub reveal">Один рекрутер с BRaiN HR заменяет 3-5 рекрутеров без ИИ. Маржа сохраняется, качество растёт.</p>
+    <div class="compare-wrap">
+      <div class="compare-col reveal">
+        <div class="compare-header">
+          <svg width="16" height="16" stroke="#717680" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Без BRaiN HR
+        </div>
+        <div class="compare-list">
+          <div class="compare-item"><span class="check-x"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.5a19.79 19.79 0 01-3.07-8.68A2 2 0 012 .84h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.1 8.5a16 16 0 006.29 6.29l1.02-1.02a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.09z"/></svg></span> 54% времени рекрутера — дозвоны до кандидатов</div>
+          <div class="compare-item"><span class="check-x"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12,6 12,12 16,14"/></svg></span> 30-45 дней на закрытие одной вакансии</div>
+          <div class="compare-item"><span class="check-x"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><line x1="9" y1="3" x2="9" y2="21"/></svg></span> 5-8 вакансий на одного рекрутера — потолок</div>
+          <div class="compare-item"><span class="check-x"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span> Нет объективных метрик для клиента</div>
+          <div class="compare-item"><span class="check-x"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="18" y1="8" x2="23" y2="13"/><line x1="23" y1="8" x2="18" y2="13"/></svg></span> Качество зависит от конкретного рекрутера</div>
+          <div class="compare-item"><span class="check-x"><svg width="18" height="18" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></span> Масштабирование = рост ФОТ</div>
+        </div>
+      </div>
+      <div class="compare-col good reveal d1">
+        <div class="compare-header">
+          <svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+          С BRaiN HR
+          <span class="compare-header-badge">Рекомендуем</span>
+        </div>
+        <div class="compare-list">
+          <div class="compare-item"><span class="check-ok"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></span> Без звонков — кандидат получает ссылку на ИИ-интервью</div>
+          <div class="compare-item"><span class="check-ok"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span> 3-7 дней от отклика до шорт-листа</div>
+          <div class="compare-item"><span class="check-ok"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="23,6 13.5,15.5 8.5,10.5 1,18"/><polyline points="17,6 23,6 23,12"/></svg></span> 15-25 вакансий на одного рекрутера с ИИ</div>
+          <div class="compare-item"><span class="check-ok"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span> Прозрачная аналитика и отчёты для клиента</div>
+          <div class="compare-item"><span class="check-ok"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span> Единые стандарты оценки для всех кандидатов</div>
+          <div class="compare-item"><span class="check-ok"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></span> Масштабирование без найма новых людей</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOGOS SLIDER -->
+<div class="logos-section">
+  <div class="container">
+    <div class="logos-label">Нам доверяют кадровые агентства и рекрутинговые компании</div>
+  </div>
+  <div class="logos-slider-wrap">
+    <div class="logos-slider-track">
+      <a href="https://www.simbirsoft.com/" target="_blank" class="logo-item">
+        <span style="font-size:18px; font-weight:800; color:#1a1a2e; letter-spacing:-0.5px;">Simbir<span style="color:#e03030;">S</span>oft</span>
+      </a>
+      <a href="https://bssys.com/" target="_blank" class="logo-item">
+        <span style="background:#1a3a8a; color:#fff; font-size:15px; font-weight:900; padding:5px 10px; border-radius:4px; letter-spacing:1px;">BSS</span>
+      </a>
+      <a href="https://3logic.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:800; color:#1a1a1a; letter-spacing:-0.3px;">3<span style="color:#e03030;">LOGIC</span><br><span style="font-size:9px; font-weight:600; color:#555; letter-spacing:1px;">GROUP</span></span>
+      </a>
+      <a href="https://kazan.rt.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:700; color:#1a1a1a; letter-spacing:0.5px;">РОСТЕЛЕКОМ</span>
+      </a>
+      <a href="https://e-flops.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:800; color:#222; letter-spacing:-0.5px;">e<span style="color:#4096FF;">-</span>flops</span>
+      </a>
+      <a href="https://itpeoplegroup.ru/" target="_blank" class="logo-item">
+        <span style="font-size:12px; font-weight:800; color:#1a1a1a; letter-spacing:1.5px; text-transform:uppercase; border:2px solid #1a1a1a; padding:4px 8px;">IT PEOPLE</span>
+      </a>
+      <a href="https://moby.estate/" target="_blank" class="logo-item">
+        <span style="font-size:17px; font-weight:800; color:#2b4de3; letter-spacing:-0.5px;">moby</span>
+      </a>
+      <a href="https://www.hr-rocket.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:800; color:#1a1a1a; letter-spacing:0.5px;">HR ROCKET</span>
+      </a>
+      <a href="https://prodamus.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#6c3db5; letter-spacing:-0.3px;">prodamus</span>
+      </a>
+      <a href="https://www.penoplex.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#e03030; letter-spacing:0.5px;">PENOPLEX</span>
+      </a>
+      <!-- duplicate for seamless loop -->
+      <a href="https://www.simbirsoft.com/" target="_blank" class="logo-item">
+        <span style="font-size:18px; font-weight:800; color:#1a1a2e; letter-spacing:-0.5px;">Simbir<span style="color:#e03030;">S</span>oft</span>
+      </a>
+      <a href="https://bssys.com/" target="_blank" class="logo-item">
+        <span style="background:#1a3a8a; color:#fff; font-size:15px; font-weight:900; padding:5px 10px; border-radius:4px; letter-spacing:1px;">BSS</span>
+      </a>
+      <a href="https://3logic.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:800; color:#1a1a1a; letter-spacing:-0.3px;">3<span style="color:#e03030;">LOGIC</span><br><span style="font-size:9px; font-weight:600; color:#555; letter-spacing:1px;">GROUP</span></span>
+      </a>
+      <a href="https://kazan.rt.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:700; color:#1a1a1a; letter-spacing:0.5px;">РОСТЕЛЕКОМ</span>
+      </a>
+      <a href="https://e-flops.ru/" target="_blank" class="logo-item">
+        <span style="font-size:16px; font-weight:800; color:#222; letter-spacing:-0.5px;">e<span style="color:#4096FF;">-</span>flops</span>
+      </a>
+      <a href="https://itpeoplegroup.ru/" target="_blank" class="logo-item">
+        <span style="font-size:12px; font-weight:800; color:#1a1a1a; letter-spacing:1.5px; text-transform:uppercase; border:2px solid #1a1a1a; padding:4px 8px;">IT PEOPLE</span>
+      </a>
+      <a href="https://moby.estate/" target="_blank" class="logo-item">
+        <span style="font-size:17px; font-weight:800; color:#2b4de3; letter-spacing:-0.5px;">moby</span>
+      </a>
+      <a href="https://www.hr-rocket.ru/" target="_blank" class="logo-item">
+        <span style="font-size:14px; font-weight:800; color:#1a1a1a; letter-spacing:0.5px;">HR ROCKET</span>
+      </a>
+      <a href="https://prodamus.ru/" target="_blank" class="logo-item">
+        <span style="font-size:15px; font-weight:700; color:#6c3db5; letter-spacing:-0.3px;">prodamus</span>
+      </a>
+      <a href="https://www.penoplex.ru/" target="_blank" class="logo-item">
+        <span style="font-size:13px; font-weight:800; color:#e03030; letter-spacing:0.5px;">PENOPLEX</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- CASES -->
+<section class="section-bg">
+  <div class="container">
+    <div class="section-tag">Кейсы</div>
+    <h2 class="section-title reveal">Кадровые агентства уже<br><em>увеличивают выручку с BRaiN HR</em></h2>
+    <div class="cases-grid">
+      <a href="https://brainhire.ru/case" target="_blank" class="case-card reveal">
+        <div class="case-top">
+          <span class="case-tag">Кадровое агентство</span>
+          <span class="case-date">12 февраля 2026</span>
+        </div>
+        <h3 class="case-title">Агентство «HR-Профи» — x2 закрытых заявок без расширения штата</h3>
+        <p class="case-text">Агентство из 8 рекрутеров подключило BRaiN HR и за первый квартал увеличило количество закрытых вакансий с 40 до 82 в месяц. Средний срок закрытия сократился с 28 до 9 дней.</p>
+        <div class="case-footer">
+          <span class="case-author">Мария Иванова, CEO</span>
+          <span class="case-read">4 мин</span>
+        </div>
+      </a>
+      <a href="https://brainhire.ru/case" target="_blank" class="case-card reveal d1">
+        <div class="case-top">
+          <span class="case-tag">Кадровое агентство</span>
+          <span class="case-date">28 января 2026</span>
+        </div>
+        <h3 class="case-title">Рекрутинговая компания «Талант» — выход на новые отрасли без потери качества</h3>
+        <p class="case-text">Агентство специализировалось только на ИТ. С библиотекой вопросов BRaiN HR вышло на финансовый и производственный сектор — добавив 35% выручки за 2 месяца без найма новых рекрутеров.</p>
+        <div class="case-footer">
+          <span class="case-author">Алексей Смирнов, управляющий партнёр</span>
+          <span class="case-read">5 мин</span>
+        </div>
+      </a>
+      <a href="https://brainhire.ru/case" target="_blank" class="case-card reveal d2">
+        <div class="case-top">
+          <span class="case-tag">Фрилансер-рекрутер</span>
+          <span class="case-date">5 января 2026</span>
+        </div>
+        <h3 class="case-title">Независимый рекрутер — от 3 до 12 вакансий одновременно</h3>
+        <p class="case-text">Рекрутер-фрилансер подключил BRaiN HR и увеличил количество параллельных проектов в 4 раза. Клиенты отметили рост скорости и прозрачную аналитику — 3 из 5 перешли на постоянное сотрудничество.</p>
+        <div class="case-footer">
+          <span class="case-author">Екатерина Волкова, независимый рекрутер</span>
+          <span class="case-read">3 мин</span>
+        </div>
+      </a>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="https://brainhire.ru/case" target="_blank" class="btn-hero-primary" style="display:inline-flex;">Все кейсы с разбивкой по отраслям</a>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES — screenshot layout -->
+<section>
+  <div class="container">
+    <div class="section-tag">Возможности платформы</div>
+    <h2 class="section-title reveal">Всё, что нужно<br><em>кадровому агентству для роста</em></h2>
+
+    <!-- Feature 1: ИИ-скоринг -->
+    <div class="feat-row reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock">
+            <div class="feat-mock-header">
+              <div class="feat-mock-title" style="font-size:15px;">Рекрутер экономит <b style="color:var(--brand1)">80%</b> времени на скрининге</div>
+            </div>
+            <div class="feat-candidates">
+              <div class="feat-candidate feat-candidate-top">
+                <div class="feat-cand-avatar" style="background:#4096FF22;color:#4096FF;">АК</div>
+                <div class="feat-cand-info">
+                  <div class="feat-cand-name">Анна Козлова</div>
+                  <div class="feat-cand-role">Менеджер по продажам, 5 лет</div>
+                </div>
+                <div class="feat-cand-score" style="background:#E6F4FF;color:#4096FF;">96%</div>
+              </div>
+              <div class="feat-candidate feat-candidate-top">
+                <div class="feat-cand-avatar" style="background:#E6F4FF;color:#4096FF;">ДС</div>
+                <div class="feat-cand-info">
+                  <div class="feat-cand-name">Дмитрий Соколов</div>
+                  <div class="feat-cand-role">Руководитель отдела продаж, 8 лет</div>
+                </div>
+                <div class="feat-cand-score" style="background:#E6F4FF;color:#4096FF;">93%</div>
+              </div>
+              <div class="feat-candidate">
+                <div class="feat-cand-avatar" style="background:#F5F6F8;color:#717680;">ОМ</div>
+                <div class="feat-cand-info">
+                  <div class="feat-cand-name">Ольга Миронова</div>
+                  <div class="feat-cand-role">Продавец-консультант, 2 года</div>
+                </div>
+                <div class="feat-cand-score" style="background:#F5F6F8;color:#717680;">47%</div>
+              </div>
+              <div class="feat-candidate">
+                <div class="feat-cand-avatar" style="background:#F5F6F8;color:#717680;">ИЛ</div>
+                <div class="feat-cand-info">
+                  <div class="feat-cand-name">Игорь Лебедев</div>
+                  <div class="feat-cand-role">Стажёр, без опыта</div>
+                </div>
+                <div class="feat-cand-score" style="background:#FFF3E8;color:#FF7401;">22%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feat-text">
+        <div class="feat-num">01</div>
+        <h3 class="feat-title">Скоринг 300+ резюме<br>за минуты</h3>
+        <p class="feat-desc">ИИ мгновенно анализирует каждый отклик по критериям заказчика: опыт, навыки, отрасль. Нерелевантные отсеиваются автоматически. Рекрутер работает только с подходящими кандидатами — не тратит часы на ручную сортировку.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Единые критерии оценки для всех рекрутеров</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Распознавание непрямых упоминаний навыков</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Экономия до 80% времени на первичном отборе</div>
+        </div>
+        <a href="https://brainhire.ru/signup" target="_blank" class="feat-cta-btn">Запустить скоринг резюме</a>
+      </div>
+    </div>
+
+    <!-- Feature 2: ИИ-интервью -->
+    <div class="feat-row feat-row-rev reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock feat-mock-interview">
+            <div class="feat-mock-tabs">
+              <span class="feat-tab active">Интервью</span>
+              <span class="feat-tab">Тестирование</span>
+              <span class="feat-tab">Real-time avatar</span>
+            </div>
+            <div class="feat-mock-interview-body">
+              <div class="feat-interview-score">Оценка интервью: <span class="feat-score-badge">8.2</span></div>
+              <div class="feat-interview-q">Расскажите о самой крупной сделке, которую вы закрыли. Какие были сложности и как вы их преодолели?</div>
+              <div class="feat-interview-a">В прошлом году я закрыл контракт на 12 млн рублей с федеральной сетью. Основная сложность была в длинном цикле согласований — 4 этапа. Я выстроил отношения с каждым ЛПР отдельно...</div>
+              <div class="feat-interview-meta">
+                <span class="feat-tag">Прокторинг активен</span>
+                <span class="feat-tag">Запись ведётся</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feat-text">
+        <div class="feat-num">02</div>
+        <h3 class="feat-title">ИИ-видеоинтервью<br>без участия рекрутера</h3>
+        <p class="feat-desc">Кандидаты проходят структурированное видеоинтервью в удобное время. Вопросы формируются ИИ на основе требований заказчика. Прокторинг фиксирует подсказки. Рекрутер получает готовые видео и транскрипты.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Экспертные вопросы для 50+ отраслей и должностей</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Прокторинг — защита от читов и подсказок</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Видео + транскрипт готовы для показа клиенту</div>
+        </div>
+        <a href="https://brainhire.ru/signup" target="_blank" class="feat-cta-btn">Провести ИИ-интервью</a>
+      </div>
+    </div>
+
+    <!-- Feature 3: Real-time avatar -->
+    <div class="feat-row reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock feat-mock-avatar">
+            <div class="feat-mock-tabs">
+              <span class="feat-tab">Интервью</span>
+              <span class="feat-tab">Тестирование</span>
+              <span class="feat-tab active">Real-time avatar</span>
+            </div>
+            <div class="feat-avatar-body">
+              <div class="feat-avatar-screen">
+                <div style="font-size:36px;"><svg width="26" height="26" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>
+                <div class="feat-avatar-label">ИИ-аватар BRaiN HR</div>
+              </div>
+              <div class="feat-avatar-analysis">
+                <div class="feat-analysis-row"><span>Уверенность</span><div class="feat-bar"><div class="feat-bar-fill" style="width:88%;"></div></div><span>88%</span></div>
+                <div class="feat-analysis-row"><span>Коммуникация</span><div class="feat-bar"><div class="feat-bar-fill" style="width:79%;"></div></div><span>79%</span></div>
+                <div class="feat-analysis-row"><span>Культурный фит</span><div class="feat-bar"><div class="feat-bar-fill" style="width:85%;"></div></div><span>85%</span></div>
+                <div class="feat-analysis-row"><span>Стрессоустойчивость</span><div class="feat-bar"><div class="feat-bar-fill" style="width:72%;"></div></div><span>72%</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feat-text">
+        <div class="feat-num">03</div>
+        <h3 class="feat-title">Real-time интервью<br>с ИИ-аватаром</h3>
+        <p class="feat-desc">Адаптивное интервью в реальном времени: ИИ-аватар задаёт вопросы на основе предыдущих ответов, анализирует мимику, язык тела и soft skills. Клиент получает полный профиль кандидата — объективнее, чем субъективная оценка рекрутера.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Анализ soft skills: уверенность, коммуникация, стрессоустойчивость</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Оценка культурного фита под требования заказчика</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Объективный отчёт повышает доверие клиента</div>
+        </div>
+        <a href="#form" class="feat-cta-btn">Запросить демо аватара</a>
+      </div>
+    </div>
+
+    <!-- Feature 4: Аналитика для клиентов -->
+    <div class="feat-row feat-row-rev reveal">
+      <div class="feat-screen">
+        <div class="feat-screen-inner">
+          <div class="feat-browser-bar"><span></span><span></span><span></span></div>
+          <div class="feat-mock" style="padding:20px;">
+            <div class="feat-mock-header" style="margin-bottom:16px;">
+              <div class="feat-mock-title" style="font-size:15px;">Аналитика по заявке клиента</div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:12px;">
+              <div style="background:var(--brand1-bg); border:1px solid rgba(64,150,255,0.2); border-radius:8px; padding:12px; text-align:center;">
+                <div style="font-size:24px; font-weight:900; color:var(--brand1); margin-bottom:2px;">312</div>
+                <div style="font-size:10px; color:var(--text2);">Откликов получено</div>
+              </div>
+              <div style="background:var(--brand1-bg); border:1px solid rgba(64,150,255,0.2); border-radius:8px; padding:12px; text-align:center;">
+                <div style="font-size:24px; font-weight:900; color:var(--brand1); margin-bottom:2px;">45</div>
+                <div style="font-size:10px; color:var(--text2);">Прошли скоринг</div>
+              </div>
+              <div style="background:var(--brand2-bg); border:1px solid rgba(255,116,1,0.2); border-radius:8px; padding:12px; text-align:center;">
+                <div style="font-size:24px; font-weight:900; color:var(--brand2); margin-bottom:2px;">15</div>
+                <div style="font-size:10px; color:var(--text2);">Прошли интервью</div>
+              </div>
+              <div style="background:rgba(18,83,109,0.08); border:1px solid rgba(18,83,109,0.2); border-radius:8px; padding:12px; text-align:center;">
+                <div style="font-size:24px; font-weight:900; color:var(--brand3); margin-bottom:2px;">7</div>
+                <div style="font-size:10px; color:var(--text2);">В шорт-листе</div>
+              </div>
+            </div>
+            <div style="background:var(--grey1); border:1px solid var(--grey2); border-radius:6px; padding:10px; font-size:11px; color:var(--text2); line-height:1.5;">
+              Среднее время закрытия: <b style="color:var(--brand1);">5 дней</b> &nbsp;|&nbsp; Конверсия в шорт-лист: <b style="color:var(--brand1);">2.2%</b> &nbsp;|&nbsp; Удовлетворённость клиента: <b style="color:var(--brand1);">9.4/10</b>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="feat-text">
+        <div class="feat-num">04</div>
+        <h3 class="feat-title">Прозрачная аналитика<br>для ваших клиентов</h3>
+        <p class="feat-desc">Покажите клиенту полную воронку: сколько откликов получено, сколько прошли скрининг и интервью, кто в шорт-листе. Настраиваемый уровень прозрачности — клиент видит только то, что демонстрирует вашу эффективность.</p>
+        <div class="feat-checks">
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Детальная аналитика по каждой заявке</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Настраиваемые отчёты для клиентов</div>
+          <div class="feat-check"><svg width="14" height="14" stroke="#4096FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="20,6 9,17 4,12"/></svg> Метрики, которые продают ваши услуги</div>
+        </div>
+        <a href="https://brainhire.ru/signup" target="_blank" class="feat-cta-btn">Попробовать аналитику</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEO DEMO -->
+<section class="video-demo-section">
+  <div class="container">
+    <div class="video-demo-grid">
+
+      <!-- Left: text + stats -->
+      <div class="video-demo-left">
+        <div class="section-tag" style="display:inline-flex; margin-bottom: 20px;">Real-time интервью с ИИ-аватаром</div>
+        <h2 class="section-title reveal" style="margin-bottom: 16px;">Покажите клиенту<br><em>качество нового уровня</em></h2>
+        <p class="reveal" style="font-size: 15px; color: var(--text2); line-height: 1.75; margin-bottom: 32px;">
+          ИИ-аватар проводит полноценное собеседование в реальном времени — оценивает опыт, soft skills и культурный фит. Клиент получает объективный профиль кандидата, которого не даст ни один рекрутер.
+        </p>
+
+        <div class="vd-features reveal">
+          <div class="vd-feature">
+            <div class="vd-feature-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
+            <div>
+              <div class="vd-feature-title">Адаптивные вопросы</div>
+              <div class="vd-feature-text">ИИ меняет вопросы в реальном времени на основе ответов кандидата</div>
+            </div>
+          </div>
+          <div class="vd-feature">
+            <div class="vd-feature-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
+            <div>
+              <div class="vd-feature-title">Анализ мимики и поведения</div>
+              <div class="vd-feature-text">Оценка уверенности, стрессоустойчивости и культурного фита</div>
+            </div>
+          </div>
+          <div class="vd-feature">
+            <div class="vd-feature-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10,9 9,9 8,9"/></svg></div>
+            <div>
+              <div class="vd-feature-title">Полный профиль кандидата</div>
+              <div class="vd-feature-text">Видеозапись, транскрипт и аналитика — всё готово для клиента</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="vd-stats reveal">
+          <div class="vd-stat" style="text-align:center; flex:1;">
+            <div class="vd-stat-num">5 мин</div>
+            <div class="vd-stat-desc" style="max-width:none;">клиент смотрит видео вместо часа собеседования</div>
+          </div>
+          <div class="vd-stat-divider"></div>
+          <div class="vd-stat" style="text-align:center; flex:1;">
+            <div class="vd-stat-num">0</div>
+            <div class="vd-stat-desc" style="max-width:none;">звонков от рекрутера до финального этапа</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: video -->
+      <div class="video-demo-right reveal">
+        <div class="video-player-wrap" id="videoBlock">
+          <div class="video-thumb" id="videoThumb" onclick="playVideo()">
+            <img
+              src="https://brainhire.ru/images/videoPreview.avif"
+              alt="Демонстрация Real-time интервью с ИИ-аватаром"
+              onerror="this.style.display='none'; document.getElementById('videoFallback').style.display='flex';"
+            >
+            <div class="video-fallback" id="videoFallback" style="display:none; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%; background:linear-gradient(135deg, #12536D, #1a6b8a); gap:16px;">
+              <div style="display:flex; align-items:center; justify-content:center;"><svg width="64" height="64" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg></div>
+              <div style="font-size:18px; font-weight:700; color:#fff;">Real-time интервью с ИИ-аватаром</div>
+            </div>
+            <div class="video-play-btn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none"><path d="M8 5.14v14l11-7-11-7z" fill="white"/></svg>
+            </div>
+            <div class="video-overlay"></div>
+          </div>
+          <div class="video-frame" id="videoFrame" style="display:none;">
+            <video controls style="width:100%; border-radius:12px; display:block;">
+              <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+            </video>
+          </div>
+
+          <div class="vd-badge">
+            <div class="vd-badge-dot"></div>
+            <span>ИИ-интервью идёт прямо сейчас</span>
+          </div>
+        </div>
+
+        <div class="reveal" style="margin-top: 20px; text-align: center;">
+          <a href="#form" class="btn-hero-primary" style="display:inline-flex; width:100%; justify-content:center;">
+            Запросить демо Real-time интервью
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<div class="cta-section" id="form">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <div class="section-tag">Увеличьте выручку агентства</div>
+      <h2 class="reveal">Покажем, как закрывать<br><em>в 2 раза больше заявок</em></h2>
+      <p class="reveal">Расскажите о вашем агентстве — покажем, сколько заявок вы теряете сейчас и как BRaiN HR это исправит за первую неделю.</p>
+      <div class="cta-points reveal">
+        <div class="cta-point">
+          <span class="cp-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="22,3 2,3 10,12.46 10,19 14,21 14,12.46 22,3"/></svg></span>
+          <div>
+            <strong>ИИ отсеивает нерелевантных автоматически</strong>
+            Рекрутер работает только с подходящими кандидатами
+          </div>
+        </div>
+        <div class="cta-point">
+          <span class="cp-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="13,2 3,14 12,14 11,22 21,10 12,10 13,2"/></svg></span>
+          <div>
+            <strong>Шорт-лист для клиента за 3-7 дней</strong>
+            Вместо 2-4 недель ручного процесса
+          </div>
+        </div>
+        <div class="cta-point">
+          <span class="cp-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+          <div>
+            <strong>100 кандидатов бесплатно</strong>
+            Оцените эффект без договора и предоплаты
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="form-card">
+        <div class="form-title">Разберём вашу ситуацию</div>
+        <div class="form-sub">30 минут — и вы увидите, как удвоить количество закрытых заявок без найма новых рекрутеров.</div>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Имя</label>
+            <input class="form-input" type="text" placeholder="Иван Петров">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Агентство</label>
+            <input class="form-input" type="text" placeholder="ООО «HR-Профи»">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input class="form-input" type="email" placeholder="ivan@agency.ru">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Телефон</label>
+            <input class="form-input" type="tel" placeholder="+7 (___) ___-__-__">
+          </div>
+          <div class="form-group form-full">
+            <label class="form-label">Задача</label>
+            <textarea class="form-input" rows="3" placeholder="Сколько рекрутеров, сколько вакансий ведёте, что хотите улучшить?" style="resize:vertical;"></textarea>
+          </div>
+        </div>
+        <button class="btn-form">Получить разбор моей ситуации</button>
+        <div class="form-note">
+          Нажимая кнопку, вы соглашаетесь с <a href="https://brainhire.ru/docs/privacy-policy">политикой конфиденциальности</a> и <a href="https://brainhire.ru/docs/personal-data-consent">обработкой персональных данных</a>.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- BLOG -->
+<section style="background: #F5F6F8; border-top: 1px solid var(--grey2); padding: 80px 0;">
+  <div class="container">
+    <div style="display:flex; align-items:flex-end; justify-content:space-between; margin-bottom: 40px; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <div class="section-tag" style="margin-bottom:14px;">Блог BRaiN HR</div>
+        <h2 class="section-title reveal" style="margin-bottom:0;">Как увеличить выручку<br><em>кадрового агентства с ИИ</em></h2>
+      </div>
+      <a href="https://brainhire.ru/blog" target="_blank" class="btn-secondary" style="flex-shrink:0; white-space:nowrap;">Читать блог</a>
+    </div>
+
+    <div class="blog-grid">
+      <a href="https://brainhire.ru/blog" target="_blank" class="blog-card reveal">
+        <div class="blog-card-img">
+          <div class="blog-card-img-placeholder" style="background: linear-gradient(135deg, #12536D 0%, #1a6b8a 50%, #4096FF22 100%);">
+            <svg width="52" height="52" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">Рекрутинг</span>
+            <span class="blog-date">14.03.2026</span>
+          </div>
+          <h3 class="blog-card-title">Как кадровому агентству закрывать в 2 раза больше заявок без найма новых рекрутеров</h3>
+          <p class="blog-card-text">Разбираем, почему 80% рабочего времени рекрутера уходит на рутину, и как ИИ-автоматизация меняет экономику агентства — конкретные цифры и кейсы.</p>
+          <div class="blog-card-footer">
+            <div class="blog-author">
+              <div class="blog-author-avatar">БГ</div>
+              <span class="blog-author-name">Борис Горштейн</span>
+            </div>
+            <div class="blog-card-stats">
+              <span>12 мин</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://brainhire.ru/blog" target="_blank" class="blog-card reveal d1">
+        <div class="blog-card-img">
+          <div class="blog-card-img-placeholder" style="background: linear-gradient(135deg, #1a3a5c 0%, #12536D 50%, #4096FF33 100%);">
+            <svg width="52" height="52" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">Аналитика</span>
+            <span class="blog-date">28.02.2026</span>
+          </div>
+          <h3 class="blog-card-title">Как продавать услуги агентства дороже: объективные метрики вместо субъективных обещаний</h3>
+          <p class="blog-card-text">Клиенты всё чаще требуют прозрачности. Рассказываем, как ИИ-аналитика помогает обосновать ценность услуг и повысить средний чек кадрового агентства.</p>
+          <div class="blog-card-footer">
+            <div class="blog-author">
+              <div class="blog-author-avatar">БГ</div>
+              <span class="blog-author-name">Борис Горштейн</span>
+            </div>
+            <div class="blog-card-stats">
+              <span>8 мин</span>
+            </div>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://brainhire.ru/blog" target="_blank" class="blog-card reveal d2">
+        <div class="blog-card-img">
+          <div class="blog-card-img-placeholder" style="background: linear-gradient(135deg, #0d2137 0%, #12536D 50%, #69B1FF22 100%);">
+            <svg width="52" height="52" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+          </div>
+        </div>
+        <div class="blog-card-body">
+          <div class="blog-card-meta">
+            <span class="blog-tag">Технологии</span>
+            <span class="blog-date">15.02.2026</span>
+          </div>
+          <h3 class="blog-card-title">ИИ-видеоинтервью для агентств: как заменить 50 скрининг-звонков одной ссылкой</h3>
+          <p class="blog-card-text">Пошаговый гид по внедрению автоматических видеоинтервью в работу кадрового агентства. Опыт агентств, которые уже сократили срок закрытия вакансий в 4 раза.</p>
+          <div class="blog-card-footer">
+            <div class="blog-author">
+              <div class="blog-author-avatar">БГ</div>
+              <span class="blog-author-name">Борис Горштейн</span>
+            </div>
+            <div class="blog-card-stats">
+              <span>10 мин</span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="background: var(--white); border-top: 1px solid var(--grey2); padding: 80px 0;">
+  <div class="container">
+    <h2 class="section-title reveal" style="text-align:center; margin-bottom: 48px;">Ответы на часто задаваемые вопросы</h2>
+    <div class="faq-list">
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>У нас уже есть ATS и своя воронка. BRaiN HR заменит их?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Нет, BRaiN HR работает как надстройка над вашими процессами. Вы просто выгружаете кандидатов — система сама проводит скрининг и видеоинтервью. Если ATS нет — платформа включает полноценную ATS-функциональность без дополнительной платы: хранение кандидатов, воронка, автоматическое ранжирование. Можно выгружать резюме и профили кандидатов, а также детальные отчёты по воронке.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Наши заказчики не примут видеоинтервью от ИИ — это не отпугнёт клиентов?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Как раз наоборот. Заказчики ценят прозрачность — они видят, как кандидат говорит, думает, реагирует, и быстрее принимают решение. Вы можете позиционировать ИИ как конкурентное преимущество вашего агентства или использовать «под капотом», предоставляя клиенту только результаты и метрики. Наши партнёры рассказывают, что клиенты возвращаются снова, потому что получают результат быстрее конкурентов.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Наши вакансии нестандартные — можно ли настраивать вопросы и критерии оценки?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Да. ИИ формирует сценарии под любую вакансию, но вы можете задавать свои уникальные вопросы, редактировать критерии оценки (soft skills, технические навыки, мотивация) и задавать «вес» каждому критерию. Можно создавать несколько версий шаблонов под разные вакансии и откатить сценарий к предыдущей версии, если нужно. Система адаптируется под ваш стиль оценки.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Не приведёт ли автоматизация к потере рекрутеров или заказчиков?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">BRaiN HR — не замена рекрутерам, а фильтр. Ваши люди общаются только с теми, кто прошёл видеоинтервью и набрал высокую оценку. Это экономит время на первичном отсечении и позволяет сосредоточиться на закрытии. Заказчики видят, что вы внедряете современные технологии и работаете быстрее конкурентов — это усиливает доверие и лояльность, а не наоборот.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Что если у нас мало откликов — есть ли смысл подключать?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Да. Платформа умеет не только обрабатывать входящие отклики, но и вести исходящий поиск — сама находит релевантных кандидатов на HeadHunter и приглашает их на интервью. Даже при небольшом входящем потоке вы быстро наполняете воронку. А модель оплаты «за использование» означает, что в тихие периоды вы ничего не платите.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Как устроены доступы и аналитика — можно ли разграничить права между рекрутерами?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Да. Можно ограничить доступ к вакансиям для отдельных пользователей — например, дать одному рекрутеру только его проекты, а руководителю — полную картину. Для каждой вакансии доступна детальная аналитика: воронка, конверсии, лог решений ИИ с параметрами оценки. Данные по архивным вакансиям и кандидатам сохраняются и доступны для просмотра внутри платформы.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Как отправить кандидата из собственной базы на ИИ-интервью, если он не откликался через job-борды?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">Для каждой вакансии генерируется персональная ссылка. Вы можете отправить её любому кандидату — через мессенджер, email или соцсети. Кандидат переходит по ссылке и проходит ИИ-интервью в удобное время. Шаблоны приглашений настраиваются, включая имя рекрутера и текст сообщения.</div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal">
+        <button class="faq-question" onclick="toggleFaq(this)">
+          <span>Сколько стоит BRaiN HR и есть ли фиксированная подписка?</span>
+          <svg class="faq-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="1.5"/><path d="M12 8v8M8 12h8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        </button>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">BRaiN HR работает по модели «оплата за использование» — вы платите только за обработанные резюме, а не за подписку. Нет фиксированных ежемесячных платежей. В периоды низкой загрузки затраты стремятся к нулю. Первые 100 кандидатов — бесплатно, чтобы вы могли оценить эффект на реальных вакансиях.</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="site-footer-new">
+  <div class="footer-new-inner">
+
+    <!-- TOP: 5 columns -->
+    <div class="footer-new-top">
+
+      <!-- Col 1: Logo + desc + socials -->
+      <div class="footer-new-col footer-new-col-brand">
+        <a href="https://brainhire.ru/" class="footer-new-logo">
+          <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+        </a>
+        <p class="footer-new-desc">ИИ-платформа для автоматизации рекрутинга и оценки персонала. Нанимайте в 5 раз дешевле и быстрее.</p>
+        <div class="footer-new-socials">
+          <a href="https://vk.com/brain_hr" target="_blank" class="footer-social-btn" title="ВКонтакте">В</a>
+          <a href="https://t.me/BRaiN_HR" target="_blank" class="footer-social-btn" title="Telegram">Т</a>
+          <a href="https://www.instagram.com/brain_hire/" target="_blank" class="footer-social-btn" title="Instagram">I</a>
+          <a href="https://www.linkedin.com/company/105875559/" target="_blank" class="footer-social-btn" title="LinkedIn">in</a>
+        </div>
+      </div>
+
+      <!-- Col 2: Отраслевые решения -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Отраслевые решения</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR в IT</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR в финансовом секторе</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR для маркетплейсов</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR для малого бизнеса</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR для корпораций</a>
+        </div>
+      </div>
+
+      <!-- Col 3: Функции -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Функции</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/recruiting" class="footer-new-link">Рекрутинг</a>
+          <a href="https://brainhire.ru/ai-vacancy-creation" class="footer-new-link">ИИ-создание вакансий</a>
+          <a href="https://brainhire.ru/ai-resume-analysis" class="footer-new-link">ИИ-анализ резюме</a>
+          <a href="https://brainhire.ru/ai-videointerview" class="footer-new-link">ИИ-видеоинтервью</a>
+          <a href="https://brainhire.ru/ai-staff-scoring" class="footer-new-link">ИИ-оценка кандидатов</a>
+        </div>
+      </div>
+
+      <!-- Col 4: Компания -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Компания</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/about" class="footer-new-link">О нас</a>
+          <a href="https://brainhire.ru/contacts" class="footer-new-link">Контакты</a>
+          <a href="https://brainhire.ru/tariffs" class="footer-new-link">Тарифы</a>
+          <a href="https://brainhire.ru/reviews" class="footer-new-link">Отзывы</a>
+          <a href="https://brainhire.ru/case" class="footer-new-link">Кейсы</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">СМИ о нас</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">Блог</a>
+          <a href="https://brainhire.ru/partner" class="footer-new-link">Партнёрская программа</a>
+        </div>
+      </div>
+
+      <!-- Col 5: Контакты -->
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Контакты</div>
+        <div class="footer-new-contact-block">
+          <a href="tel:+74959703976" class="footer-new-phone">+7 (495) 970-39-76</a>
+          <span class="footer-new-contact-sub">Служба поддержки</span>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Электронная почта:</span>
+          <a href="mailto:info@brainhire.ru" class="footer-new-email">info@brainhire.ru</a>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Адрес:</span>
+          <span class="footer-new-address">142005 Московская область, г. Домодедово, мкр. Центральный, ул. Кирова, д. 7, к.1, пом. 0011, офис 5</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- BOTTOM -->
+    <div class="footer-new-bottom">
+      <div class="footer-new-bottom-top">
+        <span class="footer-new-copy">&copy; ООО &laquo;НДК&raquo;, ОГРН 1225000105010. Все права защищены.</span>
+        <div class="footer-new-legal">
+          <a href="https://brainhire.ru/docs/privacy-policy" class="footer-new-legal-link">Политика конфиденциальности</a>
+          <a href="https://brainhire.ru/docs/user-agreement" class="footer-new-legal-link">Пользовательское соглашение</a>
+          <a href="https://brainhire.ru/docs/personal-data-consent" class="footer-new-legal-link">Обработка данных</a>
+        </div>
+      </div>
+      <div class="footer-new-bottom-docs">
+        <a href="https://brainhire.ru/docs/user-instructions" class="footer-new-legal-link">Инструкция по установке и эксплуатации ПО</a>
+        <a href="https://brainhire.ru/docs/product-description" class="footer-new-legal-link">Описание функциональных характеристик ПО</a>
+      </div>
+    </div>
+
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script>
+// Video player
+function playVideo() {
+  document.getElementById('videoThumb').style.display = 'none';
+  document.getElementById('videoFrame').style.display = 'block';
+}
+
+// FAQ toggle
+function toggleFaq(btn) {
+  var item = btn.parentElement;
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(el) { el.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
+// Reveal on scroll
+document.addEventListener('DOMContentLoaded', function() {
+  document.body.classList.add('js-loaded');
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(function(el) { observer.observe(el); });
+});
+</script>
+
+<!-- STICKY SIDEBAR -->
+<div class="sticky-sidebar">
+  <a href="#form" class="sticky-btn sticky-btn-primary" title="Запросить демо">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2z" stroke="currentColor" stroke-width="1.8"/><path d="M12 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Запросить демо</span>
+  </a>
+  <a href="../calculator.html" class="sticky-btn sticky-btn-accent" title="Калькулятор экономии">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="10" x2="10" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="14" x2="10" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="14" x2="16" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="18" x2="10" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="18" x2="16" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Калькулятор экономии</span>
+  </a>
+  <a href="tel:+74958591070" class="sticky-btn sticky-btn-secondary" title="+7 (495) 859-10-70">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">+7 (495) 859-10-70</span>
+  </a>
+  <a href="mailto:info@brainhire.ru" class="sticky-btn sticky-btn-secondary" title="info@brainhire.ru">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">info@brainhire.ru</span>
+  </a>
+</div>
+
+<!-- FLOAT VIDEO WIDGET -->
+<div class="float-video-widget" id="floatWidget">
+  <div class="float-video-close" onclick="closeFloatWidget()" title="Закрыть">✕</div>
+  <div class="float-video-wrap" id="floatVideoWrap" onclick="openFloatFullscreen()">
+    <div class="float-video-poster" id="floatPoster">
+      <img src="https://brainhire.ru/images/videoPreview.avif" onerror="this.style.display='none'; document.getElementById('floatPosterFallback').style.display='flex';" alt="Demo">
+      <div class="float-poster-fallback" id="floatPosterFallback">
+        <svg width="40" height="40" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+        <span style="font-size:11px;font-weight:700;color:#fff;">BRaiN HR</span>
+      </div>
+    </div>
+    <video id="floatVideo" muted loop playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+    <div class="float-video-overlay">
+      <div class="float-video-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="white"/></svg></div>
+      <div class="float-video-label">Смотреть демо</div>
+    </div>
+  </div>
+</div>
+<div class="float-modal" id="floatModal" onclick="closeFloatModal()">
+  <div class="float-modal-inner" onclick="event.stopPropagation()">
+    <button class="float-modal-close" onclick="closeFloatModal()">✕</button>
+    <video id="floatModalVideo" controls playsinline preload="none" style="width:100%;border-radius:12px;display:block;max-height:80vh;background:#000;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+</body>
+</html>

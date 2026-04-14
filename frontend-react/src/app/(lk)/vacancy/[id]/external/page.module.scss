@@ -1,0 +1,107 @@
+@import "@/styles/abstracts/variables";
+
+.data {
+	display: flex;
+	gap: 24px;
+}
+
+.policy {
+  color: $brand-primary;
+}
+
+.mainBlock {
+  width: 60%;
+	flex-grow: 1;
+	border-radius: 10px;
+	background-color: white;
+	padding: 24px 0;
+}
+
+.px {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.tableSort {
+	cursor: pointer;
+	transition: color 0.2s ease;
+}
+
+.tableSort:hover {
+	color: rgba(66, 153, 225, 1);
+}
+
+.actions {
+	display: flex;
+	gap: 8px;
+	align-items: center;
+	justify-content: center;
+}
+
+.done {
+	fill: white;
+	color: white;
+}
+
+.tableLoader {
+	margin: 20px auto;
+}
+
+.hoverDarken {
+  cursor: pointer;
+	transition: filter 0.3 ease;
+}
+
+.limits {
+  background-color: white;
+  border: 1px solid rgba(226, 232, 240, 1);
+  border-radius: 8px;
+  padding: 31px 0 32px;
+}
+
+.hoverDarken:hover {
+	filter: brightness(0.5);
+}
+
+.loader {
+	height: 60vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.secondaryBlock {
+  width: 40%;
+  max-width: 389px;
+	display: flex;
+	flex-direction: column;
+	gap: 24px;
+}
+
+.wrapper {
+	background: rgba(247, 250, 252, 1);
+}
+
+.input {
+	max-width: 572px;
+}
+
+.table {
+	border-radius: 4px;
+	background-color: white;
+	padding: 16px 0 24px;
+}
+
+.search {
+	padding: 0 16px 16px;
+	margin-bottom: 24px;
+	border-bottom: 1px solid rgba(226, 232, 240, 1);
+}
+
+.tabs {
+	margin-top: 24px;
+}
+
+.table {
+	margin: 32px 0 0;
+}

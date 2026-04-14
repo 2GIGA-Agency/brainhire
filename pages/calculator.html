@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Калькулятор выгоды — BRaiN HR</title>
+<meta name="description" content="Рассчитайте экономию от автоматизации найма с BRaiN HR. Интерактивный калькулятор покажет точную выгоду для вашей компании.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../shared/styles.css">
+<link rel="stylesheet" href="../shared/components.css">
+<style>
+  /* ─── HERO ─── */
+  .calc-hero {
+    background: var(--white);
+    padding: 88px 0 48px;
+    text-align: left;
+  }
+  .calc-hero h1 {
+    font-size: clamp(36px, 5vw, 52px); font-weight: 900;
+    line-height: 1.1; letter-spacing: -1.2px; color: var(--text1); margin-bottom: 16px;
+    max-width: 720px;
+  }
+  .calc-hero h1 em { font-style: normal; color: var(--brand1); }
+  .calc-hero p {
+    font-size: 17px; color: var(--text2); max-width: 600px;
+    line-height: 1.7;
+  }
+
+  /* ─── CALCULATOR (enlarged for standalone page) ─── */
+  .calc-wrap {
+    background: var(--white); border: 1.5px solid var(--grey2); border-radius: var(--radius);
+    box-shadow: var(--shadow-md); overflow: hidden;
+    max-width: 960px; margin: 0 auto;
+  }
+  .calc-header {
+    padding: 28px 40px; background: var(--grey1); border-bottom: 1px solid var(--grey2);
+    display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;
+  }
+  .calc-header h3 { font-size: 20px; font-weight: 800; color: var(--text1); }
+  .calc-header p { font-size: 14px; color: var(--text2); }
+  .calc-body { padding: 40px; }
+  .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .calc-col-title {
+    font-size: 15px; font-weight: 700; color: var(--text2); margin-bottom: 20px;
+    padding-bottom: 10px; border-bottom: 1px solid var(--grey2);
+    display: flex; align-items: center; gap: 8px;
+  }
+  .calc-col-title.good { color: var(--brand1); border-bottom-color: rgba(64,150,255,0.3); }
+  .calc-row {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 12px 0; border-bottom: 1px solid var(--grey1); font-size: 14px;
+  }
+  .calc-row:last-child { border-bottom: none; }
+  .calc-label { color: var(--text2); flex: 1; }
+  .calc-value { font-weight: 700; color: var(--text1); text-align: right; white-space: nowrap; }
+  .calc-value.highlight { color: var(--brand1); font-size: 16px; }
+  .calc-value.danger { color: #F04438; }
+  .calc-input {
+    width: 140px; padding: 9px 14px; border: 1.5px solid var(--grey2); border-radius: var(--radius-sm);
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 600; color: var(--text1);
+    text-align: right; outline: none; transition: border-color .2s;
+  }
+  .calc-input:focus { border-color: var(--brand1); box-shadow: 0 0 0 3px rgba(64,150,255,0.12); }
+  .calc-total {
+    margin-top: 16px; padding: 18px 24px; border-radius: var(--radius-sm);
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 15px; font-weight: 700;
+  }
+  .calc-total.bad { background: rgba(240,68,56,0.06); border: 1px solid rgba(240,68,56,0.2); color: #F04438; }
+  .calc-total.good { background: var(--brand1-bg); border: 1px solid rgba(64,150,255,0.25); color: var(--brand1); }
+  .calc-total .calc-total-num { font-size: 24px; font-weight: 900; letter-spacing: -0.5px; }
+  .calc-savings {
+    margin-top: 32px; padding: 32px; border-radius: var(--radius);
+    background: linear-gradient(135deg, var(--brand1-bg) 0%, rgba(64,150,255,0.05) 100%);
+    border: 1px solid rgba(64,150,255,0.25);
+    text-align: center;
+  }
+  .calc-savings-row {
+    display: flex; justify-content: center; gap: 48px; flex-wrap: wrap; margin-bottom: 8px;
+  }
+  .calc-savings-item { text-align: center; }
+  .calc-savings-num { font-size: 40px; font-weight: 900; color: var(--brand1); letter-spacing: -1px; margin-bottom: 4px; }
+  .calc-savings-label { font-size: 14px; font-weight: 600; color: var(--brand3); }
+  .calc-savings-divider {
+    width: 1px; background: rgba(64,150,255,0.3); align-self: stretch;
+  }
+  .calc-annual-num { font-size: 40px; font-weight: 900; color: var(--brand2); letter-spacing: -1px; margin-bottom: 4px; }
+
+  /* ─── CTA SECTION ─── */
+  .cta-pricing {
+    background: linear-gradient(135deg, var(--brand1-bg) 0%, var(--white) 50%, var(--brand2-bg) 100%);
+    border-top: 1px solid var(--grey2);
+    border-bottom: 1px solid var(--grey2);
+  }
+  .cta-pricing-inner {
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .cta-pricing-inner h2 {
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.7px;
+    color: var(--text1);
+    margin-bottom: 16px;
+  }
+  .cta-pricing-inner p {
+    font-size: 15px; color: var(--text2);
+    line-height: 1.72; margin-bottom: 32px;
+  }
+  .cta-btns {
+    display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  }
+
+  /* ─── FAQ TWO-COL ─── */
+  .faq-two-col {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .faq-left h2 {
+    font-size: clamp(26px, 3vw, 38px);
+    font-weight: 800;
+    line-height: 1.18;
+    letter-spacing: -0.7px;
+    color: var(--text1);
+    margin-bottom: 12px;
+  }
+  .faq-left h2 em { font-style: normal; color: var(--brand1); }
+  .faq-left p {
+    font-size: 15px; color: var(--text2); line-height: 1.72;
+  }
+  .faq-right {
+    display: flex; flex-direction: column;
+  }
+  .faq-item-v2 {
+    border-bottom: 1px dashed var(--grey2);
+  }
+  .faq-item-v2:first-child {
+    border-top: 1px dashed var(--grey2);
+  }
+  .faq-q-v2 {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 20px 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text1);
+    transition: color .2s;
+  }
+  .faq-q-v2:hover { color: var(--brand1); }
+  .faq-q-v2 .faq-chevron {
+    width: 20px; height: 20px;
+    flex-shrink: 0;
+    transition: transform .3s ease;
+    color: var(--text2);
+  }
+  .faq-item-v2.open .faq-q-v2 .faq-chevron {
+    transform: rotate(180deg);
+    color: var(--brand1);
+  }
+  .faq-a-v2 {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height .35s ease, padding .35s ease;
+  }
+  .faq-item-v2.open .faq-a-v2 {
+    max-height: 200px;
+  }
+  .faq-a-v2-inner {
+    padding: 0 0 20px;
+    font-size: 14px;
+    color: var(--text2);
+    line-height: 1.7;
+  }
+
+  /* ─── REVEAL ─── */
+  .js-loaded .reveal { opacity:0; transform:translateY(20px); transition: opacity .55s ease, transform .55s ease; }
+  .js-loaded .reveal.visible { opacity:1; transform:none; }
+  .js-loaded .d1 { transition-delay:.08s; }
+  .js-loaded .d2 { transition-delay:.16s; }
+  .js-loaded .d3 { transition-delay:.24s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 960px) {
+    .calc-grid { grid-template-columns: 1fr; gap: 32px; }
+    .faq-two-col { grid-template-columns: 1fr; gap: 32px; }
+    .calc-savings-row { gap: 32px; }
+  }
+  @media (max-width: 600px) {
+    .calc-body { padding: 24px 20px; }
+    .calc-header { padding: 20px; }
+    .calc-input { width: 110px; }
+    .calc-savings-num, .calc-annual-num { font-size: 28px; }
+    .calc-savings-row { flex-direction: column; gap: 20px; }
+    .calc-savings-divider { width: 60px; height: 1px; align-self: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
+  <span class="urgency-dot"></span>
+  Каждый день без нужного сотрудника — это упущенная выручка, переработки команды и задержка развития бизнеса
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <!-- Top bar -->
+  <div class="header-topbar">
+    <div class="header-inner" style="height:36px; justify-content:center;">
+      <div class="topbar-links">
+        <a href="about.html" class="topbar-link">О компании</a>
+        <a href="contacts.html" class="topbar-link">Контакты</a>
+        <a href="hr-cashback.html" class="topbar-link">Партнёрская программа</a>
+        <a href="calculator.html" class="topbar-link">Калькулятор выгоды</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main nav -->
+  <div class="header-main">
+    <div class="header-inner">
+      <a class="logo" href="index.html">
+        <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+      </a>
+      <nav class="main-nav">
+
+        <!-- Как это работает — megamenu -->
+        <div class="mnav-item has-mega" id="megaHow">
+          <button class="mnav-btn">
+            Как это работает
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel">
+            <div class="mega-col">
+              <!-- Рекрутинг → sub -->
+              <div class="mega-section-item has-sub" id="subRecruiting">
+                <div class="mega-section-link">
+                  <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                  <div>
+                    <div class="mega-section-title">Рекрутинг</div>
+                    <div class="mega-section-desc">Полный цикл подбора с ИИ</div>
+                  </div>
+                  <svg class="mega-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div class="sub-panel">
+                  <a href="features/ai-vacancy-creation.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-создание вакансий</div>
+                      <div class="sub-item-desc">Описание вакансии за минуты</div>
+                    </div>
+                  </a>
+                  <a href="features/ai-screening.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-анализ резюме</div>
+                      <div class="sub-item-desc">Скоринг и ранжирование откликов</div>
+                    </div>
+                  </a>
+                  <a href="features/ai-videointerview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Первичное ИИ-видеоинтервью</div>
+                      <div class="sub-item-desc">Тестирование с прокторингом</div>
+                    </div>
+                  </a>
+                  <a href="features/ai-realtime-interview.html" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Real-time интервью с ИИ-аватаром</div>
+                      <div class="sub-item-desc">Адаптивное интервью в реальном времени</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Оценка персонала -->
+              <a href="features/ai-staff-scoring.html" class="mega-section-link mega-section-item">
+                <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 017 4.5v1A2.5 2.5 0 009.5 8h5A2.5 2.5 0 0017 5.5v-1A2.5 2.5 0 0014.5 2h-5z"/><path d="M9.5 8a2.5 2.5 0 00-2.5 2.5A2.5 2.5 0 004.5 13a2.5 2.5 0 002.5 2.5 2.5 2.5 0 002.5 2.5h5a2.5 2.5 0 002.5-2.5 2.5 2.5 0 002.5-2.5 2.5 2.5 0 00-2.5-2.5A2.5 2.5 0 0014.5 8h-5z"/></svg></span>
+                <div>
+                  <div class="mega-section-title">Оценка персонала</div>
+                  <div class="mega-section-desc">ИИ-оценка soft skills и компетенций</div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Отраслевые решения — dropdown -->
+        <div class="mnav-item has-drop" id="dropSolutions">
+          <button class="mnav-btn">
+            Отраслевые решения
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="drop-panel">
+            <a href="solutions/smb.html" class="drop-item">Малый бизнес</a>
+            <a href="solutions/enterprise.html" class="drop-item">Корпорации</a>
+            <a href="solutions/it.html" class="drop-item">ИТ компании</a>
+            <a href="solutions/finance.html" class="drop-item">Финансовый сектор</a>
+            <a href="solutions/hr.html" class="drop-item">HR агентства</a>
+            <div class="drop-group">
+              <div class="drop-group-label">Маркетплейсы</div>
+              <a href="solutions/marketplaces.html" class="drop-item" style="padding-left:24px;">Владельцам ПВЗ</a>
+              <a href="solutions/sellers.html" class="drop-item" style="padding-left:24px;">Селлерам</a>
+            </div>
+            <a href="solutions/horeca.html" class="drop-item">HoReCa</a>
+            <a href="solutions/education.html" class="drop-item">Образование</a>
+            <a href="solutions/sales.html" class="drop-item">Продажи</a>
+            <a href="solutions/logistics.html" class="drop-item">Логистика</a>
+            <a href="solutions/marketing.html" class="drop-item">Маркетинг</a>
+          </div>
+        </div>
+
+        <a href="cases.html" class="mnav-link">Кейсы</a>
+        <a href="reviews.html" class="mnav-link">Отзывы</a>
+        <a href="pricing.html" class="mnav-link">Тарифы</a>
+        <a href="https://brainhire.ru/blog" class="mnav-link">Блог</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="https://brainhire.ru/signup" class="btn-primary">100 кандидатов бесплатно</a>
+        <a href="https://brainhire.ru/signin" class="btn-secondary">Войти</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+// ─── HEADER MENU — hover-based ───
+document.addEventListener('DOMContentLoaded', function() {
+  var items = document.querySelectorAll('.mnav-item.has-mega, .mnav-item.has-drop');
+
+  items.forEach(function(item) {
+    var timer;
+
+    item.addEventListener('mouseenter', function() {
+      clearTimeout(timer);
+      items.forEach(function(other) {
+        if (other !== item) other.classList.remove('open');
+      });
+      item.classList.add('open');
+    });
+
+    item.addEventListener('mouseleave', function() {
+      timer = setTimeout(function() {
+        item.classList.remove('open');
+        item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      }, 120);
+    });
+
+    var panel = item.querySelector('.mega-panel, .drop-panel');
+    if (panel) {
+      panel.addEventListener('mouseenter', function() { clearTimeout(timer); });
+      panel.addEventListener('mouseleave', function() {
+        timer = setTimeout(function() {
+          item.classList.remove('open');
+          item.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+        }, 120);
+      });
+    }
+  });
+
+  document.querySelectorAll('.has-sub').forEach(function(sub) {
+    sub.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+      sub.classList.add('sub-open');
+    });
+  });
+
+  // Close sub-panels when hovering over non-sub mega items
+  document.querySelectorAll('.mega-section-item:not(.has-sub)').forEach(function(item) {
+    item.addEventListener('mouseenter', function() {
+      document.querySelectorAll('.has-sub').forEach(function(s){ s.classList.remove('sub-open'); });
+    });
+  });
+});
+
+function toggleMega() {}
+function showSub(id) {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  var el = document.getElementById(id);
+  if (el) el.classList.add('sub-open');
+}
+function hideSubs() {
+  document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+}
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'Escape') {
+    document.querySelectorAll('.mnav-item').forEach(function(e){ e.classList.remove('open'); });
+    document.querySelectorAll('.has-sub').forEach(function(e){ e.classList.remove('sub-open'); });
+  }
+});
+</script>
+
+<main>
+
+<!-- HERO -->
+<section class="calc-hero">
+  <div class="container">
+    <div class="section-tag reveal">Калькулятор выгоды</div>
+    <h1 class="reveal d1">Рассчитайте экономию от внедрения <em>BRaiN HR</em></h1>
+    <p class="reveal d2">Введите параметры вашей компании — калькулятор покажет, сколько вы сэкономите на каждой вакансии и за год.</p>
+  </div>
+</section>
+
+<!-- КАЛЬКУЛЯТОР -->
+<section class="section-bg" style="border-top:1px solid var(--grey2); border-bottom:1px solid var(--grey2); padding: 80px 0;">
+  <div class="container">
+
+    <div class="calc-wrap reveal">
+      <div class="calc-header">
+        <div>
+          <h3>Калькулятор стоимости закрытия вакансии</h3>
+          <p>Измените значения в полях, чтобы увидеть персональный расчёт</p>
+        </div>
+      </div>
+      <div class="calc-body">
+        <!-- Вводные данные -->
+        <div style="margin-bottom:32px;">
+          <div class="calc-col-title">
+            <svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg>
+            Ваши данные
+          </div>
+          <div class="calc-row">
+            <span class="calc-label">ФОТ рекрутера (руб./мес)</span>
+            <input class="calc-input" type="number" id="fot_recruiter" value="80000" oninput="calcUpdate()" onchange="calcUpdate()">
+          </div>
+          <div class="calc-row">
+            <span class="calc-label">ФОТ руководителя (руб./мес)</span>
+            <input class="calc-input" type="number" id="fot_manager" value="150000" oninput="calcUpdate()" onchange="calcUpdate()">
+          </div>
+          <div class="calc-row">
+            <span class="calc-label">Зарплата специалиста по вакансии (руб./мес)</span>
+            <input class="calc-input" type="number" id="salary" value="100000" oninput="calcUpdate()" onchange="calcUpdate()">
+          </div>
+          <div class="calc-row">
+            <span class="calc-label">Количество откликов на вакансию</span>
+            <input class="calc-input" type="number" id="responses" value="500" oninput="calcUpdate()" onchange="calcUpdate()">
+          </div>
+          <div class="calc-row">
+            <span class="calc-label">Количество вакансий в год</span>
+            <input class="calc-input" type="number" id="vacancies_year" value="24" oninput="calcUpdate()" onchange="calcUpdate()">
+          </div>
+        </div>
+
+        <div class="calc-grid">
+          <!-- Без BRaiN HR -->
+          <div>
+            <div class="calc-col-title">
+              <svg width="16" height="16" stroke="#F04438" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+              Без BRaiN HR
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Время закрытия</span>
+              <span class="calc-value" id="old_days">25 дней</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Стоимость рекрутера</span>
+              <span class="calc-value" id="old_recruiter">77 020 руб.</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Стоимость руководителя</span>
+              <span class="calc-value" id="old_manager">14 118 руб.</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Цена простоя позиции</span>
+              <span class="calc-value" id="old_downtime">119 048 руб.</span>
+            </div>
+            <div class="calc-row" style="visibility:hidden;">
+              <span class="calc-label">&nbsp;</span>
+              <span class="calc-value">&nbsp;</span>
+            </div>
+            <div class="calc-total bad">
+              <span>Итого на 1 вакансию</span>
+              <span class="calc-total-num" id="old_total">210 185 руб.</span>
+            </div>
+          </div>
+
+          <!-- С BRaiN HR -->
+          <div>
+            <div class="calc-col-title good">
+              <svg width="16" height="16" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22,4 12,14.01 9,11.01"/></svg>
+              С BRaiN HR
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Время закрытия</span>
+              <span class="calc-value highlight" id="new_days">7 дней</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Стоимость рекрутера</span>
+              <span class="calc-value" id="new_recruiter">2 353 руб.</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Стоимость руководителя</span>
+              <span class="calc-value" id="new_manager">7 353 руб.</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Цена простоя позиции</span>
+              <span class="calc-value" id="new_downtime">33 333 руб.</span>
+            </div>
+            <div class="calc-row">
+              <span class="calc-label">Стоимость BRaiN HR</span>
+              <span class="calc-value" id="new_brain">27 000 руб.</span>
+            </div>
+            <div class="calc-total good">
+              <span>Итого на 1 вакансию</span>
+              <span class="calc-total-num" id="new_total">70 039 руб.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Выгода -->
+        <div class="calc-savings" id="savings_block">
+          <div class="calc-savings-row">
+            <div class="calc-savings-item">
+              <div class="calc-savings-num" id="savings_num">140 146 руб.</div>
+              <div class="calc-savings-label">выгода на каждой вакансии</div>
+            </div>
+            <div class="calc-savings-divider"></div>
+            <div class="calc-savings-item">
+              <div class="calc-annual-num" id="savings_annual">3 363 504 руб.</div>
+              <div class="calc-savings-label">экономия за год</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p style="font-size: 11px; color: var(--text2); line-height: 1.5; margin-top: 16px; text-align: center;">В таблице приведены ориентировочные данные для расчёта затрат на поиск по одной вакансии. Стоимость открытой вакансии основана на HR-исследованиях.</p>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-pricing" style="padding:80px 0;">
+  <div class="container">
+    <div class="cta-pricing-inner">
+      <h2 class="reveal">Готовы сократить расходы на найм?</h2>
+      <p class="reveal d1">Начните с бесплатной обработки 100 кандидатов</p>
+      <div class="cta-btns reveal d2">
+        <a href="https://brainhire.ru/signup" class="btn-hero-primary" style="display:inline-flex;">
+          Попробовать бесплатно
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </a>
+        <a href="contacts.html" class="btn-hero-outline" style="display:inline-flex;">Хочу демонстрацию</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section style="padding:80px 0;">
+  <div class="container">
+    <div class="faq-two-col">
+      <div class="faq-left reveal">
+        <div class="section-tag">Частые вопросы</div>
+        <h2>Ответы на <em>важные вопросы</em></h2>
+        <p>Не нашли ответ? Напишите нам — ответим в течение часа.</p>
+      </div>
+      <div class="faq-right reveal d1">
+        <div class="faq-item-v2">
+          <button class="faq-q-v2" onclick="toggleFaqV2(this)">
+            Как формируется стоимость BRaiN HR?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"/></svg>
+          </button>
+          <div class="faq-a-v2">
+            <div class="faq-a-v2-inner">Стоимость зависит от выбранного тарифа и объёма использования. Вы платите только за обработанных кандидатов — создание вакансий, скрининг резюме и базовая аналитика входят бесплатно во все тарифы.</div>
+          </div>
+        </div>
+        <div class="faq-item-v2">
+          <button class="faq-q-v2" onclick="toggleFaqV2(this)">
+            Что входит в бесплатный период?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"/></svg>
+          </button>
+          <div class="faq-a-v2">
+            <div class="faq-a-v2-inner">Вы получаете полный доступ к платформе для обработки первых 100 кандидатов: ИИ-создание вакансий, скрининг резюме, видеоинтервью, анализ и обратная связь. Этого достаточно, чтобы оценить эффективность на реальных вакансиях.</div>
+          </div>
+        </div>
+        <div class="faq-item-v2">
+          <button class="faq-q-v2" onclick="toggleFaqV2(this)">
+            Как рассчитывается экономия?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"/></svg>
+          </button>
+          <div class="faq-a-v2">
+            <div class="faq-a-v2-inner">Калькулятор учитывает затраты рабочего времени рекрутера и руководителя, а также стоимость простоя вакансии. BRaiN HR сокращает срок закрытия вакансии с 25 до 7 дней и автоматизирует 90% рутинных операций, что и формирует экономию.</div>
+          </div>
+        </div>
+        <div class="faq-item-v2">
+          <button class="faq-q-v2" onclick="toggleFaqV2(this)">
+            Можно ли подключить только отдельные функции?
+            <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6,9 12,15 18,9"/></svg>
+          </button>
+          <div class="faq-a-v2">
+            <div class="faq-a-v2-inner">Да, тарифы гибкие. Вы можете начать с текстовых диалогов или видеоинтервью, а затем масштабировать использование. Мы подберём оптимальную конфигурацию под ваши задачи.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="site-footer-new">
+  <div class="footer-new-inner">
+    <div class="footer-new-top">
+      <div class="footer-new-col footer-new-col-brand">
+        <a href="https://brainhire.ru/" class="footer-new-logo"><img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR"></a>
+        <p class="footer-new-desc">ИИ-платформа для автоматизации рекрутинга и оценки персонала. Нанимайте в 5 раз дешевле и быстрее.</p>
+        <div class="footer-new-socials">
+          <a href="https://vk.com/brain_hr" target="_blank" class="footer-social-btn" title="ВКонтакте">В</a>
+          <a href="https://t.me/BRaiN_HR" target="_blank" class="footer-social-btn" title="Telegram">Т</a>
+          <a href="https://www.instagram.com/brain_hire/" target="_blank" class="footer-social-btn" title="Instagram">I</a>
+          <a href="https://www.linkedin.com/company/105875559/" target="_blank" class="footer-social-btn" title="LinkedIn">in</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Отраслевые решения</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR в IT</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR в финансовом секторе</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR для маркетплейсов</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR для малого бизнеса</a>
+          <a href="https://brainhire.ru/#solutions" class="footer-new-link">Автоматизация HR для корпораций</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Функции</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/recruiting" class="footer-new-link">Рекрутинг</a>
+          <a href="https://brainhire.ru/ai-vacancy-creation" class="footer-new-link">ИИ-создание вакансий</a>
+          <a href="https://brainhire.ru/ai-resume-analysis" class="footer-new-link">ИИ-анализ резюме</a>
+          <a href="https://brainhire.ru/ai-videointerview" class="footer-new-link">ИИ-видеоинтервью</a>
+          <a href="https://brainhire.ru/ai-staff-scoring" class="footer-new-link">ИИ-оценка кандидатов</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Компания</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/about" class="footer-new-link">О нас</a>
+          <a href="https://brainhire.ru/contacts" class="footer-new-link">Контакты</a>
+          <a href="https://brainhire.ru/tariffs" class="footer-new-link">Тарифы</a>
+          <a href="https://brainhire.ru/reviews" class="footer-new-link">Отзывы</a>
+          <a href="https://brainhire.ru/case" class="footer-new-link">Кейсы</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">СМИ о нас</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">Блог</a>
+          <a href="https://brainhire.ru/partner" class="footer-new-link">Партнёрская программа</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Контакты</div>
+        <div class="footer-new-contact-block">
+          <a href="tel:+74959703976" class="footer-new-phone">+7 (495) 970-39-76</a>
+          <span class="footer-new-contact-sub">Служба поддержки</span>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Электронная почта:</span>
+          <a href="mailto:info@brainhire.ru" class="footer-new-email">info@brainhire.ru</a>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Адрес:</span>
+          <span class="footer-new-address">142005 Московская область, г. Домодедово, мкр. Центральный, ул. Кирова, д. 7, к.1, пом. 0011, офис 5</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-new-bottom">
+      <div class="footer-new-bottom-top">
+        <span class="footer-new-copy">&copy; ООО &laquo;НДК&raquo;, ОГРН 1225000105010. Все права защищены.</span>
+        <div class="footer-new-legal">
+          <a href="https://brainhire.ru/docs/privacy-policy" class="footer-new-legal-link">Политика конфиденциальности</a>
+          <a href="https://brainhire.ru/docs/user-agreement" class="footer-new-legal-link">Пользовательское соглашение</a>
+          <a href="https://brainhire.ru/docs/personal-data-consent" class="footer-new-legal-link">Обработка данных</a>
+        </div>
+      </div>
+      <div class="footer-new-bottom-docs">
+        <a href="https://brainhire.ru/docs/user-instructions" class="footer-new-legal-link">Инструкция по установке и эксплуатации ПО</a>
+        <a href="https://brainhire.ru/docs/product-description" class="footer-new-legal-link">Описание функциональных характеристик ПО</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// FAQ accordion
+function toggleFaqV2(btn) {
+  var item = btn.parentElement;
+  var wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item-v2').forEach(function(el) { el.classList.remove('open'); });
+  if (!wasOpen) { item.classList.add('open'); }
+}
+
+// Calculator
+function calcUpdate() {
+  var fotR = parseFloat(document.getElementById('fot_recruiter').value) || 80000;
+  var fotM = parseFloat(document.getElementById('fot_manager').value) || 150000;
+  var sal = parseFloat(document.getElementById('salary').value) || 100000;
+  var resp = parseFloat(document.getElementById('responses').value) || 500;
+  var vacYear = parseFloat(document.getElementById('vacancies_year').value) || 24;
+
+  var hourR = fotR / 170;
+  var hourM = fotM / 170;
+  var dayVacancy = sal / 21;
+
+  // Без BRaiN HR
+  var oldDays = 25;
+  var relCand = resp * 0.6;
+  var oldRecruiter = (resp * 5 / 60 + relCand * 10 / 60 + 60 * 60 / 60) * hourR;
+  var oldManager = (24 * 10 / 60 + 12 * 60 / 60) * hourM;
+  var oldDowntime = dayVacancy * oldDays;
+  var oldTotal = oldRecruiter + oldManager + oldDowntime;
+
+  // С BRaiN HR
+  var newDays = 7;
+  var newRecruiter = (20 * 10 / 60) * hourR;
+  var newManager = (20 * 10 / 60 + 5 * 60 / 60) * hourM;
+  var newDowntime = dayVacancy * newDays;
+  var brainCost = 27000;
+  var newTotal = newRecruiter + newManager + newDowntime + brainCost;
+
+  var savings = oldTotal - newTotal;
+  var annualSavings = savings * vacYear;
+
+  document.getElementById('old_days').textContent = oldDays + ' дней';
+  document.getElementById('old_recruiter').textContent = fmt(oldRecruiter) + ' руб.';
+  document.getElementById('old_manager').textContent = fmt(oldManager) + ' руб.';
+  document.getElementById('old_downtime').textContent = fmt(oldDowntime) + ' руб.';
+  document.getElementById('old_total').textContent = fmt(oldTotal) + ' руб.';
+
+  document.getElementById('new_days').textContent = newDays + ' дней';
+  document.getElementById('new_recruiter').textContent = fmt(newRecruiter) + ' руб.';
+  document.getElementById('new_manager').textContent = fmt(newManager) + ' руб.';
+  document.getElementById('new_downtime').textContent = fmt(newDowntime) + ' руб.';
+  document.getElementById('new_brain').textContent = fmt(brainCost) + ' руб.';
+  document.getElementById('new_total').textContent = fmt(newTotal) + ' руб.';
+
+  document.getElementById('savings_num').textContent = fmt(savings) + ' руб.';
+  document.getElementById('savings_annual').textContent = fmt(annualSavings) + ' руб.';
+}
+
+function fmt(n) {
+  return Math.round(n).toLocaleString('ru-RU');
+}
+
+// Reveal
+document.addEventListener('DOMContentLoaded', function() {
+  document.body.classList.add('js-loaded');
+  var reveals = document.querySelectorAll('.reveal');
+  var observer = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) { entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(function(el) { observer.observe(el); });
+});
+</script>
+
+<!-- STICKY SIDEBAR -->
+<div class="sticky-sidebar">
+  <a href="#form" class="sticky-btn sticky-btn-primary" title="Запросить демо">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M8 2h8a2 2 0 012 2v16a2 2 0 01-2 2H8a2 2 0 01-2-2V4a2 2 0 012-2z" stroke="currentColor" stroke-width="1.8"/><path d="M12 18h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Запросить демо</span>
+  </a>
+  <a href="calculator.html" class="sticky-btn sticky-btn-accent" title="Калькулятор экономии">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="4" y="2" width="16" height="20" rx="2" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="6" x2="16" y2="6" stroke="currentColor" stroke-width="1.8"/><line x1="8" y1="10" x2="10" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="10" x2="16" y2="10" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="14" x2="10" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="14" x2="16" y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="8" y1="18" x2="10" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><line x1="14" y1="18" x2="16" y2="18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+    <span class="sticky-label">Калькулятор экономии</span>
+  </a>
+  <a href="tel:+74958591070" class="sticky-btn sticky-btn-secondary" title="+7 (495) 859-10-70">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">+7 (495) 859-10-70</span>
+  </a>
+  <a href="mailto:info@brainhire.ru" class="sticky-btn sticky-btn-secondary" title="info@brainhire.ru">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M2 7l10 7 10-7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <span class="sticky-label">info@brainhire.ru</span>
+  </a>
+</div>
+
+<!-- FLOAT VIDEO WIDGET -->
+<div class="float-video-widget" id="floatWidget">
+  <div class="float-video-close" onclick="closeFloatWidget()" title="Закрыть">&#10005;</div>
+  <div class="float-video-wrap" id="floatVideoWrap" onclick="openFloatFullscreen()">
+    <div class="float-video-poster" id="floatPoster">
+      <img src="https://brainhire.ru/images/videoPreview.avif" onerror="this.style.display='none'; document.getElementById('floatPosterFallback').style.display='flex';" alt="Demo">
+      <div class="float-poster-fallback" id="floatPosterFallback">
+        <svg width="40" height="40" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polyline points="22,12 18,12 15,21 9,3 6,12 2,12"/></svg>
+        <span style="font-size:11px;font-weight:700;color:#fff;">BRaiN HR</span>
+      </div>
+    </div>
+    <video id="floatVideo" muted loop playsinline preload="auto" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+    <div class="float-video-overlay">
+      <div class="float-video-play"><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M6 4l14 8-14 8V4z" fill="white"/></svg></div>
+      <div class="float-video-label">Смотреть демо</div>
+    </div>
+  </div>
+</div>
+<div class="float-modal" id="floatModal" onclick="closeFloatModal()">
+  <div class="float-modal-inner" onclick="event.stopPropagation()">
+    <button class="float-modal-close" onclick="closeFloatModal()">&#10005;</button>
+    <video id="floatModalVideo" controls playsinline preload="none" style="width:100%;border-radius:12px;display:block;max-height:80vh;background:#000;">
+      <source src="https://storage.yandexcloud.net/brain-public/media/video_landing.mp4" type="video/mp4">
+    </video>
+  </div>
+</div>
+
+<script src="../shared/scripts.js"></script>
+</body>
+</html>

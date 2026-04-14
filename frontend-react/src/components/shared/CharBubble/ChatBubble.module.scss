@@ -1,0 +1,59 @@
+$bubble-bg: #e2e8f0;
+$user-bg: #ed8936;
+$bubble-color: #000;
+$user-color: #fff;
+
+.container {
+	display: flex;
+	justify-content: flex-start;
+
+	&.fromUser {
+		justify-content: flex-end;
+
+		.bubble {
+			background-color: $user-bg;
+			color: $user-color;
+
+			&::after {
+				right: -8px;
+				border-left-color: $user-bg;
+			}
+		}
+	}
+}
+
+.bubble {
+	position: relative;
+	display: flex;
+	z-index: 1;
+	justify-content: center;
+	align-items: center;
+	padding: 8px 12px;
+	background-color: $bubble-bg;
+	color: $bubble-color;
+	border-radius: 16px;
+	line-height: 1.4;
+
+	&::after {
+		content: '';
+		position: absolute;
+		left: -15px;
+		bottom: 0px;
+		border: 20px solid transparent;
+		border-right: 20px solid $bubble-bg;
+		border-bottom: 20px solid $bubble-bg;
+		z-index: -1;
+	}
+}
+
+@media (max-width: 770px) {
+	.container {
+		justify-content: center;
+	}
+
+	.bubble {
+		&::after {
+			display: none;
+		}
+	}
+}
