@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>BRaiN HR + MWS — ИИ-рекрутинг на инфраструктуре МТС Web Services</title>
+<meta name="description" content="Стратегическое партнёрство BRaiN HR и MWS (МТС Web Services). Готовое AI-решение для автоматизации найма на enterprise-облаке №1 в России. 152-ФЗ, SLA 99,95%, данные в РФ.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<link rel="stylesheet" href="../shared/styles.css">
+<link rel="stylesheet" href="../shared/components.css">
+<style>
+  /* ─── PARTNER LOGOS (hero right) ─── */
+  .partner-visual {
+    display: flex; flex-direction: column; align-items: center; gap: 32px;
+  }
+  .partner-logos-row {
+    display: flex; align-items: center; gap: 24px;
+  }
+  .partner-logo-card {
+    background: var(--white); border: 1.5px solid var(--grey2); border-radius: var(--radius);
+    padding: 28px 36px; box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center;
+    transition: border-color .25s, box-shadow .25s;
+  }
+  .partner-logo-card:hover { border-color: var(--brand1); box-shadow: var(--shadow-md); }
+  .partner-logo-card img { height: 28px; }
+
+  /* MWS CSS logo (matching presentation style) */
+  .mws-logo-block {
+    display: flex; align-items: center; gap: 14px;
+  }
+  .mws-logo-square {
+    width: 56px; height: 56px; background: #E30611; border-radius: 6px;
+    display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr;
+    padding: 6px; gap: 1px;
+  }
+  .mws-logo-square span {
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 900; color: #fff;
+  }
+  .mws-logo-square span:last-child { grid-column: 1 / -1; }
+  .mws-logo-text {
+    font-size: 22px; font-weight: 800; color: var(--text1); letter-spacing: -0.5px;
+  }
+  .mws-logo-sub {
+    font-size: 11px; color: var(--text2); font-weight: 500; margin-top: 2px;
+  }
+
+  .partner-connector {
+    font-size: 28px; font-weight: 800; color: var(--grey2); line-height: 1;
+  }
+
+  .partner-badge-row {
+    display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+  }
+  .partner-badge {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--grey1); border: 1px solid var(--grey2); border-radius: 100px;
+    padding: 6px 14px; font-size: 12px; font-weight: 600; color: var(--text2);
+  }
+  .partner-badge svg { flex-shrink: 0; }
+
+  /* ─── ARCHITECTURE PYRAMID ─── */
+  .arch-stack {
+    display: flex; flex-direction: column; align-items: center; gap: 0; margin-top: 48px;
+  }
+  .arch-layer {
+    padding: 32px 40px; text-align: center; position: relative;
+    transition: transform .3s;
+  }
+  .arch-layer:hover { transform: translateY(-3px); }
+
+  /* Pyramid shape: top narrow, bottom wide */
+  .arch-layer:nth-child(1) { width: 55%; } /* Result — top, narrowest */
+  .arch-layer:nth-child(2) { width: 77%; } /* Platform — middle */
+  .arch-layer:nth-child(3) { width: 100%; } /* Infra — bottom, widest */
+
+  /* Colors */
+  .arch-layer.layer-result {
+    background: linear-gradient(135deg, rgba(18,83,109,0.06), rgba(18,83,109,0.12));
+    border-radius: var(--radius) var(--radius) 0 0;
+    border: 1.5px solid rgba(18,83,109,0.2);
+    border-bottom: none;
+  }
+  .arch-layer.layer-platform {
+    background: linear-gradient(135deg, rgba(64,150,255,0.06), rgba(64,150,255,0.12));
+    border: 1.5px solid rgba(64,150,255,0.25);
+    border-bottom: none;
+  }
+  .arch-layer.layer-infra {
+    background: linear-gradient(135deg, rgba(227,6,17,0.04), rgba(227,6,17,0.1));
+    border-radius: 0 0 var(--radius) var(--radius);
+    border: 1.5px solid rgba(227,6,17,0.2);
+  }
+
+  .arch-layer-icon {
+    width: 48px; height: 48px; border-radius: 50%; margin: 0 auto 12px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .arch-layer-icon.infra { background: #FDECEA; border: 1.5px solid rgba(227,6,17,0.2); }
+  .arch-layer-icon.platform { background: var(--brand1-bg); border: 1.5px solid rgba(64,150,255,0.25); }
+  .arch-layer-icon.result { background: rgba(18,83,109,0.1); border: 1.5px solid rgba(18,83,109,0.2); }
+
+  .arch-layer-content { }
+  .arch-layer-tag {
+    display: inline-flex; font-size: 10px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; padding: 3px 10px; border-radius: 100px; margin-bottom: 6px;
+  }
+  .arch-layer-tag.infra { background: #FDECEA; color: #E30611; }
+  .arch-layer-tag.platform { background: var(--brand1-bg); color: var(--brand1); }
+  .arch-layer-tag.result { background: rgba(18,83,109,0.1); color: var(--brand3); }
+
+  .arch-layer-title { font-size: 16px; font-weight: 700; color: var(--text1); margin-bottom: 10px; }
+  .arch-layer-items {
+    display: flex; gap: 8px; flex-wrap: wrap; justify-content: center;
+  }
+  .arch-layer-item {
+    font-size: 12px; font-weight: 500; color: var(--text2); background: rgba(255,255,255,0.7);
+    border: 1px solid var(--grey2); border-radius: 100px; padding: 4px 12px;
+  }
+
+  /* ─── RESPONSIVE: custom sections ─── */
+  @media (max-width: 960px) {
+    .partner-logos-row { flex-direction: column; gap: 16px; }
+    .partner-connector { transform: rotate(90deg); }
+    .arch-layer:nth-child(1) { width: 70%; }
+    .arch-layer:nth-child(2) { width: 85%; }
+    .arch-layer:nth-child(3) { width: 100%; }
+  }
+  @media (max-width: 600px) {
+    .partner-logo-card { padding: 20px 24px; }
+    .arch-layer { padding: 24px 20px; }
+    .arch-layer:nth-child(1) { width: 80%; }
+    .arch-layer:nth-child(2) { width: 90%; }
+    .arch-layer:nth-child(3) { width: 100%; }
+    .arch-layer-items { gap: 6px; }
+    .arch-layer-item { font-size: 11px; padding: 3px 10px; }
+  }
+
+  /* ─── MWS FACTS CARD ─── */
+  .mws-facts-card {
+    background: var(--white); border: 1.5px solid var(--grey2); border-radius: var(--radius);
+    padding: 28px 32px; box-shadow: var(--shadow-md);
+  }
+  .mws-facts-title {
+    font-size: 14px; font-weight: 700; color: var(--text1); margin-bottom: 20px;
+    padding-bottom: 12px; border-bottom: 1px solid var(--grey2);
+    text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .mws-facts-list { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .mws-fact-num {
+    font-size: 20px; font-weight: 800; color: var(--brand1); line-height: 1.2; letter-spacing: -0.5px;
+  }
+  .mws-fact-desc { font-size: 12px; color: var(--text2); line-height: 1.4; margin-top: 2px; }
+
+  @media (max-width: 600px) {
+    .mws-facts-list { grid-template-columns: 1fr; gap: 16px; }
+    .mws-facts-card { padding: 20px; }
+  }
+
+  /* ─── MWS red accent override for feature icons ─── */
+  .feature-icon-wrap.mws-accent {
+    background: #FDECEA; border-color: rgba(227,6,17,0.2);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══ HEADER (скопировать из shared/header.html) ═══ -->
+<!-- URGENCY BANNER -->
+<div class="urgency-banner">
+  <span class="urgency-dot"></span>
+  Каждый день без нужного разработчика — это задержка релиза, переработки команды и упущенный рост.
+</div>
+
+<!-- HEADER -->
+<header class="site-header">
+  <div class="header-topbar">
+    <div class="header-inner" style="height:36px; justify-content:center;">
+      <div class="topbar-links">
+        <a href="https://brainhire.ru/about" class="topbar-link">О компании</a>
+        <a href="https://brainhire.ru/contacts" class="topbar-link">Контакты</a>
+        <a href="https://brainhire.ru/partner" class="topbar-link">Партнёрская программа</a>
+      </div>
+    </div>
+  </div>
+  <div class="header-main">
+    <div class="header-inner">
+      <a class="logo" href="https://brainhire.ru/">
+        <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+      </a>
+      <nav class="main-nav">
+
+        <!-- Как это работает — megamenu -->
+        <div class="mnav-item has-mega" id="megaHow">
+          <button class="mnav-btn">
+            Как это работает
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel">
+            <div class="mega-col">
+              <!-- Рекрутинг → sub -->
+              <div class="mega-section-item has-sub" id="subRecruiting">
+                <div class="mega-section-link">
+                  <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></span>
+                  <div>
+                    <div class="mega-section-title">Рекрутинг</div>
+                    <div class="mega-section-desc">Полный цикл подбора с ИИ</div>
+                  </div>
+                  <svg class="mega-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+                </div>
+                <div class="sub-panel">
+                  <a href="https://brainhire.ru/recruiting" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9 2H7a2 2 0 00-2 2v16a2 2 0 002 2h10a2 2 0 002-2V4a2 2 0 00-2-2h-2"/><rect x="9" y="1" width="6" height="4" rx="1" ry="1"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">Рекрутинг</div>
+                      <div class="sub-item-desc">Обзор возможностей платформы</div>
+                    </div>
+                  </a>
+                  <a href="https://brainhire.ru/ai-vacancy-creation" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4 12.5-12.5z"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-создание вакансий</div>
+                      <div class="sub-item-desc">Описание вакансии за минуты</div>
+                    </div>
+                  </a>
+                  <a href="https://brainhire.ru/ai-resume-analysis" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-анализ резюме</div>
+                      <div class="sub-item-desc">Скоринг и ранжирование откликов</div>
+                    </div>
+                  </a>
+                  <a href="https://brainhire.ru/ai-videointerview" class="sub-item">
+                    <span class="sub-item-icon"><svg width="18" height="18" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><polygon points="23,7 16,12 23,17 23,7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg></span>
+                    <div>
+                      <div class="sub-item-title">ИИ-видеоинтервью</div>
+                      <div class="sub-item-desc">Автоматические интервью с прокторингом</div>
+                    </div>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Оценка персонала -->
+              <a href="https://brainhire.ru/ai-staff-scoring" class="mega-section-link mega-section-item">
+                <span class="mega-section-icon"><svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none" viewBox="0 0 24 24"><path d="M9.5 2A2.5 2.5 0 017 4.5v1A2.5 2.5 0 009.5 8h5A2.5 2.5 0 0017 5.5v-1A2.5 2.5 0 0014.5 2h-5z"/><path d="M9.5 8a2.5 2.5 0 00-2.5 2.5A2.5 2.5 0 004.5 13a2.5 2.5 0 002.5 2.5 2.5 2.5 0 002.5 2.5h5a2.5 2.5 0 002.5-2.5 2.5 2.5 0 002.5-2.5 2.5 2.5 0 00-2.5-2.5A2.5 2.5 0 0014.5 8h-5z"/></svg></span>
+                <div>
+                  <div class="mega-section-title">Оценка персонала</div>
+                  <div class="mega-section-desc">ИИ-оценка soft skills и компетенций</div>
+                </div>
+                <svg class="mega-arrow" width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M4 2l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Отраслевые решения — megamenu -->
+        <div class="mnav-item has-mega" id="megaSolutions">
+          <button class="mnav-btn">
+            Отраслевые решения
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 4l4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          </button>
+          <div class="mega-panel">
+            <div class="mega-col">
+              <div class="mega-col-label">По размеру бизнеса</div>
+              <a href="solutions/smb.html" class="drop-item">Малый бизнес</a>
+              <a href="solutions/enterprise.html" class="drop-item">Корпорации</a>
+            </div>
+            <div class="mega-col">
+              <div class="mega-col-label">По отрасли</div>
+              <a href="solutions/it.html" class="drop-item">ИТ компании</a>
+              <a href="solutions/finance.html" class="drop-item">Финансовый сектор</a>
+              <a href="solutions/hr.html" class="drop-item">HR агентства</a>
+              <a href="solutions/horeca.html" class="drop-item">HoReCa</a>
+              <a href="solutions/education.html" class="drop-item">Образование</a>
+              <a href="solutions/sales.html" class="drop-item">Продажи</a>
+              <a href="solutions/logistics.html" class="drop-item">Логистика</a>
+              <a href="solutions/marketing.html" class="drop-item">Маркетинг</a>
+            </div>
+            <div class="mega-col">
+              <div class="mega-col-label">Маркетплейсы</div>
+              <a href="solutions/marketplaces.html" class="drop-item">Владельцам ПВЗ</a>
+              <a href="solutions/sellers.html" class="drop-item">Селлерам</a>
+            </div>
+          </div>
+        </div>
+
+        <a href="https://brainhire.ru/case" class="mnav-link">Кейсы</a>
+        <a href="https://brainhire.ru/reviews" class="mnav-link">Отзывы</a>
+        <a href="https://brainhire.ru/tariffs" class="mnav-link">Тарифы</a>
+        <a href="https://brainhire.ru/blog" class="mnav-link">Блог</a>
+      </nav>
+      <div class="nav-actions">
+        <a href="https://brainhire.ru/signup" class="btn-primary">100 кандидатов бесплатно</a>
+        <a href="https://brainhire.ru/signin" class="btn-secondary">Войти</a>
+      </div>
+    </div>
+  </div>
+</header>
+<!-- ═══ /HEADER ═══ -->
+
+
+<main>
+
+<!-- ═══ 1. HERO — Партнёрский заголовок ═══ -->
+<section class="hero-section">
+  <div class="hero-wrap">
+    <div>
+      <div class="hero-badge reveal">
+        <span class="dot"></span>
+        Стратегическое партнёрство
+      </div>
+      <h1 class="reveal">ИИ-рекрутинг на&nbsp;инфраструктуре <em>MWS</em></h1>
+      <p class="hero-sub reveal">BRaiN HR + МТС Web Services — готовое AI-решение для автоматизации найма на enterprise-облаке №1 в&nbsp;России</p>
+      <div class="hero-actions reveal">
+        <a href="https://mws.ru/" target="_blank" class="btn-hero-primary">Перейти на сайт MWS</a>
+      </div>
+    </div>
+    <div class="partner-visual reveal">
+      <div class="partner-logos-row">
+        <div class="partner-logo-card">
+          <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR" style="height:32px;">
+        </div>
+        <div class="partner-connector">&times;</div>
+        <div class="partner-logo-card">
+          <div class="mws-logo-block">
+            <div class="mws-logo-square">
+              <span>M</span><span>W</span>
+              <span>S</span>
+            </div>
+            <div>
+              <div class="mws-logo-text">MWS</div>
+              <div class="mws-logo-sub">МТС Web Services</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="partner-badge-row">
+        <span class="partner-badge">
+          <svg width="14" height="14" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Enterprise-безопасность
+        </span>
+        <span class="partner-badge">
+          <svg width="14" height="14" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          №1 IaaS 2025
+        </span>
+        <span class="partner-badge">
+          <svg width="14" height="14" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+          16 дата-центров
+        </span>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 2. ЧТО ТАКОЕ MWS ═══ -->
+<section class="section-bg">
+  <div class="container">
+    <span class="section-tag reveal">О ПАРТНЁРЕ</span>
+    <h2 class="section-title reveal">MWS — бигтех-компания <em>группы МТС</em></h2>
+    <p class="section-sub reveal">MWS (МТС Web Services) — это единая бигтех-платформа, объединяющая МТС Digital, МТС Cloud, Big Data МТС, MTS AI и Visionlabs. Компания предоставляет облачные сервисы, AI-инфраструктуру и платформенные решения для бизнеса любого масштаба.</p>
+
+    <div class="mws-facts-card reveal">
+      <div class="mws-facts-title">MWS в цифрах</div>
+      <div class="mws-facts-list" style="grid-template-columns:1fr 1fr 1fr;">
+        <div class="mws-fact">
+          <div class="mws-fact-num">20 лет</div>
+          <div class="mws-fact-desc">на рынке облачных технологий</div>
+        </div>
+        <div class="mws-fact">
+          <div class="mws-fact-num">5 000+</div>
+          <div class="mws-fact-desc">корпоративных клиентов</div>
+        </div>
+        <div class="mws-fact">
+          <div class="mws-fact-num">63,8 млрд</div>
+          <div class="mws-fact-desc">руб. выручка 2025 (+53% г/г)</div>
+        </div>
+        <div class="mws-fact">
+          <div class="mws-fact-num">16 ЦОД</div>
+          <div class="mws-fact-desc">в 7 регионах России</div>
+        </div>
+        <div class="mws-fact">
+          <div class="mws-fact-num">280 000+ км</div>
+          <div class="mws-fact-desc">каналов связи МТС</div>
+        </div>
+        <div class="mws-fact">
+          <div class="mws-fact-num">99,95%</div>
+          <div class="mws-fact-desc">SLA (факт 99,99%)</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 3. АРХИТЕКТУРА РЕШЕНИЯ ═══ -->
+<section id="architecture">
+  <div class="container">
+    <span class="section-tag reveal">АРХИТЕКТУРА РЕШЕНИЯ</span>
+    <h2 class="section-title reveal">Готовый продукт на базе <em>мощной инфраструктуры</em></h2>
+    <p class="section-sub reveal">MWS обеспечивает доступ к LLM-моделям и вычислительные мощности. BRaiN HR — прикладную логику автоматизации HR.</p>
+
+    <div class="arch-stack">
+      <!-- Результат -->
+      <div class="arch-layer layer-result reveal">
+        <div class="arch-layer-icon result">
+          <svg width="22" height="22" stroke="#12536D" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+        </div>
+        <div class="arch-layer-content">
+          <span class="arch-layer-tag result">Результат для клиента</span>
+          <div class="arch-layer-title">Ускорение найма, снижение костов</div>
+          <div class="arch-layer-items">
+            <span class="arch-layer-item">Найм в 3-5 раз быстрее</span>
+            <span class="arch-layer-item">Снижение стоимости закрытия вакансии</span>
+            <span class="arch-layer-item">Экономия 85% времени HR</span>
+          </div>
+        </div>
+      </div>
+      <!-- Платформа -->
+      <div class="arch-layer layer-platform reveal d1">
+        <div class="arch-layer-icon platform">
+          <svg width="22" height="22" stroke="#4096FF" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <div class="arch-layer-content">
+          <span class="arch-layer-tag platform">Платформа BRaiN HR</span>
+          <div class="arch-layer-title">Прикладной HR-слой</div>
+          <div class="arch-layer-items">
+            <span class="arch-layer-item">ИИ-анализ резюме</span>
+            <span class="arch-layer-item">Автоматизация коммуникаций</span>
+            <span class="arch-layer-item">ИИ-видеоинтервью</span>
+            <span class="arch-layer-item">Рейтинг кандидатов</span>
+          </div>
+        </div>
+      </div>
+      <!-- Инфраструктура -->
+      <div class="arch-layer layer-infra reveal d2">
+        <div class="arch-layer-icon infra">
+          <svg width="22" height="22" stroke="#E30611" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        </div>
+        <div class="arch-layer-content">
+          <span class="arch-layer-tag infra">Инфраструктура MWS</span>
+          <div class="arch-layer-title">Enterprise-облако МТС</div>
+          <div class="arch-layer-items">
+            <span class="arch-layer-item">MWS GPT</span>
+            <span class="arch-layer-item">API к LLM-моделям</span>
+            <span class="arch-layer-item">GPU-вычисления</span>
+            <span class="arch-layer-item">16 ЦОД</span>
+            <span class="arch-layer-item">152-ФЗ (УЗ-1)</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 4. ЦЕННОСТЬ ДЛЯ БИЗНЕСА ═══ -->
+<section class="section-bg">
+  <div class="container">
+    <span class="section-tag reveal">ЦЕННОСТЬ ДЛЯ БИЗНЕСА</span>
+    <h2 class="section-title reveal">Почему это важно для <em>вашего найма</em></h2>
+    <p class="section-sub reveal">Что конкретно даёт инфраструктура MWS вашей HR-команде и бизнесу.</p>
+
+    <div class="pain-grid">
+      <div class="pain-card reveal">
+        <div class="pain-emoji">
+          <svg width="28" height="28" stroke="#4096FF" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <h3 class="pain-title">Данные кандидатов под защитой</h3>
+        <p class="pain-text">Персональные данные хранятся в аттестованных ЦОД MWS (152-ФЗ, УЗ-1). Это снимает compliance-риски — критично для банков, госструктур и крупного бизнеса.</p>
+      </div>
+      <div class="pain-card reveal d1">
+        <div class="pain-emoji">
+          <svg width="28" height="28" stroke="#4096FF" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <h3 class="pain-title">Никаких санкционных рисков</h3>
+        <p class="pain-text">Оплата AI-сервисов в рублях через российское юрлицо МТС. Нет зависимости от зарубежных облачных провайдеров — работаете стабильно в любой ситуации.</p>
+      </div>
+      <div class="pain-card reveal d2">
+        <div class="pain-emoji">
+          <svg width="28" height="28" stroke="#4096FF" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+        </div>
+        <h3 class="pain-title">Масштабирование без потолка</h3>
+        <p class="pain-text">Открыли 50 вакансий или 500 — инфраструктура MWS масштабируется автоматически. 15 зон доступности, GPU-кластеры, рост мощностей x1,6 за год.</p>
+      </div>
+      <div class="pain-card reveal d3">
+        <div class="pain-emoji">
+          <svg width="28" height="28" stroke="#4096FF" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <h3 class="pain-title">Доверие корпоративных клиентов</h3>
+        <p class="pain-text">Партнёрство с МТС — бренд №1 в российском телекоме — повышает доверие к решению. Более 5 000 enterprise-клиентов уже работают на инфраструктуре MWS.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 5. ЧТО ДАЁТ MWS ═══ -->
+<section>
+  <div class="container">
+    <span class="section-tag reveal">ИНФРАСТРУКТУРА MWS</span>
+    <h2 class="section-title reveal">Enterprise-облако <em>№1 в России</em></h2>
+    <p class="section-sub reveal">MWS — бигтех-компания группы МТС. 20 лет на рынке, 63,8 млрд руб. выручки, лучшая партнёрская программа среди облачных провайдеров.</p>
+
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon-wrap mws-accent">
+          <svg width="22" height="22" stroke="#E30611" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">MWS GPT и LLM-модели</div>
+          <div class="feature-text">Доступ к российским и международным языковым моделям через единый API. Гибкий выбор модели под конкретную HR-задачу — скрининг, интервью или аналитику.</div>
+        </div>
+      </div>
+      <div class="feature-card reveal d1">
+        <div class="feature-icon-wrap mws-accent">
+          <svg width="22" height="22" stroke="#E30611" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">Оплата в рублях</div>
+          <div class="feature-text">Централизованная оплата всех AI-сервисов через контур MWS. Без сложностей с зарубежными платежами и санкционных рисков. Российское юрлицо, НДС.</div>
+        </div>
+      </div>
+      <div class="feature-card reveal d2">
+        <div class="feature-icon-wrap mws-accent">
+          <svg width="22" height="22" stroke="#E30611" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><rect x="2" y="2" width="20" height="8" rx="2"/><rect x="2" y="14" width="20" height="8" rx="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">16 дата-центров, SLA 99,95%</div>
+          <div class="feature-text">Отказоустойчивая инфраструктура в 7 регионах России. 280 000+ км каналов связи МТС. Фактическая доступность — 99,99%.</div>
+        </div>
+      </div>
+      <div class="feature-card reveal d3">
+        <div class="feature-icon-wrap mws-accent">
+          <svg width="22" height="22" stroke="#E30611" stroke-width="1.8" fill="none" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <div>
+          <div class="feature-title">152-ФЗ, PCI DSS, ISO 27001</div>
+          <div class="feature-text">Данные кандидатов хранятся на территории РФ. Аттестация УЗ-1 для персональных данных. ГОСТ Р 57580 для финансовых организаций. Tier III надёжность ЦОД.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══ 5. CTA С ФОРМОЙ ═══ -->
+<section class="cta-section" id="cta">
+  <div class="cta-inner">
+    <div class="cta-left">
+      <h2 class="reveal">Готовы автоматизировать <em>рекрутинг</em>?</h2>
+      <p class="reveal">BRaiN HR + MWS: enterprise-решение для найма, которое работает на облачной инфраструктуре №1 в России.</p>
+      <div class="cta-points reveal">
+        <div class="cta-point">
+          <div class="cp-icon">
+            <svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><path d="M22 4L12 14.01l-3-3"/></svg>
+          </div>
+          <div><strong>Бесплатный пилот</strong>Обработка до 100 кандидатов без оплаты. Оцените результат до покупки.</div>
+        </div>
+        <div class="cta-point">
+          <div class="cp-icon">
+            <svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+          </div>
+          <div><strong>Персональный менеджер</strong>Поможет настроить платформу и обучит вашу команду.</div>
+        </div>
+        <div class="cta-point">
+          <div class="cp-icon">
+            <svg width="16" height="16" stroke="#4096FF" stroke-width="2" fill="none" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div><strong>Подключение за 1 день</strong>SaaS-модель без нагрузки на IT-отдел. Начните нанимать сразу.</div>
+        </div>
+      </div>
+    </div>
+    <div class="form-card reveal">
+      <div class="form-title">Запросить демо</div>
+      <div class="form-sub">Заполните форму, и мы свяжемся с вами в течение рабочего дня</div>
+      <form>
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label">Имя</label>
+            <input type="text" class="form-input" placeholder="Как к вам обращаться">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Компания</label>
+            <input type="text" class="form-input" placeholder="Название компании">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" class="form-input" placeholder="email@company.ru">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Телефон</label>
+            <input type="tel" class="form-input" placeholder="+7 (___) ___-__-__">
+          </div>
+          <div class="form-group form-full">
+            <label style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text2);cursor:pointer;">
+              <input type="checkbox" style="margin-top:2px;accent-color:var(--brand1);" required>
+              Я ознакомлен с <a href="https://brainhire.ru/docs/privacy-policy" style="color:var(--brand1);">политикой обработки персональных данных</a>
+            </label>
+          </div>
+          <div class="form-group form-full">
+            <label style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text2);cursor:pointer;">
+              <input type="checkbox" style="margin-top:2px;accent-color:var(--brand1);" required>
+              Даю согласие на <a href="https://brainhire.ru/docs/personal-data-consent" style="color:var(--brand1);">обработку персональных данных</a>
+            </label>
+          </div>
+          <div class="form-group form-full">
+            <label style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text2);cursor:pointer;">
+              <input type="checkbox" style="margin-top:2px;accent-color:var(--brand1);" required>
+              Принимаю условия <a href="https://brainhire.ru/docs/user-agreement" style="color:var(--brand1);">пользовательского соглашения</a>
+            </label>
+          </div>
+          <div class="form-group form-full">
+            <label style="display:flex;align-items:flex-start;gap:8px;font-size:13px;color:var(--text2);cursor:pointer;">
+              <input type="checkbox" style="margin-top:2px;accent-color:var(--brand1);">
+              Я согласен получать <a href="https://brainhire.ru/docs/ad-consent" style="color:var(--brand1);">рекламные и информационные рассылки</a>
+            </label>
+          </div>
+        </div>
+        <button type="submit" class="btn-form">Запросить демо</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+
+
+</main>
+
+
+<!-- ═══ FOOTER (скопировать из shared/footer.html) ═══ -->
+<footer class="site-footer-new">
+  <div class="footer-new-inner">
+    <div class="footer-new-top">
+      <div class="footer-new-col footer-new-col-brand">
+        <a href="https://brainhire.ru/" class="footer-new-logo">
+          <img src="https://brainhire.ru/icons/Logo.svg" alt="BRaiN HR">
+        </a>
+        <p class="footer-new-desc">ИИ-платформа для автоматизации рекрутинга и оценки персонала. Нанимайте в 5 раз дешевле и быстрее.</p>
+        <div class="footer-new-socials">
+          <a href="https://vk.com/brain_hr" target="_blank" class="footer-social-btn" title="ВКонтакте">В</a>
+          <a href="https://t.me/BRaiN_HR" target="_blank" class="footer-social-btn" title="Telegram">Т</a>
+          <a href="https://www.instagram.com/brain_hire/" target="_blank" class="footer-social-btn" title="Instagram">I</a>
+          <a href="https://www.linkedin.com/company/105875559/" target="_blank" class="footer-social-btn" title="LinkedIn">in</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Отраслевые решения</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/solutions/it" class="footer-new-link">Автоматизация HR в IT</a>
+          <a href="https://brainhire.ru/solutions/finance" class="footer-new-link">Автоматизация HR в финансовом секторе</a>
+          <a href="https://brainhire.ru/solutions/marketplaces" class="footer-new-link">Автоматизация HR для маркетплейсов</a>
+          <a href="https://brainhire.ru/solutions/smb" class="footer-new-link">Автоматизация HR для малого бизнеса</a>
+          <a href="https://brainhire.ru/solutions/enterprise" class="footer-new-link">Автоматизация HR для корпораций</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Функции</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/recruiting" class="footer-new-link">Рекрутинг</a>
+          <a href="https://brainhire.ru/ai-vacancy-creation" class="footer-new-link">ИИ-создание вакансий</a>
+          <a href="https://brainhire.ru/ai-resume-analysis" class="footer-new-link">ИИ-анализ резюме</a>
+          <a href="https://brainhire.ru/ai-videointerview" class="footer-new-link">ИИ-видеоинтервью</a>
+          <a href="https://brainhire.ru/ai-staff-scoring" class="footer-new-link">ИИ-оценка кандидатов</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Компания</div>
+        <div class="footer-new-links">
+          <a href="https://brainhire.ru/about" class="footer-new-link">О нас</a>
+          <a href="https://brainhire.ru/contacts" class="footer-new-link">Контакты</a>
+          <a href="https://brainhire.ru/tariffs" class="footer-new-link">Тарифы</a>
+          <a href="https://brainhire.ru/reviews" class="footer-new-link">Отзывы</a>
+          <a href="https://brainhire.ru/case" class="footer-new-link">Кейсы</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">СМИ о нас</a>
+          <a href="https://brainhire.ru/blog" class="footer-new-link">Блог</a>
+          <a href="https://brainhire.ru/partner" class="footer-new-link">Партнёрская программа</a>
+          <a href="mws-partnership.html" class="footer-new-link">Партнёрство с MWS</a>
+        </div>
+      </div>
+      <div class="footer-new-col">
+        <div class="footer-new-col-title">Контакты</div>
+        <div class="footer-new-contact-block">
+          <a href="tel:+74959703976" class="footer-new-phone">+7 (495) 970-39-76</a>
+          <span class="footer-new-contact-sub">Служба поддержки</span>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Электронная почта:</span>
+          <a href="mailto:info@brainhire.ru" class="footer-new-email">info@brainhire.ru</a>
+        </div>
+        <div class="footer-new-contact-block">
+          <span class="footer-new-contact-label">Адрес:</span>
+          <span class="footer-new-address">142005 Московская область, г. Домодедово, мкр. Центральный, ул. Кирова, д. 7, к.1, пом. 0011, офис 5</span>
+        </div>
+      </div>
+    </div>
+    <div class="footer-new-bottom">
+      <div class="footer-new-bottom-top">
+        <span class="footer-new-copy">&copy; ООО &laquo;НДК&raquo;, ОГРН 1225000105010. Все права защищены.</span>
+        <div class="footer-new-legal">
+          <a href="https://brainhire.ru/docs/privacy-policy" class="footer-new-legal-link">Политика конфиденциальности</a>
+          <a href="https://brainhire.ru/docs/user-agreement" class="footer-new-legal-link">Пользовательское соглашение</a>
+          <a href="https://brainhire.ru/docs/personal-data-consent" class="footer-new-legal-link">Обработка данных</a>
+        </div>
+      </div>
+      <div class="footer-new-bottom-docs">
+        <a href="https://brainhire.ru/docs/user-instructions" class="footer-new-legal-link">Инструкция по установке и эксплуатации ПО</a>
+        <a href="https://brainhire.ru/docs/product-description" class="footer-new-legal-link">Описание функциональных характеристик ПО</a>
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- ═══ /FOOTER ═══ -->
+
+<script src="../shared/scripts.js"></script>
+</body>
+</html>
