@@ -1,1 +1,0 @@
-export { VacancyInfo } from './VacancyInfo'

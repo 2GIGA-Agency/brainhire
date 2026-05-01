@@ -1,1 +1,0 @@
-export { EffectChart } from './EffectChart'

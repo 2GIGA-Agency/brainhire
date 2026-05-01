@@ -1,1 +1,0 @@
-export { SubscribeCard } from './SubscribeCard'

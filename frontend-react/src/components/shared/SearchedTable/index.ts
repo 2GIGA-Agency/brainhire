@@ -1,1 +1,0 @@
-export { SearchedTable } from './SearchedTable';

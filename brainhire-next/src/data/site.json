@@ -1,0 +1,189 @@
+{
+  "domain": "https://brainhire.ru",
+  "brand": {
+    "name": "BRaiN HR",
+    "logo": "/icons/Logo.svg",
+    "phone": "+7 (495) 970-39-76",
+    "email": "info@ndk-ai.ru"
+  },
+  "urgency": {
+    "enabled": true,
+    "text": "Каждый день без нужного разработчика — это задержка релиза, переработки команды и упущенный рост."
+  },
+  "topbar": [
+    { "label": "О компании", "href": "/about" },
+    { "label": "Контакты", "href": "/contacts" },
+    { "label": "Партнёрская программа", "href": "/hr-cashback" },
+    { "label": "Калькулятор выгоды", "href": "/calculator" }
+  ],
+  "header": {
+    "menu": [
+      {
+        "type": "mega",
+        "id": "how",
+        "label": "Как это работает",
+        "columns": [
+          {
+            "items": [
+              {
+                "type": "section",
+                "label": "Рекрутинг",
+                "description": "Полный цикл подбора с ИИ",
+                "icon": "target",
+                "subItems": [
+                  {
+                    "label": "Рекрутинг",
+                    "href": "/recruiting",
+                    "description": "Обзор возможностей платформы",
+                    "icon": "clipboard-list"
+                  },
+                  {
+                    "label": "ИИ-создание вакансий",
+                    "href": "/ai-vacancy-creation",
+                    "description": "Описание вакансии за минуты",
+                    "icon": "edit-3"
+                  },
+                  {
+                    "label": "ИИ-анализ резюме",
+                    "href": "/ai-resume-analysis",
+                    "description": "Скоринг и ранжирование откликов",
+                    "icon": "bar-chart-3"
+                  },
+                  {
+                    "label": "ИИ-видеоинтервью",
+                    "href": "/ai-videointerview",
+                    "description": "Автоматические интервью с прокторингом",
+                    "icon": "video"
+                  }
+                ]
+              },
+              {
+                "type": "section",
+                "label": "Оценка персонала",
+                "href": "/ai-staff-scoring",
+                "description": "ИИ-оценка soft skills и компетенций",
+                "icon": "award"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "type": "mega",
+        "id": "solutions",
+        "label": "Отраслевые решения",
+        "columns": [
+          {
+            "label": "По размеру бизнеса",
+            "items": [
+              { "type": "link", "label": "Малый бизнес", "href": "/solutions/smb" },
+              { "type": "link", "label": "Корпорации", "href": "/solutions/enterprise" }
+            ]
+          },
+          {
+            "label": "По отрасли",
+            "items": [
+              { "type": "link", "label": "ИТ компании", "href": "/solutions/it" },
+              { "type": "link", "label": "Финансовый сектор", "href": "/solutions/finance" },
+              { "type": "link", "label": "HR агентства", "href": "/solutions/hr" },
+              { "type": "link", "label": "HoReCa", "href": "/solutions/horeca" },
+              { "type": "link", "label": "Образование", "href": "/solutions/education" },
+              { "type": "link", "label": "Продажи", "href": "/solutions/sales" },
+              { "type": "link", "label": "Логистика", "href": "/solutions/logistics" },
+              { "type": "link", "label": "Маркетинг", "href": "/solutions/marketing" }
+            ]
+          },
+          {
+            "label": "Маркетплейсы",
+            "items": [
+              { "type": "link", "label": "Владельцам ПВЗ", "href": "/solutions/marketplaces" },
+              { "type": "link", "label": "Селлерам", "href": "/solutions/sellers" }
+            ]
+          }
+        ]
+      },
+      { "type": "link", "label": "Кейсы", "href": "/case" },
+      { "type": "link", "label": "Отзывы", "href": "/reviews" },
+      { "type": "link", "label": "Тарифы", "href": "/tariffs" },
+      { "type": "link", "label": "Блог", "href": "/blog" }
+    ],
+    "ctaPrimary": {
+      "label": "100 кандидатов бесплатно",
+      "href": "/signup",
+      "variant": "primary"
+    },
+    "ctaSecondary": {
+      "label": "Войти",
+      "href": "/signin",
+      "variant": "secondary"
+    }
+  },
+  "footer": {
+    "description": "ИИ-платформа для автоматизации рекрутинга и оценки персонала. Нанимайте в 5 раз дешевле и быстрее.",
+    "columns": [
+      {
+        "title": "Отраслевые решения",
+        "links": [
+          { "label": "Автоматизация HR в IT", "href": "/solutions/it" },
+          { "label": "Автоматизация HR в финансовом секторе", "href": "/solutions/finance" },
+          { "label": "Автоматизация HR для маркетплейсов", "href": "/solutions/marketplaces" },
+          { "label": "Автоматизация HR для малого бизнеса", "href": "/solutions/smb" },
+          { "label": "Автоматизация HR для корпораций", "href": "/solutions/enterprise" }
+        ]
+      },
+      {
+        "title": "Функции",
+        "links": [
+          { "label": "Рекрутинг", "href": "/recruiting" },
+          { "label": "ИИ-создание вакансий", "href": "/ai-vacancy-creation" },
+          { "label": "ИИ-анализ резюме", "href": "/ai-resume-analysis" },
+          { "label": "ИИ-видеоинтервью", "href": "/ai-videointerview" },
+          { "label": "ИИ-оценка кандидатов", "href": "/ai-staff-scoring" }
+        ]
+      },
+      {
+        "title": "Компания",
+        "links": [
+          { "label": "О нас", "href": "/about" },
+          { "label": "Контакты", "href": "/contacts" },
+          { "label": "Тарифы", "href": "/tariffs" },
+          { "label": "Отзывы", "href": "/reviews" },
+          { "label": "Кейсы", "href": "/case" },
+          { "label": "СМИ о нас", "href": "/press" },
+          { "label": "Блог", "href": "/blog" },
+          { "label": "Партнёрская программа", "href": "/partner" },
+          { "label": "Партнёрство с MWS", "href": "/mws-partnership" }
+        ]
+      }
+    ],
+    "socials": [
+      { "id": "vk", "href": "https://vk.com/brain_hr" },
+      { "id": "telegram", "href": "https://t.me/BRaiN_HR" },
+      { "id": "instagram", "href": "https://www.instagram.com/brain_hire/" },
+      { "id": "linkedin", "href": "https://www.linkedin.com/company/105875559/" }
+    ],
+    "contacts": {
+      "phone": "+7 (495) 970-39-76",
+      "phoneSub": "Служба поддержки",
+      "email": "info@ndk-ai.ru",
+      "address": "142005 Московская область, г. Домодедово, мкр. Центральный, ул. Кирова, д. 7, к.1, пом. 0011, офис 5"
+    },
+    "legal": {
+      "company": "ООО «НДК»",
+      "ogrn": "1225000105010",
+      "copyright": "© ООО «НДК», ОГРН 1225000105010. Все права защищены.",
+      "links": [
+        { "label": "Политика конфиденциальности", "href": "/docs/privacy-policy" },
+        { "label": "Пользовательское соглашение", "href": "/docs/user-agreement" },
+        { "label": "Обработка данных", "href": "/docs/personal-data-consent" }
+      ],
+      "docs": [
+        { "label": "Инструкция по установке и эксплуатации ПО", "href": "/docs/user-instructions" },
+        { "label": "Описание функциональных характеристик ПО", "href": "/docs/product-description" }
+      ]
+    }
+  },
+  "analytics": {
+    "yandexMetrikaIdEnv": "NEXT_PUBLIC_YM_ID"
+  }
+}

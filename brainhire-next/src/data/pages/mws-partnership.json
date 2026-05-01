@@ -1,0 +1,141 @@
+{
+  "meta": {
+    "title": "BRaiN HR + MWS — ИИ-рекрутинг на инфраструктуре МТС Web Services",
+    "description": "Стратегическое партнёрство BRaiN HR и MWS (МТС Web Services). Готовое AI-решение для автоматизации найма на enterprise-облаке №1 в России. 152-ФЗ, SLA 99,95%, данные в РФ.",
+    "canonical": "/mws-partnership",
+    "updatedAt": "2026-04-29"
+  },
+  "blocks": [
+    {
+      "type": "Hero",
+      "badge": "Стратегическое партнёрство",
+      "title": "ИИ-рекрутинг на&nbsp;инфраструктуре <em>MWS</em>",
+      "titleHtml": true,
+      "sub": "BRaiN HR + МТС Web Services — готовое AI-решение для автоматизации найма на enterprise-облаке №1 в России",
+      "primaryCta": { "label": "Перейти на сайт MWS", "href": "https://mws.ru/", "variant": "primary", "external": true },
+      "proof": [
+        "Enterprise-безопасность",
+        "№1 IaaS 2025",
+        "16 дата-центров"
+      ]
+    },
+    {
+      "type": "TrustIndicators",
+      "tag": "О ПАРТНЁРЕ",
+      "title": "MWS — бигтех-компания <em>группы МТС</em>",
+      "titleHtml": true,
+      "cards": [
+        { "icon": "cloud", "title": "Облачные сервисы", "body": "MWS Cloud, MWS GPT, IaaS-платформа enterprise-уровня для бизнеса любого масштаба." },
+        { "icon": "cpu", "title": "AI-инфраструктура", "body": "MTS AI, Visionlabs, Big Data МТС — единая бигтех-платформа для AI-сервисов и аналитики." },
+        { "icon": "server", "title": "Платформенные решения", "body": "МТС Digital — корпоративные сервисы и платформы для цифровой трансформации." }
+      ],
+      "partner": {
+        "name": "MWS (МТС Web Services)",
+        "description": "MWS (МТС Web Services) — это единая бигтех-платформа, объединяющая МТС Digital, МТС Cloud, Big Data МТС, MTS AI и Visionlabs. Компания предоставляет облачные сервисы, AI-инфраструктуру и платформенные решения для бизнеса любого масштаба.",
+        "cta": { "label": "Перейти на сайт MWS", "href": "https://mws.ru/", "variant": "secondary", "external": true },
+        "metrics": [
+          { "value": "20 лет", "label": "на рынке облачных технологий" },
+          { "value": "5 000+", "label": "корпоративных клиентов" },
+          { "value": "63,8 млрд", "label": "руб. выручка 2025 (+53% г/г)" },
+          { "value": "16 ЦОД", "label": "в 7 регионах России" },
+          { "value": "280 000+ км", "label": "каналов связи МТС" },
+          { "value": "99,95%", "label": "SLA (факт 99,99%)" }
+        ]
+      }
+    },
+    {
+      "type": "Steps",
+      "tag": "АРХИТЕКТУРА РЕШЕНИЯ",
+      "title": "Готовый продукт на базе <em>мощной инфраструктуры</em>",
+      "titleHtml": true,
+      "sub": "MWS обеспечивает доступ к LLM-моделям и вычислительные мощности. BRaiN HR — прикладную логику автоматизации HR.",
+      "bgWhite": true,
+      "steps": [
+        {
+          "num": "Слой 1",
+          "time": "Инфраструктура MWS",
+          "icon": "server",
+          "title": "Enterprise-облако МТС",
+          "body": "MWS GPT, API к LLM-моделям, GPU-вычисления, 16 ЦОД, 152-ФЗ (УЗ-1) — фундамент для AI-сервисов."
+        },
+        {
+          "num": "Слой 2",
+          "time": "Платформа BRaiN HR",
+          "icon": "target",
+          "title": "Прикладной HR-слой",
+          "body": "ИИ-анализ резюме, автоматизация коммуникаций, ИИ-видеоинтервью, рейтинг кандидатов."
+        },
+        {
+          "num": "Слой 3",
+          "time": "Результат для клиента",
+          "icon": "check-circle",
+          "title": "Ускорение найма, снижение костов",
+          "body": "Найм в 3-5 раз быстрее, снижение стоимости закрытия вакансии, экономия 85% времени HR."
+        }
+      ]
+    },
+    {
+      "type": "PainCards",
+      "title": "Почему это важно для <em>вашего найма</em>",
+      "titleHtml": true,
+      "sub": "Что конкретно даёт инфраструктура MWS вашей HR-команде и бизнесу.",
+      "items": [
+        { "icon": "shield", "title": "Данные кандидатов под защитой", "body": "Персональные данные хранятся в аттестованных ЦОД MWS (152-ФЗ, УЗ-1). Это снимает compliance-риски — критично для банков, госструктур и крупного бизнеса." },
+        { "icon": "ruble", "title": "Никаких санкционных рисков", "body": "Оплата AI-сервисов в рублях через российское юрлицо МТС. Нет зависимости от зарубежных облачных провайдеров — работаете стабильно в любой ситуации." },
+        { "icon": "trending-up", "title": "Масштабирование без потолка", "body": "Открыли 50 вакансий или 500 — инфраструктура MWS масштабируется автоматически. 15 зон доступности, GPU-кластеры, рост мощностей x1,6 за год." },
+        { "icon": "users", "title": "Доверие корпоративных клиентов", "body": "Партнёрство с МТС — бренд №1 в российском телекоме — повышает доверие к решению. Более 5 000 enterprise-клиентов уже работают на инфраструктуре MWS." }
+      ]
+    },
+    {
+      "type": "FeaturesGrid",
+      "tag": "ИНФРАСТРУКТУРА MWS",
+      "title": "Enterprise-облако <em>№1 в России</em>",
+      "titleHtml": true,
+      "sub": "MWS — бигтех-компания группы МТС. 20 лет на рынке, 63,8 млрд руб. выручки, лучшая партнёрская программа среди облачных провайдеров.",
+      "bgWhite": true,
+      "items": [
+        { "icon": "cpu", "title": "MWS GPT и LLM-модели", "body": "Доступ к российским и международным языковым моделям через единый API. Гибкий выбор модели под конкретную HR-задачу — скрининг, интервью или аналитику." },
+        { "icon": "ruble", "title": "Оплата в рублях", "body": "Централизованная оплата всех AI-сервисов через контур MWS. Без сложностей с зарубежными платежами и санкционных рисков. Российское юрлицо, НДС." },
+        { "icon": "server", "title": "16 дата-центров, SLA 99,95%", "body": "Отказоустойчивая инфраструктура в 7 регионах России. 280 000+ км каналов связи МТС. Фактическая доступность — 99,99%." },
+        { "icon": "shield", "title": "152-ФЗ, PCI DSS, ISO 27001", "body": "Данные кандидатов хранятся на территории РФ. Аттестация УЗ-1 для персональных данных. ГОСТ Р 57580 для финансовых организаций. Tier III надёжность ЦОД." }
+      ]
+    },
+    {
+      "type": "Logos",
+      "label": "Нам доверяют компании из разных отраслей",
+      "bgWhite": true,
+      "items": [
+        { "label": "IT PEOPLE", "href": "https://itpeoplegroup.ru/", "html": "<span style=\"font-size:12px;font-weight:800;color:#1a1a1a;letter-spacing:1.5px;text-transform:uppercase;border:2px solid #1a1a1a;padding:4px 8px;\">IT PEOPLE</span>" },
+        { "label": "moby", "href": "https://moby.estate/", "html": "<span style=\"font-size:17px;font-weight:800;color:#2b4de3;letter-spacing:-0.5px;\">●● moby</span>" },
+        { "label": "neyrox", "href": "https://neyrox.com/", "html": "<span style=\"font-size:15px;font-weight:700;color:#111;letter-spacing:-0.3px;\">neyrox</span>" },
+        { "label": "idaproject", "href": "https://idaproject.com/", "html": "<span style=\"font-size:14px;font-weight:700;color:#c0392b;letter-spacing:-0.3px;\">ida<span style=\"color:#222;\">project</span></span>" },
+        { "label": "prodamus", "href": "https://prodamus.ru/", "html": "<span style=\"font-size:15px;font-weight:700;color:#6c3db5;letter-spacing:-0.3px;\">prodamus</span>" },
+        { "label": "HR ROCKET", "href": "https://www.hr-rocket.ru/", "html": "<span style=\"font-size:14px;font-weight:800;color:#1a1a1a;letter-spacing:0.5px;\">HR<span style=\"color:#e03030;\">⚡</span>ROCKET</span>" },
+        { "label": "livecargo", "href": "https://livecargo.ru/", "html": "<span style=\"font-size:14px;font-weight:700;color:#1a5c3a;letter-spacing:-0.3px;\">live<span style=\"color:#27ae60;\">cargo</span></span>" },
+        { "label": "LEDGO", "href": "https://ledgo.ru/", "html": "<span style=\"font-size:16px;font-weight:900;color:#f39c12;letter-spacing:-0.5px;\">LED<span style=\"color:#e67e22;\">GO</span></span>" },
+        { "label": "PENOPLEX", "href": "https://www.penoplex.ru/", "html": "<span style=\"font-size:13px;font-weight:800;color:#e03030;letter-spacing:0.5px;\">PENOPLEX</span>" },
+        { "label": "ПШБ", "href": "https://pshb.ru/", "html": "<span style=\"font-size:13px;font-weight:800;color:#1a3a8a;letter-spacing:1px;\">ПШБ</span>" },
+        { "label": "SimbirSoft", "href": "https://www.simbirsoft.com/", "html": "<span style=\"font-size:18px;font-weight:800;color:#1a1a2e;letter-spacing:-0.5px;\">Simbir<span style=\"color:#e03030;\">S</span>oft</span>" },
+        { "label": "BSS", "href": "https://bssys.com/", "html": "<span style=\"background:#1a3a8a;color:#fff;font-size:15px;font-weight:900;padding:5px 10px;border-radius:4px;letter-spacing:1px;\">BSS</span>" },
+        { "label": "3LOGIC GROUP", "href": "https://3logic.ru/", "html": "<span style=\"font-size:15px;font-weight:800;color:#1a1a1a;letter-spacing:-0.3px;line-height:1;\">3<span style=\"color:#e03030;\">LOGIC</span><br><span style=\"font-size:9px;font-weight:600;color:#555;letter-spacing:1px;\">GROUP</span></span>" }
+      ]
+    },
+    {
+      "type": "CTAForm",
+      "tag": "Запросить демо",
+      "title": "Готовы автоматизировать <em>рекрутинг</em>?",
+      "titleHtml": true,
+      "body": "BRaiN HR + MWS: enterprise-решение для найма, которое работает на облачной инфраструктуре №1 в России.",
+      "leadType": "mws-partnership",
+      "points": [
+        { "icon": "check-circle", "title": "Бесплатный пилот", "body": "Обработка до 100 кандидатов без оплаты. Оцените результат до покупки." },
+        { "icon": "users", "title": "Персональный менеджер", "body": "Поможет настроить платформу и обучит вашу команду." },
+        { "icon": "clock", "title": "Подключение за 1 день", "body": "SaaS-модель без нагрузки на IT-отдел. Начните нанимать сразу." }
+      ],
+      "formTitle": "Запросить демо",
+      "formSub": "Заполните форму, и мы свяжемся с вами в течение рабочего дня",
+      "submitLabel": "Запросить демо",
+      "note": "Нажимая кнопку, вы соглашаетесь с <a href=\"/docs/privacy-policy\">политикой конфиденциальности</a> и <a href=\"/docs/personal-data-consent\">обработкой персональных данных</a>."
+    }
+  ]
+}

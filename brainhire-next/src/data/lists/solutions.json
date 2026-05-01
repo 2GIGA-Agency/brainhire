@@ -1,0 +1,14 @@
+[
+  { "slug": "it", "title": "ИТ компании", "segment": "industry" },
+  { "slug": "smb", "title": "Малый бизнес", "segment": "size" },
+  { "slug": "enterprise", "title": "Корпорации", "segment": "size" },
+  { "slug": "finance", "title": "Финансовый сектор", "segment": "industry" },
+  { "slug": "hr", "title": "HR агентства", "segment": "industry" },
+  { "slug": "horeca", "title": "HoReCa", "segment": "industry" },
+  { "slug": "education", "title": "Образование", "segment": "industry" },
+  { "slug": "sales", "title": "Продажи", "segment": "industry" },
+  { "slug": "logistics", "title": "Логистика", "segment": "industry" },
+  { "slug": "marketing", "title": "Маркетинг", "segment": "industry" },
+  { "slug": "marketplaces", "title": "Владельцам ПВЗ", "segment": "marketplace" },
+  { "slug": "sellers", "title": "Селлерам", "segment": "marketplace" }
+]

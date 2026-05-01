@@ -1,0 +1,225 @@
+{
+  "meta": {
+    "title": "Отзывы клиентов — BRaiN HR",
+    "description": "Отзывы клиентов BRaiN HR. Более 150 компаний доверяют нам автоматизацию найма и оценки персонала. Реальные результаты и кейсы.",
+    "canonical": "/reviews",
+    "updatedAt": "2026-04-29"
+  },
+  "blocks": [
+    {
+      "type": "Hero",
+      "title": "Отзывы о платформе <em>BRaiN HR</em>",
+      "titleHtml": true,
+      "sub": "Компаниям удалось снизить расходы на 78%, ускорить найм в 5 раз и повысить качество кандидатов."
+    },
+    {
+      "type": "Logos",
+      "label": "Нам доверяют компании из разных отраслей",
+      "bgWhite": true,
+      "items": [
+        { "label": "IT PEOPLE", "href": "https://itpeoplegroup.ru/", "html": "<span style=\"font-size:12px;font-weight:800;color:#1a1a1a;letter-spacing:1.5px;text-transform:uppercase;border:2px solid #1a1a1a;padding:4px 8px;\">IT PEOPLE</span>" },
+        { "label": "moby", "href": "https://moby.estate/", "html": "<span style=\"font-size:17px;font-weight:800;color:#2b4de3;letter-spacing:-0.5px;\">●● moby</span>" },
+        { "label": "neyrox", "href": "https://neyrox.com/", "html": "<span style=\"font-size:15px;font-weight:700;color:#111;letter-spacing:-0.3px;\">neyrox</span>" },
+        { "label": "idaproject", "href": "https://idaproject.com/", "html": "<span style=\"font-size:14px;font-weight:700;color:#c0392b;letter-spacing:-0.3px;\">ida<span style=\"color:#222;\">project</span></span>" },
+        { "label": "prodamus", "href": "https://prodamus.ru/", "html": "<span style=\"font-size:15px;font-weight:700;color:#6c3db5;letter-spacing:-0.3px;\">prodamus</span>" },
+        { "label": "HR ROCKET", "href": "https://www.hr-rocket.ru/", "html": "<span style=\"font-size:14px;font-weight:800;color:#1a1a1a;letter-spacing:0.5px;\">HR<span style=\"color:#e03030;\">⚡</span>ROCKET</span>" },
+        { "label": "livecargo", "href": "https://livecargo.ru/", "html": "<span style=\"font-size:14px;font-weight:700;color:#1a5c3a;letter-spacing:-0.3px;\">live<span style=\"color:#27ae60;\">cargo</span></span>" },
+        { "label": "LEDGO", "href": "https://ledgo.ru/", "html": "<span style=\"font-size:16px;font-weight:900;color:#f39c12;letter-spacing:-0.5px;\">LED<span style=\"color:#e67e22;\">GO</span></span>" },
+        { "label": "PENOPLEX", "href": "https://www.penoplex.ru/", "html": "<span style=\"font-size:13px;font-weight:800;color:#e03030;letter-spacing:0.5px;\">PENOPLEX</span>" },
+        { "label": "ПШБ", "href": "https://pshb.ru/", "html": "<span style=\"font-size:13px;font-weight:800;color:#1a3a8a;letter-spacing:1px;\">ПШБ</span>" },
+        { "label": "SimbirSoft", "href": "https://www.simbirsoft.com/", "html": "<span style=\"font-size:18px;font-weight:800;color:#1a1a2e;letter-spacing:-0.5px;\">Simbir<span style=\"color:#e03030;\">S</span>oft</span>" },
+        { "label": "BSS", "href": "https://bssys.com/", "html": "<span style=\"background:#1a3a8a;color:#fff;font-size:15px;font-weight:900;padding:5px 10px;border-radius:4px;letter-spacing:1px;\">BSS</span>" },
+        { "label": "3LOGIC GROUP", "href": "https://3logic.ru/", "html": "<span style=\"font-size:15px;font-weight:800;color:#1a1a1a;letter-spacing:-0.3px;line-height:1;\">3<span style=\"color:#e03030;\">LOGIC</span><br><span style=\"font-size:9px;font-weight:600;color:#555;letter-spacing:1px;\">GROUP</span></span>" }
+      ]
+    },
+    {
+      "type": "BlogGrid",
+      "tag": "Благодарственные письма",
+      "title": "Официальные благодарности от <em>наших клиентов</em>",
+      "titleHtml": true,
+      "bgWhite": true,
+      "items": [
+        {
+          "href": "/reviews",
+          "tag": "Письмо",
+          "date": "ТехноСофт",
+          "title": "Благодарность за автоматизацию процесса рекрутинга",
+          "body": "Официальная благодарность от компании ТехноСофт за внедрение BRaiN HR и автоматизацию полного цикла рекрутинга.",
+          "author": "ТехноСофт",
+          "authorInitials": "ТС",
+          "readTime": "ТехноСофт",
+          "cover": { "gradient": "linear-gradient(135deg, #12536D 0%, #1a6b8a 50%, rgba(64,150,255,0.13) 100%)", "icon": "award" }
+        },
+        {
+          "href": "/reviews",
+          "tag": "Письмо",
+          "date": "МаркетПлюс",
+          "title": "Благодарность за сокращение сроков массового найма",
+          "body": "Официальная благодарность от компании МаркетПлюс за сокращение сроков массового найма с использованием платформы BRaiN HR.",
+          "author": "МаркетПлюс",
+          "authorInitials": "МП",
+          "readTime": "МаркетПлюс",
+          "cover": { "gradient": "linear-gradient(135deg, #1a3a5c 0%, #12536D 50%, rgba(64,150,255,0.2) 100%)", "icon": "briefcase" }
+        },
+        {
+          "href": "/reviews",
+          "tag": "Письмо",
+          "date": "ФинТех Групп",
+          "title": "Благодарность за внедрение ИИ-оценки персонала",
+          "body": "Официальная благодарность от компании ФинТех Групп за внедрение ИИ-оценки персонала и улучшение качества подбора кандидатов.",
+          "author": "ФинТех Групп",
+          "authorInitials": "ФТ",
+          "readTime": "ФинТех Групп",
+          "cover": { "gradient": "linear-gradient(135deg, #0d2137 0%, #12536D 50%, rgba(105,177,255,0.13) 100%)", "icon": "building-2" }
+        },
+        {
+          "href": "/reviews",
+          "tag": "Письмо",
+          "date": "DataFlow",
+          "title": "Благодарность за повышение эффективности HR-отдела",
+          "body": "Официальная благодарность от компании DataFlow за повышение эффективности работы HR-отдела при использовании BRaiN HR.",
+          "author": "DataFlow",
+          "authorInitials": "DF",
+          "readTime": "DataFlow",
+          "cover": { "gradient": "linear-gradient(135deg, #12536D 0%, #2a7390 50%, rgba(64,150,255,0.18) 100%)", "icon": "award" }
+        }
+      ]
+    },
+    {
+      "type": "BlogGrid",
+      "tag": "Все отзывы",
+      "title": "Что говорят клиенты <em>BRaiN HR</em>",
+      "titleHtml": true,
+      "items": [
+        {
+          "href": "/reviews",
+          "tag": "HR-директор",
+          "date": "Рекрутинг",
+          "title": "Закрываем вакансии на 40% быстрее",
+          "body": "BRAiN HR полностью изменил наш подход к найму. Раньше на обработку откликов уходило до 3 дней, теперь ИИ делает первичный отбор за пару часов. Мы закрываем вакансии на 40% быстрее, и это реально ощутимый результат для бизнеса!",
+          "author": "Дмитрий Перминов",
+          "authorInitials": "ДП",
+          "readTime": "Сеть фитнес-клубов",
+          "cover": { "gradient": "linear-gradient(135deg, #12536D 0%, #1a6b8a 50%, rgba(64,150,255,0.13) 100%)", "icon": "briefcase" }
+        },
+        {
+          "href": "/reviews",
+          "tag": "Руководитель отдела подбора",
+          "date": "Скрининг резюме",
+          "title": "Качество кандидатов выросло на 35%",
+          "body": "Скептически относился к автоматизации рекрутинга, но BRAiN HR приятно удивил. Система не просто фильтрует резюме по ключевым словам, а реально понимает контекст. Качество кандидатов на собеседованиях выросло заметно.",
+          "author": "Игорь Петренко",
+          "authorInitials": "ИП",
+          "readTime": "Ритейл",
+          "cover": { "gradient": "linear-gradient(135deg, #1a3a5c 0%, #12536D 50%, rgba(64,150,255,0.2) 100%)", "icon": "bar-chart-3" }
+        },
+        {
+          "href": "/reviews",
+          "tag": "HR-менеджер",
+          "date": "Рекрутинг",
+          "title": "Снизили время отбора на 60%",
+          "body": "Внедрили BRAiN HR три месяца назад для массового подбора. Автоматизация рекрутинга сэкономила нам невероятное количество времени! Теперь я могу сосредоточиться на собеседованиях, а не на рутинной сортировке сотен резюме.",
+          "author": "Анна Григорьева",
+          "authorInitials": "АГ",
+          "readTime": "Производственная компания",
+          "cover": { "gradient": "linear-gradient(135deg, #0d2137 0%, #12536D 50%, rgba(105,177,255,0.13) 100%)", "icon": "users" }
+        },
+        {
+          "href": "/reviews",
+          "tag": "Основатель стартапа",
+          "date": "Автоматизация",
+          "title": "Сократили расходы на рекрутинг на 45%",
+          "body": "Для небольшой команды BRAiN HR — просто находка. Не нужно нанимать целый HR-отдел на этапе роста. ИИ помогает находить сильных кандидатов быстро, и мы не упускаем таланты из-за медленного отклика.",
+          "author": "Дмитрий Волков",
+          "authorInitials": "ДВ",
+          "readTime": "Стартап",
+          "cover": { "gradient": "linear-gradient(135deg, #12536D 0%, #2a7390 50%, rgba(64,150,255,0.18) 100%)", "icon": "zap" }
+        },
+        {
+          "href": "/reviews",
+          "tag": "Рекрутер",
+          "date": "Автоматизация",
+          "title": "Увеличили количество проектов на 70%",
+          "body": "Работаю с несколькими проектами одновременно, и BRAiN HR стал моим спасением. Автоматизация рекрутинга позволяет вести 5-6 вакансий параллельно без потери качества. Клиенты довольны скоростью закрытия позиций!",
+          "author": "Ольга Кузнецова",
+          "authorInitials": "ОК",
+          "readTime": "Аутсорсинговое агентство",
+          "cover": { "gradient": "linear-gradient(135deg, #1a3a5c 0%, #12536D 50%, rgba(64,150,255,0.2) 100%)", "icon": "target" }
+        },
+        {
+          "href": "/reviews",
+          "tag": "HR BP",
+          "date": "Скрининг резюме",
+          "title": "Испытательный срок проходят на 25% чаще",
+          "body": "BRAiN HR отлично справляется с первичным скринингом. ИИ учитывает не только hard skills, но и соответствие корпоративной культуре. Процент успешного прохождения испытательного срока вырос на 25% после внедрения.",
+          "author": "Сергей Новиков",
+          "authorInitials": "СН",
+          "readTime": "Финансовый сектор",
+          "cover": { "gradient": "linear-gradient(135deg, #0d2137 0%, #12536D 50%, rgba(105,177,255,0.13) 100%)", "icon": "shield" }
+        },
+        {
+          "href": "/reviews",
+          "tag": "Менеджер по персоналу",
+          "date": "Рекрутинг",
+          "title": "Время найма сократилось до 28 дней",
+          "body": "Самое ценное в BRAiN HR — это экономия ресурсов. Мы сократили время на рекрутинг с 45 до 28 дней в среднем. Автоматизация взяла на себя всю рутину, и теперь команда фокусируется на стратегических задачах.",
+          "author": "Екатерина Белова",
+          "authorInitials": "ЕБ",
+          "readTime": "Логистика",
+          "cover": { "gradient": "linear-gradient(135deg, #12536D 0%, #1a6b8a 50%, rgba(64,150,255,0.13) 100%)", "icon": "clock" }
+        },
+        {
+          "href": "/reviews",
+          "tag": "Head of Talent Acquisition",
+          "date": "Скрининг резюме",
+          "title": "Обрабатываем до 300 откликов в день",
+          "body": "Используем BRAiN HR для автоматизации массового найма в сезон. ИИ обрабатывает до 300 откликов в день и формирует shortlist из действительно релевантных кандидатов. Это масштабируемое решение, которое растёт вместе с бизнесом.",
+          "author": "Алексей Морозов",
+          "authorInitials": "АМ",
+          "readTime": "E-commerce",
+          "cover": { "gradient": "linear-gradient(135deg, #1a3a5c 0%, #12536D 50%, rgba(64,150,255,0.2) 100%)", "icon": "trending-up" }
+        },
+        {
+          "href": "/reviews",
+          "tag": "Директор по развитию",
+          "date": "Автоматизация",
+          "title": "Точность подбора повысилась на 50%",
+          "body": "Рекомендую BRAiN HR всем своим клиентам. Автоматизация рекрутинга здесь реализована очень грамотно — система обучается на ваших данных и становится точнее со временем. Интеграция с ATS прошла гладко, техподдержка на высоте.",
+          "author": "Виктория Лебедева",
+          "authorInitials": "ВЛ",
+          "readTime": "Девелоперская компания",
+          "cover": { "gradient": "linear-gradient(135deg, #0d2137 0%, #12536D 50%, rgba(105,177,255,0.13) 100%)", "icon": "star" }
+        }
+      ]
+    },
+    {
+      "type": "FAQ",
+      "title": "Частые вопросы",
+      "bgGrey": true,
+      "items": [
+        { "q": "Как оставить отзыв?", "a": "Если вы клиент BRaiN HR, свяжитесь с вашим менеджером или напишите на info@brainhire.ru. Мы будем рады вашей обратной связи." },
+        { "q": "Отзывы настоящие?", "a": "Да, все отзывы получены от реальных клиентов. Мы можем предоставить контакты для верификации по запросу." },
+        { "q": "Есть ли пробный период?", "a": "Да, первые 100 кандидатов обрабатываются бесплатно. Этого достаточно для оценки платформы." },
+        { "q": "Можно ли посмотреть демо?", "a": "Конечно. Оставьте заявку, и наш менеджер проведёт персональную демонстрацию платформы." }
+      ]
+    },
+    {
+      "type": "CTAForm",
+      "tag": "Присоединяйтесь к 150+ компаниям",
+      "title": "Начните нанимать быстрее <em>и дешевле уже сегодня</em>",
+      "titleHtml": true,
+      "body": "Первые 100 кандидатов — бесплатно. Покажем платформу на реальных вакансиях вашей компании и поможем настроить процесс под ваши задачи.",
+      "leadType": "reviews",
+      "points": [
+        { "icon": "zap", "title": "Бесплатный тестовый период", "body": "Первые 100 кандидатов — бесплатно, без привязки карты" },
+        { "icon": "users", "title": "Снижение расходов до 78%", "body": "Платформа окупается уже на первой закрытой вакансии" },
+        { "icon": "clock", "title": "Найм быстрее в 5 раз", "body": "ИИ обрабатывает отклики и проводит первичную оценку за часы" },
+        { "icon": "star", "title": "Качество кандидатов выше", "body": "ИИ учитывает hard skills и соответствие корпоративной культуре" }
+      ],
+      "formTitle": "Оставьте заявку — мы свяжемся с вами",
+      "formSub": "Покажем демо платформы и поможем подключить первую вакансию за 2 минуты.",
+      "submitLabel": "Получить демо бесплатно",
+      "note": "Нажимая кнопку, вы соглашаетесь с <a href=\"/docs/privacy-policy\">политикой конфиденциальности</a> и <a href=\"/docs/personal-data-consent\">обработкой персональных данных</a>."
+    }
+  ]
+}

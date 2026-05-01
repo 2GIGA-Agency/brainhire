@@ -1,0 +1,19 @@
+# Старый React-проект — по запросу не пушим
+frontend-react/
+frontend-react.zip
+
+# Локальная история сессий Claude Code (приватное)
+.claude/
+
+# Зависимости/билды (на всякий случай; корневой уровень — у brainhire-next свой .gitignore)
+node_modules/
+.next/
+
+# Логи
+dev-server.log
+*.log
+
+# ОС / редакторы
+.DS_Store
+Thumbs.db
+.idea/

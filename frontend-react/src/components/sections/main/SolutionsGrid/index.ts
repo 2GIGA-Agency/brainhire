@@ -1,1 +1,0 @@
-export { SolutionsGrid } from './SolutionsGrid';

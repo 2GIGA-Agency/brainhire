@@ -1,1 +1,0 @@
-export {CandidateInfo} from "./CandidateInfo"

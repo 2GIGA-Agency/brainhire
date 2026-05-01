@@ -89,6 +89,17 @@ a.mega-section-link:hover,
 .mega-section-desc { font-size: 11px; color: var(--text2); margin-top: 1px; }
 .mega-arrow { flex-shrink: 0; margin-left: auto; color: var(--text2); opacity: .5; }
 
+/* Mega-panel column label */
+.mega-col-label {
+  display: block;
+  padding: 8px 14px 4px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text2);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
 /* Sub panel */
 .sub-panel {
   display: none; position: absolute; left: calc(100% + 4px); top: 0;
