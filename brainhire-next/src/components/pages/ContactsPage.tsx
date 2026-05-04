@@ -38,7 +38,7 @@ export function ContactsPage() {
       {/* ═══ BLOCK 2: MAIN CONTACTS ═══ */}
       <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
         <Container>
-          <div className="grid grid-cols-2 items-start gap-8 max-bp-lg:grid-cols-1">
+          <div className="grid grid-cols-2 items-stretch gap-8 max-bp-lg:grid-cols-1">
             {/* Left column: Contact cards */}
             <div className="flex flex-col gap-5">
               <Reveal delay={1}>
@@ -117,13 +117,13 @@ export function ContactsPage() {
             </div>
 
             {/* Right column: Map */}
-            <div className="relative flex min-h-[400px] items-center justify-center overflow-hidden rounded-card border border-grey2 bg-grey1 max-bp-lg:min-h-[320px]">
+            <div className="relative overflow-hidden rounded-card border border-grey2 bg-grey1 max-bp-lg:min-h-[320px]">
               <iframe
                 src="https://yandex.ru/map-widget/v1/?um=constructor%3A1e22cf4a6539cd8bc913ded1398ad7bbd6fa4bbbf67f8d75e6f292822d26b078&amp;source=constructor"
                 width="500"
                 height="400"
                 frameBorder={0}
-                className="h-full min-h-[400px] w-full border-0"
+                className="absolute inset-0 h-full w-full border-0"
                 title="Yandex Maps — BRaiN HR офис"
               />
             </div>

@@ -404,6 +404,15 @@ export const blockSchema = z.discriminatedUnion("type", [
   }),
 
   z.object({
+    type: z.literal("RoiCalc"),
+    tag: z.string().optional(),
+    title: z.string().optional(),
+    titleHtml: z.boolean().optional(),
+    sub: z.string().optional(),
+    bgGrey: z.boolean().optional(),
+  }),
+
+  z.object({
     type: z.literal("Placeholder"),
     title: z.string(),
     note: z.string().optional(),
@@ -423,6 +432,7 @@ export const blockSchema = z.discriminatedUnion("type", [
         icon: z.string(),
         title: z.string(),
         body: z.string(),
+        href: z.string().optional(),
       }),
     ),
   }),

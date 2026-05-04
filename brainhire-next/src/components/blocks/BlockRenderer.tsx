@@ -17,6 +17,7 @@ import { SolutionsGrid } from "./SolutionsGrid";
 import { TrustIndicators } from "./TrustIndicators";
 import { FeaturesGrid } from "./FeaturesGrid";
 import { RolesGrid } from "./RolesGrid";
+import { RoiCalc } from "./RoiCalc";
 import { Placeholder } from "./Placeholder";
 
 type Props = { blocks: Block[] };
@@ -63,6 +64,8 @@ export function BlockRenderer({ blocks }: Props) {
             return <FeaturesGrid key={key} {...block} />;
           case "RolesGrid":
             return <RolesGrid key={key} {...block} />;
+          case "RoiCalc":
+            return <RoiCalc key={key} {...block} />;
           case "Placeholder":
             return <Placeholder key={key} {...block} />;
           default: {

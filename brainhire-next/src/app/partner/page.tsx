@@ -7,12 +7,12 @@ export const metadata: Metadata = {
   title: "HR Cashback — Партнёрская программа | BRaiN HR",
   description:
     "Станьте партнёром BRaiN HR и получайте до 25% от платежей привлечённых клиентов. Высокое вознаграждение, длительное начисление комиссии, поддержка менеджера.",
-  alternates: { canonical: "/hr-cashback" },
+  alternates: { canonical: "/partner" },
   openGraph: {
     title: "HR Cashback — Партнёрская программа | BRaiN HR",
     description:
       "Станьте партнёром BRaiN HR и получайте до 25% от платежей привлечённых клиентов.",
-    url: `${SITE_URL}/hr-cashback`,
+    url: `${SITE_URL}/partner`,
     type: "website",
   },
   robots: { index: false, follow: false },

@@ -2,7 +2,8 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { ReviewsList, type Review } from "@/components/interactive/ReviewsList";
 import { Reveal } from "@/components/interactive/Reveal";
-import { FileText, ZoomIn, ChevronDown } from "lucide-react";
+import { LettersLightbox } from "@/components/interactive/LettersLightbox";
+import { ChevronDown } from "lucide-react";
 
 /**
  * ReviewsPage — кастомный server-component для страницы /reviews.
@@ -106,24 +107,29 @@ const reviews: Review[] = [
 type Letter = {
   company: string;
   desc: string;
+  imageSrc?: string;
 };
 
 const letters: Letter[] = [
   {
     company: "ТехноСофт",
     desc: "Благодарность за автоматизацию процесса рекрутинга",
+    imageSrc: "/assets/letters/letter-tehnosoft.webp",
   },
   {
     company: "МаркетПлюс",
     desc: "Благодарность за сокращение сроков массового найма",
+    imageSrc: "/assets/letters/letter-marketplus.webp",
   },
   {
     company: "ФинТех Групп",
     desc: "Благодарность за внедрение ИИ-оценки персонала",
+    imageSrc: "/assets/letters/letter-fintechgroup.webp",
   },
   {
     company: "DataFlow",
     desc: "Благодарность за повышение эффективности HR-отдела",
+    imageSrc: "/assets/letters/letter-dataflow.webp",
   },
 ];
 
@@ -245,15 +251,15 @@ export function ReviewsPage() {
       </section>
 
       {/* ═══ LOGOS SLIDER ═══ */}
-      <section className="border-y border-grey2 bg-white py-8">
+      <section className="border-y border-grey2 bg-grey1 py-8">
         <Container>
           <div className="mb-5 text-center text-[12px] font-semibold uppercase tracking-[1px] text-text2">
             Нам доверяют компании из разных отраслей
           </div>
         </Container>
         <div className="relative overflow-hidden">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-20 bg-gradient-to-r from-white to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-20 bg-gradient-to-l from-white to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-20 bg-gradient-to-r from-grey1 to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-20 bg-gradient-to-l from-grey1 to-transparent" />
           <div className="flex w-max items-center animate-ticker hover:[animation-play-state:paused]">
             {doubledLogos.map((logo, i) => (
               <a
@@ -281,29 +287,7 @@ export function ReviewsPage() {
             увеличения.
           </p>
 
-          <div className="mt-12 grid grid-cols-4 gap-5 max-bp-lg:grid-cols-2 max-bp-md:grid-cols-1 max-bp-xs:mx-auto max-bp-xs:max-w-[280px]">
-            {letters.map((letter, i) => (
-              <Reveal key={i} delay={((i % 3) + 1) as 1 | 2 | 3}>
-                <div
-                  className="group h-full cursor-pointer overflow-hidden rounded-card border border-grey2 bg-white shadow-soft transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-1 hover:border-brand1 hover:shadow-[0_8px_32px_rgba(64,150,255,0.15)]"
-                >
-                  <div className="relative flex aspect-[210/297] items-center justify-center overflow-hidden bg-grey1">
-                    <div className="flex flex-col items-center gap-3 text-text2">
-                      <FileText size={48} strokeWidth={1.5} className="opacity-40" />
-                      <span className="text-[12px] font-semibold">Загрузите скан письма</span>
-                    </div>
-                    <div className="pointer-events-none absolute bottom-2.5 right-2.5 flex size-8 items-center justify-center rounded-full border border-grey2 bg-white opacity-0 shadow-[0_2px_8px_rgba(0,0,0,0.1)] transition-opacity duration-200 group-hover:opacity-100">
-                      <ZoomIn size={16} strokeWidth={2} className="text-text1" />
-                    </div>
-                  </div>
-                  <div className="px-4 py-3.5">
-                    <div className="mb-0.5 text-[14px] font-bold text-text1">{letter.company}</div>
-                    <div className="text-[12px] leading-[1.4] text-text2">{letter.desc}</div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <LettersLightbox letters={letters} />
         </Container>
       </section>
 

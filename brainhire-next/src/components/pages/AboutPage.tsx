@@ -260,14 +260,14 @@ const LEADERS = [
     social: { href: "https://tenchat.ru/4817715", label: "TenChat" },
   },
   {
-    img: "/assets/team/boris.jpg",
+    img: "/assets/team/boris.webp",
     name: "Борис Горштейн",
     role: "CPO & Сооснователь",
     bio: "Сооснователь и продуктовый директор. По образованию юрист, прошёл путь через стартап-экосистему Сан-Франциско. Отвечает за продуктовую стратегию платформы.",
     social: { href: "https://tenchat.ru/BRaiNhire", label: "TenChat" },
   },
   {
-    img: "/assets/team/ignat.jpg",
+    img: "/assets/team/ignat.webp",
     name: "Игнат Сапожников",
     role: "CTO",
     bio: "Технический директор, отвечает за разработку и архитектуру платформы BRaiN HR.",
@@ -495,7 +495,7 @@ export function AboutPage() {
               <div className="flex aspect-[210/297] w-full items-center justify-center bg-grey1">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/assets/docs/kartochka-reestra-preview.png"
+                  src="/assets/docs/kartochka-reestra-preview.webp"
                   alt="Карточка записи реестра российского ПО"
                   className="block h-full w-full object-cover"
                   loading="lazy"
@@ -523,20 +523,28 @@ export function AboutPage() {
               </div>
             </div>
 
-            {/* Cert 3 — placeholder */}
-            <div className="block cursor-pointer overflow-hidden rounded-card border border-grey2 bg-white shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-brand1 hover:shadow-[0_8px_32px_rgba(64,150,255,0.15)]">
+            {/* Cert 3 — Ответ по Заявке Сколково */}
+            <a
+              href="/assets/docs/otvet-po-zayavke.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block cursor-pointer overflow-hidden rounded-card border border-grey2 bg-white text-inherit no-underline shadow-soft transition-all duration-200 hover:-translate-y-1 hover:border-brand1 hover:shadow-[0_8px_32px_rgba(64,150,255,0.15)]"
+            >
               <div className="flex aspect-[210/297] w-full items-center justify-center bg-grey1">
-                <div className="flex flex-col items-center gap-3 text-text2">
-                  <FileText size={48} strokeWidth={1.5} className="opacity-40" />
-                  <span className="text-[12px] font-semibold">Документ</span>
-                </div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/assets/docs/otvet-po-zayavke-preview.webp"
+                  alt="Ответ по Заявке — Свидетельство резидента Сколково"
+                  className="block h-full w-full object-cover"
+                  loading="lazy"
+                />
               </div>
               <div className="px-4 py-[14px]">
                 <div className="text-[14px] font-bold leading-[1.4] text-text1">
                   Свидетельство резидента Сколково
                 </div>
               </div>
-            </div>
+            </a>
           </div>
         </Container>
       </section>
@@ -597,7 +605,7 @@ export function AboutPage() {
           </p>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/assets/team/team-photo.jpg"
+            src="/assets/team/team-photo.webp"
             alt="Команда BRaiN HR"
             className="mb-8 block w-full rounded-card border border-grey2"
             loading="lazy"

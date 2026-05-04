@@ -10,6 +10,7 @@ import { PageViewTracker } from "@/components/analytics/PageViewTracker";
 import { RevealObserver } from "@/components/interactive/RevealObserver";
 import { GTM_ID, YM_COUNTER_ID } from "@/lib/analytics";
 import { getSite } from "@/lib/site";
+import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -20,6 +21,42 @@ const montserrat = Montserrat({
 });
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://brainhire.ru";
+
+const ORGANIZATION_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "BRaiN HR",
+  url: `${SITE_URL}/`,
+  email: "info@ndk-ai.ru",
+  telephone: "+74959703976",
+  foundingDate: "2024-10-10",
+  sameAs: [
+    "https://vk.com/brain_hr",
+    "https://t.me/BRaiN_HR",
+    "https://www.instagram.com/brain_hire/",
+    "https://www.linkedin.com/company/105875559/",
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressCountry: "RU",
+    postalCode: "142005",
+    addressLocality: "Московская область, г. Домодедово",
+    streetAddress: "ул. Кирова, д. 7, к.1, пом. 0011, офис 5",
+  },
+  logo: {
+    "@type": "ImageObject",
+    url: `${SITE_URL}/icons/Logo.svg`,
+  },
+};
+
+const WEBSITE_SCHEMA = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "BRaiN HR",
+  url: `${SITE_URL}/`,
+  inLanguage: "ru",
+  description: "ИИ-платформа для автоматизации рекрутинга и оценки персонала.",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -49,6 +86,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ru" className={montserrat.variable}>
       <head>
+        <JsonLd data={ORGANIZATION_SCHEMA} />
+        <JsonLd data={WEBSITE_SCHEMA} />
         <Script id="gtm" strategy="afterInteractive">{`
           (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
           new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],

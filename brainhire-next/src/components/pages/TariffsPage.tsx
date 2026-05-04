@@ -1,7 +1,11 @@
+"use client";
+
+import { useState } from "react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { RoiCalculator } from "@/components/interactive/RoiCalculator";
 import { Reveal } from "@/components/interactive/Reveal";
+import { cn } from "@/lib/cn";
 import {
   Check,
   Shield,
@@ -201,6 +205,8 @@ const faqItems = [
    ────────────────────────────────────────────────────────────────── */
 
 export function TariffsPage() {
+  const [isYearly, setIsYearly] = useState(false);
+
   return (
     <>
       {/* HERO */}
@@ -248,22 +254,38 @@ export function TariffsPage() {
         </Container>
       </section>
 
-      {/* PILL TOGGLE (статичный, помесячно активна) */}
+      {/* PILL TOGGLE */}
       <section className="bg-white pt-12">
         <Container>
           <div className="mb-12 flex items-center justify-center gap-4">
-            {/* TODO Phase 5: интерактивное переключение помесячно/годовой */}
             <div className="relative inline-flex rounded-full border border-grey2 bg-grey1 p-1">
               <span
-                className="absolute top-1 left-1 h-[calc(100%-8px)] w-[calc(50%-4px)] rounded-full bg-white shadow-[0_1px_4px_rgba(17,38,58,0.1),0_2px_8px_rgba(17,38,58,0.06)]"
+                className={cn(
+                  "pointer-events-none absolute top-1 h-[calc(100%-8px)] w-[calc(50%-4px)] rounded-full bg-white shadow-[0_1px_4px_rgba(17,38,58,0.1),0_2px_8px_rgba(17,38,58,0.06)] transition-all duration-200",
+                  isYearly ? "left-[calc(50%+4px)]" : "left-1",
+                )}
                 aria-hidden="true"
               />
-              <span className="relative z-[2] cursor-default px-6 py-2.5 text-[14px] font-semibold text-text1 select-none whitespace-nowrap max-bp-sm:px-4 max-bp-sm:py-2 max-bp-sm:text-[13px]">
+              <button
+                type="button"
+                onClick={() => setIsYearly(false)}
+                className={cn(
+                  "relative z-[2] cursor-pointer rounded-full border-0 bg-transparent px-6 py-2.5 text-[14px] font-semibold select-none whitespace-nowrap transition-colors max-bp-sm:px-4 max-bp-sm:py-2 max-bp-sm:text-[13px]",
+                  !isYearly ? "text-text1" : "text-text2",
+                )}
+              >
                 Помесячно
-              </span>
-              <span className="relative z-[2] cursor-default px-6 py-2.5 text-[14px] font-semibold text-text2 select-none whitespace-nowrap max-bp-sm:px-4 max-bp-sm:py-2 max-bp-sm:text-[13px]">
+              </button>
+              <button
+                type="button"
+                onClick={() => setIsYearly(true)}
+                className={cn(
+                  "relative z-[2] cursor-pointer rounded-full border-0 bg-transparent px-6 py-2.5 text-[14px] font-semibold select-none whitespace-nowrap transition-colors max-bp-sm:px-4 max-bp-sm:py-2 max-bp-sm:text-[13px]",
+                  isYearly ? "text-text1" : "text-text2",
+                )}
+              >
                 Годовой
-              </span>
+              </button>
             </div>
             <span className="inline-flex items-center gap-1 rounded-full border border-brand1/25 bg-brand1-bg px-3 py-1 text-[11px] font-bold text-brand1">
               -10% при годовом
@@ -279,17 +301,20 @@ export function TariffsPage() {
             title="BRaiN CHAT"
             description="Автоматизация первичного контакта. Текстовые диалоги для обработки входящего потока кандидатов."
             tariffs={chatTariffs}
+            isYearly={isYearly}
           />
           <TariffGroup
             title="BRaiN INTERVIEW"
             description="Глубинная оценка. Проведение структурированных видеоинтервью с ИИ-аналитикой."
             tariffs={interviewTariffs}
+            isYearly={isYearly}
           />
           <TariffGroup
             title="Комплексные решения: BRaiN CHAT + Interview"
             description="Бесшовная автоматизация воронки найма «под ключ». Диалоги + видеоинтервью в одном пакете."
             tariffs={fullTariffs}
             cols={4}
+            isYearly={isYearly}
           />
 
           {/* REAL TIME AVATAR */}
@@ -369,7 +394,7 @@ export function TariffsPage() {
       </section>
 
       {/* КАКОЙ ТАРИФ ПОДХОДИТ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14">
         <Container>
           <h2 className="text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Какой тариф подходит <em className="not-italic text-brand1">вашему бизнесу?</em>
@@ -424,7 +449,7 @@ export function TariffsPage() {
       </section>
 
       {/* CTA */}
-      <section className="border-y border-grey2 bg-[linear-gradient(135deg,var(--color-brand1-bg)_0%,white_50%,var(--color-brand2-bg)_100%)] py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14">
         <Container>
           <div className="mx-auto max-w-[600px] text-center">
             <h2 className="mb-4 text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
@@ -448,7 +473,7 @@ export function TariffsPage() {
       </section>
 
       {/* FAQ — two-col, нативный <details> для интерактивности без JS */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
         <Container>
           <div className="grid grid-cols-[1fr_1.5fr] items-start gap-16 max-bp-lg:grid-cols-1 max-bp-lg:gap-8">
             <div>
@@ -495,9 +520,10 @@ type TariffGroupProps = {
   description: string;
   tariffs: Tariff[];
   cols?: 3 | 4;
+  isYearly: boolean;
 };
 
-function TariffGroup({ title, description, tariffs, cols = 3 }: TariffGroupProps) {
+function TariffGroup({ title, description, tariffs, cols = 3, isYearly }: TariffGroupProps) {
   const gridCls =
     cols === 4
       ? "grid grid-cols-4 gap-5 mb-[72px] max-bp-lg:grid-cols-2 max-bp-sm:grid-cols-1"
@@ -515,7 +541,7 @@ function TariffGroup({ title, description, tariffs, cols = 3 }: TariffGroupProps
       <div className={gridCls}>
         {tariffs.map((t, i) => (
           <Reveal key={t.name} delay={((i % 3) + 1) as 1 | 2 | 3}>
-            <TariffCard tariff={t} />
+            <TariffCard tariff={t} isYearly={isYearly} />
           </Reveal>
         ))}
       </div>
@@ -523,7 +549,7 @@ function TariffGroup({ title, description, tariffs, cols = 3 }: TariffGroupProps
   );
 }
 
-function TariffCard({ tariff }: { tariff: Tariff }) {
+function TariffCard({ tariff, isYearly }: { tariff: Tariff; isYearly: boolean }) {
   const cardCls = tariff.featured
     ? "relative z-[2] flex h-full flex-col overflow-hidden rounded-card border-[1.5px] border-brand2 bg-white shadow-[0_4px_24px_rgba(255,116,1,0.15)] transition-all duration-300 scale-[1.03] hover:shadow-[0_12px_40px_rgba(255,116,1,0.2)] hover:-translate-y-1.5 max-bp-lg:scale-100 max-bp-lg:hover:translate-y-0 max-bp-lg:hover:-translate-y-1.5"
     : "flex h-full flex-col overflow-hidden rounded-card border-[1.5px] border-grey2 bg-white shadow-soft transition-all duration-300 hover:border-brand1 hover:shadow-[0_8px_32px_rgba(64,150,255,0.12)] hover:-translate-y-1.5";
@@ -553,15 +579,32 @@ function TariffCard({ tariff }: { tariff: Tariff }) {
           {tariff.volume}
         </div>
         <hr className="m-0 mb-6 h-px border-0 bg-grey2" />
-        <div className="mb-1 text-[36px] font-black leading-none tracking-[-1.5px] text-brand1">
-          {tariff.priceMonthly} <span className="text-[16px] font-semibold tracking-normal">руб.</span>
-        </div>
-        <div className="mb-2 text-[12px] font-medium text-text2">в месяц</div>
-        <div className="mb-5 text-[13px] text-text2">
-          или <b className="font-bold text-text1">{tariff.priceYearly} руб./год</b>
-          {" "}
-          <span className="text-brand1 font-bold">({tariff.perMonthYearly})</span>
-        </div>
+        {isYearly ? (
+          <>
+            <div className="mb-1 text-[36px] font-black leading-none tracking-[-1.5px] text-brand1">
+              {tariff.perMonthYearly.replace(" руб./мес", "")}{" "}
+              <span className="text-[16px] font-semibold tracking-normal">руб.</span>
+            </div>
+            <div className="mb-2 text-[12px] font-medium text-text2">в месяц при годовой оплате</div>
+            <div className="mb-5 text-[13px] text-text2">
+              Итого:{" "}
+              <b className="font-bold text-text1">{tariff.priceYearly} руб./год</b>{" "}
+              <span className="font-bold text-brand1">(-10%)</span>
+            </div>
+          </>
+        ) : (
+          <>
+            <div className="mb-1 text-[36px] font-black leading-none tracking-[-1.5px] text-brand1">
+              {tariff.priceMonthly}{" "}
+              <span className="text-[16px] font-semibold tracking-normal">руб.</span>
+            </div>
+            <div className="mb-2 text-[12px] font-medium text-text2">в месяц</div>
+            <div className="mb-5 text-[13px] text-text2">
+              или <b className="font-bold text-text1">{tariff.priceYearly} руб./год</b>{" "}
+              <span className="font-bold text-brand1">({tariff.perMonthYearly})</span>
+            </div>
+          </>
+        )}
         <ul className="m-0 mb-6 flex list-none flex-col gap-2.5 p-0">
           {tariff.features.map((f) => (
             <li

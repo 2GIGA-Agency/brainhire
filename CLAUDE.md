@@ -1,3 +1,7 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
 # BRaiN HR — Редизайн сайта
 
 ## О проекте
@@ -6,14 +10,31 @@
 Юрлицо: ООО «НДК», ОГРН 1225000105010
 
 ## Архитектура
-Статический сайт. Каждая страница — самостоятельный HTML-файл.
-Общие стили подключаются через `<link rel="stylesheet" href="../shared/styles.css">` и `<link rel="stylesheet" href="../shared/components.css">`.
-Header и footer — HTML-сниппеты в `shared/header.html` и `shared/footer.html`, их нужно **копировать** в каждую страницу (нет серверного include).
+
+Проект состоит из двух частей:
+
+**1. Статический HTML-сайт** (`pages/`, `shared/`, `templates/`) — готовые страницы для продакшена.
+Каждая страница — самостоятельный HTML-файл. Общие стили подключаются через `<link>`. Header и footer — HTML-сниппеты в `shared/`, их нужно **копировать** в каждую страницу (нет серверного include).
+
+**2. Next.js-приложение** (`brainhire-next/`) — миграция на React/TypeScript с SEO-оптимизацией (в разработке).
+Использует архитектуру «Block Engine»: контент хранится в JSON, рендерится через `BlockRenderer` по массивам блоков.
+
+## Команды разработки (brainhire-next)
+
+```bash
+cd brainhire-next
+npm run dev        # Запуск dev-сервера на localhost:3000
+npm run build      # Production-сборка
+npm run start      # Запуск production-сборки
+npm run check      # lint + typecheck (запускать перед коммитом)
+npm run lint
+npm run typecheck
+```
 
 ## Структура проекта
 ```
 brainhire/
-├── CLAUDE.md                    ← ТЫ ЗДЕСЬ
+├── CLAUDE.md
 ├── shared/
 │   ├── styles.css               ← Дизайн-система: переменные, reset, типографика, сетка, кнопки
 │   ├── components.css           ← Стили компонентов: карточки, FAQ, формы, тикер, pipeline и т.д.
@@ -22,35 +43,63 @@ brainhire/
 │   └── scripts.js               ← Общий JS: меню, FAQ-аккордеон, reveal-анимации, lucide
 ├── pages/
 │   ├── index.html               ← Главная страница сайта
-│   ├── solutions/               ← Отраслевые решения (лендинги)
-│   │   ├── it.html              ← ИТ компании (ГОТОВ — reference/it-original.html)
-│   │   ├── finance.html         ← Финансовый сектор
-│   │   ├── marketplaces.html    ← Маркетплейсы
-│   │   ├── smb.html             ← Малый бизнес
-│   │   └── enterprise.html      ← Корпорации
-│   ├── features/                ← Лендинги функций
-│   │   ├── ai-screening.html
-│   │   ├── ai-vacancy.html
-│   │   ├── ai-videointerview.html
+│   ├── about.html, contacts.html, pricing.html, reviews.html
+│   ├── cases.html, calculator.html, hr-cashback.html, mws-partnership.html
+│   ├── shared/                  ← Зеркало shared/ (для страниц с относительными путями)
+│   ├── solutions/               ← Отраслевые решения (12 лендингов)
+│   │   ├── it.html, finance.html, marketplaces.html, smb.html, enterprise.html
+│   │   └── education.html, horeca.html, hr.html, logistics.html, marketing.html, sales.html, sellers.html
+│   ├── features/                ← Лендинги функций (5 страниц)
+│   │   ├── ai-screening.html, ai-vacancy-creation.html, ai-videointerview.html
+│   │   ├── ai-realtime-interview.html
 │   │   └── ai-staff-scoring.html
-│   ├── pricing.html             ← Тарифы
-│   ├── about.html               ← О компании
-│   ├── contacts.html            ← Контакты
-│   ├── cases.html               ← Кейсы
-│   ├── reviews.html             ← Отзывы
-│   ├── hr-cashback.html         ← HR-Cashback (партнёрская программа)
-│   ├── referral.html            ← Стать агентом
-│   ├── press.html               ← СМИ о нас
-│   └── blog/
-│       ├── index.html           ← Список статей
-│       └── [slug].html          ← Отдельные статьи
+│   ├── cases/                   ← Кейсы по отраслям (5 страниц)
+│   │   └── it.html, finance.html, medicine.html, production.html, retail.html
+│   ├── assets/                  ← Изображения, PDF, фото команды
+│   └── blog/                    ← Блог (структура готова, контент не добавлен)
 ├── templates/
 │   ├── page-template.html       ← Базовый шаблон (header + пустой main + footer + scripts)
-│   ├── feature-landing.html     ← Шаблон лендинга функции
+│   ├── feature-landing.html     ← Шаблон лендинга функции (8 секций с {{PLACEHOLDER}})
 │   └── blog-post.html           ← Шаблон статьи блога
-└── reference/
-    └── it-original.html         ← Оригинальный лендинг «ИТ компании» (не трогать, для сверки)
+├── reference/
+│   └── it-original.html         ← Оригинальный лендинг «ИТ компании» (не трогать, для сверки)
+├── old pages/                   ← УСТАРЕВШИЕ страницы (не использовать)
+├── brainhire-vibecoding-final.html ← Архивный экспорт (не использовать)
+└── brainhire-next/              ← Next.js-приложение (миграция)
+    └── src/
+        ├── app/                 ← App Router: layout.tsx, page.tsx, globals.css, sitemap.ts
+        ├── components/
+        │   ├── ui/              ← Чистые UI-компоненты (без логики)
+        │   ├── blocks/          ← Умные блоки страниц (Hero, FAQ, Features и т.д.)
+        │   └── layout/          ← Header, Footer
+        ├── data/
+        │   ├── site.json        ← Глобальные данные сайта
+        │   └── pages/           ← JSON-файл на каждую страницу
+        ├── lib/                 ← Утилиты: cn, loadPage, blockRegistry
+        └── types/               ← Zod-схемы для валидации контента
 ```
+
+## Пути к CSS
+
+| Расположение файла | Путь к styles.css |
+|---|---|
+| `pages/*.html` | `../shared/styles.css` |
+| `pages/features/*.html` | `../../shared/styles.css` |
+| `pages/solutions/*.html` | `../../shared/styles.css` |
+| `pages/cases/*.html` | `../../shared/styles.css` |
+
+## Next.js-архитектура (brainhire-next)
+
+**Стек:** Next.js 15, React 19, TypeScript strict, Tailwind CSS v4 (CSS-first `@theme` токены в `globals.css`), Zod, lucide-react.
+**Деплой:** `output: 'standalone'`, VPS Ubuntu + Nginx + systemd.
+
+**Принципы:**
+- Контент всегда в JSON (`src/data/`), никогда в JSX
+- Server-first рендеринг (`.use client` только для интерактивности)
+- SEO с `generateMetadata` на каждой странице
+- Tailwind + CSS-токены, без CSS-in-JS
+
+**Block Engine:** страница = массив блоков в JSON → `BlockRenderer` → компонент из `blockRegistry`. Добавление нового блока: JSON-схема в `src/types/` + компонент в `src/components/blocks/` + регистрация в `src/lib/blockRegistry`.
 
 ## Дизайн-система
 
@@ -159,11 +208,11 @@ brainhire/
 
 ## Правила для Claude Code
 
-### Создание новой страницы
+### Создание новой страницы (статический HTML)
 1. Скопируй `templates/page-template.html`
 2. Обнови `<title>` и мета-теги
 3. Добавь секции из components.css, переиспользуя классы
-4. Пути к CSS: `../shared/styles.css` из `pages/`, `../../shared/styles.css` из `pages/features/`
+4. Пути к CSS: см. таблицу выше
 
 ### Консистентность
 - НЕ создавай новые CSS-переменные — используй существующие из `:root`
@@ -183,30 +232,45 @@ brainhire/
 
 ## Текущий статус
 
-### Отраслевые решения
-- [x] ИТ компании — готов, в `reference/it-original.html`
-- [ ] Финансовый сектор
-- [ ] Маркетплейсы
-- [ ] Малый бизнес
-- [ ] Корпорации
+### Отраслевые решения (pages/solutions/)
+- [x] ИТ компании — `it.html` (reference: `reference/it-original.html`)
+- [x] Финансовый сектор — `finance.html`
+- [x] Маркетплейсы — `marketplaces.html`
+- [x] Малый бизнес — `smb.html`
+- [x] Корпорации — `enterprise.html`
+- [x] Образование — `education.html`
+- [x] HoReCa — `horeca.html`
+- [x] HR-агентства — `hr.html`
+- [x] Логистика — `logistics.html`
+- [x] Маркетинг — `marketing.html`
+- [x] Продажи — `sales.html`
+- [x] Продавцы маркетплейсов — `sellers.html`
 
-### Лендинги функций
-- [ ] ИИ-скрининг резюме
-- [ ] ИИ-создание вакансий
-- [ ] ИИ-видеоинтервью
-- [ ] ИИ-оценка персонала
+### Лендинги функций (pages/features/)
+- [x] ИИ-скрининг резюме — `ai-screening.html`
+- [x] ИИ-создание вакансий — `ai-vacancy-creation.html`
+- [x] ИИ-видеоинтервью — `ai-videointerview.html`
+- [x] ИИ-интервью в реальном времени — `ai-realtime-interview.html`
+- [x] ИИ-оценка персонала — `ai-staff-scoring.html`
+
+### Кейсы (pages/cases/)
+- [x] ИТ — `it.html`
+- [x] Финансы — `finance.html`
+- [x] Медицина — `medicine.html`
+- [x] Производство — `production.html`
+- [x] Ретейл — `retail.html`
 
 ### Служебные страницы
-- [ ] Главная страница сайта
-- [ ] Тарифы
-- [ ] О компании
-- [ ] Контакты
-- [ ] Кейсы
-- [ ] Отзывы
-- [ ] HR-Cashback
-- [ ] Стать агентом
-- [ ] СМИ о нас
+- [x] Главная страница — `pages/index.html`
+- [x] Тарифы — `pages/pricing.html`
+- [x] О компании — `pages/about.html`
+- [x] Контакты — `pages/contacts.html`
+- [x] Кейсы (список) — `pages/cases.html`
+- [x] Отзывы — `pages/reviews.html`
+- [x] HR-Cashback — `pages/hr-cashback.html`
+- [x] Калькулятор — `pages/calculator.html`
+- [x] Партнёрство MWS — `pages/mws-partnership.html`
 
 ### Блог
-- [ ] Список статей
-- [ ] Шаблон статьи
+- [ ] Список статей — `pages/blog/index.html` (структура готова)
+- [ ] Шаблон статьи — `templates/blog-post.html` (готов)

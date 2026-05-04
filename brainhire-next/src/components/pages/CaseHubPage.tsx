@@ -1,8 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/interactive/Reveal";
 import { ArrowRight } from "lucide-react";
+import { cn } from "@/lib/cn";
 
 /* ────────────────────────────────────────────────────────────────────
    Static data
@@ -121,20 +125,38 @@ const CASES: CaseItem[] = [
   {
     category: "it",
     tagLabel: "IT",
-    title: "Автоматизация подбора технических специалистов",
+    title: "iTeal: скрининг 600+ откликов и закрытие вакансии за 3 недели",
     problem:
-      "Компания испытывала острую нехватку разработчиков, тестировщиков и DevOps-инженеров. Цикл найма составлял 2-3 месяца, 60% кандидатов отказывались из-за длительного процесса.",
+      "Вакансия тимлида поддержки 1С в нескольких городах России собрала более 600 откликов за 2 недели. Вручную обработать такой поток крайне трудозатратно: стандартный скрининг занял бы недели с высоким риском пропустить сильных кандидатов среди нерелевантных откликов.",
     metrics: [
-      { num: "-67%", label: "время найма" },
-      { num: "+78%", label: "качество подбора" },
-      { num: "в 5 раз", label: "рост команды" },
-      { num: "180→450", label: "специалистов" },
+      { num: "600+", label: "откликов обработано" },
+      { num: "90", label: "видео-интервью" },
+      { num: "−50%", label: "срок найма" },
+      { num: "3–4×", label: "быстрее скрининг" },
     ],
     quoteText:
-      "«Сократили время найма на 67% и существенно снизили нагрузку на technical-лидов, которые теперь встречаются только с предквалифицированными специалистами.»",
-    quoteAuthor: "Елена Петрова",
-    quoteTitle: "Head of People",
-    href: "/case/it",
+      "«BRaiN HR ускоряет отбор в 3–4 раза и помогает точечно находить кандидатов, которые не просто подходят под вакансию, но и усиливают нашу команду долгосрочно.»",
+    quoteAuthor: "Павел Ступко",
+    quoteTitle: "CEO, iTeal",
+    href: "/case/iteal",
+  },
+  {
+    category: "it",
+    tagLabel: "IT",
+    title: "KNAM: автономный конвейер массового найма операторов call-центра",
+    problem:
+      "CDP-платформа KNAM нуждалась в постоянном массовом найме операторов call-центра. Ключевая проблема — скорость обработки потока при объективной оценке и минимальном участии рекрутера.",
+    metrics: [
+      { num: "×10", label: "скорость обработки" },
+      { num: "минуты", label: "до первого контакта" },
+      { num: "0%", label: "участие рекрутера" },
+      { num: "100%", label: "объективность оценки" },
+    ],
+    quoteText:
+      "«BRaiN-бот превратил найм операторов call-центра в автономный конвейер: высокая скорость при большом потоке, объективная оценка каждого кандидата и автоматический переход лучших сразу к нанимающему руководителю.»",
+    quoteAuthor: "Дарья Гербутова",
+    quoteTitle: "Помощник руководителя, KNAM",
+    href: "/case/knam",
   },
   {
     category: "finance",
@@ -152,7 +174,7 @@ const CASES: CaseItem[] = [
       "«Сократили цикл найма более чем на 70%, при этом значительно улучшили качество отбора. Видим снижение текучести на 58% среди сотрудников, нанятых через новую систему.»",
     quoteAuthor: "Марина Волкова",
     quoteTitle: "Директор по управлению талантами",
-    href: "/case/finance",
+    href: "/case/finance-1",
   },
   {
     category: "production",
@@ -170,7 +192,7 @@ const CASES: CaseItem[] = [
       "«Сократили время закрытия вакансий на 65% и значительно повысили качество подбора. Система помогла масштабировать найм без пропорционального увеличения HR-команды.»",
     quoteAuthor: "Александра Михайлова",
     quoteTitle: "HR-директор",
-    href: "/case/production",
+    href: "/case/production-1",
   },
   {
     category: "medicine",
@@ -188,7 +210,7 @@ const CASES: CaseItem[] = [
       "«Ускорили процесс найма на 69% и значительно расширили воронку кандидатов. Система находит специалистов, о которых мы даже не знали, и оценивает их квалификацию ещё до первого контакта.»",
     quoteAuthor: "Анна Козлова",
     quoteTitle: "Руководитель HR-департамента",
-    href: "/case/medicine",
+    href: "/case/medicine-1",
   },
   {
     category: "retail",
@@ -206,7 +228,7 @@ const CASES: CaseItem[] = [
       "«Сократили время найма на 73% и существенно улучшили качество подбора. Теперь открытие новых магазинов не сдерживается дефицитом персонала.»",
     quoteAuthor: "Дмитрий Соколов",
     quoteTitle: "Руководитель департамента HR",
-    href: "/case/retail",
+    href: "/case/retail-1",
   },
 ];
 
@@ -227,8 +249,8 @@ type SummaryItem = {
 
 const SUMMARY: SummaryItem[] = [
   {
-    num: "в 5×",
-    label: "Рост команды разработки за 12 месяцев",
+    num: "3–4×",
+    label: "Ускорение скрининга кандидатов (iTeal)",
     pillLabel: "IT",
     pillClass: "bg-brand1-bg text-brand1",
   },
@@ -273,7 +295,7 @@ const FAQ: { q: string; a: string }[] = [
   },
   {
     q: "Какие результаты ожидать?",
-    a: "Клиенты сокращают время найма на 60-73% и снижают текучесть на 25-58% уже в первые месяцы использования.",
+    a: "Клиенты сокращают время найма на 50-73% и снижают текучесть на 25-58% уже в первые месяцы использования.",
   },
 ];
 
@@ -282,6 +304,11 @@ const FAQ: { q: string; a: string }[] = [
    ──────────────────────────────────────────────────────────────────── */
 
 export function CaseHubPage() {
+  const [activeFilter, setActiveFilter] = useState<string>("all");
+  const filteredCases =
+    activeFilter === "all"
+      ? CASES
+      : CASES.filter((c) => c.category === activeFilter);
   const doubledLogos = [...LOGOS, ...LOGOS];
 
   return (
@@ -299,15 +326,15 @@ export function CaseHubPage() {
       </section>
 
       {/* ═══ 2. LOGOS SLIDER ═══ */}
-      <section className="border-y border-grey2 bg-white py-8">
+      <section className="border-y border-grey2 bg-grey1 py-8">
         <Container>
           <div className="mb-5 text-center text-[12px] font-semibold uppercase tracking-[1px] text-text2">
             Нам доверяют компании из разных отраслей
           </div>
         </Container>
         <div className="relative overflow-hidden">
-          <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-20 bg-gradient-to-r from-white to-transparent" />
-          <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-20 bg-gradient-to-l from-white to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-20 bg-gradient-to-r from-grey1 to-transparent" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-[2] w-20 bg-gradient-to-l from-grey1 to-transparent" />
           <div className="flex w-max items-center animate-ticker hover:[animation-play-state:paused]">
             {doubledLogos.map((logo, i) => (
               <a
@@ -325,31 +352,26 @@ export function CaseHubPage() {
       </section>
 
       {/* ═══ 3. FILTERS + CASE CARDS ═══ */}
-      <section className="border-b border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-b border-grey2 bg-white py-20 max-bp-lg:py-14">
         <Container>
           <h2 className="text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Все кейсы
           </h2>
 
-          {/* Filter pills — статичные, активна «Все» (Phase 5: интерактивность) */}
           <div className="mt-6 mb-10 flex flex-wrap justify-start gap-2">
             {FILTER_TABS.map((tab) => {
-              const isActive = tab.id === "all";
+              const isActive = tab.id === activeFilter;
               return (
                 <button
                   key={tab.id}
                   type="button"
-                  disabled
-                  className={`inline-flex items-center rounded-full border px-[22px] py-2.5 text-[13px] font-semibold transition-all max-bp-sm:px-4 max-bp-sm:py-2 max-bp-sm:text-[12px] ${
+                  onClick={() => setActiveFilter(tab.id)}
+                  className={cn(
+                    "inline-flex items-center rounded-full border px-[22px] py-2.5 text-[13px] font-semibold transition-all max-bp-sm:px-4 max-bp-sm:py-2 max-bp-sm:text-[12px]",
                     isActive
                       ? "border-brand1 bg-brand1 text-white"
-                      : "cursor-not-allowed border-grey2 bg-grey1 text-text2"
-                  }`}
-                  title={
-                    isActive
-                      ? undefined
-                      : "Интерактивная фильтрация появится в Фазе 5"
-                  }
+                      : "border-grey2 bg-white text-text2 hover:border-brand1 hover:text-brand1"
+                  )}
                 >
                   {tab.label}
                 </button>
@@ -358,60 +380,58 @@ export function CaseHubPage() {
           </div>
 
           <div className="flex flex-col gap-7">
-            {CASES.map((c, idx) => (
-              <Reveal key={c.title} delay={((idx % 3) + 1) as 1 | 2 | 3}>
-                <article
-                  className="h-full rounded-card border border-grey2 bg-white px-9 py-8 shadow-soft transition-[border-color,box-shadow] duration-200 hover:border-brand1 max-bp-lg:px-5 max-bp-lg:py-6"
-                >
-                <span
-                  className={`mb-4 inline-block rounded-full px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.5px] ${CASE_TAG_CLASSES[c.category]}`}
-                >
-                  {c.tagLabel}
-                </span>
-
-                <h3 className="mb-3 text-[20px] font-extrabold leading-[1.3] text-text1">
-                  {c.title}
-                </h3>
-
-                <p className="mb-6 max-w-[800px] text-[14px] leading-[1.7] text-text2">
-                  {c.problem}
-                </p>
-
-                <div className="mb-6 grid grid-cols-4 gap-4 max-bp-lg:grid-cols-2 max-bp-sm:grid-cols-2 max-bp-xs:grid-cols-1">
-                  {c.metrics.map((m) => (
-                    <div
-                      key={m.label}
-                      className="rounded-sm border border-grey2 bg-grey1 px-2 py-4 text-center"
-                    >
-                      <div className="mb-1 text-[24px] font-black leading-[1.2] text-brand1 max-bp-sm:text-[20px]">
-                        {m.num}
-                      </div>
-                      <div className="text-[12px] font-medium leading-[1.4] text-text2">
-                        {m.label}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mb-5 rounded-sm border-l-[3px] border-brand1 bg-brand1-bg px-6 py-5">
-                  <div className="mb-2.5 text-[14px] italic leading-[1.7] text-text1">
-                    {c.quoteText}
-                  </div>
-                  <div className="text-[13px] font-bold text-text1">
-                    {c.quoteAuthor}
-                  </div>
-                  <div className="text-[12px] text-text2">{c.quoteTitle}</div>
-                </div>
-
-                <div className="flex flex-wrap items-center gap-3">
-                  <Link
-                    href={c.href}
-                    className="inline-flex items-center gap-1.5 rounded-full border border-brand1 px-[22px] py-2.5 text-[13px] font-semibold text-brand1 transition-colors duration-200 hover:bg-brand1 hover:text-white"
+            {filteredCases.map((c, idx) => (
+              <Reveal key={c.href} delay={((idx % 3) + 1) as 1 | 2 | 3}>
+                <article className="h-full rounded-card border border-grey2 bg-white px-9 py-8 shadow-soft transition-[border-color,box-shadow] duration-200 hover:border-brand1 max-bp-lg:px-5 max-bp-lg:py-6">
+                  <span
+                    className={`mb-4 inline-block rounded-full px-3.5 py-1 text-[11px] font-bold uppercase tracking-[0.5px] ${CASE_TAG_CLASSES[c.category]}`}
                   >
-                    Читать полностью
-                    <ArrowRight size={14} strokeWidth={1.8} />
-                  </Link>
-                </div>
+                    {c.tagLabel}
+                  </span>
+
+                  <h3 className="mb-3 text-[20px] font-extrabold leading-[1.3] text-text1">
+                    {c.title}
+                  </h3>
+
+                  <p className="mb-6 max-w-[800px] text-[14px] leading-[1.7] text-text2">
+                    {c.problem}
+                  </p>
+
+                  <div className="mb-6 grid grid-cols-4 gap-4 max-bp-lg:grid-cols-2 max-bp-sm:grid-cols-2 max-bp-xs:grid-cols-1">
+                    {c.metrics.map((m) => (
+                      <div
+                        key={m.label}
+                        className="rounded-sm border border-grey2 bg-grey1 px-2 py-4 text-center"
+                      >
+                        <div className="mb-1 text-[24px] font-black leading-[1.2] text-brand1 max-bp-sm:text-[20px]">
+                          {m.num}
+                        </div>
+                        <div className="text-[12px] font-medium leading-[1.4] text-text2">
+                          {m.label}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mb-5 rounded-sm border-l-[3px] border-brand1 bg-brand1-bg px-6 py-5">
+                    <div className="mb-2.5 text-[14px] italic leading-[1.7] text-text1">
+                      {c.quoteText}
+                    </div>
+                    <div className="text-[13px] font-bold text-text1">
+                      {c.quoteAuthor}
+                    </div>
+                    <div className="text-[12px] text-text2">{c.quoteTitle}</div>
+                  </div>
+
+                  <div className="flex flex-wrap items-center gap-3">
+                    <Link
+                      href={c.href}
+                      className="inline-flex items-center gap-1.5 rounded-full border border-brand1 px-[22px] py-2.5 text-[13px] font-semibold text-brand1 transition-colors duration-200 hover:bg-brand1 hover:text-white"
+                    >
+                      Читать полностью
+                      <ArrowRight size={14} strokeWidth={1.8} />
+                    </Link>
+                  </div>
                 </article>
               </Reveal>
             ))}
@@ -420,7 +440,7 @@ export function CaseHubPage() {
       </section>
 
       {/* ═══ 4. SUMMARY RESULTS ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-grey1 py-20 max-bp-lg:py-14">
         <Container>
           <h2 className="text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Результаты наших клиентов
@@ -429,9 +449,7 @@ export function CaseHubPage() {
           <div className="mt-10 grid grid-cols-5 gap-5 max-bp-lg:grid-cols-3 max-bp-md:grid-cols-2 max-bp-xs:grid-cols-1">
             {SUMMARY.map((s, i) => (
               <Reveal key={s.label} delay={((i % 3) + 1) as 1 | 2 | 3}>
-                <div
-                  className="h-full rounded-card border border-grey2 bg-white px-4 pt-7 pb-5 text-center shadow-soft"
-                >
+                <div className="h-full rounded-card border border-grey2 bg-white px-4 pt-7 pb-5 text-center shadow-soft">
                   <div className="mb-2 text-[32px] font-black leading-[1.2] text-brand1">
                     {s.num}
                   </div>
@@ -451,7 +469,7 @@ export function CaseHubPage() {
       </section>
 
       {/* ═══ 5. CTA ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-white py-20 max-bp-lg:py-14">
         <Container>
           <div className="mx-auto max-w-[720px] text-center">
             <h2 className="mb-4 text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
@@ -472,8 +490,8 @@ export function CaseHubPage() {
         </Container>
       </section>
 
-      {/* ═══ 6. FAQ — два столбца ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      {/* ═══ 6. FAQ ═══ */}
+      <section className="bg-grey1 py-20 max-bp-lg:py-14">
         <Container>
           <div className="grid grid-cols-[1fr_1.5fr] items-start gap-16 max-bp-lg:grid-cols-1 max-bp-lg:gap-8">
             <div>
