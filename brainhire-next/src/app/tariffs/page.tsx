@@ -4,7 +4,7 @@ import { TariffsPage } from "@/components/pages/TariffsPage";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://brainhire.ru";
 
 export const metadata: Metadata = {
-  title: "Тарифы — BRaiN HR",
+  title: "Тарифы",
   description:
     "Тарифы BRaiN HR 2026. Текстовые диалоги, ИИ-видеоинтервью, комплексные решения и Real-time аватар. Оплата за использование, остатки переносятся.",
   alternates: { canonical: "/tariffs" },

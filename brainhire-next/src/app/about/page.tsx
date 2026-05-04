@@ -4,7 +4,7 @@ import { AboutPage } from "@/components/pages/AboutPage";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://brainhire.ru";
 
 export const metadata: Metadata = {
-  title: "Основная информация о компании BRaiN HR",
+  title: "Основная информация о компании",
   description:
     "BRaiN HR - ИИ платформа по автоматизации найма. Узнайте больше о нашей компании, миссии, ценностях и профессиональном подходе к найму лучших кадров.",
   alternates: { canonical: "/about" },

@@ -4,7 +4,7 @@ import { ReviewsPage } from "@/components/pages/ReviewsPage";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://brainhire.ru";
 
 export const metadata: Metadata = {
-  title: "Отзывы клиентов — BRaiN HR",
+  title: "Отзывы клиентов",
   description:
     "Отзывы клиентов BRaiN HR. Более 150 компаний доверяют нам автоматизацию найма и оценки персонала. Реальные результаты и кейсы.",
   alternates: { canonical: "/reviews" },

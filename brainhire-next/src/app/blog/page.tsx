@@ -4,7 +4,7 @@ import { BlogHubPage } from "@/components/pages/BlogHubPage";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://brainhire.ru";
 
 export const metadata: Metadata = {
-  title: "Блог BRaiN HR — кейсы, аналитика и тренды найма с ИИ",
+  title: "Блог — кейсы, аналитика и тренды найма с ИИ",
   description:
     "Кейсы клиентов BRaiN HR, аналитика рынка труда, тренды HR-tech и практические советы по автоматизации найма с искусственным интеллектом.",
   alternates: { canonical: "/blog" },

@@ -23,7 +23,7 @@ export async function generateMetadata({
   if (!post) return { title: "Статья не найдена" };
 
   return {
-    title: `${post.title} — Блог BRaiN HR`,
+    title: post.title,
     description: post.description,
     alternates: { canonical: `/blog/${slug}` },
     openGraph: {

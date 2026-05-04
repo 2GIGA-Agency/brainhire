@@ -4,7 +4,7 @@ import { HrCashbackPage } from "@/components/pages/HrCashbackPage";
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://brainhire.ru";
 
 export const metadata: Metadata = {
-  title: "HR Cashback — Партнёрская программа | BRaiN HR",
+  title: "HR Cashback — Партнёрская программа",
   description:
     "Станьте партнёром BRaiN HR и получайте до 25% от платежей привлечённых клиентов. Высокое вознаграждение, длительное начисление комиссии, поддержка менеджера.",
   alternates: { canonical: "/partner" },
