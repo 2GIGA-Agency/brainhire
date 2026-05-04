@@ -78,10 +78,10 @@ export function AudienceTabs({ audiences, tabsClassName, cardClassName }: Props)
             ))}
           </ul>
         </div>
-        <div className="flex flex-wrap gap-8">
+        <div className="flex flex-wrap gap-6 max-bp-sm:gap-4">
           {card.stats.map((st) => (
             <div key={`${st.num}-${st.desc}`} className="text-center">
-              <div className="text-[36px] font-extrabold leading-none tracking-[-1px] text-brand1">
+              <div className="text-[36px] font-extrabold leading-none tracking-[-1px] text-brand1 max-bp-sm:text-[26px]">
                 {st.num}
               </div>
               <div

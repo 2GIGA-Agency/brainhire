@@ -197,7 +197,7 @@ export function StaffScoringPage() {
       </div>
 
       {/* ═══ 2. ПРОБЛЕМЫ / БОЛИ ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <h2 className="text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Почему традиционная оценка персонала
@@ -284,7 +284,7 @@ export function StaffScoringPage() {
       </div>
 
       {/* ═══ 4. ВИДЫ ОЦЕНКИ (6 шагов) ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full border border-brand1/25 bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[1.2px] text-brand1">
             Виды оценки
@@ -363,7 +363,7 @@ export function StaffScoringPage() {
       </section>
 
       {/* ═══ 5. ПРЕИМУЩЕСТВА (6 карточек) ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full border border-brand1/25 bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[1.2px] text-brand1">
             Преимущества
@@ -435,7 +435,7 @@ export function StaffScoringPage() {
       </section>
 
       {/* ═══ 6. ПРОЦЕСС В 4 ШАГА ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full border border-brand1/25 bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[1.2px] text-brand1">
             Как это работает
@@ -507,7 +507,7 @@ export function StaffScoringPage() {
       </section>
 
       {/* ═══ 7. СРАВНЕНИЕ ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <h2 className="text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Ускорьте процесс оценки
@@ -601,7 +601,7 @@ export function StaffScoringPage() {
       </div>
 
       {/* ═══ 9. КОМУ НЕОБХОДИМА АВТОМАТИЗАЦИЯ (audience стек) ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full border border-brand1/25 bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[1.2px] text-brand1">
             Кому подойдёт
@@ -620,7 +620,7 @@ export function StaffScoringPage() {
       </section>
 
       {/* ═══ 10. ВОЗМОЖНОСТИ ПЛАТФОРМЫ — FEAT ROWS ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full border border-brand1/25 bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[1.2px] text-brand1">
             Возможности платформы
@@ -839,7 +839,7 @@ export function StaffScoringPage() {
       {/* ═══ 11. CTA + ФОРМА ═══ */}
       <section
         id="form"
-        className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14"
+        className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10"
       >
         <Container className="grid grid-cols-2 items-start gap-20 max-bp-lg:grid-cols-1 max-bp-lg:gap-12">
           <div>
@@ -898,7 +898,7 @@ export function StaffScoringPage() {
       </section>
 
       {/* ═══ 12. CROSS-SELL ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full border border-brand1/25 bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[1.2px] text-brand1">
             Другие возможности BRaiN HR
@@ -953,7 +953,7 @@ export function StaffScoringPage() {
       </section>
 
       {/* ═══ 13. FAQ ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <h2 className="mb-12 text-center text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Ответы на часто задаваемые вопросы
@@ -1370,4 +1370,5 @@ const FAQ_ITEMS: FaqItem[] = [
     a: "В системе реализована гибкая ролевая модель доступа. HR-администратор видит все результаты, руководитель — только своих подчинённых, а сотрудник — только собственные результаты оценки. Вы можете настраивать уровни доступа для каждой роли, определяя, какие данные видны каждому пользователю.",
   },
 ];
+
 

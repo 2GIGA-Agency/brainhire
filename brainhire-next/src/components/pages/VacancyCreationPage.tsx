@@ -452,7 +452,7 @@ export function VacancyCreationPage() {
       </div>
 
       {/* ═══ 2. ПРОБЛЕМЫ / БОЛИ ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <h2 className="text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Почему создание вакансий вручную
@@ -506,7 +506,7 @@ export function VacancyCreationPage() {
       </div>
 
       {/* ═══ 4. КАК ЭТО РАБОТАЕТ ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full border border-brand1/25 bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[1.2px] text-brand1">
             Как это работает
@@ -544,7 +544,7 @@ export function VacancyCreationPage() {
       </section>
 
       {/* ═══ 6. СРАВНЕНИЕ ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <h2 className="text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Ускорьте создание вакансий
@@ -651,7 +651,7 @@ export function VacancyCreationPage() {
       </div>
 
       {/* ═══ 8. КОМУ БУДЕТ ПОЛЕЗЕН ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full border border-brand1/25 bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[1.2px] text-brand1">
             Кому подойдёт
@@ -668,7 +668,7 @@ export function VacancyCreationPage() {
       </section>
 
       {/* ═══ ВОЗМОЖНОСТИ ПЛАТФОРМЫ ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full border border-brand1/25 bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[1.2px] text-brand1">
             Возможности платформы
@@ -990,7 +990,7 @@ export function VacancyCreationPage() {
       </section>
 
       {/* ═══ CROSS-SELL ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full border border-brand1/25 bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[1.2px] text-brand1">
             Другие возможности BRaiN HR
@@ -1047,7 +1047,7 @@ export function VacancyCreationPage() {
       </section>
 
       {/* ═══ CTA + ФОРМА ═══ */}
-      <div id="form" className="border-y border-grey2 bg-white py-20 max-bp-lg:py-14">
+      <div id="form" className="border-y border-grey2 bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container className="grid grid-cols-2 items-start gap-20 max-bp-xl:grid-cols-1 max-bp-xl:gap-12">
           <div>
             <span className="inline-flex items-center rounded-full border border-brand1/25 bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[1.2px] text-brand1">
@@ -1105,7 +1105,7 @@ export function VacancyCreationPage() {
       </div>
 
       {/* ═══ FAQ ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <h2 className="mb-12 text-center text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Ответы на часто задаваемые вопросы
@@ -1234,5 +1234,6 @@ function QCard({ text, badge, badgeColor, meta }: QCardProps) {
     </div>
   );
 }
+
 
 

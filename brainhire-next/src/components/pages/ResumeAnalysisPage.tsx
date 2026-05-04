@@ -554,7 +554,7 @@ export function ResumeAnalysisPage() {
       </div>
 
       {/* ═══ 3. PAINS ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <h2 className="text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Почему ручной скрининг резюме
@@ -617,7 +617,7 @@ export function ResumeAnalysisPage() {
       </div>
 
       {/* ═══ 5. STEPS ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <SectionTag>Как это работает</SectionTag>
           <h2 className="mt-3.5 text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
@@ -653,7 +653,7 @@ export function ResumeAnalysisPage() {
       </section>
 
       {/* ═══ 6. COMPARE ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <h2 className="text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Ускорьте процесс найма
@@ -748,7 +748,7 @@ export function ResumeAnalysisPage() {
       </div>
 
       {/* ═══ 8. AUDIENCE ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <SectionTag>Кому подойдёт</SectionTag>
           <h2 className="mt-3.5 text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
@@ -763,7 +763,7 @@ export function ResumeAnalysisPage() {
       </section>
 
       {/* ═══ 9. FEATURE ROWS — мокапы интерфейсов ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <SectionTag>Возможности платформы</SectionTag>
           <h2 className="mt-3.5 text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
@@ -976,7 +976,7 @@ export function ResumeAnalysisPage() {
       {/* ═══ 10. CTA + FORM ═══ */}
       <section
         id="form"
-        className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14"
+        className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10"
       >
         <Container className="grid grid-cols-2 items-start gap-20 max-bp-lg:grid-cols-1 max-bp-lg:gap-12">
           <div>
@@ -1017,7 +1017,7 @@ export function ResumeAnalysisPage() {
       </section>
 
       {/* ═══ 11. CROSS-SELL ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <SectionTag>Другие возможности BRaiN HR</SectionTag>
           <h2 className="mt-3.5 text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
@@ -1050,7 +1050,7 @@ export function ResumeAnalysisPage() {
       </section>
 
       {/* ═══ 12. FAQ ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <h2 className="mb-12 text-center text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Ответы на часто задаваемые вопросы
@@ -1347,5 +1347,6 @@ function FeatTag({ children }: { children: React.ReactNode }) {
     </span>
   );
 }
+
 
 

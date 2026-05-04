@@ -34,7 +34,7 @@ export function VideoInterviewPage() {
   return (
     <main>
       {/* ═══ HERO ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-lg:pb-[88px]">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10 max-bp-lg:pb-[88px]">
         <Container className="grid grid-cols-[1fr_440px] items-center gap-[72px] max-bp-lg:grid-cols-1 max-bp-lg:gap-10">
           <div>
             <span className="mb-5 inline-flex items-center gap-2 rounded-full border border-brand1/30 bg-brand1-bg py-[5px] pl-2.5 pr-3.5 text-[12px] font-semibold tracking-[0.3px] text-brand1">
@@ -168,7 +168,7 @@ export function VideoInterviewPage() {
       </div>
 
       {/* ═══ ПРОБЛЕМЫ / БОЛИ ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <h2 className="text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Почему ручной отбор
@@ -229,7 +229,7 @@ export function VideoInterviewPage() {
       </div>
 
       {/* ═══ КАК ЭТО РАБОТАЕТ (шаги) ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[0.8px] text-brand1">
             Как это работает
@@ -269,7 +269,7 @@ export function VideoInterviewPage() {
       </section>
 
       {/* ═══ СРАВНЕНИЕ ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <h2 className="text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Ускорьте первичный отбор
@@ -364,7 +364,7 @@ export function VideoInterviewPage() {
       </div>
 
       {/* ═══ КОМУ БУДЕТ ПОЛЕЗНО (статично, активна 1-я аудитория) ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[0.8px] text-brand1">
             Кому подойдёт
@@ -385,7 +385,7 @@ export function VideoInterviewPage() {
       </section>
 
       {/* ═══ ВОЗМОЖНОСТИ ПЛАТФОРМЫ — Feature Rows ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[0.8px] text-brand1">
             Возможности платформы
@@ -485,7 +485,7 @@ export function VideoInterviewPage() {
       {/* ═══ CTA + ФОРМА ═══ */}
       <section
         id="form"
-        className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14"
+        className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10"
       >
         <Container className="grid grid-cols-2 items-start gap-20 max-bp-xl:grid-cols-1 max-bp-xl:gap-12">
           <div>
@@ -529,7 +529,7 @@ export function VideoInterviewPage() {
       </section>
 
       {/* ═══ CROSS-SELL ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[0.8px] text-brand1">
             Другие возможности BRaiN HR
@@ -566,7 +566,7 @@ export function VideoInterviewPage() {
       </section>
 
       {/* ═══ FAQ ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <h2 className="mb-12 text-center text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Ответы на часто задаваемые вопросы
@@ -1419,4 +1419,5 @@ const FAQ_ITEMS: FaqItem[] = [
     a: "Да, вы можете настраивать критерии оценки (soft skills, технические навыки, мотивация, коммуникация) и задавать вес каждому критерию. Например, для технической позиции можно увеличить влияние hard skills, а для менеджерской — коммуникативных навыков. Также можно задать эталонные ответы для более точной оценки.",
   },
 ];
+
 

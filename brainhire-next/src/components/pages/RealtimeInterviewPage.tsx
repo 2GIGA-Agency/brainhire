@@ -393,7 +393,7 @@ export function RealtimeInterviewPage() {
       </div>
 
       {/* ═══ 2. ПРОБЛЕМЫ / БОЛИ ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <h2 className="text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Почему ручные финальные интервью
@@ -452,7 +452,7 @@ export function RealtimeInterviewPage() {
       </section>
 
       {/* ═══ 4. КАК ЭТО РАБОТАЕТ ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[0.8px] text-brand1">
             Как это работает
@@ -490,7 +490,7 @@ export function RealtimeInterviewPage() {
       </section>
 
       {/* ═══ 5. СРАВНЕНИЕ ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <h2 className="text-[clamp(26px,3vw,38px)] font-extrabold leading-[1.18] tracking-[-0.7px] text-text1">
             Ручное финальное интервью vs
@@ -586,7 +586,7 @@ export function RealtimeInterviewPage() {
       </div>
 
       {/* ═══ 8. КОМУ ПОДОЙДЁТ ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           {/* .section-tag из HTML CSS:
                 inline-flex; gap:6px; font-size:11px; font-weight:700;
@@ -609,7 +609,7 @@ export function RealtimeInterviewPage() {
       </section>
 
       {/* ═══ ВОЗМОЖНОСТИ ПЛАТФОРМЫ — Feature rows ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           {/* .section-tag (см. HTML CSS): + border 1px rgba(64,150,255,0.25),
               letter-spacing:1.2px, gap:6px. */}
@@ -842,7 +842,7 @@ export function RealtimeInterviewPage() {
       {/* ═══ CTA + ФОРМА ═══ */}
       <section
         id="form"
-        className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14"
+        className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10"
       >
         <Container className="grid grid-cols-2 items-start gap-20 max-bp-lg:grid-cols-1 max-bp-lg:gap-12">
           <div>
@@ -884,7 +884,7 @@ export function RealtimeInterviewPage() {
       </section>
 
       {/* ═══ CROSS-SELL ═══ */}
-      <section className="bg-white py-20 max-bp-lg:py-14">
+      <section className="bg-white py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <span className="inline-flex items-center rounded-full bg-brand1-bg px-3 py-1 text-[11px] font-bold uppercase tracking-[0.8px] text-brand1">
             Другие возможности BRaiN HR
@@ -918,7 +918,7 @@ export function RealtimeInterviewPage() {
       </section>
 
       {/* ═══ FAQ ═══ */}
-      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14">
+      <section className="border-y border-grey2 bg-grey1 py-20 max-bp-lg:py-14 max-bp-sm:py-10">
         <Container>
           <h2 className="mb-12 text-center text-[clamp(26px,3vw,38px)] font-extrabold tracking-[-0.7px] text-text1">
             Ответы на часто задаваемые вопросы
@@ -1111,4 +1111,5 @@ function QCard({
     </div>
   );
 }
+
 
