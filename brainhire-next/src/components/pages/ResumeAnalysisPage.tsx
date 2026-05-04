@@ -1,4 +1,4 @@
-import { Container } from "@/components/ui/Container";
+﻿import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { SectionTag } from "@/components/ui/SectionTag";
 import { FaqAccordion, type FaqItem } from "@/components/ui/FaqAccordion";
@@ -589,7 +589,7 @@ export function ResumeAnalysisPage() {
             {STATS.map((s, i) => (
               <Reveal key={s.num} delay={((i % 3) + 1) as 1 | 2 | 3}>
                 <div
-                  className={`px-12 py-8 text-left max-bp-sm:px-6 ${
+                  className={`px-12 py-8 max-bp-sm:px-5 max-bp-sm:py-5 text-left max-bp-sm:px-6 ${
                     i < STATS.length - 1
                       ? "border-r border-grey2 max-bp-lg:[&:nth-child(2)]:border-r-0 max-bp-sm:border-r-0 max-bp-sm:border-b max-bp-sm:border-grey2"
                       : "max-bp-sm:border-r-0"
@@ -1347,4 +1347,5 @@ function FeatTag({ children }: { children: React.ReactNode }) {
     </span>
   );
 }
+
 

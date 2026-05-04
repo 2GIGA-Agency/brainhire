@@ -1,4 +1,4 @@
-import { Container } from "@/components/ui/Container";
+﻿import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { FaqAccordion, type FaqItem } from "@/components/ui/FaqAccordion";
 import { LeadForm } from "@/components/interactive/LeadForm";
@@ -428,7 +428,7 @@ export function RealtimeInterviewPage() {
             {STATS.map((s, i) => (
               <Reveal key={s.num} delay={((i % 3) + 1) as 1 | 2 | 3}>
                 <div
-                  className={`px-12 py-8 max-bp-sm:px-6 max-bp-sm:py-6 ${
+                  className={`px-12 py-8 max-bp-sm:px-5 max-bp-sm:py-5 max-bp-sm:px-6 max-bp-sm:py-6 ${
                     i < STATS.length - 1 ? "border-r border-grey2 max-bp-sm:border-r-0 max-bp-sm:border-b" : ""
                   }`}
                 >
@@ -1111,3 +1111,4 @@ function QCard({
     </div>
   );
 }
+

@@ -1,4 +1,4 @@
-import { Container } from "@/components/ui/Container";
+﻿import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { FaqAccordion, type FaqItem } from "@/components/ui/FaqAccordion";
 import { LeadForm } from "@/components/interactive/LeadForm";
@@ -486,7 +486,7 @@ export function VacancyCreationPage() {
           {STATS.map((s, i) => (
             <Reveal key={i} delay={((i % 3) + 1) as 1 | 2 | 3}>
               <div
-                className="border-r border-grey2 px-12 py-8 text-left last:border-r-0 max-bp-sm:border-b max-bp-sm:border-r-0 max-bp-sm:last:border-b-0"
+                className="border-r border-grey2 px-12 py-8 max-bp-sm:px-5 max-bp-sm:py-5 text-left last:border-r-0 max-bp-sm:border-b max-bp-sm:border-r-0 max-bp-sm:last:border-b-0"
               >
                 <div className="mb-3 text-[48px] font-extrabold leading-none tracking-[-2px] text-text1">
                   <span className="text-brand1">{s.num}</span>
@@ -1234,4 +1234,5 @@ function QCard({ text, badge, badgeColor, meta }: QCardProps) {
     </div>
   );
 }
+
 

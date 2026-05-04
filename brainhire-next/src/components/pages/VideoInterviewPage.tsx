@@ -1,4 +1,4 @@
-import type { ComponentType, ReactNode, SVGProps } from "react";
+﻿import type { ComponentType, ReactNode, SVGProps } from "react";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { FaqAccordion, type FaqItem } from "@/components/ui/FaqAccordion";
@@ -204,7 +204,7 @@ export function VideoInterviewPage() {
           {STATS.map((s, i) => (
             <Reveal key={s.num} delay={((i % 3) + 1) as 1 | 2 | 3}>
               <div
-                className={`px-12 py-8 max-bp-md:px-6 max-bp-sm:px-4 ${
+                className={`px-12 py-8 max-bp-sm:px-5 max-bp-sm:py-5 max-bp-md:px-6 max-bp-sm:px-4 ${
                   i < STATS.length - 1
                     ? "border-r border-grey2 max-bp-sm:border-b max-bp-sm:border-r-0 last:max-bp-sm:border-b-0"
                     : ""
@@ -1419,3 +1419,4 @@ const FAQ_ITEMS: FaqItem[] = [
     a: "Да, вы можете настраивать критерии оценки (soft skills, технические навыки, мотивация, коммуникация) и задавать вес каждому критерию. Например, для технической позиции можно увеличить влияние hard skills, а для менеджерской — коммуникативных навыков. Также можно задать эталонные ответы для более точной оценки.",
   },
 ];
+

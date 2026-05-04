@@ -1,4 +1,4 @@
-import { Container } from "@/components/ui/Container";
+﻿import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { FaqAccordion, type FaqItem } from "@/components/ui/FaqAccordion";
 import { LeadForm } from "@/components/interactive/LeadForm";
@@ -262,7 +262,7 @@ export function StaffScoringPage() {
           ].map((stat, i, arr) => (
             <Reveal key={stat.num} delay={((i % 3) + 1) as 1 | 2 | 3}>
               <div
-                className={`px-12 py-8 text-left max-bp-sm:px-6 max-bp-sm:py-6 ${
+                className={`px-12 py-8 max-bp-sm:px-5 max-bp-sm:py-5 text-left max-bp-sm:px-6 max-bp-sm:py-6 ${
                   i < arr.length - 1 ? "border-r border-grey2" : ""
                 } max-bp-sm:border-r-0 max-bp-sm:border-b max-bp-sm:border-grey2 max-bp-sm:last:border-b-0`}
               >
@@ -1370,3 +1370,4 @@ const FAQ_ITEMS: FaqItem[] = [
     a: "В системе реализована гибкая ролевая модель доступа. HR-администратор видит все результаты, руководитель — только своих подчинённых, а сотрудник — только собственные результаты оценки. Вы можете настраивать уровни доступа для каждой роли, определяя, какие данные видны каждому пользователю.",
   },
 ];
+
