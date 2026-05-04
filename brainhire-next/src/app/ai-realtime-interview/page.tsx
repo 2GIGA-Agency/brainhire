@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { RealtimeInterviewPage } from "@/components/pages/RealtimeInterviewPage";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://brainhire.ru";
@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   title: TITLE,
   description: DESCRIPTION,
   alternates: { canonical: "/ai-realtime-interview" },
-  robots: { index: false, follow: false },
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
@@ -23,3 +22,4 @@ export const metadata: Metadata = {
 export default function Page() {
   return <RealtimeInterviewPage />;
 }
+

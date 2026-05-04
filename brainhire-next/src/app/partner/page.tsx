@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { HrCashbackPage } from "@/components/pages/HrCashbackPage";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://brainhire.ru";
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/partner`,
     type: "website",
   },
-  robots: { index: false, follow: false },
 };
 
 export default function Page() {
   return <HrCashbackPage />;
 }
+

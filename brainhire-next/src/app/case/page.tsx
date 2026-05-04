@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { CaseHubPage } from "@/components/pages/CaseHubPage";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL ?? "https://brainhire.ru";
@@ -17,9 +17,9 @@ export const metadata: Metadata = {
     url: `${SITE_URL}/case`,
     type: "website",
   },
-  robots: { index: false, follow: false },
 };
 
 export default function Page() {
   return <CaseHubPage />;
 }
+

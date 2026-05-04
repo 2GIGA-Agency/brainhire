@@ -3,8 +3,7 @@
     "title": "Калькулятор выгоды — BRaiN HR",
     "description": "Рассчитайте экономию от автоматизации найма с BRaiN HR. Интерактивный калькулятор покажет точную выгоду для вашей компании.",
     "canonical": "/calculator",
-    "updatedAt": "2026-04-29",
-    "noindex": true
+    "updatedAt": "2026-04-29"
   },
   "blocks": [
     {
