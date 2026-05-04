@@ -602,7 +602,7 @@ function FeatureRow({
 }: FeatureRowProps) {
   return (
     <div
-      className={`grid grid-cols-2 items-center gap-14 py-14 max-bp-lg:grid-cols-1 max-bp-lg:gap-8 ${
+      className={`grid grid-cols-2 items-center gap-14 py-14 max-bp-lg:grid-cols-1 max-bp-lg:gap-8 max-bp-sm:py-6 max-bp-sm:gap-5 ${
         !isLast ? "border-b border-grey2" : ""
       }`}
     >
@@ -1419,5 +1419,6 @@ const FAQ_ITEMS: FaqItem[] = [
     a: "Да, вы можете настраивать критерии оценки (soft skills, технические навыки, мотивация, коммуникация) и задавать вес каждому критерию. Например, для технической позиции можно увеличить влияние hard skills, а для менеджерской — коммуникативных навыков. Также можно задать эталонные ответы для более точной оценки.",
   },
 ];
+
 
 

@@ -1133,7 +1133,7 @@ function FeatureRow({ num, title, desc, checks, mock, reversed, isLast }: Featur
   return (
     <div
       className={
-        "grid grid-cols-2 items-center gap-14 py-14 max-bp-lg:grid-cols-1 max-bp-lg:gap-8 " +
+        "grid grid-cols-2 items-center gap-14 py-14 max-bp-lg:grid-cols-1 max-bp-lg:gap-8 max-bp-sm:py-6 max-bp-sm:gap-5 " +
         (isLast ? "" : "border-b border-grey2")
       }
     >
@@ -1234,6 +1234,7 @@ function QCard({ text, badge, badgeColor, meta }: QCardProps) {
     </div>
   );
 }
+
 
 
 
